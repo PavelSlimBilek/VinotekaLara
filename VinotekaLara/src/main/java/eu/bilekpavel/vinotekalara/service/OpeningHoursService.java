@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -44,13 +45,9 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public boolean save(OpeningHoursRequest request) {
+    public boolean save(OpeningHoursRequest request) throws ParseException {
         OpeningHours openingHours;
-        try {
-            openingHours = new OpeningHours(request);
-        } catch (Exception e) {
-            return false;
-        }
+        openingHours = new OpeningHours(request);
         return this.repo.save(openingHours);
     }
 

@@ -15,11 +15,14 @@ public class OpeningHours {
 
     public OpeningHours(OpeningHoursRequest request) throws ParseException {
         try {
-        this.day = DayOfWeek.valueOf(request.day().toUpperCase());
-        this.hours = new TimeInterval(
-                Time.valueOf(request.start() + ":00"),
-                Time.valueOf(request.end() + ":00")
-        );
+            DayOfWeek day = DayOfWeek.valueOf(request.day());
+            Time start = Time.valueOf(request.start() + ":00");
+            Time end =  Time.valueOf(request.end() + ":00");
+            if (end.before(start)) {
+                throw new ParseException("Start time is after end time", 0);
+            }
+            this.day = day;
+            this.hours = new TimeInterval(start, end);
         } catch (Exception e) {
             throw new ParseException(e.getMessage(), 0);
         }

@@ -24,6 +24,7 @@ public class WebController {
         model.addAttribute("daysOfWeek", DayOfWeek.values());
         model.addAttribute("openingHours", hoursService.getOpeningHours());
         model.addAttribute("todayHours", hoursService.getTodayHours());
+        model.addAttribute("isOpened", hoursService.isOpened());
         return "home";
     }
 
