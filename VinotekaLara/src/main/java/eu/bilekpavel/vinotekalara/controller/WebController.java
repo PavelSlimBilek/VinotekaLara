@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.controller;
 
 import eu.bilekpavel.vinotekalara.dto.OpeningHoursRequest;
-import eu.bilekpavel.vinotekalara.service.OpeningHourServiceInterface;
+import eu.bilekpavel.vinotekalara.service.OpeningHoursServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.time.DayOfWeek;
 @AllArgsConstructor
 public class WebController {
 
-    private OpeningHourServiceInterface hoursService;
+    private OpeningHoursServiceInterface hoursService;
 
     @GetMapping("/home")
     public String home(Model model) {

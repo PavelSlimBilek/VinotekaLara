@@ -3,16 +3,44 @@ package eu.bilekpavel.vinotekalara.service;
 import eu.bilekpavel.vinotekalara.dto.OpeningHours;
 import eu.bilekpavel.vinotekalara.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.repository.OpeningHoursRepositoryInterface;
-import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.DayOfWeek;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
-@AllArgsConstructor
-public class OpeningHoursService implements OpeningHourServiceInterface {
+@EnableScheduling
+public class OpeningHoursService implements OpeningHoursServiceInterface {
 
-    private OpeningHoursRepositoryInterface repo;
+    private final OpeningHoursRepositoryInterface repo;
+    private final Map<DayOfWeek, OpeningHours> cachedOpeningHours;
+
+    public OpeningHoursService(OpeningHoursRepositoryInterface repo) {
+        this.repo = repo;
+        this.cachedOpeningHours = new HashMap<>();
+    }
+
+    @Scheduled(fixedRate = 20_000)
+    public void updateHours() {
+        cachedOpeningHours.clear();
+        for (DayOfWeek day : DayOfWeek.values()) {
+            OpeningHours hours = null;
+            try {
+                hours = repo.getByDay(day.name());
+            } catch (Exception e) {
+                continue;
+            }
+            if (hours == null) {
+                continue;
+            }
+            cachedOpeningHours.put(day, hours);
+        }
+    }
 
     @Override
     public boolean save(OpeningHoursRequest request) {
@@ -27,6 +55,11 @@ public class OpeningHoursService implements OpeningHourServiceInterface {
 
     @Override
     public List<OpeningHours> getOpeningHours() {
-        return repo.getAll();
+        return this.cachedOpeningHours.values().stream().toList();
+    }
+
+    @Override
+    public boolean isOpened() {
+        return false;
     }
 }

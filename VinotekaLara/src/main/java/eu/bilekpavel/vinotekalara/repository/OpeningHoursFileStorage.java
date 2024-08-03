@@ -58,7 +58,8 @@ public class OpeningHoursFileStorage implements OpeningHoursRepositoryInterface 
         }
     }
 
-    private OpeningHours getByDay(String day) throws IOException {
+    @Override
+    public OpeningHours getByDay(String day) throws IOException {
         List<String[]> lines = separateValues();
         String[] match = lines.stream()
                 .filter(line -> line[0].equals(day))
