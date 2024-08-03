@@ -10,6 +10,25 @@
         </nav>
         <main id="content">
             <h1 th:text="${greeting}"></h1>
+            <form th:action="@{/opening-hours}" method="post">
+                <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
+                <label>
+                    day:
+                    <select name="day" required>
+                        <option th:each="day : ${daysOfWeek}" th:text="${day.name()}"></option>
+                    </select>
+                </label>
+                <label>
+                    start:
+                    <input type="time" name="start" required>
+                </label>
+                <label>
+                    end:
+                    <input type="time" name="end" required>
+                </label>
+                <input type="submit" value="Submit">
+            </form>
+            <p th:each="hours : ${openingHours}" th:text="${hours.toCzech()}"></p>
         </main>
         <footer></footer>
     </body>

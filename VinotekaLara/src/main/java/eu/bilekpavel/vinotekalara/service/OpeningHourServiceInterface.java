@@ -1,7 +1,11 @@
 package eu.bilekpavel.vinotekalara.service;
 
 import eu.bilekpavel.vinotekalara.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.dto.OpeningHoursRequest;
+
+import java.util.List;
 
 public interface OpeningHourServiceInterface {
-    public boolean save(OpeningHours hours);
+    boolean save(OpeningHoursRequest hours);
+    List<OpeningHours> getOpeningHours();
 }

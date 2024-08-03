@@ -23,12 +23,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/", "/login","/css/**").permitAll();
-                    request.anyRequest().authenticated();
+                    request.anyRequest().permitAll();
                 })
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
-                        .successForwardUrl("/home"))
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
