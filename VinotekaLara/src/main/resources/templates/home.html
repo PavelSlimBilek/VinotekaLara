@@ -10,6 +10,8 @@
         </nav>
         <main id="content">
             <h1 th:text="${greeting}"></h1>
+            <h2 th:if="${todayHours} == null">Dnes je nejspíše zavřeno..</h2>
+            <h2 th:if="${todayHours} != null" th:text="${todayHours.toCzech()}"></h2>
             <form th:action="@{/opening-hours}" method="post">
                 <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
                 <label>

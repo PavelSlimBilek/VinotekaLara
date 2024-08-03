@@ -7,8 +7,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,18 +28,19 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     @Scheduled(fixedRate = 20_000)
     public void updateHours() {
         cachedOpeningHours.clear();
-        for (DayOfWeek day : DayOfWeek.values()) {
-            OpeningHours hours = null;
-            try {
-                hours = repo.getByDay(day.name());
-            } catch (Exception e) {
-                continue;
+        try {
+            for (OpeningHours hours : repo.getAll()) {
+                cachedOpeningHours.put(hours.getDay(), hours);
             }
-            if (hours == null) {
-                continue;
-            }
-            cachedOpeningHours.put(day, hours);
+        } catch (Exception e) {
+
         }
+    }
+
+    @Override
+    public OpeningHours getTodayHours() {
+        DayOfWeek today = LocalDate.now().getDayOfWeek();
+        return cachedOpeningHours.get(today);
     }
 
     @Override
@@ -62,4 +63,6 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     public boolean isOpened() {
         return false;
     }
+
+
 }

@@ -23,6 +23,7 @@ public class WebController {
         model.addAttribute("greeting", "Vítejte!");
         model.addAttribute("daysOfWeek", DayOfWeek.values());
         model.addAttribute("openingHours", hoursService.getOpeningHours());
+        model.addAttribute("todayHours", hoursService.getTodayHours());
         return "home";
     }
 
