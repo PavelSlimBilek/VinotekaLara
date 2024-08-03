@@ -16,7 +16,12 @@ public class OpeningHoursService implements OpeningHourServiceInterface {
 
     @Override
     public boolean save(OpeningHoursRequest request) {
-        OpeningHours openingHours = new OpeningHours(request);
+        OpeningHours openingHours;
+        try {
+            openingHours = new OpeningHours(request);
+        } catch (Exception e) {
+            return false;
+        }
         return this.repo.save(openingHours);
     }
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.time.DayOfWeek;
 
 @Getter
@@ -12,12 +13,16 @@ public class OpeningHours {
     private final DayOfWeek day;
     private final TimeInterval hours;
 
-    public OpeningHours(OpeningHoursRequest request) {
+    public OpeningHours(OpeningHoursRequest request) throws ParseException {
+        try {
         this.day = DayOfWeek.valueOf(request.day().toUpperCase());
         this.hours = new TimeInterval(
                 Time.valueOf(request.start() + ":00"),
                 Time.valueOf(request.end() + ":00")
         );
+        } catch (Exception e) {
+            throw new ParseException(e.getMessage(), 0);
+        }
     }
 
     public String toCzech() {

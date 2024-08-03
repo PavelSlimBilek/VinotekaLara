@@ -19,7 +19,6 @@ public class WebController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        System.out.println(hoursService.getOpeningHours().size());
         model.addAttribute("title", "Vinotéka Lara");
         model.addAttribute("greeting", "Vítejte!");
         model.addAttribute("daysOfWeek", DayOfWeek.values());
@@ -29,7 +28,11 @@ public class WebController {
 
     @PostMapping("/opening-hours")
     public String updateHours(@ModelAttribute OpeningHoursRequest hours) {
-        this.hoursService.save(hours);
+        try {
+            this.hoursService.save(hours);
+        } catch (Exception e) {
+            return "redirect:/home";
+        }
         return "redirect:/home";
     }
 }

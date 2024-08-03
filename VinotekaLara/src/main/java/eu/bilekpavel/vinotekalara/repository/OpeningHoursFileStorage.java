@@ -25,6 +25,9 @@ public class OpeningHoursFileStorage implements OpeningHoursRepositoryInterface 
 
     @Override
     public boolean save(OpeningHours openingHours) {
+        if (openingHours == null) {
+            return false;
+        }
         String line = convertToLine(openingHours);
 
         try {
