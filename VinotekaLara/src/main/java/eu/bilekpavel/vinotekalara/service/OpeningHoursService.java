@@ -7,9 +7,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +60,18 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     @Override
     public boolean isOpened() {
-        return false;
+
+        DayOfWeek today = LocalDate.now().getDayOfWeek();
+        Time now = Time.valueOf(LocalTime.now());
+
+        OpeningHours todayHours = cachedOpeningHours.get(today);
+        if (todayHours == null) {
+            return false;
+        }
+
+        Time start = todayHours.getHours().start();
+        Time end = todayHours.getHours().end();
+
+        return (now.after(start) || now.equals(start)) && now.before(end);
     }
-
-
 }
