@@ -11,38 +11,35 @@ import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @EnableScheduling
 public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     private final OpeningHoursRepositoryInterface repo;
-    private final Map<DayOfWeek, OpeningHours> cachedOpeningHours;
+    private final List<OpeningHours> cachedOpeningHours;
 
     public OpeningHoursService(OpeningHoursRepositoryInterface repo) {
         this.repo = repo;
-        this.cachedOpeningHours = new HashMap<>();
+        this.cachedOpeningHours = new ArrayList<>();
+        updateHours();
     }
 
     @Scheduled(fixedRate = 20_000)
     public void updateHours() {
         cachedOpeningHours.clear();
-        try {
-            for (OpeningHours hours : repo.getAll()) {
-                cachedOpeningHours.put(hours.getDay(), hours);
-            }
-        } catch (Exception e) {
-            System.out.println("updateHours failed");
-        }
+        cachedOpeningHours.addAll(repo.getAll());
     }
 
     @Override
     public OpeningHours getTodayHours() {
         DayOfWeek today = LocalDate.now().getDayOfWeek();
-        return cachedOpeningHours.get(today);
+        return cachedOpeningHours.stream()
+                .filter((hours) -> hours.getDay() == today)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
@@ -54,16 +51,14 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     @Override
     public List<OpeningHours> getOpeningHours() {
-        return this.cachedOpeningHours.values().stream().toList();
+        return this.cachedOpeningHours;
     }
 
     @Override
     public boolean isOpened() {
 
-        DayOfWeek today = LocalDate.now().getDayOfWeek();
         Time now = Time.valueOf(LocalTime.now());
-
-        OpeningHours todayHours = cachedOpeningHours.get(today);
+        OpeningHours todayHours = getTodayHours();
         if (todayHours == null) {
             return false;
         }

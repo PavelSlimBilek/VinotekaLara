@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Time;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -48,17 +49,19 @@ public class OpeningHoursFileRepository implements OpeningHoursRepositoryInterfa
     public List<OpeningHours> getAll() {
         try {
             List<String[]> values = getStringValues();
-            Set<OpeningHours> hours = values.stream().map(data -> new OpeningHours(
+            return values.stream()
+                    .map(data -> new OpeningHours(
                             DayOfWeek.of(Integer.parseInt(data[0])),
                             new TimeInterval(
                                     Time.valueOf(data[2]),
                                     Time.valueOf(data[3])
                             ))
                     )
-                    .collect(Collectors.toSet());
-            return hours.stream().sorted(Comparator.comparingInt(n -> n.getDay().getValue())).collect(Collectors.toList());
+                    .sorted(Comparator.comparingInt((n) -> n.getDay().getValue()))
+                    .toList();
+
         } catch (IOException e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 
