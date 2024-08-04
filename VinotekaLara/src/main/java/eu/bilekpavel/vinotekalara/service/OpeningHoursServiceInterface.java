@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface OpeningHoursServiceInterface {
     void save(OpeningHoursRequest hours) throws Exception;
-    List<OpeningHours> getOpeningHours();
+    List<OpeningHours> getCachedOpeningHours();
     boolean isOpened();
     void updateHours();
     OpeningHours getTodayHours();
+
+    List<String> getTransformedOpeningHours();
+    String getTransformedTodayHours();
+    String getOpenedMessage();
 }

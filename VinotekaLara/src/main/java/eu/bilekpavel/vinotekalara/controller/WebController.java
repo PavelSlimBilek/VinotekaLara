@@ -1,5 +1,7 @@
 package eu.bilekpavel.vinotekalara.controller;
 
+import eu.bilekpavel.vinotekalara.config.AppSettings;
+import eu.bilekpavel.vinotekalara.config.HomePageContentProvider;
 import eu.bilekpavel.vinotekalara.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.service.OpeningHoursServiceInterface;
 import lombok.AllArgsConstructor;
@@ -19,17 +21,17 @@ public class WebController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("title", "Vinotéka Lara");
-        model.addAttribute("message", "Vítejte!");
+        HomePageContentProvider.addTo(model);
         model.addAttribute("daysOfWeek", DayOfWeek.values());
-        model.addAttribute("openingHours", hoursService.getOpeningHours());
-        model.addAttribute("todayHours", hoursService.getTodayHours());
-        model.addAttribute("isOpened", hoursService.isOpened());
+        model.addAttribute("openingHours", hoursService.getTransformedOpeningHours());
+        model.addAttribute("todayHours", hoursService.getTransformedTodayHours());
+        model.addAttribute("isOpened", hoursService.getOpenedMessage());
+        model.addAttribute("areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
         return "home";
     }
 
     @PostMapping("/opening-hours")
-    public String updateHours(@ModelAttribute OpeningHoursRequest hours, Model model) {
+    public String updateHours(@ModelAttribute OpeningHoursRequest hours) {
         try {
             this.hoursService.save(hours);
         } catch (Exception e) {

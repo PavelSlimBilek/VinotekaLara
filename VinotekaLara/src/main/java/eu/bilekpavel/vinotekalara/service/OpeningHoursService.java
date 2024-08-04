@@ -1,8 +1,10 @@
 package eu.bilekpavel.vinotekalara.service;
 
+import eu.bilekpavel.vinotekalara.config.AppSettings;
 import eu.bilekpavel.vinotekalara.dto.OpeningHours;
 import eu.bilekpavel.vinotekalara.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.repository.OpeningHoursRepositoryInterface;
+import eu.bilekpavel.vinotekalara.util.OpeningHoursAbstractTransformer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -19,11 +21,17 @@ import java.util.List;
 public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     private final OpeningHoursRepositoryInterface repo;
+    private final OpeningHoursAbstractTransformer transformer;
+
     private final List<OpeningHours> cachedOpeningHours;
 
-    public OpeningHoursService(OpeningHoursRepositoryInterface repo) {
+    public OpeningHoursService(
+        OpeningHoursRepositoryInterface repo,
+        OpeningHoursAbstractTransformer transformer
+    ) {
         this.repo = repo;
         this.cachedOpeningHours = new ArrayList<>();
+        this.transformer = transformer;
         updateHours();
     }
 
@@ -43,6 +51,24 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
+    public List<String> getTransformedOpeningHours() {
+        return transformer.transformAll(getCachedOpeningHours());
+    }
+
+    @Override
+    public String getTransformedTodayHours() {
+        return transformer.transform(getTodayHours());
+    }
+
+    @Override
+    public String getOpenedMessage() {
+        return isOpened()
+                ? transformer.getOPENED_MESSAGE()
+                : transformer.getCLOSED_MESSAGE()
+        ;
+    }
+
+    @Override
     public void save(OpeningHoursRequest request) throws Exception {
         OpeningHours openingHours;
         openingHours = new OpeningHours(request);
@@ -50,7 +76,7 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public List<OpeningHours> getOpeningHours() {
+    public List<OpeningHours> getCachedOpeningHours() {
         return this.cachedOpeningHours;
     }
 
@@ -66,7 +92,7 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
         Time morningStart = todayHours.getMorningHours().start();
         Time morningEnd = todayHours.getMorningHours().end();
 
-        if (todayHours.getAfternoonHours() == null) {
+        if (!AppSettings.areAfternoonHoursAllowed || todayHours.getAfternoonHours() == null) {
             return (now.after(morningStart) || now.equals(morningStart)) && now.before(morningEnd);
         }
         Time afternoonStart = todayHours.getAfternoonHours().start();

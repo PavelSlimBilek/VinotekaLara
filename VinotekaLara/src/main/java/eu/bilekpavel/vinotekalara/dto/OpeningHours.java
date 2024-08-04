@@ -42,35 +42,6 @@ public class OpeningHours {
         }
     }
 
-    public String toCzech() {
-        String czechDay;
-        switch (this.day) {
-            case MONDAY ->  czechDay = "Pondělí";
-            case TUESDAY -> czechDay = "Úterý";
-            case WEDNESDAY -> czechDay = "Středa";
-            case THURSDAY -> czechDay = "Čtvrtek";
-            case FRIDAY -> czechDay = "Pátek";
-            case SATURDAY -> czechDay = "Sobota";
-            case SUNDAY -> czechDay = "Neděle";
-            default -> czechDay = "";
-        }
-
-        if (this.afternoonHours == null) {
-            return String.format("%s : %s - %s | zavřeno",
-                    czechDay,
-                    String.format("%s", this.getMorningHours().start().toString().substring(0, 5)),
-                    String.format("%s", this.getMorningHours().end().toString().substring(0, 5))
-            );
-        }
-        return String.format("%s : %s - %s  |  %s - %s",
-                czechDay,
-                String.format("%s", this.getMorningHours().start().toString().substring(0, 5)),
-                String.format("%s", this.getMorningHours().end().toString().substring(0, 5)),
-                String.format("%s", this.getAfternoonHours().start().toString().substring(0, 5)),
-                String.format("%s", this.getAfternoonHours().end().toString().substring(0, 5))
-        );
-    }
-
     @Override
     public String toString() {
         if (this.afternoonHours == null) {
