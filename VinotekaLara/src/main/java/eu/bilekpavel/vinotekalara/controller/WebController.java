@@ -35,6 +35,7 @@ public class WebController {
         } catch (Exception e) {
             return "redirect:/home";
         }
+        this.hoursService.updateHours();
         return "redirect:/home";
     }
 }

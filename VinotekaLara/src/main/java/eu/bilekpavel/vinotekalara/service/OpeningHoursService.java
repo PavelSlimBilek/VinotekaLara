@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
-import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -36,7 +35,7 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
                 cachedOpeningHours.put(hours.getDay(), hours);
             }
         } catch (Exception e) {
-
+            System.out.println("updateHours failed");
         }
     }
 
@@ -47,10 +46,10 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public boolean save(OpeningHoursRequest request) throws ParseException {
+    public void save(OpeningHoursRequest request) throws Exception {
         OpeningHours openingHours;
         openingHours = new OpeningHours(request);
-        return this.repo.save(openingHours);
+        this.repo.save(openingHours);
     }
 
     @Override

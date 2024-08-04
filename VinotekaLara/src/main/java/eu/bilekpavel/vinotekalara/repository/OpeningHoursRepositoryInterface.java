@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface OpeningHoursRepositoryInterface {
-    boolean save(OpeningHours openingHours);
+    void save(OpeningHours openingHours) throws IOException;
     List<OpeningHours> getAll();
-
-    OpeningHours getByDay(String dayOfWeek) throws IOException;
 }

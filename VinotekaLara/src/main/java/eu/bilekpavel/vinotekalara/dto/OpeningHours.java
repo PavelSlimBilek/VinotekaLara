@@ -29,7 +29,7 @@ public class OpeningHours {
     }
 
     public String toCzech() {
-        String czechDay = "";
+        String czechDay;
         switch (this.day) {
             case MONDAY ->  czechDay = "Pondělí";
             case TUESDAY -> czechDay = "Úterý";
@@ -44,6 +44,16 @@ public class OpeningHours {
                 czechDay,
                 String.format("%s", this.getHours().start().toString().substring(0, 5)),
                 String.format("%s", this.getHours().end().toString().substring(0, 5))
+        );
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d,%s,%s,%s",
+                this.day.getValue(),
+                this.day.name(),
+                this.hours.start(),
+                this.hours.end()
         );
     }
 }
