@@ -14,7 +14,6 @@ import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
@@ -55,7 +54,14 @@ public class OpeningHoursFileRepository implements OpeningHoursRepositoryInterfa
                             new TimeInterval(
                                     Time.valueOf(data[2]),
                                     Time.valueOf(data[3])
-                            ))
+                            ),
+                            data.length < 6
+                                    ? null
+                                    : new TimeInterval(
+                                            Time.valueOf(data[4]),
+                                            Time.valueOf(data[5])
+                                    )
+                            )
                     )
                     .sorted(Comparator.comparingInt((n) -> n.getDay().getValue()))
                     .toList();

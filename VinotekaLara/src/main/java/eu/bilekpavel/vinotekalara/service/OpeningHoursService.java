@@ -63,9 +63,16 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
             return false;
         }
 
-        Time start = todayHours.getHours().start();
-        Time end = todayHours.getHours().end();
+        Time morningStart = todayHours.getMorningHours().start();
+        Time morningEnd = todayHours.getMorningHours().end();
 
-        return (now.after(start) || now.equals(start)) && now.before(end);
+        if (todayHours.getAfternoonHours() == null) {
+            return (now.after(morningStart) || now.equals(morningStart)) && now.before(morningEnd);
+        }
+        Time afternoonStart = todayHours.getAfternoonHours().start();
+        Time afternoonEnd = todayHours.getAfternoonHours().end();
+
+        return ((now.after(morningStart) || now.equals(morningStart)) && now.before(morningEnd)) ||
+                (now.after(afternoonStart) || now.equals(afternoonStart) && now.before(afternoonEnd));
     }
 }

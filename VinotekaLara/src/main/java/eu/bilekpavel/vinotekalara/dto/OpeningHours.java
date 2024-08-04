@@ -11,18 +11,32 @@ import java.time.DayOfWeek;
 @AllArgsConstructor
 public class OpeningHours {
     private final DayOfWeek day;
-    private final TimeInterval hours;
+    private final TimeInterval morningHours;
+    private final TimeInterval afternoonHours;
 
     public OpeningHours(OpeningHoursRequest request) throws ParseException {
         try {
-            DayOfWeek day = DayOfWeek.valueOf(request.day());
-            Time start = Time.valueOf(request.start() + ":00");
-            Time end =  Time.valueOf(request.end() + ":00");
-            if (end.before(start)) {
+            this.day = DayOfWeek.valueOf(request.day());
+
+            Time morningStart = Time.valueOf(request.morningStart() + ":00");
+            Time morningEnd =  Time.valueOf(request.morningEnd() + ":00");
+            if (morningEnd.before(morningStart)) {
                 throw new ParseException("Start time is after end time", 0);
             }
-            this.day = day;
-            this.hours = new TimeInterval(start, end);
+            this.morningHours = new TimeInterval(morningStart, morningEnd);
+
+            if (request.afternoonStart().isBlank() || request.afternoonEnd().isBlank() ||
+                request.afternoonStart().isEmpty() || request.afternoonEnd().isEmpty()){
+                this.afternoonHours = null;
+            } else {
+                Time afternoonStart = Time.valueOf(request.afternoonStart() + ":00");
+                Time afternoonEnd = Time.valueOf(request.afternoonEnd() + ":00");
+                if (afternoonEnd.before(afternoonStart) || afternoonStart.before(morningEnd)) {
+                    throw new ParseException("Start time is after end time", 0);
+                }
+                this.afternoonHours = new TimeInterval(afternoonStart, afternoonEnd);
+            }
+
         } catch (Exception e) {
             throw new ParseException(e.getMessage(), 0);
         }
@@ -40,20 +54,40 @@ public class OpeningHours {
             case SUNDAY -> czechDay = "Neděle";
             default -> czechDay = "";
         }
-        return String.format("%s - %s : %s",
+
+        if (this.afternoonHours == null) {
+            return String.format("%s : %s - %s | zavřeno",
+                    czechDay,
+                    String.format("%s", this.getMorningHours().start().toString().substring(0, 5)),
+                    String.format("%s", this.getMorningHours().end().toString().substring(0, 5))
+            );
+        }
+        return String.format("%s : %s - %s  |  %s - %s",
                 czechDay,
-                String.format("%s", this.getHours().start().toString().substring(0, 5)),
-                String.format("%s", this.getHours().end().toString().substring(0, 5))
+                String.format("%s", this.getMorningHours().start().toString().substring(0, 5)),
+                String.format("%s", this.getMorningHours().end().toString().substring(0, 5)),
+                String.format("%s", this.getAfternoonHours().start().toString().substring(0, 5)),
+                String.format("%s", this.getAfternoonHours().end().toString().substring(0, 5))
         );
     }
 
     @Override
     public String toString() {
-        return String.format("%d,%s,%s,%s",
+        if (this.afternoonHours == null) {
+            return String.format("%d,%s,%s,%s",
+                    this.day.getValue(),
+                    this.day.name(),
+                    this.morningHours.start(),
+                    this.morningHours.end()
+            );
+        }
+        return String.format("%d,%s,%s,%s,%s,%s",
                 this.day.getValue(),
                 this.day.name(),
-                this.hours.start(),
-                this.hours.end()
+                this.morningHours.start(),
+                this.morningHours.end(),
+                this.afternoonHours.start(),
+                this.afternoonHours.end()
         );
     }
 }

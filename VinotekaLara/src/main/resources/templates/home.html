@@ -9,7 +9,7 @@
             <section id="menu"></section>
         </nav>
         <main id="content">
-            <h1 th:text="${greeting}"></h1>
+            <h1 th:text="${message}"></h1>
             <h2 th:if="${todayHours} == null">Dnes je nejspíše zavřeno..</h2>
             <h2 th:if="${todayHours} != null" th:text="${todayHours.toCzech()}"></h2>
             <h3 th:text="${isOpened ? 'Otevřeno' : 'Zavřeno'}"></h3>
@@ -22,12 +22,20 @@
                     </select>
                 </label>
                 <label>
-                    start:
-                    <input type="time" name="start" required>
+                    morning start:
+                    <input type="time" name="morningStart" required>
                 </label>
                 <label>
-                    end:
-                    <input type="time" name="end" required>
+                    morning end:
+                    <input type="time" name="morningEnd" required>
+                </label>
+                <label>
+                    afternoon start:
+                    <input type="time" name="afternoonStart">
+                </label>
+                <label>
+                    afternoon end:
+                    <input type="time" name="afternoonEnd">
                 </label>
                 <input type="submit" value="Submit">
             </form>
