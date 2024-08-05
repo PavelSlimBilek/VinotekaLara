@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:lang="${_lang}">
+<html th:lang="${_pageContent.lang()}">
     <head>
         <meta charset="UTF-8">
         <title th:text="${_title}"></title>
@@ -9,9 +9,10 @@
             <section id="menu"></section>
         </nav>
         <main id="content">
-            <h1 th:text="${_message}"></h1>
+            <h1 th:text="${_pageContent.welcomeMessage()}"></h1>
             <h2 th:if="${_todayHours} != null" th:text="${_todayHours}"></h2>
             <h3 th:text="${_isOpened}"></h3>
+            <p th:text="${_pageContent.description()}"></p>
             <form th:action="@{/opening-hours}" method="post">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 

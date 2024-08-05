@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.front;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
+import eu.bilekpavel.vinotekalara.front.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
@@ -20,19 +21,34 @@ import java.util.Map;
 @Controller
 public class WebController {
 
-    private final OpeningHoursServiceInterface hoursService;
+    private final Language defaultLanguage = Language.CZECH;
 
-    private final Map<Language, OpeningHoursTranslatorInterface> translators = new HashMap<>();
+    private final OpeningHoursServiceInterface hoursService;
+    private final HomePageContentProviderInterface service;
+
+    private final Map<Language, OpeningHoursTranslatorInterface> hoursTranslators = new HashMap<>();
+    private final Map<Language, HomePageTranslatorInterface> homePageTranslators = new HashMap<>();
 
     public WebController(OpeningHoursServiceInterface hoursService,
+                         HomePageContentProviderInterface service,
                          @Qualifier("czech") OpeningHoursTranslatorInterface czechTranslator,
                          @Qualifier("english") OpeningHoursTranslatorInterface englishTranslator,
-                         @Qualifier("german") OpeningHoursTranslatorInterface germanTranslator) {
+                         @Qualifier("german") OpeningHoursTranslatorInterface germanTranslator,
+
+                         @Qualifier("czech") HomePageTranslatorInterface czechPageTranslator,
+                         @Qualifier("english") HomePageTranslatorInterface englishPageTranslator,
+                         @Qualifier("german") HomePageTranslatorInterface germanPageTranslator
+    ) {
 
         this.hoursService = hoursService;
-        translators.put(Language.CZECH, czechTranslator);
-        translators.put(Language.ENGLISH, englishTranslator);
-        translators.put(Language.GERMAN, germanTranslator);
+        this.service = service;
+        hoursTranslators.put(Language.CZECH, czechTranslator);
+        hoursTranslators.put(Language.ENGLISH, englishTranslator);
+        hoursTranslators.put(Language.GERMAN, germanTranslator);
+
+        homePageTranslators.put(Language.CZECH, czechPageTranslator);
+        homePageTranslators.put(Language.ENGLISH, englishPageTranslator);
+        homePageTranslators.put(Language.GERMAN, germanPageTranslator);
     }
 
     @GetMapping("/home")
@@ -40,13 +56,15 @@ public class WebController {
                        @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang) {
 
         OpeningHoursTranslatorInterface translator = LanguageMapper.isOnList(lang)
-                ? translators.get(LanguageMapper.getLanguage(lang))
-                : translators.get(Language.CZECH);
+                ? hoursTranslators.get(LanguageMapper.getLanguage(lang))
+                : hoursTranslators.get(defaultLanguage);
 
-        model.addAttribute("_lang", lang);
-        model.addAttribute("_title", AppSettings.NAME);
-        model.addAttribute("_message", lang.equals("cs") ? "Vítejte!" : "Welcome!");
-        model.addAttribute("_submit", lang.equals("cs") ? "Odeslat!" : "Submit!");
+        HomePageTranslatorInterface pageTranslator = LanguageMapper.isOnList(lang)
+                ? homePageTranslators.get(LanguageMapper.getLanguage(lang))
+                : homePageTranslators.get(defaultLanguage);
+
+        model.addAttribute("_pageContent", service.getTranslatedContent(pageTranslator));
+
         model.addAttribute("_day", translator.getDay());
         model.addAttribute("_start", translator.getStart());
         model.addAttribute("_end", translator.getEnd());
