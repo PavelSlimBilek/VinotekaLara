@@ -4,6 +4,8 @@ import eu.bilekpavel.vinotekalara.app.AppSettings;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
+import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.LanguageMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,31 +14,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class WebController {
 
     private final OpeningHoursServiceInterface hoursService;
 
-    private final OpeningHoursTranslatorInterface czechTranslator;
-    private final OpeningHoursTranslatorInterface englishTranslator;
+    private final Map<Language, OpeningHoursTranslatorInterface> translators = new HashMap<>();
 
     public WebController(OpeningHoursServiceInterface hoursService,
-                         @Qualifier("czechTransformer") OpeningHoursTranslatorInterface czechTranslator,
-                         @Qualifier("englishTransformer") OpeningHoursTranslatorInterface englishTranslator) {
+                         @Qualifier("czech") OpeningHoursTranslatorInterface czechTranslator,
+                         @Qualifier("english") OpeningHoursTranslatorInterface englishTranslator,
+                         @Qualifier("german") OpeningHoursTranslatorInterface germanTranslator) {
 
         this.hoursService = hoursService;
-        this.czechTranslator = czechTranslator;
-        this.englishTranslator = englishTranslator;
+        translators.put(Language.CZECH, czechTranslator);
+        translators.put(Language.ENGLISH, englishTranslator);
+        translators.put(Language.GERMAN, germanTranslator);
     }
 
     @GetMapping("/home")
     public String home(Model model,
                        @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang) {
 
-        lang = lang.equals("en") ? "en" : "cs";
-        OpeningHoursTranslatorInterface translator = lang.equals("en")
-                ? englishTranslator
-                : czechTranslator;
+        OpeningHoursTranslatorInterface translator = LanguageMapper.isOnList(lang)
+                ? translators.get(LanguageMapper.getLanguage(lang))
+                : translators.get(Language.CZECH);
 
         model.addAttribute("_lang", lang);
         model.addAttribute("_title", AppSettings.NAME);

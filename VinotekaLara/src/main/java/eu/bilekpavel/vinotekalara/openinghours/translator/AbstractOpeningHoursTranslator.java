@@ -1,33 +1,37 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
-import eu.bilekpavel.vinotekalara.openinghours.domain.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
+import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.TranslatorInterface;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTranslatorInterface {
+public abstract class AbstractOpeningHoursTranslator implements TranslatorInterface, OpeningHoursTranslatorInterface {
 
-    public final String OPENING_HOURS;
+    private final Language LANGUAGE;
 
-    public final String OPENED_MESSAGE;
-    public final String CLOSED_MESSAGE;
+    private final String OPENING_HOURS;
 
-    public final String MONDAY;
-    public final String TUESDAY;
-    public final String WEDNESDAY;
-    public final String THURSDAY;
-    public final String FRIDAY;
-    public final String SATURDAY;
-    public final String SUNDAY;
-    public final String CLOSED;
+    private final String OPENED_MESSAGE;
+    private final String CLOSED_MESSAGE;
 
-    public final String START;
-    public final String END;
-    public final String DAY;
-    public final String MORNING_HOURS;
-    public final String AFTERNOON_HOURS;
+    private final String MONDAY;
+    private final String TUESDAY;
+    private final String WEDNESDAY;
+    private final String THURSDAY;
+    private final String FRIDAY;
+    private final String SATURDAY;
+    private final String SUNDAY;
+    private final String CLOSED;
+
+    private final String START;
+    private final String END;
+    private final String DAY;
+    private final String MORNING_HOURS;
+    private final String AFTERNOON_HOURS;
 
     @Override
     public final String transform(OpeningHours hours) {
@@ -65,6 +69,11 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
     @Override
     public final List<String> transformAll(List<OpeningHours> hours) {
         return hours.stream().map(this::transform).toList();
+    }
+
+    @Override
+    public final Language getLanguage() {
+        return LANGUAGE;
     }
 
     @Override

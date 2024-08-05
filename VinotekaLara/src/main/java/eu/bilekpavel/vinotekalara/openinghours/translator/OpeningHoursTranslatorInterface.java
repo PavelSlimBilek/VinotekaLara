@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator;
 
-import eu.bilekpavel.vinotekalara.openinghours.domain.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
 
 import java.util.List;
 

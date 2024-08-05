@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.openinghours.domain;
+package eu.bilekpavel.vinotekalara.openinghours.model;
 
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;

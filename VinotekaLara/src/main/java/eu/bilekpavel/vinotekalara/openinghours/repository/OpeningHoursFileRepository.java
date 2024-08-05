@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.repository;
 
-import eu.bilekpavel.vinotekalara.openinghours.domain.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
 import org.springframework.stereotype.Repository;
 
