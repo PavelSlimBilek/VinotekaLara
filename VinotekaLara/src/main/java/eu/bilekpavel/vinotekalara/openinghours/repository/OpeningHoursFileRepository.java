@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.repository;
 
-import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.domain.OpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
 import org.springframework.stereotype.Repository;
 
@@ -70,22 +70,6 @@ public class OpeningHoursFileRepository implements OpeningHoursRepositoryInterfa
             return new ArrayList<>();
         }
     }
-
-    /*
-    public OpeningHours getByDay(int day) throws IOException {
-        List<String[]> lines = getStringValues();
-        String[] match = lines.stream()
-                .filter(line -> Integer.parseInt(line[0]) == day)
-                .findFirst()
-                .orElseThrow();
-        return new OpeningHours(
-                DayOfWeek.valueOf(match[1]),
-                new TimeInterval(
-                        Time.valueOf(match[2]),
-                        Time.valueOf(match[3])
-                ));
-    }
-     */
 
     private List<String[]> getStringValues() throws IOException {
         List<String> lines = Files.readAllLines(PATH);

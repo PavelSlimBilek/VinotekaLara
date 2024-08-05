@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.config;
+package eu.bilekpavel.vinotekalara.app;
 
 import org.springframework.context.annotation.Configuration;
 

@@ -1,5 +1,7 @@
-package eu.bilekpavel.vinotekalara.openinghours.dto;
+package eu.bilekpavel.vinotekalara.openinghours.domain;
 
+import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
+import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,23 +18,23 @@ public class OpeningHours {
 
     public OpeningHours(OpeningHoursRequest request) throws ParseException {
         try {
-            this.day = DayOfWeek.valueOf(request.day());
+            this.day = DayOfWeek.of(Integer.parseInt(request.dayValue()));
 
             Time morningStart = Time.valueOf(request.morningStart() + ":00");
             Time morningEnd =  Time.valueOf(request.morningEnd() + ":00");
             if (morningEnd.before(morningStart)) {
-                throw new ParseException("Start time is after end time", 0);
+                throw new ParseException("Start time is after _end time", 0);
             }
             this.morningHours = new TimeInterval(morningStart, morningEnd);
 
-            if (request.afternoonStart().isBlank() || request.afternoonEnd().isBlank() ||
-                request.afternoonStart().isEmpty() || request.afternoonEnd().isEmpty()){
+            if (request.afternoonStart() == null || request.afternoonEnd() == null ||
+                request.afternoonStart().isBlank() || request.afternoonEnd().isBlank()){
                 this.afternoonHours = null;
             } else {
                 Time afternoonStart = Time.valueOf(request.afternoonStart() + ":00");
                 Time afternoonEnd = Time.valueOf(request.afternoonEnd() + ":00");
                 if (afternoonEnd.before(afternoonStart) || afternoonStart.before(morningEnd)) {
-                    throw new ParseException("Start time is after end time", 0);
+                    throw new ParseException("Start time is after _end time", 0);
                 }
                 this.afternoonHours = new TimeInterval(afternoonStart, afternoonEnd);
             }

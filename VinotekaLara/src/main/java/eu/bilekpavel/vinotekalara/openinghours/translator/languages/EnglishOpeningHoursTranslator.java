@@ -1,11 +1,12 @@
-package eu.bilekpavel.vinotekalara.translator;
+package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
 
+import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
 import org.springframework.stereotype.Component;
 
 @Component("englishTransformer")
-public class EnglishTranslator extends AbstractTranslator {
+public class EnglishOpeningHoursTranslator extends AbstractOpeningHoursTranslator {
 
-    public EnglishTranslator() {
+    public EnglishOpeningHoursTranslator() {
         super("Opening hours",
                 "It's opened now",
                 "It's closed now",

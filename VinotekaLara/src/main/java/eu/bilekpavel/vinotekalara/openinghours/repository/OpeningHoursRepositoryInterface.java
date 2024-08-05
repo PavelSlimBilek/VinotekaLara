@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.repository;
 
-import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.domain.OpeningHours;
 
 import java.io.IOException;
 import java.util.List;

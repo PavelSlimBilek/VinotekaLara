@@ -1,10 +1,11 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
-import eu.bilekpavel.vinotekalara.config.AppSettings;
-import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.app.AppSettings;
+import eu.bilekpavel.vinotekalara.openinghours.domain.OpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.repository.OpeningHoursRepositoryInterface;
-import eu.bilekpavel.vinotekalara.translator.TranslatorInterface;
+import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
+import eu.bilekpavel.vinotekalara.openinghours.translator.dto.TranslatedDayOfWeek;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -47,18 +48,33 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public List<String> getTransformedOpeningHours(TranslatorInterface transformer) {
+    public List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface transformer) {
         return transformer.transformAll(getCachedOpeningHours());
     }
 
     @Override
-    public String getTransformedTodayHours(TranslatorInterface transformer) {
+    public String getTranslatedTodayHours(OpeningHoursTranslatorInterface transformer) {
         return transformer.transform(getTodayHours());
     }
 
     @Override
-    public String getOpenedMessage(TranslatorInterface transformer) {
-        return transformer.isOpenedMessage(isOpened());
+    public String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface transformer) {
+        return transformer.getIsOpenedMessage(isOpened());
+    }
+
+    @Override
+    public List<TranslatedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator) {
+        System.out.println(new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()).translation());
+        System.out.println(new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()).dayValue());
+        return List.of(
+                new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()),
+                new TranslatedDayOfWeek(DayOfWeek.TUESDAY.getValue(), translator.getTuesday()),
+                new TranslatedDayOfWeek(DayOfWeek.WEDNESDAY.getValue(), translator.getWednesday()),
+                new TranslatedDayOfWeek(DayOfWeek.THURSDAY.getValue(), translator.getThursday()),
+                new TranslatedDayOfWeek(DayOfWeek.FRIDAY.getValue(), translator.getFriday()),
+                new TranslatedDayOfWeek(DayOfWeek.SATURDAY.getValue(), translator.getSaturday()),
+                new TranslatedDayOfWeek(DayOfWeek.SUNDAY.getValue(), translator.getSunday())
+        );
     }
 
     @Override
