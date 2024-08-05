@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
 
 import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
-import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import org.springframework.stereotype.Component;
 
 @Component("english")

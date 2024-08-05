@@ -20,5 +20,5 @@ public interface OpeningHoursServiceInterface {
     String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface transformer);
     List<TranslatedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator);
 
-    TranslatedOpeningHoursData getTranslatedContent(OpeningHoursTranslatorInterface hoursTranslator);
+    TranslatedOpeningHoursData getTranslatedData(OpeningHoursTranslatorInterface hoursTranslator);
 }

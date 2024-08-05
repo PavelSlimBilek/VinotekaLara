@@ -5,8 +5,9 @@ import eu.bilekpavel.vinotekalara.front.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
-import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import eu.bilekpavel.vinotekalara.translator.LanguageMapper;
+import eu.bilekpavel.vinotekalara.translator.service.LocalizationService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +24,16 @@ public class WebController {
 
     private final Language defaultLanguage = Language.CZECH;
 
-    private final OpeningHoursServiceInterface hoursService;
     private final HomePageContentProviderInterface service;
+    private final LocalizationService localizationService;
+
+    private final OpeningHoursServiceInterface hoursService;
 
     private final Map<Language, OpeningHoursTranslatorInterface> hoursTranslators = new HashMap<>();
     private final Map<Language, HomePageTranslatorInterface> homePageTranslators = new HashMap<>();
 
     public WebController(OpeningHoursServiceInterface hoursService,
+                         LocalizationService localizationService,
                          HomePageContentProviderInterface service,
                          @Qualifier("czech") OpeningHoursTranslatorInterface czechTranslator,
                          @Qualifier("english") OpeningHoursTranslatorInterface englishTranslator,
@@ -42,6 +46,8 @@ public class WebController {
 
         this.hoursService = hoursService;
         this.service = service;
+        this.localizationService = localizationService;
+
         hoursTranslators.put(Language.CZECH, czechTranslator);
         hoursTranslators.put(Language.ENGLISH, englishTranslator);
         hoursTranslators.put(Language.GERMAN, germanTranslator);
@@ -65,9 +71,11 @@ public class WebController {
                 ? homePageTranslators.get(LanguageMapper.getLanguage(lang))
                 : homePageTranslators.get(defaultLanguage);
 
-        model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
         model.addAttribute("_pageContent", service.getTranslatedContent(pageTranslator));
-        model.addAttribute("_hoursWidget", hoursService.getTranslatedContent(hoursTranslator));
+        model.addAttribute("_localizationWidget", localizationService.getAll());
+
+        model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
+        model.addAttribute("_hoursWidget", hoursService.getTranslatedData(hoursTranslator));
 
         return "home";
     }

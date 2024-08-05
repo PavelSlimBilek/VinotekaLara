@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.front.translator.language;
 
 import eu.bilekpavel.vinotekalara.front.translator.AbstractHomePageTranslator;
-import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

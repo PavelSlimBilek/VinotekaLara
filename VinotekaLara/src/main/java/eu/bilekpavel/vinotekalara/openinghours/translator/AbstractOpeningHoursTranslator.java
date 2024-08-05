@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.openinghours.translator;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
 import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
-import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import eu.bilekpavel.vinotekalara.translator.TranslatorInterface;
 import lombok.AllArgsConstructor;
 

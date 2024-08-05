@@ -7,8 +7,6 @@ import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.repository.OpeningHoursRepositoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.TranslatedDayOfWeek;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@EnableScheduling
 public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     private final OpeningHoursRepositoryInterface repo;
@@ -33,7 +30,6 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
         updateHours();
     }
 
-    @Scheduled(fixedRate = 20_000)
     public void updateHours() {
         cachedOpeningHours.clear();
         cachedOpeningHours.addAll(repo.getAll());
@@ -113,7 +109,7 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public TranslatedOpeningHoursData getTranslatedContent(OpeningHoursTranslatorInterface translator) {
+    public TranslatedOpeningHoursData getTranslatedData(OpeningHoursTranslatorInterface translator) {
         return new TranslatedOpeningHoursData(
                 translator.getDay(),
                 translator.getStart(),

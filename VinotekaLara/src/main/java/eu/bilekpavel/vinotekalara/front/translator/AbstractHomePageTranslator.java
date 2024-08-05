@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.front.translator;
 
-import eu.bilekpavel.vinotekalara.translator.Language;
+import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import eu.bilekpavel.vinotekalara.translator.TranslatorInterface;
 import lombok.AllArgsConstructor;
 

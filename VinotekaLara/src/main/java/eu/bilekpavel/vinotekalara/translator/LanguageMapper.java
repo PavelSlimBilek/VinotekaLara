@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator;
 
+import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import lombok.AllArgsConstructor;
 
 import java.util.HashMap;
