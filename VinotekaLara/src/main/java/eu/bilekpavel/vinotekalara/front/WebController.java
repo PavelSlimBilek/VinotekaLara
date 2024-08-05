@@ -55,27 +55,19 @@ public class WebController {
     public String home(Model model,
                        @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang) {
 
-        OpeningHoursTranslatorInterface translator = LanguageMapper.isOnList(lang)
+        boolean isOnList = LanguageMapper.isOnList(lang);
+
+        OpeningHoursTranslatorInterface hoursTranslator = isOnList
                 ? hoursTranslators.get(LanguageMapper.getLanguage(lang))
                 : hoursTranslators.get(defaultLanguage);
 
-        HomePageTranslatorInterface pageTranslator = LanguageMapper.isOnList(lang)
+        HomePageTranslatorInterface pageTranslator = isOnList
                 ? homePageTranslators.get(LanguageMapper.getLanguage(lang))
                 : homePageTranslators.get(defaultLanguage);
 
-        model.addAttribute("_pageContent", service.getTranslatedContent(pageTranslator));
-
-        model.addAttribute("_day", translator.getDay());
-        model.addAttribute("_start", translator.getStart());
-        model.addAttribute("_end", translator.getEnd());
-        model.addAttribute("_morningHours", translator.getMorningHours());
-        model.addAttribute("_afternoonHours", translator.getAfternoonHours());
-        model.addAttribute("_openingHoursTranslation", translator.getOpeningHours());
-        model.addAttribute("_daysOfWeek", hoursService.getTranslatedDaysOfWeek(translator));
-        model.addAttribute("_openingHours", hoursService.getTranslatedOpeningHours(translator));
-        model.addAttribute("_todayHours", hoursService.getTranslatedTodayHours(translator));
-        model.addAttribute("_isOpened", hoursService.getTranslatedOpenedMessage(translator));
         model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
+        model.addAttribute("_pageContent", service.getTranslatedContent(pageTranslator));
+        model.addAttribute("_hoursWidget", hoursService.getTranslatedContent(hoursTranslator));
 
         return "home";
     }

@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
+import eu.bilekpavel.vinotekalara.openinghours.dto.TranslatedOpeningHoursData;
 import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
@@ -18,4 +19,6 @@ public interface OpeningHoursServiceInterface {
     String getTranslatedTodayHours(OpeningHoursTranslatorInterface transformer);
     String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface transformer);
     List<TranslatedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator);
+
+    TranslatedOpeningHoursData getTranslatedContent(OpeningHoursTranslatorInterface hoursTranslator);
 }

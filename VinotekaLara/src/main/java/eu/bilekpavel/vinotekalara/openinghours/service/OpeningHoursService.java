@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
+import eu.bilekpavel.vinotekalara.openinghours.dto.TranslatedOpeningHoursData;
 import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.repository.OpeningHoursRepositoryInterface;
@@ -109,5 +110,21 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
 
         return ((now.after(morningStart) || now.equals(morningStart)) && now.before(morningEnd)) ||
                 (now.after(afternoonStart) || now.equals(afternoonStart) && now.before(afternoonEnd));
+    }
+
+    @Override
+    public TranslatedOpeningHoursData getTranslatedContent(OpeningHoursTranslatorInterface translator) {
+        return new TranslatedOpeningHoursData(
+                translator.getDay(),
+                translator.getStart(),
+                translator.getEnd(),
+                translator.getMorningHours(),
+                translator.getAfternoonHours(),
+                translator.getOpeningHours(),
+                getTranslatedDaysOfWeek(translator),
+                getTranslatedOpeningHours(translator),
+                getTranslatedTodayHours(translator),
+                getTranslatedOpenedMessage(translator)
+        );
     }
 }

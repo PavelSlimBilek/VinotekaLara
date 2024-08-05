@@ -10,33 +10,33 @@
         </nav>
         <main id="content">
             <h1 th:text="${_pageContent.welcomeMessage()}"></h1>
-            <h2 th:if="${_todayHours} != null" th:text="${_todayHours}"></h2>
-            <h3 th:text="${_isOpened}"></h3>
+            <h2 th:if="${_hoursWidget.todayHours()} != null" th:text="${_hoursWidget.todayHours()}"></h2>
+            <h3 th:text="${_hoursWidget.isOpenedMessage()}"></h3>
             <p th:text="${_pageContent.description()}"></p>
             <form th:action="@{/opening-hours}" method="post">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-                <label for="day" th:text="${_day}"></label>
+                <label for="day" th:text="${_hoursWidget.dayWord()}"></label>
                 <select name="dayValue" id="day" required>
-                    <option th:each="day : ${_daysOfWeek}" th:value="${day.dayValue()}" th:text="${day.translation()}"></option>
+                    <option th:each="day : ${_hoursWidget.daysOfWeek()}" th:value="${day.dayValue()}" th:text="${day.translation()}"></option>
                 </select>
 
-                <label for="start" th:text="${_start}"></label>
+                <label for="start" th:text="${_hoursWidget.startWord()}"></label>
                 <input type="time" name="morningStart" id="start" required>
 
-                <label for="end" th:text="${_end}"></label>
+                <label for="end" th:text="${_hoursWidget.endWord()}"></label>
                 <input type="time" name="morningEnd" id="end" required>
 
-                <label for="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:text="${_afternoonHours + ' ' + _start}"></label>
+                <label for="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursWidget.afternoonHours() + ' ' + _hoursWidget.startWord()}"></label>
                 <input type="time" name="afternoonStart" id="afternoonStart" th:if="${_areAfternoonHoursAllowed}">
 
-                <label for="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:text="${_afternoonHours + ' ' + _end}"></label>
+                <label for="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursWidget.afternoonHours() + ' ' + _hoursWidget.endWord()}"></label>
                 <input type="time" name="afternoonEnd" id="afternoonEnd" th:if="${_areAfternoonHoursAllowed}">
 
                 <input type="submit" th:value="${_submit}">
             </form>
-            <h3 th:text="${_openingHoursTranslation}"></h3>
-            <p th:each="hours : ${_openingHours}" th:text="${hours}"></p>
+            <h3 th:text="${_hoursWidget.openingHours()}"></h3>
+            <p th:each="hours : ${_hoursWidget.openingHoursList()}" th:text="${hours}"></p>
         </main>
         <footer></footer>
     </body>
