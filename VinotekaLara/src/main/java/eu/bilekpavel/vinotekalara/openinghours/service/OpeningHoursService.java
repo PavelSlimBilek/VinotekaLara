@@ -1,10 +1,10 @@
-package eu.bilekpavel.vinotekalara.service;
+package eu.bilekpavel.vinotekalara.openinghours.service;
 
 import eu.bilekpavel.vinotekalara.config.AppSettings;
-import eu.bilekpavel.vinotekalara.dto.OpeningHours;
-import eu.bilekpavel.vinotekalara.dto.OpeningHoursRequest;
-import eu.bilekpavel.vinotekalara.repository.OpeningHoursRepositoryInterface;
-import eu.bilekpavel.vinotekalara.util.OpeningHoursAbstractTransformer;
+import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
+import eu.bilekpavel.vinotekalara.openinghours.repository.OpeningHoursRepositoryInterface;
+import eu.bilekpavel.vinotekalara.translator.TranslatorInterface;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -21,17 +21,13 @@ import java.util.List;
 public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     private final OpeningHoursRepositoryInterface repo;
-    private final OpeningHoursAbstractTransformer transformer;
-
     private final List<OpeningHours> cachedOpeningHours;
 
     public OpeningHoursService(
-        OpeningHoursRepositoryInterface repo,
-        OpeningHoursAbstractTransformer transformer
+        OpeningHoursRepositoryInterface repo
     ) {
         this.repo = repo;
         this.cachedOpeningHours = new ArrayList<>();
-        this.transformer = transformer;
         updateHours();
     }
 
@@ -51,21 +47,18 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public List<String> getTransformedOpeningHours() {
+    public List<String> getTransformedOpeningHours(TranslatorInterface transformer) {
         return transformer.transformAll(getCachedOpeningHours());
     }
 
     @Override
-    public String getTransformedTodayHours() {
+    public String getTransformedTodayHours(TranslatorInterface transformer) {
         return transformer.transform(getTodayHours());
     }
 
     @Override
-    public String getOpenedMessage() {
-        return isOpened()
-                ? transformer.getOPENED_MESSAGE()
-                : transformer.getCLOSED_MESSAGE()
-        ;
+    public String getOpenedMessage(TranslatorInterface transformer) {
+        return transformer.isOpenedMessage(isOpened());
     }
 
     @Override

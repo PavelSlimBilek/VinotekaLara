@@ -1,7 +1,7 @@
-package eu.bilekpavel.vinotekalara.repository;
+package eu.bilekpavel.vinotekalara.openinghours.repository;
 
-import eu.bilekpavel.vinotekalara.dto.OpeningHours;
-import eu.bilekpavel.vinotekalara.dto.TimeInterval;
+import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedWriter;

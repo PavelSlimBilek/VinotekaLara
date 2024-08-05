@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.dto;
+package eu.bilekpavel.vinotekalara.openinghours.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

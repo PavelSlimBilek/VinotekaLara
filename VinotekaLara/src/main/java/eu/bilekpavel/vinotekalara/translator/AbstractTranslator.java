@@ -1,7 +1,7 @@
-package eu.bilekpavel.vinotekalara.util;
+package eu.bilekpavel.vinotekalara.translator;
 
 import eu.bilekpavel.vinotekalara.config.AppSettings;
-import eu.bilekpavel.vinotekalara.dto.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHours;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,7 +9,9 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public abstract class OpeningHoursAbstractTransformer implements OpeningHoursTransformerInterface {
+public abstract class AbstractTranslator implements TranslatorInterface {
+
+    private final String OPENING_HOURS;
 
     private final String OPENED_MESSAGE;
     private final String CLOSED_MESSAGE;
@@ -26,7 +28,8 @@ public abstract class OpeningHoursAbstractTransformer implements OpeningHoursTra
     private final String START;
     private final String END;
     private final String DAY;
-    private final String AFTERNOON;
+    private final String MORNING_HOURS;
+    private final String AFTERNOON_HOURS;
 
     @Override
     public final String transform(OpeningHours hours) {
@@ -65,5 +68,10 @@ public abstract class OpeningHoursAbstractTransformer implements OpeningHoursTra
     @Override
     public final List<String> transformAll(List<OpeningHours> hours) {
         return hours.stream().map(this::transform).toList();
+    }
+
+    @Override
+    public final String isOpenedMessage(boolean isOpened) {
+        return isOpened ? OPENED_MESSAGE : CLOSED_MESSAGE;
     }
 }

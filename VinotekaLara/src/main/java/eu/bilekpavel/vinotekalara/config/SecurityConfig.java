@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.security;
+package eu.bilekpavel.vinotekalara.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

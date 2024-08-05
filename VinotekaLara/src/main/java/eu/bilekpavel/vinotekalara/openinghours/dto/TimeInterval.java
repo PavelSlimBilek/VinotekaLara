@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.dto;
+package eu.bilekpavel.vinotekalara.openinghours.dto;
 
 import java.sql.Time;
 
