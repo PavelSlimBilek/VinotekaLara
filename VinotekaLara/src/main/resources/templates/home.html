@@ -26,6 +26,9 @@
             <section id="menu"></section>
         </nav>
         <main id="content">
+            <div th:style="'background-color: ' + ${_alertBar.backgroundColor()}">
+                <p th:text="${_alertBar.content().getContent()}"></p>
+            </div>
             <div class="localizationWidget">
                 <div th:each="locale : ${_localizationWidget}">
                     <a th:href="@{'/home?lang=' + ${locale.getCode()}}">

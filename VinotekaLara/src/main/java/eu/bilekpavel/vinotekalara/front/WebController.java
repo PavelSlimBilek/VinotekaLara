@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.front;
 
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.app.AppSettings;
 import eu.bilekpavel.vinotekalara.front.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
@@ -24,8 +25,9 @@ public class WebController {
 
     private final Language defaultLanguage = Language.CZECH;
 
-    private final HomePageContentProviderInterface service;
+    private final HomePageContentProviderInterface pageContentProvider;
     private final LocalizationService localizationService;
+    private final AlertBarServiceInterface alertBarService;
 
     private final OpeningHoursServiceInterface hoursService;
 
@@ -34,7 +36,8 @@ public class WebController {
 
     public WebController(OpeningHoursServiceInterface hoursService,
                          LocalizationService localizationService,
-                         HomePageContentProviderInterface service,
+                         HomePageContentProviderInterface pageContentProvider,
+                         AlertBarServiceInterface alertBarService,
                          @Qualifier("czech") OpeningHoursTranslatorInterface czechTranslator,
                          @Qualifier("english") OpeningHoursTranslatorInterface englishTranslator,
                          @Qualifier("german") OpeningHoursTranslatorInterface germanTranslator,
@@ -45,8 +48,9 @@ public class WebController {
     ) {
 
         this.hoursService = hoursService;
-        this.service = service;
+        this.pageContentProvider = pageContentProvider;
         this.localizationService = localizationService;
+        this.alertBarService = alertBarService;
 
         hoursTranslators.put(Language.CZECH, czechTranslator);
         hoursTranslators.put(Language.ENGLISH, englishTranslator);
@@ -71,8 +75,10 @@ public class WebController {
                 ? homePageTranslators.get(LanguageMapper.getLanguage(lang))
                 : homePageTranslators.get(defaultLanguage);
 
-        model.addAttribute("_pageContent", service.getTranslatedContent(pageTranslator));
+        model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(pageTranslator));
         model.addAttribute("_localizationWidget", localizationService.getAll());
+
+        model.addAttribute("_alertBar", alertBarService.getAll(pageTranslator.getLanguage()).getFirst());
 
         model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
         model.addAttribute("_hoursWidget", hoursService.getTranslatedData(hoursTranslator));
