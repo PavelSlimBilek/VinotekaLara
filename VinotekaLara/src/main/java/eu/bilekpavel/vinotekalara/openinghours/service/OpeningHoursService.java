@@ -61,8 +61,6 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
 
     @Override
     public List<TranslatedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator) {
-        System.out.println(new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()).translation());
-        System.out.println(new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()).dayValue());
         return List.of(
                 new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()),
                 new TranslatedDayOfWeek(DayOfWeek.TUESDAY.getValue(), translator.getTuesday()),

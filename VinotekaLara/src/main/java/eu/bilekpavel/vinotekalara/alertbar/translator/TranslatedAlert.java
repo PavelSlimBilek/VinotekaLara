@@ -1,7 +1,7 @@
-package eu.bilekpavel.vinotekalara.alertbar.translator.dto;
+package eu.bilekpavel.vinotekalara.alertbar.translator;
 
-import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
+import eu.bilekpavel.vinotekalara.translator.language.Language;
 
 public record TranslatedAlert(
         Language language,

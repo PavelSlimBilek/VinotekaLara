@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.alertbar.model;
 
-import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
+import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.Getter;
 
 import java.util.HashMap;

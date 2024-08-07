@@ -2,16 +2,12 @@ package eu.bilekpavel.vinotekalara.openinghours.translator;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
 import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
-import eu.bilekpavel.vinotekalara.translator.dto.Language;
-import eu.bilekpavel.vinotekalara.translator.TranslatorInterface;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class AbstractOpeningHoursTranslator implements TranslatorInterface, OpeningHoursTranslatorInterface {
-
-    private final Language LANGUAGE;
+public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTranslatorInterface {
 
     private final String OPENING_HOURS;
 
@@ -38,6 +34,7 @@ public abstract class AbstractOpeningHoursTranslator implements TranslatorInterf
         if (hours == null) {
             return null;
         }
+
         String translatedDay = switch(hours.getDay()) {
             case MONDAY -> this.MONDAY;
             case TUESDAY -> this.TUESDAY;
@@ -69,11 +66,6 @@ public abstract class AbstractOpeningHoursTranslator implements TranslatorInterf
     @Override
     public final List<String> transformAll(List<OpeningHours> hours) {
         return hours.stream().map(this::transform).toList();
-    }
-
-    @Override
-    public final Language getLanguage() {
-        return LANGUAGE;
     }
 
     @Override

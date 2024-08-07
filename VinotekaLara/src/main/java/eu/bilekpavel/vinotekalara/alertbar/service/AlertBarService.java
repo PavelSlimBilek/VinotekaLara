@@ -1,8 +1,8 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
 import eu.bilekpavel.vinotekalara.alertbar.repository.AlertBarRepositoryInterface;
-import eu.bilekpavel.vinotekalara.alertbar.translator.dto.TranslatedAlert;
-import eu.bilekpavel.vinotekalara.translator.dto.Language;
+import eu.bilekpavel.vinotekalara.alertbar.translator.TranslatedAlert;
+import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

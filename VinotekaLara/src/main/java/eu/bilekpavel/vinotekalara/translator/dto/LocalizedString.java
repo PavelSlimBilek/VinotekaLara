@@ -1,12 +1,9 @@
 package eu.bilekpavel.vinotekalara.translator.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import eu.bilekpavel.vinotekalara.translator.language.Language;
 
-@Getter
-@AllArgsConstructor
-public class LocalizedString {
-
-    private Language language;
-    private String content;
+public record LocalizedString(
+        Language language,
+        String content
+) {
 }

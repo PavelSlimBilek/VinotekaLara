@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.translator.dto;
+package eu.bilekpavel.vinotekalara.translator.language;
 
 public enum Language {
     CZECH,

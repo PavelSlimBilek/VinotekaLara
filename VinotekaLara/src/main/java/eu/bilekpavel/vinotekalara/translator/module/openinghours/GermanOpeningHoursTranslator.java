@@ -1,15 +1,13 @@
-package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
+package eu.bilekpavel.vinotekalara.translator.module.openinghours;
 
 import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
-import eu.bilekpavel.vinotekalara.translator.dto.Language;
 import org.springframework.stereotype.Component;
 
-@Component("german")
+@Component("germanHoursTranslator")
 public class GermanOpeningHoursTranslator extends AbstractOpeningHoursTranslator {
 
     public GermanOpeningHoursTranslator() {
-        super(Language.GERMAN,
-                "Öffnungszeiten",
+        super("Öffnungszeiten",
                 "Jetzt geöffnet",
                 "Jetzt geschlossen",
                 "Montag",
