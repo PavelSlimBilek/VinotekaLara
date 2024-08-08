@@ -44,7 +44,7 @@ public class WebController {
         model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(translator.getPageTranslator()));
         model.addAttribute("_localizationWidget", localizations.getData(translator));
 
-        model.addAttribute("_alertBar", alertBarService.getAll(translator.getLang()).getFirst());
+        model.addAttribute("_alertBar", alertBarService.getAllTranslated(translator.getLang()).getFirst());
 
         model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
         model.addAttribute("_hoursWidget", hoursService.getTranslatedData(translator.getHoursTranslator()));

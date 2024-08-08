@@ -6,5 +6,5 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 import java.util.List;
 
 public interface AlertBarServiceInterface {
-    List<TranslatedAlert> getAll(Language language);
+    List<TranslatedAlert> getAllTranslated(Language language);
 }

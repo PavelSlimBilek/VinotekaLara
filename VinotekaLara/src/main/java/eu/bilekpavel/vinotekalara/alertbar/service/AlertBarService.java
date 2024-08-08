@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
-import eu.bilekpavel.vinotekalara.alertbar.repository.AlertBarRepositoryInterface;
+import eu.bilekpavel.vinotekalara.alertbar.repository.AlertRepositoryInterface;
 import eu.bilekpavel.vinotekalara.alertbar.translator.TranslatedAlert;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.AllArgsConstructor;
@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class AlertBarService implements AlertBarServiceInterface {
 
-    private final AlertBarRepositoryInterface repo;
+    private final AlertRepositoryInterface repo;
 
     @Override
-    public List<TranslatedAlert> getAll(Language language) {
+    public List<TranslatedAlert> getAllTranslated(Language language) {
         return repo.getAll().stream()
                 .map((alert -> new TranslatedAlert(language, alert.getLocalizedContent(language), alert.getBackgroundColor())))
                 .toList();

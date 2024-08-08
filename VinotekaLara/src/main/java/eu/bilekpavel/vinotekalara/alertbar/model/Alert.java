@@ -11,20 +11,23 @@ import java.util.Map;
 @Getter
 public class Alert {
 
-    private final static String defaultColor = "444";
+    private final static String DEFAULT_COLOR = "444";
 
     private final LocalizedString defaultLocalization;
     private final Map<Language, LocalizedString> localizations;
     private final String backgroundColor;
 
     public Alert(AlertRequest request) {
-        this(request.content());
+        this(request.defaultContent());
+        request.localizedContent().forEach(localization -> {
+            localizations.put(localization.language(), localization);
+        });
     }
 
     private Alert(LocalizedString localization) {
         defaultLocalization = localization;
         localizations = new HashMap<>();
-        backgroundColor = defaultColor;
+        backgroundColor = DEFAULT_COLOR;
     }
 
     public LocalizedString getLocalizedContent(Language language) {
