@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.front;
+package eu.bilekpavel.vinotekalara.view;
 
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.app.AppSettings;

@@ -7,6 +7,7 @@ import eu.bilekpavel.vinotekalara.translator.language.languages.German;
 import lombok.NonNull;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +23,13 @@ public class TranslatorRegistry {
             English english,
             German german
     ) {
-        LOCALES = new HashMap<>();
-        LOCALES.put(czech.code, czech);
-        LOCALES.put(english.code, english);
-        LOCALES.put(german.code, german);
+        Map<String, Translator>locales = new HashMap<>();
+        locales.put(czech.code, czech);
+        locales.put(english.code, english);
+        locales.put(german.code, german);
 
         DEFAULT = czech;
+        LOCALES = Collections.unmodifiableMap(locales);
     }
 
     public Translator getLocale(String lang) {

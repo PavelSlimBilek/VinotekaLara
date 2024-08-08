@@ -1,15 +1,15 @@
-package eu.bilekpavel.vinotekalara.translator.module.openinghours;
+package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
 
 import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
 import org.springframework.stereotype.Component;
 
 @Component("czechHoursTranslator")
-public class CzechOpeningHoursTranslator extends AbstractOpeningHoursTranslator {
-
-    public CzechOpeningHoursTranslator() {
-        super("Otevírací hodiny",
-                "Otevřeno",
-                "Zavřeno",
+public class CzechHoursTranslator extends AbstractOpeningHoursTranslator {
+    public CzechHoursTranslator() {
+        super(
+                "Otevírací hodiny",
+                "Právě je otevřeno",
+                "Je bohužel zavřeno",
                 "Pondělí",
                 "Úterý",
                 "Středa",
@@ -21,8 +21,8 @@ public class CzechOpeningHoursTranslator extends AbstractOpeningHoursTranslator 
                 "začátek",
                 "konec",
                 "den",
-                "ranní směna",
-                "odpolední směna"
+                "ráno",
+                "odpoledne"
         );
     }
 }

@@ -1,13 +1,13 @@
-package eu.bilekpavel.vinotekalara.translator.module.openinghours;
+package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
 
 import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
 import org.springframework.stereotype.Component;
 
 @Component("germanHoursTranslator")
-public class GermanOpeningHoursTranslator extends AbstractOpeningHoursTranslator {
-
-    public GermanOpeningHoursTranslator() {
-        super("Öffnungszeiten",
+public class GermanHoursTranslator extends AbstractOpeningHoursTranslator {
+    public GermanHoursTranslator() {
+        super(
+                "Öffnungszeiten",
                 "Jetzt geöffnet",
                 "Jetzt geschlossen",
                 "Montag",
@@ -18,11 +18,11 @@ public class GermanOpeningHoursTranslator extends AbstractOpeningHoursTranslator
                 "Samstag",
                 "Sonntag",
                 "geschlossen",
-                "Anfang",
+                "Beginn",
                 "Ende",
                 "Tag",
-                "Morgenschicht",
-                "Nachmittagsschicht"
+                "Vormittag",
+                "Nachmittag"
         );
     }
 }

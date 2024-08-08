@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.front.dto;
+package eu.bilekpavel.vinotekalara.view.translator.dto;
 
 public record TranslatedHomePageContent(
         String title,

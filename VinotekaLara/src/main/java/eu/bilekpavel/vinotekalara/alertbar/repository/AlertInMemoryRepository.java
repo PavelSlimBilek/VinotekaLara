@@ -1,6 +1,9 @@
 package eu.bilekpavel.vinotekalara.alertbar.repository;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
+import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
+import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,11 +16,15 @@ public class AlertInMemoryRepository implements AlertBarRepositoryInterface {
 
     public AlertInMemoryRepository() {
         alertList = new ArrayList<>();
-        alertList.add(new Alert(
-                "Máme nové webové stránky!",
-                "We have a new web page!",
-                "Wir haben eine neue Webseite!",
-                "limegreen"
+        alertList.add(
+                new Alert(
+                        new AlertRequest(
+                                new LocalizedString(
+                                        Language.CZECH,
+                                        "Máme nový web"
+                                ),
+                                "420"
+                )
         ));
     }
 

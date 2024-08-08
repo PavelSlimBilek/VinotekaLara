@@ -1,14 +1,14 @@
-package eu.bilekpavel.vinotekalara.front.translator.language;
+package eu.bilekpavel.vinotekalara.view.translator.languages;
 
-import eu.bilekpavel.vinotekalara.front.translator.AbstractHomePageTranslator;
+import eu.bilekpavel.vinotekalara.view.translator.AbstractHomePageData;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 @Qualifier("czechPageTranslator")
-public final class CzechHomePageTranslator extends AbstractHomePageTranslator {
+public final class CzechHomePageData extends AbstractHomePageData {
 
-    public CzechHomePageTranslator() {
+    public CzechHomePageData() {
         super("Vinotéka Lara",
                 "Vítejte!",
                 "Vinotéka v malebném městečku na Vysočině."

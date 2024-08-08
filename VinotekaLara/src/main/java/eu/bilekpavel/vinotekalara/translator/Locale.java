@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator;
 
-import eu.bilekpavel.vinotekalara.front.translator.HomePageTranslatorInterface;
+import eu.bilekpavel.vinotekalara.view.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;

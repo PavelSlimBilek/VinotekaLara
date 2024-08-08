@@ -1,9 +1,9 @@
-package eu.bilekpavel.vinotekalara.front.translator;
+package eu.bilekpavel.vinotekalara.view.translator;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public abstract class AbstractHomePageTranslator implements HomePageTranslatorInterface {
+public abstract class AbstractHomePageData implements HomePageTranslatorInterface {
 
     private final String TITLE;
     private final String WELCOME_MESSAGE;
