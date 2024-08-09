@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 @Component("czechLocale")
 public class Czech extends Locale {
+
     public Czech(@Qualifier("czechHoursTranslator") OpeningHoursTranslatorInterface hoursTranslator,
                  @Qualifier("czechPageTranslator") HomePageTranslatorInterface pageTranslator) {
         super(Language.CZECH,
-                "cs",
                 new Flag("/images/translator/flags/flag_czech.png", "česky"),
                 hoursTranslator,
                 pageTranslator);

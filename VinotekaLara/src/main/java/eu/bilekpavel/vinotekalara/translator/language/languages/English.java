@@ -14,7 +14,6 @@ public class English extends Locale {
     public English(@Qualifier("englishHoursTranslator") OpeningHoursTranslatorInterface hoursTranslator,
                    @Qualifier("englishPageTranslator")HomePageTranslatorInterface pageTranslator) {
         super(Language.ENGLISH,
-                "en",
                 new Flag("/images/translator/flags/flag_uk.png", "english"),
                 hoursTranslator,
                 pageTranslator

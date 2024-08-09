@@ -7,7 +7,6 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 
 public abstract class Locale implements Translator {
     public final Language language;
-    public final String code;
 
     public final Flag flag;
 
@@ -16,13 +15,11 @@ public abstract class Locale implements Translator {
 
     public Locale(
             Language language,
-            String code,
             Flag flag,
             OpeningHoursTranslatorInterface hoursTranslator,
             HomePageTranslatorInterface pageTranslator
     ) {
         this.language = language;
-        this.code = code;
         this.flag = flag;
         this.hoursTranslator = hoursTranslator;
         this.pageTranslator = pageTranslator;
@@ -30,7 +27,7 @@ public abstract class Locale implements Translator {
 
     @Override
     public String getCode() {
-        return code;
+        return language.getCode();
     }
 
     @Override

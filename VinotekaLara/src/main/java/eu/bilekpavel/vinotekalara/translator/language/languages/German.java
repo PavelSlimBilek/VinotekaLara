@@ -13,7 +13,6 @@ public class German extends Locale {
     public German(@Qualifier("germanHoursTranslator") OpeningHoursTranslatorInterface hoursTranslator,
                   @Qualifier("germanPageTranslator") HomePageTranslatorInterface pageTranslator) {
         super(Language.GERMAN,
-                "de",
                 new Flag("/images/translator/flags/flag_germany.png", "deutsch"),
                 hoursTranslator,
                 pageTranslator

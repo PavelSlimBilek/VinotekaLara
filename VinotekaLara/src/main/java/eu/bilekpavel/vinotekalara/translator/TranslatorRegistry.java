@@ -24,9 +24,9 @@ public class TranslatorRegistry {
             German german
     ) {
         Map<String, Translator>locales = new HashMap<>();
-        locales.put(czech.code, czech);
-        locales.put(english.code, english);
-        locales.put(german.code, german);
+        locales.put(czech.language.getCode(), czech);
+        locales.put(english.language.getCode(), english);
+        locales.put(german.language.getCode(), german);
 
         DEFAULT = czech;
         LOCALES = Collections.unmodifiableMap(locales);
