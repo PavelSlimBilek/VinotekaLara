@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{style.css}">
+</head>
+<body>
+
+    <div th:fragment="localeSwitcher">
+        <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
+        <div th:each="locale : ${_localizationWidget.flags()}">
+            <!--/*@thymesVar id="_requestURI" type="java.lang.String"*/-->
+            <a th:href="@{|?lang=${locale.getCode()}&return=${_requestURI}|}">
+                <img class="flag" th:src="@{${locale.getFlag().path()}}" th:alt="${locale.getFlag().alt()}">
+            </a>
+        </div>    
+    </div>
+
+    <div th:fragment="navigation">
+        <ul>
+            <li><a href="/home">home</a></li>
+            <li><a href="/admin">admin</a></li>
+        </ul>
+    </div>
+
+    <!------------------------------------------- ADMIN ----------------------------------------------->
+
+    <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
+    <!-- <div th:fragment="admin_alertBar" th:each="locale : ${_localizationWidget.flags()}">
+        <form th:action="@{/admin/alert-bar}" method="post">
+            <input th:each="locale : ${_localizationWidget.flags()}" th:id="${_localizationWidget.code()}"></input>
+        </form>
+    </div> -->
+
+    <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.TranslatedOpeningHoursData"*/-->
+    <!--/*@thymesVar id="_areAfternoonHoursAllowed" type="java.lang.Boolean"*/-->;
+    <div th:fragment="admin_hours">
+        <form th:action="@{/admin/opening-hours}" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+            <!--<label for="day" th:text="${_hoursWidget.dayWord()}"></label>-->
+            <select name="dayValue" id="day" required>
+                <option th:each="day : ${_hoursWidget.daysOfWeek()}" th:value="${day.dayValue()}" th:text="${day.translation()}"></option>
+            </select>
+
+            <label for="start" th:text="${_hoursWidget.startWord()}"></label>
+            <input type="time" name="morningStart" id="start" required>
+
+            <label for="end" th:text="${_hoursWidget.endWord()}"></label>
+            <input type="time" name="morningEnd" id="end" required>
+
+
+            <label for="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursWidget.afternoonHours() + ' ' + _hoursWidget.startWord()}"></label>
+            <input type="time" name="afternoonStart" id="afternoonStart" th:if="${_areAfternoonHoursAllowed}">
+
+            <label for="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursWidget.afternoonHours() + ' ' + _hoursWidget.endWord()}"></label>
+            <input type="time" name="afternoonEnd" id="afternoonEnd" th:if="${_areAfternoonHoursAllowed}">
+
+            <input type="submit" value="OK">
+        </form>
+    </div>
+
+</body>
+</html>

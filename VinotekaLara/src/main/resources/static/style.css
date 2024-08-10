@@ -1,0 +1,15 @@
+.localizationWidget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flag {
+    width: 1.3rem;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+}
+.flag:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px dimgray;
+}

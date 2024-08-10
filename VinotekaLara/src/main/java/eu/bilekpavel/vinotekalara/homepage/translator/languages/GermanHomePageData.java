@@ -1,6 +1,6 @@
-package eu.bilekpavel.vinotekalara.view.translator.languages;
+package eu.bilekpavel.vinotekalara.homepage.translator.languages;
 
-import eu.bilekpavel.vinotekalara.view.translator.AbstractHomePageData;
+import eu.bilekpavel.vinotekalara.homepage.translator.AbstractHomePageData;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

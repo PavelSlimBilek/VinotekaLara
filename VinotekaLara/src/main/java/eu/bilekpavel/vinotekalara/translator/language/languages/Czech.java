@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator.language.languages;
 
-import eu.bilekpavel.vinotekalara.view.translator.HomePageTranslatorInterface;
+import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -14,7 +14,7 @@ public class Czech extends Locale {
     public Czech(@Qualifier("czechHoursTranslator") OpeningHoursTranslatorInterface hoursTranslator,
                  @Qualifier("czechPageTranslator") HomePageTranslatorInterface pageTranslator) {
         super(Language.CZECH,
-                new Flag("/images/translator/flags/flag_czech.png", "česky"),
+                new Flag("/images/flags/czech.png", "česky"),
                 hoursTranslator,
                 pageTranslator);
     }

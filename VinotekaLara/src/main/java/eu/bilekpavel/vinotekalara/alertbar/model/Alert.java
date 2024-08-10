@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.alertbar.model;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
+import eu.bilekpavel.vinotekalara.translator.domain.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.Getter;
 
@@ -11,23 +11,19 @@ import java.util.Map;
 @Getter
 public class Alert {
 
-    private final static String DEFAULT_COLOR = "444";
-
     private final LocalizedString defaultLocalization;
     private final Map<Language, LocalizedString> localizations;
     private final String backgroundColor;
 
     public Alert(AlertRequest request) {
-        this(request.defaultContent());
-        request.localizedContent().forEach(localization -> {
-            localizations.put(localization.language(), localization);
-        });
-    }
+        defaultLocalization = request.defaultContent();
 
-    private Alert(LocalizedString localization) {
-        defaultLocalization = localization;
         localizations = new HashMap<>();
-        backgroundColor = DEFAULT_COLOR;
+        request.additionalTranslations().forEach(localization -> {
+            localizations.put(localization.getLanguage(), localization);
+        });
+
+        this.backgroundColor = request.backgroundColor();
     }
 
     public LocalizedString getLocalizedContent(Language language) {

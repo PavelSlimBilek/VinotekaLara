@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html th:lang="${_localizationWidget.code()}">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin v0.1</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+    </head>
+    <body>
+        <nav>
+            <div class="localizationWidget" th:replace="fragments :: localeSwitcher"></div>
+            <div th:replace="fragments :: navigation"></div>
+        </nav>
+        <main>
+
+            <!-- alert bar -->
+            <!--  <div th:replace="fragments :: admin_alertBar"></div> -->
+
+            <!-- opening hours -->
+            <p th:each="hours : ${_hoursWidget.openingHoursList()}" th:text="${hours}"></p>
+            <div th:replace="fragments :: admin_hours"></div>
+            <hr>
+
+        </main>
+    </body>
+</html>

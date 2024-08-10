@@ -1,7 +1,7 @@
-package eu.bilekpavel.vinotekalara.view;
+package eu.bilekpavel.vinotekalara.homepage;
 
-import eu.bilekpavel.vinotekalara.view.translator.dto.TranslatedHomePageContent;
-import eu.bilekpavel.vinotekalara.view.translator.HomePageTranslatorInterface;
+import eu.bilekpavel.vinotekalara.homepage.translator.dto.TranslatedHomePageContent;
+import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import org.springframework.stereotype.Service;
 
 @Service

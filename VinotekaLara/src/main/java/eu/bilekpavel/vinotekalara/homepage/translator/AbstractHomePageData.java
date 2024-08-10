@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.view.translator;
+package eu.bilekpavel.vinotekalara.homepage.translator;
 
 import lombok.AllArgsConstructor;
 
