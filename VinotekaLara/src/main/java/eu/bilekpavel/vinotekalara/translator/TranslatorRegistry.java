@@ -36,6 +36,7 @@ public class TranslatorRegistry {
         return isOnTheList(lang) ? LOCALES.get(lang) : this.DEFAULT;
     }
 
+    // TODO create service and inject Registry into that .. then move this method
     public TranslatorData getData(@NonNull Translator locale) {
         return new TranslatorData(
                 locale.getCode(),
