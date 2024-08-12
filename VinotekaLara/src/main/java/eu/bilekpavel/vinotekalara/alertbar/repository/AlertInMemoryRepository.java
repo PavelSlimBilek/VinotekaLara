@@ -8,17 +8,19 @@ import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class AlertInMemoryRepository implements AlertRepositoryInterface {
 
-    private final List<Alert> alertList;
+    private final Map<String, Alert> ALERTS;
 
     public AlertInMemoryRepository() throws AlertValidationError {
-        alertList = new ArrayList<>();
-            alertList.add(
+        ALERTS = new HashMap<>();
+            ALERTS.put(
+                    "1",
                     new Alert(
                             new AlertRequest(
                                     new LocalizedString(
@@ -48,6 +50,11 @@ public class AlertInMemoryRepository implements AlertRepositoryInterface {
 
     @Override
     public List<Alert> getAll() {
-        return alertList;
+        return ALERTS.values().stream().toList();
+    }
+
+    @Override
+    public void update(Alert alert) {
+        ALERTS.put("1", alert);
     }
 }

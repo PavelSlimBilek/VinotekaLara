@@ -1,5 +1,7 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.Color;
+import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
 import eu.bilekpavel.vinotekalara.alertbar.repository.AlertRepositoryInterface;
 import eu.bilekpavel.vinotekalara.alertbar.translator.TranslatedAlert;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -19,5 +21,14 @@ public class AlertBarService implements AlertBarServiceInterface {
         return repo.getAll().stream()
                 .map((alert -> new TranslatedAlert(language, alert.getLocalizedContent(language), alert.getBackgroundColor())))
                 .toList();
+    }
+
+    @Override
+    public void updateColor(Color color) {
+        List<Alert> alerts = repo.getAll();
+        alerts.forEach(alert -> {
+            alert.setBackgroundColor(color.toRgbString());
+            repo.update(alert);
+        });
     }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AlertRepositoryInterface {
     List<Alert> getAll();
+    void update(Alert alert);
 }

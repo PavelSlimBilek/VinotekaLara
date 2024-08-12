@@ -27,11 +27,21 @@
     <!------------------------------------------- ADMIN ----------------------------------------------->
 
     <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
-    <!-- <div th:fragment="admin_alertBar" th:each="locale : ${_localizationWidget.flags()}">
-        <form th:action="@{/admin/alert-bar}" method="post">
-            <input th:each="locale : ${_localizationWidget.flags()}" th:id="${_localizationWidget.code()}"></input>
+    <div th:fragment="admin_alertBar">
+        <div th:each="locale : ${_localizationWidget.flags()}">
+
+        </div>
+        <form th:action="@{/admin/alert-bar/color}" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+            <label for="red">RED</label>
+            <input type="range" min="0" max="255" id="red" name="red">
+            <label for="green">GREEN</label>
+            <input type="range" min="0" max="255" id="green" name="green">
+            <label for="blue">BLUE</label>
+            <input type="range" min="0" max="255" id="blue" name="blue">
+            <button type="submit" id="colorBox"></button>;
         </form>
-    </div> -->
+    </div>
 
     <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.TranslatedOpeningHoursData"*/-->
     <!--/*@thymesVar id="_areAfternoonHoursAllowed" type="java.lang.Boolean"*/-->;

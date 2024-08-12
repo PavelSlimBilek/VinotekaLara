@@ -13,3 +13,14 @@
     cursor: pointer;
     box-shadow: 0 0 5px dimgray;
 }
+
+#colorBox {
+    width: 24em;
+    height: 4rem;
+    margin: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

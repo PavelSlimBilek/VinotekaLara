@@ -13,7 +13,7 @@ public class Alert {
 
     private final LocalizedString defaultLocalization;
     private final Map<Language, LocalizedString> localizations;
-    private final String backgroundColor;
+    private String backgroundColor;
 
     public Alert(AlertRequest request) {
         defaultLocalization = request.defaultContent();
@@ -29,5 +29,9 @@ public class Alert {
     public LocalizedString getLocalizedContent(Language language) {
         LocalizedString localization = localizations.get(language);
         return localization != null ? localization : defaultLocalization;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 }

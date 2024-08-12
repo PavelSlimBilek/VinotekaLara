@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.admin;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.Color;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
@@ -47,5 +48,11 @@ public class AdminWebController {
         }
         this.hoursService.updateHours();
         return "redirect:/home";
+    }
+
+    @PostMapping("/alert-bar/color")
+    public String updateAlertBarColor(Color color) {
+        alertBarService.updateColor(color);
+        return "redirect:/admin";
     }
 }

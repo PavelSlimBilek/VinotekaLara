@@ -1,6 +1,5 @@
-package eu.bilekpavel.vinotekalara;
+package eu.bilekpavel.vinotekalara.admin;
 
-import eu.bilekpavel.vinotekalara.admin.AdminContentProviderInterface;
 import org.springframework.stereotype.Component;
 
 @Component
