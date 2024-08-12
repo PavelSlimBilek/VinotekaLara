@@ -10,4 +10,5 @@ public interface AlertBarServiceInterface {
     List<TranslatedAlert> getAllTranslated(Language language);
 
     void updateColor(Color color);
+    void updateContent(Language lang, String content);
 }

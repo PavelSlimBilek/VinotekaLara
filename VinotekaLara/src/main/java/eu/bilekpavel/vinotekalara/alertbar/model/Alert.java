@@ -34,4 +34,20 @@ public class Alert {
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
+
+    public void setLocalizedContent(Language lang, String content) {
+        if (defaultLocalization.getLanguage() == lang) {
+            defaultLocalization.setContent(content);
+            return;
+        }
+
+        localizations.forEach((k, v) -> {
+            if (k == lang) {
+                v.setContent(content);
+            }
+            return;
+        });
+
+
+    }
 }

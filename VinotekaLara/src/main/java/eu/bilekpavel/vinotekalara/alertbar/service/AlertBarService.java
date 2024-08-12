@@ -31,4 +31,13 @@ public class AlertBarService implements AlertBarServiceInterface {
             repo.update(alert);
         });
     }
+
+    @Override
+    public void updateContent(Language lang, String content) {
+        List<Alert> alerts = repo.getAll();
+        alerts.forEach(alert -> {
+            alert.setLocalizedContent(lang, content);
+            repo.update(alert);
+        });
+    }
 }

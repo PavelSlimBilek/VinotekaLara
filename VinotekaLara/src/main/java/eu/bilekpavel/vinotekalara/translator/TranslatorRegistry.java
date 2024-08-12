@@ -43,11 +43,11 @@ public class TranslatorRegistry {
         );
     }
 
-    private List<Translator> getSupported() {
-        return LOCALES.values().stream().toList();
+    public boolean isOnTheList(String code) {
+        return LOCALES.containsKey(code);
     }
 
-    private boolean isOnTheList(String code) {
-        return LOCALES.containsKey(code);
+    private List<Translator> getSupported() {
+        return LOCALES.values().stream().toList();
     }
 }
