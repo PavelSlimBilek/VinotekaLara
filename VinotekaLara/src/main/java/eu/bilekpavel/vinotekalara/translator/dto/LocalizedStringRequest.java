@@ -1,19 +1,16 @@
 package eu.bilekpavel.vinotekalara.translator.dto;
 
-import eu.bilekpavel.vinotekalara.translator.error.LocalizedStringValidationError;
-import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.error.LocalizedStringException;
+import jakarta.annotation.Nullable;
 
 public record LocalizedStringRequest(
+        @Nullable
         String payload,
-        Language language
+        String langCode
 ) {
     public LocalizedStringRequest {
-        if (payload == null || payload.trim().isEmpty()) {
-            throw new LocalizedStringValidationError("Payload is null or empty");
-        }
-
-        if (language == null) {
-            throw new LocalizedStringValidationError("Language is null");
+        if (langCode == null) {
+            throw new LocalizedStringException("Language is null");
         }
     }
 }

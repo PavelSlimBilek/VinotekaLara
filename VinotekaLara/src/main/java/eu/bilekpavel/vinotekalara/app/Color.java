@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.alertbar.dto;
+package eu.bilekpavel.vinotekalara.app;
 
 public record Color(
         int red,

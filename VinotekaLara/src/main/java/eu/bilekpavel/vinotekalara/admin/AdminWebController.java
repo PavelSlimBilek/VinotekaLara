@@ -1,13 +1,13 @@
 package eu.bilekpavel.vinotekalara.admin;
 
-import eu.bilekpavel.vinotekalara.alertbar.dto.Color;
+import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.Translator;
 import eu.bilekpavel.vinotekalara.translator.TranslatorRegistry;
 
-import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -52,17 +52,18 @@ public class AdminWebController {
         return "redirect:/home";
     }
 
-    @PostMapping("/alert-bar/color")
-    public String updateAlertBarColor(Color color) {
-        alertBarService.updateColor(color);
+    @PostMapping("/alert-bar/{id}/color")
+    public String updateAlertBarColor(@PathVariable int id, Color color) {
+        alertBarService.updateColor(id, color);
         return "redirect:/admin";
     }
 
-    @PostMapping("/alert-bar/{lang}")
-    public String updateTranslatedAlerts(@PathVariable String lang, String content) {
-        if (this.localizations.isOnTheList(lang)) {
-            Language language = localizations.getLocale(lang).getLang();
-            alertBarService.updateContent(language, content);
+    @PostMapping("/alert-bar/{id}")
+    public String updateTranslatedAlerts(@PathVariable int id, LocalizedStringRequest request) {
+        System.out.println(id);
+        System.out.println(request.langCode() + "    " + request.payload());
+        if (this.localizations.isOnTheList(request.langCode())) {
+            alertBarService.updateLocalization(id, request);
         }
         return "redirect:/admin";
     }

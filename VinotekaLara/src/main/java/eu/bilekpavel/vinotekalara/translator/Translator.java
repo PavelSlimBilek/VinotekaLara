@@ -8,6 +8,7 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 public interface Translator {
     String getCode();
     Language getLang();
+    // TODO FlagProvider class
     Flag getFlag();
 
     HomePageTranslatorInterface getPageTranslator();

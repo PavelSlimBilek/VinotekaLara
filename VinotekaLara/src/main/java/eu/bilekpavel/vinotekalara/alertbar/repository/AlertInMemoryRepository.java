@@ -1,10 +1,9 @@
 package eu.bilekpavel.vinotekalara.alertbar.repository;
 
-import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.error.AlertValidationError;
 import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
-import eu.bilekpavel.vinotekalara.translator.domain.LocalizedString;
-import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
+import eu.bilekpavel.vinotekalara.alertbar.model.AlertBuilder;
+import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.stereotype.Repository;
 
@@ -13,39 +12,29 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class AlertInMemoryRepository implements AlertRepositoryInterface {
+public class AlertInMemoryRepository implements AlertBarRepositoryInterface {
 
-    private final Map<String, Alert> ALERTS;
+    private final Map<Integer, Alert> ALERTS;
+    private final int TEMP_ID = 1;
 
     public AlertInMemoryRepository() throws AlertValidationError {
+        Alert alert = new AlertBuilder()
+                .addLocalization(
+                        new LocalizedString(Language.CZECH, "payload")
+                ).addLocalization(
+                        new LocalizedString(Language.ENGLISH, "payload EN")
+                ).addLocalization(
+                        new LocalizedString(Language.GERMAN, "payload DE")
+
+                ).build();
+
         ALERTS = new HashMap<>();
-            ALERTS.put(
-                    "1",
-                    new Alert(
-                            new AlertRequest(
-                                    new LocalizedString(
-                                            new LocalizedStringRequest(
-                                                    "Máme nový web!",
-                                                    Language.CZECH
-                                            )
-                                    ),
-                                    List.of(
-                                            new LocalizedString(
-                                                    new LocalizedStringRequest(
-                                                            "We have a new web page!",
-                                                            Language.ENGLISH
-                                                    )),
-                                            new LocalizedString(
-                                                    new LocalizedStringRequest(
-                                                            "Wir haben eine newe Website!",
-                                                            Language.GERMAN
-                                                    )
-                                            )
-                                    ),
-                                    "#ffffff"
-                            )
-                    )
-            );
+        ALERTS.put(TEMP_ID, alert);
+    }
+
+    @Override
+    public Alert get(int id) {
+        return ALERTS.get(id);
     }
 
     @Override
@@ -54,7 +43,7 @@ public class AlertInMemoryRepository implements AlertRepositoryInterface {
     }
 
     @Override
-    public void update(Alert alert) {
-        ALERTS.put("1", alert);
+    public void save(Alert alert) {
+        ALERTS.put(TEMP_ID, alert);
     }
 }

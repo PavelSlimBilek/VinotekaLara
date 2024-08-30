@@ -1,53 +1,30 @@
 package eu.bilekpavel.vinotekalara.alertbar.model;
 
-import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.translator.domain.LocalizedString;
+import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Getter
 public class Alert {
 
-    private final LocalizedString defaultLocalization;
-    private final Map<Language, LocalizedString> localizations;
+    private final Map<Language, String> localizations;
+
+    @Setter
+    @Getter
     private String backgroundColor;
 
-    public Alert(AlertRequest request) {
-        defaultLocalization = request.defaultContent();
-
+    public Alert() {
         localizations = new HashMap<>();
-        request.additionalTranslations().forEach(localization -> {
-            localizations.put(localization.getLanguage(), localization);
-        });
-
-        this.backgroundColor = request.backgroundColor();
     }
 
-    public LocalizedString getLocalizedContent(Language language) {
-        LocalizedString localization = localizations.get(language);
-        return localization != null ? localization : defaultLocalization;
+    public String getLocalized(Language language) {
+        return localizations.get(language);
     }
 
-    public void setBackgroundColor(String backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
-    public void setLocalizedContent(Language lang, String content) {
-        if (defaultLocalization.getLanguage() == lang) {
-            defaultLocalization.setContent(content);
-            return;
-        }
-
-        localizations.forEach((k, v) -> {
-            if (k == lang) {
-                v.setContent(content);
-            }
-            return;
-        });
-
-
+    public void updateLocalization(LocalizedString content) {
+        this.localizations.put(content.language(), content.content());
     }
 }

@@ -1,10 +1,15 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
-import eu.bilekpavel.vinotekalara.alertbar.dto.Color;
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
+import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
-import eu.bilekpavel.vinotekalara.alertbar.repository.AlertRepositoryInterface;
-import eu.bilekpavel.vinotekalara.alertbar.translator.TranslatedAlert;
+import eu.bilekpavel.vinotekalara.alertbar.model.AlertBuilder;
+import eu.bilekpavel.vinotekalara.alertbar.repository.AlertBarRepositoryInterface;
+import eu.bilekpavel.vinotekalara.alertbar.translator.LocalizedAlert;
+import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
+import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.LocalizedStringFactoryInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,30 +19,53 @@ import java.util.List;
 @AllArgsConstructor
 public class AlertBarService implements AlertBarServiceInterface {
 
-    private final AlertRepositoryInterface repo;
+    private final AlertBarRepositoryInterface repo;
+    private final LocalizedStringFactoryInterface localizedStringFactory;
 
     @Override
-    public List<TranslatedAlert> getAllTranslated(Language language) {
+    public void create(AlertRequest request) {
+        // we use AlertBuilder
+        AlertBuilder builder = new AlertBuilder();
+        for (LocalizedStringRequest localization : request.translations()) {
+            builder.addLocalization(
+                    localizedStringFactory.create(localization.langCode(), localization.payload())
+            );
+        }
+        repo.save(builder.build());
+    }
+
+    @Override
+    public LocalizedAlert getLocalized(int id, Language language) {
+        Alert alert = repo.get(id);
+        return alert.getLocalized(language) == null
+                ? new LocalizedAlert(
+                        localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
+                        alert.getBackgroundColor())
+                : new LocalizedAlert(
+                        localizedStringFactory.create(language.getCode(), alert.getLocalized(Language.CZECH)),
+                        alert.getBackgroundColor());
+    }
+
+    @Override
+    public List<LocalizedAlert> getAllLocalized(Language language) {
         return repo.getAll().stream()
-                .map((alert -> new TranslatedAlert(language, alert.getLocalizedContent(language), alert.getBackgroundColor())))
-                .toList();
+                .map((ab) -> new LocalizedAlert(
+                        localizedStringFactory.create(language.getCode(), ab.getLocalized(language)),
+                        ab.getBackgroundColor())
+                ).toList();
     }
 
     @Override
-    public void updateColor(Color color) {
-        List<Alert> alerts = repo.getAll();
-        alerts.forEach(alert -> {
-            alert.setBackgroundColor(color.toRgbString());
-            repo.update(alert);
-        });
+    public void updateColor(int id, Color color) {
+        Alert alert = repo.get(id);
+        alert.setBackgroundColor(color.toRgbString());
+        repo.save(alert);
     }
 
     @Override
-    public void updateContent(Language lang, String content) {
-        List<Alert> alerts = repo.getAll();
-        alerts.forEach(alert -> {
-            alert.setLocalizedContent(lang, content);
-            repo.update(alert);
-        });
+    public void updateLocalization(int id, LocalizedStringRequest request) {
+        Alert alert = repo.get(id);
+        LocalizedString content = localizedStringFactory.create(request.langCode(), request.payload());
+        alert.updateLocalization(content);
     }
 }

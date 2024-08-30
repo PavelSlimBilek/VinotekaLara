@@ -39,18 +39,25 @@
         </form>
 
         <div th:each="locale : ${_localizationWidget.flags()}">
-            <form th:action="@{'/admin/alert-bar/' + ${locale.getCode()}}" method="post">
+            <form th:action="@{admin/alert-bar/1}" method="post">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
                 <label th:for="${locale.getCode()}"></label>
                 <span>
                     <img th:src="@{${locale.getFlag().path()}}" th:alt="${locale.getLang().getSelfName()}" class="flag">
                 </span>
-                <input th:id="${locale.getCode()}" name="content">
+
+                <input type="hidden" th:value="${locale.getCode()}" name="langCode">
+
+                <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
+                <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload">
+
                 <br> <!-- !!  -->
                 <input type="submit" th:value="OK">
             </form>
         </div>
 
-        <form th:action="@{/admin/alert-bar/color}" method="post">
+        <form th:action="@{/admin/alert-bar/1/color}" method="post">
             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
             <label for="red">RED</label>
