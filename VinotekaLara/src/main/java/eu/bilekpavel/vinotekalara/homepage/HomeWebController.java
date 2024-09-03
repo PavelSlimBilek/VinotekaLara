@@ -35,7 +35,7 @@ public class HomeWebController {
         model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(translator.getPageTranslator()));
         model.addAttribute("_localizationWidget", localizations.getData(translator));
 
-        model.addAttribute("_isAlertBarAllowed", alertBarConfig.isAllowed());
+        model.addAttribute("_isAlertBarAllowed", alertBarConfig.isDisplayed());
         model.addAttribute("_alertBar", alertBarService.getAllLocalized(translator.getLang()).getFirst());
 
         model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);

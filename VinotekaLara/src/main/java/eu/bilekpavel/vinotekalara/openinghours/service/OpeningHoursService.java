@@ -1,12 +1,12 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
-import eu.bilekpavel.vinotekalara.openinghours.dto.TranslatedOpeningHoursData;
+import eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.repository.OpeningHoursRepositoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
-import eu.bilekpavel.vinotekalara.openinghours.translator.dto.TranslatedDayOfWeek;
+import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
@@ -60,15 +60,15 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public List<TranslatedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator) {
+    public List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator) {
         return List.of(
-                new TranslatedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()),
-                new TranslatedDayOfWeek(DayOfWeek.TUESDAY.getValue(), translator.getTuesday()),
-                new TranslatedDayOfWeek(DayOfWeek.WEDNESDAY.getValue(), translator.getWednesday()),
-                new TranslatedDayOfWeek(DayOfWeek.THURSDAY.getValue(), translator.getThursday()),
-                new TranslatedDayOfWeek(DayOfWeek.FRIDAY.getValue(), translator.getFriday()),
-                new TranslatedDayOfWeek(DayOfWeek.SATURDAY.getValue(), translator.getSaturday()),
-                new TranslatedDayOfWeek(DayOfWeek.SUNDAY.getValue(), translator.getSunday())
+                new LocalizedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()),
+                new LocalizedDayOfWeek(DayOfWeek.TUESDAY.getValue(), translator.getTuesday()),
+                new LocalizedDayOfWeek(DayOfWeek.WEDNESDAY.getValue(), translator.getWednesday()),
+                new LocalizedDayOfWeek(DayOfWeek.THURSDAY.getValue(), translator.getThursday()),
+                new LocalizedDayOfWeek(DayOfWeek.FRIDAY.getValue(), translator.getFriday()),
+                new LocalizedDayOfWeek(DayOfWeek.SATURDAY.getValue(), translator.getSaturday()),
+                new LocalizedDayOfWeek(DayOfWeek.SUNDAY.getValue(), translator.getSunday())
         );
     }
 
@@ -107,8 +107,8 @@ public class OpeningHoursService implements OpeningHoursServiceInterface {
     }
 
     @Override
-    public TranslatedOpeningHoursData getTranslatedData(OpeningHoursTranslatorInterface translator) {
-        return new TranslatedOpeningHoursData(
+    public LocalizedOpeningHours getTranslatedData(OpeningHoursTranslatorInterface translator) {
+        return new LocalizedOpeningHours(
                 translator.getDay(),
                 translator.getStart(),
                 translator.getEnd(),

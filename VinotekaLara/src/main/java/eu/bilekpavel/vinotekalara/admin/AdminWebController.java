@@ -27,7 +27,7 @@ public class AdminWebController {
     private final AlertBarServiceInterface alertBarService;
     private final AlertBarConfig alertBarConfig;
 
-    @GetMapping()
+    @GetMapping
     public String admin(Model model,
                         HttpServletRequest request,
                         @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang
@@ -37,7 +37,7 @@ public class AdminWebController {
         model.addAttribute("_requestURI", request.getRequestURI());
         model.addAttribute("_localizationWidget", localizations.getData(translator));
         model.addAttribute("_hoursWidget", hoursService.getTranslatedData(translator.getHoursTranslator()));
-        model.addAttribute("_isAlertBarAllowed", alertBarConfig.isAllowed());
+        model.addAttribute("_isAlertBarAllowed", alertBarConfig.isDisplayed());
         return "admin";
     }
 
@@ -53,24 +53,22 @@ public class AdminWebController {
     }
 
     @PostMapping("/alert-bar/{id}/color")
-    public String updateAlertBarColor(@PathVariable int id, Color color) {
+    public String updateColor(@PathVariable int id, Color color) {
         alertBarService.updateColor(id, color);
         return "redirect:/admin";
     }
 
     @PostMapping("/alert-bar/{id}")
-    public String updateTranslatedAlerts(@PathVariable int id, LocalizedStringRequest request) {
-        System.out.println(id);
-        System.out.println(request.langCode() + "    " + request.payload());
+    public String updateTranslation(@PathVariable int id, LocalizedStringRequest request) {
         if (this.localizations.isOnTheList(request.langCode())) {
             alertBarService.updateLocalization(id, request);
         }
         return "redirect:/admin";
     }
 
-    @PostMapping("/alert-bar/allow")
-    public String toggleAlertBar(@ModelAttribute Allow allow) {
-        alertBarConfig.setAllowed(allow.isAllowed());
+    @PostMapping("/alert-bar/toggle")
+    public String toggleAlertBar() {
+        alertBarConfig.toggleDisplay();
         return "redirect:/admin";
     }
 }

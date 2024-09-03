@@ -4,13 +4,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AlertBarConfig {
-    private boolean isAllowed = false;
+    private boolean isDisplayed = false;
 
-    public boolean isAllowed() {
-        return isAllowed;
+    public boolean isDisplayed() {
+        return isDisplayed;
     }
 
-    public void setAllowed(boolean allowed) {
-        isAllowed = allowed;
+    public void toggleDisplay() {
+        isDisplayed = !isDisplayed;
     }
 }

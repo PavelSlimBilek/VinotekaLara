@@ -32,10 +32,10 @@
     <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
     <div th:fragment="admin_alertBar">
 
-        <form th:action="@{/admin/alert-bar/allow}" method="post">
-            <label for="alertBarToggle">show alert bar</label>
-            <input type="checkbox" id="alertBarToggle" name="isAllowed">
-            <input type="submit" value="OK">
+        <form th:action="@{/admin/alert-bar/toggle}" method="post">
+            <!--/*@thymesVar id="_isAlertBarAllowed" type="java.lang.Boolean"*/-->
+            <input type="submit" th:if="${_isAlertBarAllowed}" class="button allowed" value="hide">
+            <input type="submit" th:if="${!_isAlertBarAllowed}" class="button notAllowed" value="display">
         </form>
 
         <div th:each="locale : ${_localizationWidget.flags()}">
@@ -69,12 +69,12 @@
             <label for="blue">BLUE</label>
             <input type="range" min="0" max="255" id="blue" name="blue">
 
-            <button type="submit" id="colorBox"></button>
+            <button type="submit" class="button" id="colorBox"></button>
         </form>
 
     </div>
 
-    <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.TranslatedOpeningHoursData"*/-->
+    <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours"*/-->
     <!--/*@thymesVar id="_areAfternoonHoursAllowed" type="java.lang.Boolean"*/-->
     <div th:fragment="admin_hours">
         <form th:action="@{/admin/opening-hours}" method="post">

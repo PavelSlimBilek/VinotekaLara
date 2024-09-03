@@ -10,7 +10,7 @@
         </nav>
         <main>
             <div th:if="${_isAlertBarAllowed}" th:style="'background-color: ' + ${_alertBar.backgroundColor()}">
-                <p th:text="${_alertBar.content().content()}"></p>
+                <p class="alertBar" th:text="${_alertBar.content().content()}"></p>
             </div>
 
             <div class="localizationWidget" th:replace="fragments :: localeSwitcher"></div>
