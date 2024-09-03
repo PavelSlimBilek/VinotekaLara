@@ -5,7 +5,7 @@ import eu.bilekpavel.vinotekalara.translator.Translator;
 import java.util.List;
 
 public record TranslatorData(
-        String code,
+        String langCode,
         List<Translator> flags
 ) {
 }

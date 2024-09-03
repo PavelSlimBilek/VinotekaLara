@@ -5,6 +5,7 @@ import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.Translator;
+import eu.bilekpavel.vinotekalara.translator.TranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.TranslatorRegistry;
 
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
@@ -21,6 +22,7 @@ public class AdminWebController {
 
     private final AdminContentProviderInterface pageContentProvider;
     private final TranslatorRegistry localizations;
+    private final TranslatorDataFactoryInterface translatorDataProvider;
 
     private final OpeningHoursServiceInterface hoursService;
 
@@ -35,7 +37,7 @@ public class AdminWebController {
         Translator translator = this.localizations.getLocale(lang);
 
         model.addAttribute("_requestURI", request.getRequestURI());
-        model.addAttribute("_localizationWidget", localizations.getData(translator));
+        model.addAttribute("_localizationWidget", translatorDataProvider.create(translator));
         model.addAttribute("_hoursWidget", hoursService.getTranslatedData(translator.getHoursTranslator()));
         model.addAttribute("_isAlertBarAllowed", alertBarConfig.isDisplayed());
         return "admin";

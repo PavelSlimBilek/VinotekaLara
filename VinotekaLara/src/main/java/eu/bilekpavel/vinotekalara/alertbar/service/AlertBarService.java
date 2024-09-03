@@ -28,7 +28,7 @@ public class AlertBarService implements AlertBarServiceInterface {
         AlertBuilder builder = new AlertBuilder();
         for (LocalizedStringRequest localization : request.translations()) {
             builder.addLocalization(
-                    localizedStringFactory.create(localization.langCode(), localization.payload())
+                    localizedStringFactory.create(localization)
             );
         }
         repo.save(builder.build());
@@ -65,7 +65,7 @@ public class AlertBarService implements AlertBarServiceInterface {
     @Override
     public void updateLocalization(int id, LocalizedStringRequest request) {
         Alert alert = repo.get(id);
-        LocalizedString content = localizedStringFactory.create(request.langCode(), request.payload());
+        LocalizedString content = localizedStringFactory.create(request);
         alert.updateLocalization(content);
     }
 }

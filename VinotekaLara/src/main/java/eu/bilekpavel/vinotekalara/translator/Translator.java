@@ -6,10 +6,13 @@ import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 
 public interface Translator {
-    String getCode();
     Language getLang();
-    // TODO FlagProvider class
+
+    String getCode();
     Flag getFlag();
+
+    boolean isAllowed();
+    Translator allow(boolean isAllowed);
 
     HomePageTranslatorInterface getPageTranslator();
     OpeningHoursTranslatorInterface getHoursTranslator();

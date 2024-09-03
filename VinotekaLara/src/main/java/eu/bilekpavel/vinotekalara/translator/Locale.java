@@ -6,12 +6,13 @@ import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 
 public abstract class Locale implements Translator {
-    public final Language language;
+    private boolean isAllowed = true; // allow locale as
+    private final Language language;
 
-    public final Flag flag;
+    private final Flag flag;
 
-    public final OpeningHoursTranslatorInterface hoursTranslator;
-    public final HomePageTranslatorInterface pageTranslator;
+    private final OpeningHoursTranslatorInterface hoursTranslator;
+    private final HomePageTranslatorInterface pageTranslator;
 
     public Locale(
             Language language,
@@ -23,6 +24,17 @@ public abstract class Locale implements Translator {
         this.flag = flag;
         this.hoursTranslator = hoursTranslator;
         this.pageTranslator = pageTranslator;
+    }
+
+    @Override
+    public Translator allow(boolean isAllowed) {
+        this.isAllowed = isAllowed;
+        return this;
+    }
+
+    @Override
+    public boolean isAllowed() {
+        return isAllowed;
     }
 
     @Override
