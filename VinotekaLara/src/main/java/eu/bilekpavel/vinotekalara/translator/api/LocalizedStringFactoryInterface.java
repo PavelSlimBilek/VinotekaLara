@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.translator;
+package eu.bilekpavel.vinotekalara.translator.api;
 
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;

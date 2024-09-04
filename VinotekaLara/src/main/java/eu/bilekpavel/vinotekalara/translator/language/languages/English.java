@@ -4,7 +4,7 @@ import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterfac
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
-import eu.bilekpavel.vinotekalara.translator.Locale;
+import eu.bilekpavel.vinotekalara.translator.impl.Locale;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,6 @@
-package eu.bilekpavel.vinotekalara.translator;
+package eu.bilekpavel.vinotekalara.translator.impl;
 
+import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringValidatorInterface;
 import eu.bilekpavel.vinotekalara.translator.error.LocalizedStringException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

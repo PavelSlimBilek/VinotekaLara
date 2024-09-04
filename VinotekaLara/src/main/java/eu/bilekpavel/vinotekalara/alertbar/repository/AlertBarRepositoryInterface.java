@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.repository;
 
-import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
+import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
 
 import java.util.List;
 

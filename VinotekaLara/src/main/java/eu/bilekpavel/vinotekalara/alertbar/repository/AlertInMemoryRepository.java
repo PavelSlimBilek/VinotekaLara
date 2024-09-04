@@ -1,8 +1,7 @@
 package eu.bilekpavel.vinotekalara.alertbar.repository;
 
-import eu.bilekpavel.vinotekalara.alertbar.error.AlertValidationError;
-import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
-import eu.bilekpavel.vinotekalara.alertbar.model.AlertBuilder;
+import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
+import eu.bilekpavel.vinotekalara.alertbar.domain.AlertBuilder;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.stereotype.Repository;
@@ -17,7 +16,7 @@ public class AlertInMemoryRepository implements AlertBarRepositoryInterface {
     private final Map<Integer, Alert> ALERTS;
     private final int TEMP_ID = 1;
 
-    public AlertInMemoryRepository() throws AlertValidationError {
+    public AlertInMemoryRepository() {
         Alert alert = new AlertBuilder()
                 .addLocalization(
                         new LocalizedString(Language.CZECH, "payload")

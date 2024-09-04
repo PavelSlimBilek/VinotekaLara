@@ -4,9 +4,9 @@ import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
-import eu.bilekpavel.vinotekalara.translator.Translator;
-import eu.bilekpavel.vinotekalara.translator.TranslatorDataFactoryInterface;
-import eu.bilekpavel.vinotekalara.translator.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.api.Translator;
+import eu.bilekpavel.vinotekalara.translator.api.TranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,5 +1,8 @@
-package eu.bilekpavel.vinotekalara.translator;
+package eu.bilekpavel.vinotekalara.translator.impl;
 
+import eu.bilekpavel.vinotekalara.translator.api.Translator;
+import eu.bilekpavel.vinotekalara.translator.api.TranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.TranslatorData;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

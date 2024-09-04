@@ -2,14 +2,14 @@ package eu.bilekpavel.vinotekalara.alertbar.service;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.Color;
-import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
-import eu.bilekpavel.vinotekalara.alertbar.model.AlertBuilder;
+import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
+import eu.bilekpavel.vinotekalara.alertbar.domain.AlertBuilder;
 import eu.bilekpavel.vinotekalara.alertbar.repository.AlertBarRepositoryInterface;
-import eu.bilekpavel.vinotekalara.alertbar.translator.LocalizedAlert;
+import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
-import eu.bilekpavel.vinotekalara.translator.LocalizedStringFactoryInterface;
+import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringFactoryInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,7 @@
-package eu.bilekpavel.vinotekalara.translator;
+package eu.bilekpavel.vinotekalara.translator.impl;
 
+import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringFactoryInterface;
+import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringValidatorInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;

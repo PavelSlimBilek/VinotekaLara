@@ -1,5 +1,7 @@
-package eu.bilekpavel.vinotekalara.translator;
+package eu.bilekpavel.vinotekalara.translator.impl;
 
+import eu.bilekpavel.vinotekalara.translator.api.Translator;
+import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.language.languages.Czech;
 import eu.bilekpavel.vinotekalara.translator.language.languages.English;
 import eu.bilekpavel.vinotekalara.translator.language.languages.German;
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class TranslatorRegistry implements TranslatorRegistryInterface{
+public class TranslatorRegistry implements TranslatorRegistryInterface {
 
     private final Map<String, Translator> LOCALES;
     private final Translator DEFAULT; // settable fallback
