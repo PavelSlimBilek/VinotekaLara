@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.admin;
+package eu.bilekpavel.vinotekalara.superadmin;
 
 import org.springframework.stereotype.Component;
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Alert bar</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+    </head>
+    <body>
+        <div th:each="bar : ${_alertBars}">
+            <a th:href="@{'/super-admin/alert/' + ${bar.id()}}"
+               th:text="${bar.content().content()}"
+               th:style="${'background-color: ' + bar.backgroundColor()}"
+               class="button smallBar">
+            </a>
+            <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
+                <input type="hidden" th:value="${bar.id()}">
+                <input type="submit" value="ACTIVATE" class="button notAllowed">
+            </form>
+        </div>
+
+    </body>
+</html>

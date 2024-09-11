@@ -1,10 +1,10 @@
-package eu.bilekpavel.vinotekalara.admin;
+package eu.bilekpavel.vinotekalara.superadmin;
 
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AlertBarConfig {
-    private boolean isDisplayed = false;
+    private boolean isDisplayed = true;
 
     public boolean isDisplayed() {
         return isDisplayed;

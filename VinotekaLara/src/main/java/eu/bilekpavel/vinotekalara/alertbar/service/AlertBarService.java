@@ -4,7 +4,7 @@ import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
 import eu.bilekpavel.vinotekalara.alertbar.domain.AlertBuilder;
-import eu.bilekpavel.vinotekalara.alertbar.repository.AlertBarRepositoryInterface;
+import eu.bilekpavel.vinotekalara.alertbar.domain.AlertRepositoryInterface;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
@@ -17,10 +17,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class AlertBarService implements AlertBarServiceInterface {
+public class AlertBarService implements AlertServiceInterface {
 
-    private final AlertBarRepositoryInterface repo;
+    private final AlertRepositoryInterface repo;
     private final LocalizedStringFactoryInterface localizedStringFactory;
+
+    private static int activeAlertId = 1;
 
     @Override
     public void create(AlertRequest request) {
@@ -39,9 +41,11 @@ public class AlertBarService implements AlertBarServiceInterface {
         Alert alert = repo.get(id);
         return alert.getLocalized(language) == null
                 ? new LocalizedAlert(
+                        alert.getId(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
                         alert.getBackgroundColor())
                 : new LocalizedAlert(
+                        alert.getId(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(Language.CZECH)),
                         alert.getBackgroundColor());
     }
@@ -50,6 +54,7 @@ public class AlertBarService implements AlertBarServiceInterface {
     public List<LocalizedAlert> getAllLocalized(Language language) {
         return repo.getAll().stream()
                 .map((ab) -> new LocalizedAlert(
+                        ab.getId(),
                         localizedStringFactory.create(language.getCode(), ab.getLocalized(language)),
                         ab.getBackgroundColor())
                 ).toList();
@@ -67,5 +72,25 @@ public class AlertBarService implements AlertBarServiceInterface {
         Alert alert = repo.get(id);
         LocalizedString content = localizedStringFactory.create(request);
         alert.updateLocalization(content);
+    }
+
+    @Override
+    public Alert get(int id) {
+        return repo.get(id);
+    }
+
+    @Override
+    public void setActive(int id) {
+        activeAlertId = id;
+    }
+
+    @Override
+    public LocalizedAlert getActive(Language language) {
+        Alert active = repo.get(activeAlertId);
+        return new LocalizedAlert(
+                active.getId(),
+                localizedStringFactory.create(language.getCode(), active.getLocalized(language)),
+                active.getBackgroundColor()
+        );
     }
 }

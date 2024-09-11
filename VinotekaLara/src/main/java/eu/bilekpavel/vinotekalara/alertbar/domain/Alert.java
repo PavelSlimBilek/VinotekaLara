@@ -10,6 +10,11 @@ import java.util.Map;
 
 public class Alert {
 
+    public static int ID = 1;
+
+    @Getter
+    private final int id;
+
     private final Map<Language, String> localizations;
 
     @Setter
@@ -18,6 +23,7 @@ public class Alert {
 
     public Alert() {
         localizations = new HashMap<>();
+        id = generateId();
     }
 
     public String getLocalized(Language language) {
@@ -26,5 +32,9 @@ public class Alert {
 
     public void updateLocalization(LocalizedString content) {
         this.localizations.put(content.language(), content.content());
+    }
+
+    private int generateId() {
+        return ID++;
     }
 }

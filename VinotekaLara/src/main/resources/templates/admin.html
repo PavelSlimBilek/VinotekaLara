@@ -13,12 +13,6 @@
         </nav>
 
         <main>
-            <hr>
-            <!-- alert bar -->
-            <div th:replace="fragments :: admin_alertBar"></div>
-            <hr>
-
-            <!-- opening hours -->
             <p th:each="hours : ${_hoursWidget.openingHoursList()}" th:text="${hours}"></p>
             <div th:replace="fragments :: admin_hours"></div>
             <hr>

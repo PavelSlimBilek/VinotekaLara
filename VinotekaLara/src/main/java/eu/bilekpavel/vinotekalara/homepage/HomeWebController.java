@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.homepage;
 
-import eu.bilekpavel.vinotekalara.admin.AlertBarConfig;
-import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
+import eu.bilekpavel.vinotekalara.superadmin.AlertBarConfig;
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.app.AppSettings;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -23,7 +23,7 @@ public class HomeWebController {
     private final TranslatorDataFactory translatorDataProvider;
 
     private final OpeningHoursServiceInterface hoursService;
-    private final AlertBarServiceInterface alertBarService;
+    private final AlertServiceInterface alertBarService;
     private final AlertBarConfig alertBarConfig;
 
     @GetMapping("/home")
@@ -38,7 +38,7 @@ public class HomeWebController {
         model.addAttribute("_localizationWidget", translatorDataProvider.create(translator));
 
         model.addAttribute("_isAlertBarAllowed", alertBarConfig.isDisplayed());
-        model.addAttribute("_alertBar", alertBarService.getAllLocalized(translator.getLang()).getFirst());
+        model.addAttribute("_alertBar", alertBarService.getActive(translator.getLang()));
 
         model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
         model.addAttribute("_hoursWidget", hoursService.getTranslatedData(translator.getHoursTranslator()));

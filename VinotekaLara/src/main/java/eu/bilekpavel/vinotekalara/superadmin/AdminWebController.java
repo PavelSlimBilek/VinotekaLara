@@ -1,7 +1,7 @@
-package eu.bilekpavel.vinotekalara.admin;
+package eu.bilekpavel.vinotekalara.superadmin;
 
 import eu.bilekpavel.vinotekalara.app.Color;
-import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.OpeningHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -26,7 +26,7 @@ public class AdminWebController {
 
     private final OpeningHoursServiceInterface hoursService;
 
-    private final AlertBarServiceInterface alertBarService;
+    private final AlertServiceInterface alertBarService;
     private final AlertBarConfig alertBarConfig;
 
     @GetMapping

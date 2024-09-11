@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit alert</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+    </head>
+
+    <body>
+        <div th:replace="fragments :: alert_update_localizations"></div>
+        <div th:replace="fragments :: alert_update_colors"></div>
+        <a href="/super-admin/alert" class="button allowed">BACK</a>
+    </body>
+
+    <script th:src="@{colorPicker.js}" type="text/javascript"></script>
+</html>

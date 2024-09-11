@@ -29,35 +29,17 @@
     <!-------------------------------------------  ----------------------------------------------->
 
     <!-- TODO messy HTML -->
-    <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
-    <div th:fragment="admin_alertBar">
-
+    <div th:fragment="alert_toggle">
         <form th:action="@{/admin/alert-bar/toggle}" method="post">
             <!--/*@thymesVar id="_isAlertBarAllowed" type="java.lang.Boolean"*/-->
             <input type="submit" th:if="${_isAlertBarAllowed}" class="button allowed" value="hide">
             <input type="submit" th:if="${!_isAlertBarAllowed}" class="button notAllowed" value="display">
         </form>
+    </div>
 
-        <div th:each="locale : ${_localizationWidget.flags()}">
-            <form th:action="@{admin/alert-bar/1}" method="post">
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-
-                <label th:for="${locale.getCode()}"></label>
-                <span>
-                    <img th:src="@{${locale.getFlag().path()}}" th:alt="${locale.getLang().getSelfName()}" class="flag">
-                </span>
-
-                <input type="hidden" th:value="${locale.getCode()}" name="langCode">
-
-                <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
-                <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload">
-
-                <br> <!-- !!  -->
-                <input type="submit" th:value="OK">
-            </form>
-        </div>
-
-        <form th:action="@{/admin/alert-bar/1/color}" method="post">
+    <div th:fragment="alert_update_colors">
+        <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.domain.Alert"*/-->
+        <form th:action="@{'/super-admin/alert/' + ${_alertBar.getId()} + '/color'}" method="post">
             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
             <label for="red">RED</label>
@@ -71,7 +53,29 @@
 
             <button type="submit" class="button" id="colorBox"></button>
         </form>
+    </div>
 
+    <div th:fragment="alert_update_localizations">
+        <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
+        <div th:each="locale : ${_localizationWidget.flags()}">
+            <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.domain.Alert"*/-->
+            <form th:action="@{'/super-admin/alert/' + ${_alertBar.getId()}}" method="post">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+                <label th:for="${locale.getCode()}"></label>
+                <span>
+                    <img th:src="@{${locale.getFlag().path()}}" th:alt="${locale.getLang().getSelfName()}" class="flag">
+                </span>
+
+                <input type="hidden" th:value="${locale.getCode()}" name="langCode">
+
+                <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
+                <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload" th:value="${_alertBar.getLocalized(locale.getLang())}">
+
+                <br> <!-- !!  -->
+                <input type="submit" th:value="OK">
+            </form>
+        </div>
     </div>
 
     <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours"*/-->
