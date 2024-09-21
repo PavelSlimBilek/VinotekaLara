@@ -4,6 +4,7 @@ import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,11 +15,10 @@ import java.util.Map;
 @Entity
 public class Alert {
 
-    public static int ID = 1;
-
     @Id
     @Getter
-    private final int id;
+    @GeneratedValue
+    private int id;
 
     @ElementCollection
     private final Map<Language, String> localizations;
@@ -29,7 +29,6 @@ public class Alert {
 
     public Alert() {
         localizations = new HashMap<>();
-        id = generateId();
     }
 
     public String getLocalized(Language language) {
@@ -38,9 +37,5 @@ public class Alert {
 
     public void updateLocalization(LocalizedString content) {
         this.localizations.put(content.language(), content.content());
-    }
-
-    private int generateId() {
-        return ID++;
     }
 }
