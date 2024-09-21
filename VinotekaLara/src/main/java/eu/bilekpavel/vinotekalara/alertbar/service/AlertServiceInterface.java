@@ -8,6 +8,7 @@ import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AlertServiceInterface {
     void create(AlertRequest request);
@@ -18,7 +19,7 @@ public interface AlertServiceInterface {
     void updateColor(int id, Color color);
     void updateLocalization(int id, LocalizedStringRequest request);
 
-    Alert get(int id);
+    Optional<Alert> get(int id);
 
     void setActive(int id);
     LocalizedAlert getActive(Language language);

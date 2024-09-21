@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -38,7 +39,17 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public LocalizedAlert getLocalized(int id, Language language) {
-        Alert alert = repo.get(id);
+        Optional<Alert> optAlert = repo.get(id);
+
+        if (optAlert.isEmpty()) {
+            return new LocalizedAlert(
+                    0,
+                    localizedStringFactory.create("err", "Something went wrong"),
+                    "tomato"
+            );
+        }
+
+        Alert alert = optAlert.get();
         return alert.getLocalized(language) == null
                 ? new LocalizedAlert(
                         alert.getId(),
@@ -62,20 +73,28 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public void updateColor(int id, Color color) {
-        Alert alert = repo.get(id);
-        alert.setBackgroundColor(color.toRgbString());
-        repo.save(alert);
+        Optional<Alert> optAlert = repo.get(id);
+        if (optAlert.isEmpty()) {
+            return;
+        }
+
+        optAlert.get().setBackgroundColor(color.toRgbString());
+        repo.save(optAlert.get());
     }
 
     @Override
     public void updateLocalization(int id, LocalizedStringRequest request) {
-        Alert alert = repo.get(id);
+        Optional<Alert> optAlert = repo.get(id);
+        if (optAlert.isEmpty()) {
+            return;
+        }
+
         LocalizedString content = localizedStringFactory.create(request);
-        alert.updateLocalization(content);
+        optAlert.get().updateLocalization(content);
     }
 
     @Override
-    public Alert get(int id) {
+    public Optional<Alert> get(int id) {
         return repo.get(id);
     }
 
@@ -86,11 +105,19 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public LocalizedAlert getActive(Language language) {
-        Alert active = repo.get(activeAlertId);
+        Optional<Alert> active = repo.get(activeAlertId);
+        if (active.isEmpty()) {
+            return new LocalizedAlert(
+                    0,
+                    localizedStringFactory.create("err", "Something went wrong"),
+                    "tomato"
+            );
+        }
+
         return new LocalizedAlert(
-                active.getId(),
-                localizedStringFactory.create(language.getCode(), active.getLocalized(language)),
-                active.getBackgroundColor()
+                active.get().getId(),
+                localizedStringFactory.create(language.getCode(), active.get().getLocalized(language)),
+                active.get().getBackgroundColor()
         );
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class AlertInMemoryRepository implements AlertRepositoryInterface {
@@ -39,8 +40,8 @@ public class AlertInMemoryRepository implements AlertRepositoryInterface {
     }
 
     @Override
-    public Alert get(int id) {
-        return ALERTS.get(id);
+    public Optional<Alert> get(int id) {
+        return Optional.ofNullable(ALERTS.get(id));
     }
 
     @Override

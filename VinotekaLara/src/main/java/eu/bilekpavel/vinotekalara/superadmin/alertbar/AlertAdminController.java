@@ -48,7 +48,7 @@ public class AlertAdminController extends SuperAdminController {
 
         Translator locale = LOCALES.getLocale(lang);
 
-        model.addAttribute("_alertBar", service.get(id));
+        model.addAttribute("_alertBar", service.get(id).get());
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
         return "admin_alert_edit";
     }
