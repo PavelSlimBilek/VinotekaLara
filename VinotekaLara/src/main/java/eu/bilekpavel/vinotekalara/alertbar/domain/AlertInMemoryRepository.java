@@ -22,7 +22,6 @@ public class AlertInMemoryRepository implements AlertRepositoryInterface {
                         new LocalizedString(Language.ENGLISH, "We have a new website!")
                 ).addLocalization(
                         new LocalizedString(Language.GERMAN, "Wir haben wine neue Website!")
-
                 ).build();
 
         Alert alert2 = new AlertBuilder()
