@@ -38,8 +38,8 @@
     </div>
 
     <div th:fragment="alert_update_colors">
-        <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.domain.Alert"*/-->
-        <form th:action="@{'/super-admin/alert/' + ${_alertBar.getId()} + '/color'}" method="post">
+        <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
+        <form th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
             <label for="red">RED</label>
@@ -58,8 +58,8 @@
     <div th:fragment="alert_update_localizations">
         <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
         <div th:each="locale : ${_localizationWidget.flags()}">
-            <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.domain.Alert"*/-->
-            <form th:action="@{'/super-admin/alert/' + ${_alertBar.getId()}}" method="post">
+            <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
+            <form th:action="@{'/super-admin/alert/' + ${_alertBar.id()}}" method="post">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
                 <label th:for="${locale.getCode()}"></label>
@@ -70,7 +70,7 @@
                 <input type="hidden" th:value="${locale.getCode()}" name="langCode">
 
                 <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
-                <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload" th:value="${_alertBar.getLocalized(locale.getLang())}">
+                <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload" th:value="${_alertBar.getLocalized(locale.getLang()).content()}">
 
                 <br> <!-- !!  -->
                 <input type="submit" th:value="OK">

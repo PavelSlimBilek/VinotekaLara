@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.domain;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import jakarta.persistence.ElementCollection;
@@ -12,11 +13,11 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 @Entity
 public class Alert {
 
     @Id
-    @Getter
     @GeneratedValue
     private int id;
 
@@ -24,7 +25,6 @@ public class Alert {
     private final Map<Language, String> localizations;
 
     @Setter
-    @Getter
     private String backgroundColor;
 
     public Alert() {

@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
 import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
@@ -19,7 +20,7 @@ public interface AlertServiceInterface {
     void updateColor(int id, Color color);
     void updateLocalization(int id, LocalizedStringRequest request);
 
-    Optional<Alert> get(int id);
+    Optional<AlertFullData> get(int id);
 
     void setActive(int id);
     LocalizedAlert getActive(Language language);

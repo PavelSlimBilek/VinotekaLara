@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
@@ -101,8 +102,13 @@ public class AlertBarService implements AlertServiceInterface {
     }
 
     @Override
-    public Optional<Alert> get(int id) {
-        return repo.findById(id);
+    public Optional<AlertFullData> get(int id) {
+        Optional<Alert> alert = repo.findById(id);
+        return alert.map(value -> new AlertFullData(
+                value.getId(),
+                value.getLocalizations(),
+                value.getBackgroundColor()
+        ));
     }
 
     @Override
