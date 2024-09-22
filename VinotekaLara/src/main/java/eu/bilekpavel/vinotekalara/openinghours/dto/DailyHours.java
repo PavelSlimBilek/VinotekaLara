@@ -13,9 +13,4 @@ public record DailyHours (
     @Embedded
     TimeInterval afternoonHours
 ) {
-    public DailyHours(DayOfWeek dayOfWeek, TimeInterval morningHours, TimeInterval afternoonHours) {
-        this.dayOfWeek = dayOfWeek;
-        this.morningHours = morningHours;
-        this.afternoonHours = afternoonHours;
-    }
 }

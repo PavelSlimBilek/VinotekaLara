@@ -7,7 +7,7 @@ import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.repository.WeeklyHoursRepositoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
@@ -23,9 +23,10 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     private WeeklyHours currentGlobalHours;
 
     public WeeklyHoursService(
-            WeeklyHoursRepositoryInterface repo
+            @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo
     ) {
         this.repo = repo;
+        currentGlobalHours = repo.findById(1);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public WeeklyHoursData get(int id) {
-        WeeklyHours hours = repo.find(id);
+        WeeklyHours hours = repo.findById(id);
 
         if (hours == null) {
             return null;
@@ -121,6 +122,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator) {
+        System.out.println("invoked ************************************************************************************************");
         return translator.transform(currentGlobalHours.getHours(LocalDate.now().getDayOfWeek()));
     }
 
@@ -138,7 +140,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public void activate(int id) {
-        currentGlobalHours = repo.find(id);
+        currentGlobalHours = repo.findById(id);
         System.out.println(currentGlobalHours.getId());
     }
 }

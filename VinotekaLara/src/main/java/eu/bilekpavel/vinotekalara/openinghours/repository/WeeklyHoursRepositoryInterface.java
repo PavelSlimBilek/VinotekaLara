@@ -7,5 +7,5 @@ import java.util.List;
 public interface WeeklyHoursRepositoryInterface {
     List<WeeklyHours> findAll();
     WeeklyHours save(WeeklyHours hours);
-    WeeklyHours find(int id);
+    WeeklyHours findById(int id);
 }

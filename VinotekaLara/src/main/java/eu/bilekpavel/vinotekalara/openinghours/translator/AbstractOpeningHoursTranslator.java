@@ -35,7 +35,10 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
             return null;
         }
 
+        System.out.println(hours.dayOfWeek());
+
         String translatedDay = switch(hours.dayOfWeek()) {
+            case null -> this.SUNDAY;
             case MONDAY -> this.MONDAY;
             case TUESDAY -> this.TUESDAY;
             case WEDNESDAY -> this.WEDNESDAY;
