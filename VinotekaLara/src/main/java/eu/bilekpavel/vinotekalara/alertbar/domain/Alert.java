@@ -1,6 +1,5 @@
 package eu.bilekpavel.vinotekalara.alertbar.domain;
 
-import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import jakarta.persistence.ElementCollection;

@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.dto;
 
-public record OpeningHoursRequest(
+public record DailyHoursRequest(
         String dayValue, // as from DaysOfWeek.class
         String morningStart,
         String morningEnd,

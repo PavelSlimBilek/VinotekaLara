@@ -1,9 +1,9 @@
 package eu.bilekpavel.vinotekalara.homepage;
 
+import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.app.AppSettings;
-import eu.bilekpavel.vinotekalara.openinghours.service.OpeningHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorDataFactory;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
@@ -22,7 +22,7 @@ public class HomeWebController {
     private final TranslatorRegistry localizations;
     private final TranslatorDataFactory translatorDataProvider;
 
-    private final OpeningHoursServiceInterface hoursService;
+    private final WeeklyHoursServiceInterface hoursService;
     private final AlertServiceInterface alertBarService;
     private final AlertBarConfig alertBarConfig;
 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Opening hours</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+    </head>
+    <body>
+        <h1>Opening hours admin</h1>
+        <div th:each="hours : ${_openingHours}">
+            <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
+               th:text="${hours.userIdentifier()}"
+               class="button smallBar">
+            </a>
+        </div>
+        <a href="super-admin">Back</a>
+    </body>
+</html>

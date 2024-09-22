@@ -38,7 +38,7 @@ public class AlertAdminController extends SuperAdminController {
         Translator locale = LOCALES.getLocale(lang);
 
         model.addAttribute("_alertBars", service.getAllLocalized(locale.getLang()));
-        return "admin_alert";
+        return "/admin/alert-bar/index";
     }
 
     @GetMapping("/alert/{id}")

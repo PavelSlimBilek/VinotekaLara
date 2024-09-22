@@ -1,12 +1,12 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator;
 
-import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 
 import java.util.List;
 
 public interface OpeningHoursTranslatorInterface {
-    String transform(OpeningHours hours);
-    List<String> transformAll(List<OpeningHours> hours);
+    String transform(DailyHours hours);
+    List<String> transformAll(List<DailyHours> hours);
     String getIsOpenedMessage(boolean isOpened);
 
     String getDay();

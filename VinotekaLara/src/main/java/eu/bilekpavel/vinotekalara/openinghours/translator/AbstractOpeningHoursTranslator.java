@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
-import eu.bilekpavel.vinotekalara.openinghours.model.OpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -30,12 +30,12 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
     private final String AFTERNOON_HOURS;
 
     @Override
-    public final String transform(OpeningHours hours) {
+    public final String transform(DailyHours hours) {
         if (hours == null) {
             return null;
         }
 
-        String translatedDay = switch(hours.getDay()) {
+        String translatedDay = switch(hours.dayOfWeek()) {
             case MONDAY -> this.MONDAY;
             case TUESDAY -> this.TUESDAY;
             case WEDNESDAY -> this.WEDNESDAY;
@@ -48,15 +48,15 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s: %s - %s",
                 translatedDay,
-                hours.getMorningHours().start().toString().substring(0, 5),
-                hours.getMorningHours().end().toString().substring(0, 5)
+                hours.morningHours() == null ? CLOSED : hours.morningHours().start().toString().substring(0, 5),
+                hours.morningHours() == null ? CLOSED : hours.morningHours().end().toString().substring(0, 5)
         ));
 
         if (AppSettings.areAfternoonHoursAllowed) {
             sb.append("  |  ");
-            sb.append(hours.getAfternoonHours() == null
+            sb.append(hours.afternoonHours() == null
                     ? CLOSED
-                    : String.format("%s - %s", hours.getAfternoonHours().start(), hours.getAfternoonHours().end()
+                    : String.format("%s - %s", hours.afternoonHours().start(), hours.afternoonHours().end()
             ));
         }
 
@@ -64,7 +64,7 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
     }
 
     @Override
-    public final List<String> transformAll(List<OpeningHours> hours) {
+    public final List<String> transformAll(List<DailyHours> hours) {
         return hours.stream().map(this::transform).toList();
     }
 
