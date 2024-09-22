@@ -190,6 +190,13 @@
             <input type="submit" value="update" class="button notAllowed">
         </form>
     </div>
+    <div class="buttonPanel">
+        <a href="/super-admin/hours" class="button allowed">back</a>
+        <form th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/activate'}" method="post">
+            <input type="hidden" name value="">
+            <input type="submit" class="button notAllowed" value="activate">
+        </form>
+    </div>
 </div>
 </body>
 </html>

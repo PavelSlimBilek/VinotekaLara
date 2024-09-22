@@ -41,4 +41,10 @@ public class HoursAdminController extends SuperAdminController {
         DayOfWeek dayOfWeek = DayOfWeek.valueOf(day.toUpperCase());
         return "redirect:/super-admin/hours/" + id;
     }
+
+    @PostMapping("/hours/{id}/activate")
+    public String activate(@PathVariable int id) {
+        service.activate(id);
+        return "redirect:/super-admin/hours/" + id;
+    }
 }

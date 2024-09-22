@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
@@ -119,5 +118,17 @@ public class WeeklyHours {
     
     public List<DailyHours> getHours() {
         return List.of(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+    }
+
+    public DailyHours getHours(DayOfWeek dayOfWeek) {
+        return switch (dayOfWeek) {
+            case MONDAY -> monday;
+            case TUESDAY -> tuesday;
+            case WEDNESDAY -> wednesday;
+            case THURSDAY -> thursday;
+            case FRIDAY -> friday;
+            case SATURDAY -> saturday;
+            case SUNDAY -> sunday;
+        };
     }
 }

@@ -10,19 +10,42 @@ import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 
-@AllArgsConstructor
 @Service
 public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     private final WeeklyHoursRepositoryInterface repo;
+    private WeeklyHours currentGlobalHours;
+
+    public WeeklyHoursService(
+            WeeklyHoursRepositoryInterface repo
+    ) {
+        this.repo = repo;
+    }
 
     @Override
     public boolean save(WeeklyHours hours) {
         return null != repo.save(hours);
+    }
+
+    @Override
+    public WeeklyHoursData get() {
+        return new WeeklyHoursData(
+                currentGlobalHours.getId(),
+                currentGlobalHours.getUserIdentifier(),
+                currentGlobalHours.getMonday(),
+                currentGlobalHours.getTuesday(),
+                currentGlobalHours.getWednesday(),
+                currentGlobalHours.getThursday(),
+                currentGlobalHours.getFriday(),
+                currentGlobalHours.getSaturday(),
+                currentGlobalHours.getSunday()
+        );
     }
 
     @Override
@@ -93,12 +116,12 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator) {
-        return translator.transformAll(repo.find(0).getHours());
+        return translator.transformAll(currentGlobalHours.getHours());
     }
 
     @Override
     public String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator) {
-        return translator.transform(repo.find(0).getSunday());
+        return translator.transform(currentGlobalHours.getHours(LocalDate.now().getDayOfWeek()));
     }
 
     @Override
@@ -107,6 +130,15 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     }
 
     public boolean isOpened() {
-        return true;
+        Time now = Time.valueOf(LocalTime.now());
+        DailyHours hours = currentGlobalHours.getHours(LocalDate.now().getDayOfWeek());
+        return (hours.morningHours() != null && now.after(hours.morningHours().start()) && now.before(hours.morningHours().end())
+                || hours.afternoonHours() != null && now.after(hours.afternoonHours().start()) && now.before(hours.afternoonHours().end()));
+    }
+
+    @Override
+    public void activate(int id) {
+        currentGlobalHours = repo.find(id);
+        System.out.println(currentGlobalHours.getId());
     }
 }

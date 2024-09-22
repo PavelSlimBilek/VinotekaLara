@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface WeeklyHoursServiceInterface {
     boolean save(WeeklyHours hours);
+    WeeklyHoursData get();
     WeeklyHoursData get(int id);
     List<WeeklyHoursData> getAll();
     LocalizedOpeningHours getTranslatedData(OpeningHoursTranslatorInterface hoursTranslator);
@@ -19,4 +20,5 @@ public interface WeeklyHoursServiceInterface {
     String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator);
     String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface translator);
     boolean isOpened();
+    void activate(int id);
 }
