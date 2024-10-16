@@ -1,30 +1,39 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
 import eu.bilekpavel.vinotekalara.alertbar.domain.AlertBuilder;
-import eu.bilekpavel.vinotekalara.alertbar.domain.AlertRepositoryInterface;
+import eu.bilekpavel.vinotekalara.alertbar.repository.AlertRepositoryInterface;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.superadmin.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringFactoryInterface;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class AlertBarService implements AlertServiceInterface {
 
     private final AlertRepositoryInterface repo;
     private final LocalizedStringFactoryInterface localizedStringFactory;
-
     private final AlertBarConfig config;
 
+    public AlertBarService(
+            @Qualifier("alert_db_repository") AlertRepositoryInterface repo,
+            LocalizedStringFactoryInterface localizedStringFactory,
+            AlertBarConfig config
+    ) {
+        this.repo = repo;
+        this.localizedStringFactory = localizedStringFactory;
+        this.config = config;
+    }
     private static int activeAlertId = 1;
 
     @Override
@@ -41,8 +50,17 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public LocalizedAlert getLocalized(int id, Language language) {
-        Alert alert = repo.get(id);
-        return alert.getLocalized(language) == null
+        Optional<Alert> optAlert = repo.findById(id);
+
+        if (optAlert.isEmpty()) {
+            return new LocalizedAlert(
+                    0,
+                    localizedStringFactory.create("err", "Something went wrong"),
+                    "tomato"
+            );
+        }
+
+        Alert alert = optAlert.get();        return alert.getLocalized(language) == null
                 ? new LocalizedAlert(
                         alert.getId(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
@@ -55,7 +73,7 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public List<LocalizedAlert> getAllLocalized(Language language) {
-        return repo.getAll().stream()
+        return repo.findAll().stream()
                 .map((ab) -> new LocalizedAlert(
                         ab.getId(),
                         localizedStringFactory.create(language.getCode(), ab.getLocalized(language)),
@@ -65,21 +83,33 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public void updateColor(int id, Color color) {
-        Alert alert = repo.get(id);
-        alert.setBackgroundColor(color.toRgbString());
-        repo.save(alert);
+        Optional<Alert> optAlert = repo.findById(id);
+        if (optAlert.isEmpty()) {
+            return;
+        }
+
+        optAlert.get().setBackgroundColor(color.toRgbString());
+        repo.save(optAlert.get());
     }
 
     @Override
     public void updateLocalization(int id, LocalizedStringRequest request) {
-        Alert alert = repo.get(id);
+        Optional<Alert> optAlert = repo.findById(id);
+        if (optAlert.isEmpty()) {
+            return;
+        }
         LocalizedString content = localizedStringFactory.create(request);
-        alert.updateLocalization(content);
+        optAlert.get().updateLocalization(content);
     }
 
     @Override
-    public Alert get(int id) {
-        return repo.get(id);
+    public Optional<AlertFullData> get(int id) {
+        Optional<Alert> alert = repo.findById(id);
+        return alert.map(value -> new AlertFullData(
+                value.getId(),
+                value.getLocalizations(),
+                value.getBackgroundColor()
+        ));
     }
 
     @Override
@@ -89,11 +119,19 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public LocalizedAlert getActive(Language language) {
-        Alert active = repo.get(activeAlertId);
+        Optional<Alert> active = repo.findById(activeAlertId);
+        if (active.isEmpty()) {
+            return new LocalizedAlert(
+                    0,
+                    localizedStringFactory.create("err", "Something went wrong"),
+                    "tomato"
+            );
+        }
+
         return new LocalizedAlert(
-                active.getId(),
-                localizedStringFactory.create(language.getCode(), active.getLocalized(language)),
-                active.getBackgroundColor()
+                active.get().getId(),
+                localizedStringFactory.create(language.getCode(), active.get().getLocalized(language)),
+                active.get().getBackgroundColor()
         );
     }
 
