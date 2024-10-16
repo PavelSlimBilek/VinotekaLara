@@ -32,8 +32,8 @@
     <div th:fragment="alert_toggle">
         <form th:action="@{/admin/alert-bar/toggle}" method="post">
             <!--/*@thymesVar id="_isAlertBarAllowed" type="java.lang.Boolean"*/-->
-            <input type="submit" th:if="${_isAlertBarAllowed}" class="button allowed" value="hide">
-            <input type="submit" th:if="${!_isAlertBarAllowed}" class="button notAllowed" value="display">
+            <input type="submit" th:if="${_isAlertBarAllowed}" class="button green" value="hide">
+            <input type="submit" th:if="${!_isAlertBarAllowed}" class="button orange" value="display">
         </form>
     </div>
 

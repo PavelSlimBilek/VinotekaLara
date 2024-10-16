@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
+import eu.bilekpavel.vinotekalara.app.Allow;
 import eu.bilekpavel.vinotekalara.app.Color;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -51,6 +52,13 @@ public class AlertAdminController extends SuperAdminController {
         model.addAttribute("_alertBar", service.get(id).get());
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
         return "admin_alert_edit";
+    }
+
+    @PostMapping("/alert/allow")
+    public String allowAlert(Allow request) {
+        boolean isAllowed = request.isAllowed();
+        service.allow(isAllowed);
+        return "redirect:/super-admin/alert";
     }
 
     @PostMapping("/alert/{id}/color")

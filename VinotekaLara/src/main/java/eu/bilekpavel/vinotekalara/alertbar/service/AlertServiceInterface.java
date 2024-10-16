@@ -23,4 +23,11 @@ public interface AlertServiceInterface {
 
     void setActive(int id);
     LocalizedAlert getActive(Language language);
+
+    void allow(boolean isAllowed);
+    void display(boolean isDisplayed);
+    void toggle();
+
+    boolean isAllowed(); // adjustable from super-admin
+    boolean isDisplayed(); // adjustable from custom-admin
 }

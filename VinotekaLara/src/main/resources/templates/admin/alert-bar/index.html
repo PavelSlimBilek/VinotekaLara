@@ -6,18 +6,25 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <div th:each="bar : ${_alertBars}">
-            <a th:href="@{'/super-admin/alert/' + ${bar.id()}}"
-               th:text="${bar.content().content()}"
-               th:style="${'background-color: ' + bar.backgroundColor()}"
-               class="button smallBar">
-            </a>
-            <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
-                <input type="hidden" th:value="${bar.id()}">
-                <input type="submit" value="ACTIVATE" class="button notAllowed">
+        <div>
+            <form th:action="@{'/super-admin/alert/allow'}" method="post">
+                <label for="allowAlertBar">Allow alert bar</label>
+                <input type="radio" id="allowAlertBar" name="isAllowed">
+                <input type="submit" value="OK">
             </form>
         </div>
 
-        <a href="super-admin">Back</a>
+        <table>
+            <tr th:each="bar: ${_alertBars}">
+                <td th:text="${bar.content().content()}" th:style="'background-color: ' + ${bar.backgroundColor()}"></td>
+                <td><a th:href="@{'/super-admin/alert/' + ${bar.id()}}" class="button blue">EDIT</a></td>
+                <td>
+                    <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
+                    <input type="hidden" th:value="${bar.id()}">
+                    <input type="submit" value="ACTIVATE" class="button green">
+                    </form>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>
