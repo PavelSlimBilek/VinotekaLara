@@ -26,16 +26,25 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
             @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo
     ) {
         this.repo = repo;
-        currentGlobalHours = repo.findById(1);
+        currentGlobalHours = null;
     }
 
     @Override
     public boolean save(WeeklyHours hours) {
-        return null != repo.save(hours);
+        try {
+            System.out.println("saving hours");
+            repo.save(hours);
+        } catch (Exception e) {
+            return false;
+        }
+            return true;
     }
 
     @Override
     public WeeklyHoursData get() {
+        if (currentGlobalHours == null) {
+            currentGlobalHours = repo.findById(1);
+        }
         return new WeeklyHoursData(
                 currentGlobalHours.getId(),
                 currentGlobalHours.getUserIdentifier(),
@@ -117,12 +126,12 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator) {
+
         return translator.transformAll(currentGlobalHours.getHours());
     }
 
     @Override
     public String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator) {
-        System.out.println("invoked ************************************************************************************************");
         return translator.transform(currentGlobalHours.getHours(LocalDate.now().getDayOfWeek()));
     }
 

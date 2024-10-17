@@ -60,7 +60,8 @@ public class AlertBarService implements AlertServiceInterface {
             );
         }
 
-        Alert alert = optAlert.get();        return alert.getLocalized(language) == null
+        Alert alert = optAlert.get();
+        return alert.getLocalized(language) == null
                 ? new LocalizedAlert(
                         alert.getId(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),

@@ -51,7 +51,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertBar", service.get(id).get());
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
-        return "admin_alert_edit";
+        return "admin/alert-bar/detail";
     }
 
     @PostMapping("/alert/allow")
