@@ -75,9 +75,10 @@ public class AlertBarService implements AlertServiceInterface {
     }
 
     @Override
-    public List<LocalizedAlert> getAllLocalized(Language language) {
+    public List<LocalizedAlert> getAllLocalized(Language language, boolean allowRemoved) {
         return repo.findAll().stream()
-                .map((ab) -> new LocalizedAlert(
+                .filter(ab -> allowRemoved || !ab.isRemoved())
+                .map(ab -> new LocalizedAlert(
                         ab.getId(),
                         ab.isActive(),
                         localizedStringFactory.create(language.getCode(), ab.getLocalized(language)),
@@ -173,5 +174,17 @@ public class AlertBarService implements AlertServiceInterface {
     @Override
     public boolean isDisplayed() {
         return config.isDisplayed();
+    }
+
+    @Override
+    public void delete(int id) {
+        Optional<Alert> alert = repo.findById(id);
+        if (alert.isPresent()) {
+            if (alert.get().isActive()) {
+                throw new RuntimeException("Cannot delete active alert");
+            }
+            alert.get().setRemoved(true);
+            repo.save(alert.get());
+        }
     }
 }

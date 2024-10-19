@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 // NOTE: this inherits mapping '/super-admin'
@@ -34,13 +35,15 @@ public class AlertAdminController extends SuperAdminController {
 
     @GetMapping("/alert")
     public String alertAdmin(Model model,
-                             @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang) {
-
+                             @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang,
+                             @RequestParam(name = "message", required = false) String message
+    ) {
         Translator locale = LOCALES.getLocale(lang);
 
-        model.addAttribute("_alertBars", service.getAllLocalized(locale.getLang()));
+        model.addAttribute("_alertBars", service.getAllLocalized(locale.getLang(), false));
         model.addAttribute("_isAlertBarAllowed", service.isAllowed());
         model.addAttribute("_isAlertBarDisplayed", service.isDisplayed());
+        model.addAttribute("_message", message == null ? "" : message);
         return "/admin/alert-bar/index";
     }
 
@@ -87,6 +90,20 @@ public class AlertAdminController extends SuperAdminController {
     @PostMapping("/alert/activate/{id}")
     public String activate(@PathVariable int id) {
         service.setActive(id);
+        return "redirect:/super-admin/alert";
+    }
+
+    @PostMapping("/alert/{id}/delete")
+    public String delete(
+            @PathVariable int id,
+            RedirectAttributes attributes
+    ) {
+        try {
+            service.delete(id);
+        } catch (RuntimeException e) {
+            attributes.addAttribute("message", e.getMessage());
+            return "redirect:/super-admin/alert";
+        }
         return "redirect:/super-admin/alert";
     }
 }

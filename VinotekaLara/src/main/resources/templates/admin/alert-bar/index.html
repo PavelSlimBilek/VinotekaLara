@@ -7,6 +7,7 @@
     </head>
     <body>
         <h1>Alert Bar</h1>
+        <h2 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h2>
 
         <div class="card">
             <table>
@@ -55,6 +56,13 @@
                         <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
                         <input type="hidden" th:value="${bar.id()}">
                         <input type="submit" value="activate" class="button green">
+                        </form>
+                    </td>
+
+                    <td>
+                        <form th:action="@{'/super-admin/alert/' + ${bar.id()} + '/delete'}" method="post">
+                            <input type="hidden" th:value="${bar.id()}">
+                            <input type="submit" value="delete" class="button orange">
                         </form>
                     </td>
                 </tr>

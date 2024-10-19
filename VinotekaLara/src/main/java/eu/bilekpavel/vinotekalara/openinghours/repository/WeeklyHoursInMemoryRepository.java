@@ -4,38 +4,33 @@ import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Qualifier("hours_in_memory_repository")
 public class WeeklyHoursInMemoryRepository implements WeeklyHoursRepositoryInterface{
 
-    private final List<WeeklyHours> hours;
+    private final Map<Integer, WeeklyHours> HOURS;
 
     public WeeklyHoursInMemoryRepository() {
-        hours = new ArrayList<>();
+        HOURS = new HashMap<>();
     }
 
     @Override
     public List<WeeklyHours> findAll() {
-        return hours;
+        return HOURS.values().stream().toList();
     }
 
     @Override
     public WeeklyHours save(WeeklyHours weeklyHours) {
-        if (hours.contains(weeklyHours)) {
-            return weeklyHours;
-        }
-        hours.add(weeklyHours);
+        HOURS.put(weeklyHours.getId(), weeklyHours);
         return weeklyHours;
     }
 
     @Override
     public WeeklyHours findById(int id) {
-        return hours.stream()
-                .filter(hours -> hours.getId() == id)
-                .findFirst()
-                .orElse(null);
+        return HOURS.get(id);
     }
 }

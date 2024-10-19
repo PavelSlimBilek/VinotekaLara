@@ -21,6 +21,8 @@ public class Alert {
     private int id;
 
     private boolean isActive;
+    @Setter
+    private boolean isRemoved;
 
     @ElementCollection
     private final Map<Language, String> localizations;
