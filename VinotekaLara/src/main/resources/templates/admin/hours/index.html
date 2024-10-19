@@ -8,16 +8,21 @@
     <body>
         <h1 th:text="'Active hours: ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
         <h2 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h2>
-        <form th:action="@{/super-admin/hours/allow-afternoon-hours}", method="post">
-            <label for="allowAfternoonHours">allow afternoon hours</label>
-            <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
-            <label for="disallowAfternoonHours">forbid afternoon hours</label>
-            <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
-            <input type="submit" value="OK" class="button green">
-        </form>
+
+        <div class="card">
+            <form th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
+                <label for="allowAfternoonHours">allow afternoon hours</label>
+                <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
+                <label for="disallowAfternoonHours">forbid afternoon hours</label>
+                <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
+                <input type="submit" value="ok" class="button green">
+            </form>
+        </div>
+
+        <div class="card">
         <table>
             <tbody>
-                <tr th:each="hours : ${_openingHours.weeklyHours()}" th:class="${hours.equals(_openingHours.activeHours()) ? 'active' : ''}">
+                <tr th:each="hours : ${_openingHours.weeklyHours()}" th:class="${hours.equals(_openingHours.activeHours()) ? 'active' : 'inactive'}">
                     <td>
                         <p th:text="${hours.userIdentifier()}"></p>
                     </td>
@@ -48,11 +53,13 @@
                         </form>
                     </td>
                     <td>
-                        <input form="createWeeklyHours" type="submit" class="button green" value="create">
+                        <input form="createWeeklyHours" type="submit" class="button green" value="ok">
                     </td>
                 </tr>
             </tbody>
         </table>
+        </div>
+
         <a href="/super-admin" class="button orange">back</a>
     </body>
 </html>
