@@ -24,7 +24,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "monday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "monday_morning_end")),
@@ -35,8 +35,8 @@ public class WeeklyHours {
 
     @Setter
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "tuesday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "tuesday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "tuesday_morning_end")),
@@ -48,7 +48,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "wednesday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "wednesday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "wednesday_morning_end")),
@@ -60,7 +60,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "thursday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "thursday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "thursday_morning_end")),
@@ -72,7 +72,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "friday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "friday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "friday_morning_end")),
@@ -84,7 +84,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "saturday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "saturday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "saturday_morning_end")),
@@ -96,7 +96,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "sunday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "sunday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "sunday_morning_end")),

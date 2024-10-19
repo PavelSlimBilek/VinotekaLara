@@ -8,7 +8,6 @@ import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,10 +28,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public boolean save(WeeklyHours hours) {
         try {
-            System.out.println("WeeklyHours::saving " + hours.getUserIdentifier());
             repo.save(hours);
-            System.out.println("Saved id: " + hours.getId());
-            System.out.println("---------------------------------------------------");
         } catch (Exception e) {
             return false;
         }
@@ -142,10 +138,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     public WeeklyHours getGlobalHours() {
         if (currentGlobalHours == null) {
             int id = 1; // by default, we chose the first record added in `SpringBootApplication` after startup
-            System.out.println("Setting global hours id: " + id);
             currentGlobalHours = repo.findById(id);
-            System.out.println("Set: "  + currentGlobalHours.getUserIdentifier());
-            System.out.println("---------------------------------------------------");
         }
         return currentGlobalHours;
     }
@@ -178,7 +171,6 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public void update(int id, DayOfWeek day, DailyHoursRequest data) {
-        System.out.println(data.afternoonStart() + " " + data.afternoonEnd());
         DailyHours dailyHours = new DailyHours(
                 day,
                 data.morningStart() != null && data.morningEnd() != null && !data.morningEnd().isEmpty() && !data.morningStart().isEmpty()
