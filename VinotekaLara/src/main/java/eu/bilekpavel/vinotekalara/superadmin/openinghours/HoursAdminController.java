@@ -5,7 +5,6 @@ import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
-import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +37,7 @@ public class HoursAdminController extends SuperAdminController {
     @GetMapping("/hours/{id}")
     public String detail(Model model, @PathVariable int id) {
         model.addAttribute("_openingHours", service.get(id));
+        model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         return "/admin/hours/detail";
     }
 

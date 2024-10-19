@@ -23,11 +23,11 @@
                                                                                       : _openingHours.monday().morningHours().end()}
                                 ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.monday().afternoonHours().start()}
                                 ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.monday().afternoonHours().end()}
                                 ">
@@ -51,11 +51,11 @@
                                                                                       : _openingHours.tuesday().morningHours().end()}
                                 ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.tuesday().afternoonHours().start()}
                                 ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.tuesday().afternoonHours().end()}
                                 ">
@@ -79,11 +79,11 @@
                                                                                       : _openingHours.wednesday().morningHours().end()}
                                 ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.wednesday().afternoonHours().start()}
                                 ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.wednesday().afternoonHours().end()}
                                 ">
@@ -107,11 +107,11 @@
                                                                                       : _openingHours.thursday().morningHours().end()}
                                 ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.thursday().afternoonHours().start()}
                                 ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.thursday().afternoonHours().end()}
                                 ">
@@ -135,11 +135,11 @@
                                                                                       : _openingHours.friday().morningHours().end()}
                                 ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.friday().afternoonHours().start()}
                                 ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.friday().afternoonHours().end()}
                                 ">
@@ -163,11 +163,11 @@
                                                                                       : _openingHours.saturday().morningHours().end()}
                                 ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.saturday().afternoonHours().start()}
                                 ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
                                                                                       ? 0
                                                                                       : _openingHours.saturday().afternoonHours().end()}
                                 ">
@@ -191,11 +191,11 @@
                                                                                   : _openingHours.sunday().morningHours().end()}
                             ">
 
-                    <input type="time" name="afternoonStart" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
+                    <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
                                                                                   ? 0
                                                                                   : _openingHours.sunday().afternoonHours().start()}
                             ">
-                    <input type="time" name="afternoonEnd" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
+                    <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
                                                                                   ? 0
                                                                                   : _openingHours.sunday().afternoonHours().end()}
                             ">
