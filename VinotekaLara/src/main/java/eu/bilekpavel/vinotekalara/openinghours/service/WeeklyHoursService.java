@@ -80,8 +80,9 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     }
 
     @Override
-    public List<WeeklyHoursData> getAll() {
+    public List<WeeklyHoursData> getAll(boolean allowRemoved) {
         return repo.findAll().stream()
+                .filter((hours) -> allowRemoved || !hours.isRemoved())
                 .map(((hours) -> new WeeklyHoursData(
                     hours.getId(),
                     hours.getUserIdentifier(),
@@ -151,7 +152,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public HoursWidgetData getWidgetData() {
         return new HoursWidgetData(
-            getAll(), get(currentGlobalHours.getId())
+            getAll(false), get(currentGlobalHours.getId())
         );
     }
 
@@ -198,5 +199,15 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     public void allowAfternoonHours(boolean isAllowed) {
         System.out.println(isAllowed);
         config.allowAfternoonHours(isAllowed);
+    }
+
+    @Override
+    public void delete(int id) {
+        if (id == currentGlobalHours.getId()) {
+            throw new RuntimeException("Cannot remove global hours");
+        }
+        WeeklyHours weeklyHours = repo.findById(id);
+        weeklyHours.setRemoved(true);
+        repo.save(weeklyHours);
     }
 }

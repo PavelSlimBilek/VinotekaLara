@@ -22,6 +22,9 @@ public class WeeklyHours {
     private String userIdentifier;
 
     @Setter
+    private boolean isRemoved;
+
+    @Setter
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", updatable = false)),

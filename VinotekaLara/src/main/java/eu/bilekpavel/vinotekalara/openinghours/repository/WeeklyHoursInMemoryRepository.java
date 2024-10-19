@@ -24,6 +24,9 @@ public class WeeklyHoursInMemoryRepository implements WeeklyHoursRepositoryInter
 
     @Override
     public WeeklyHours save(WeeklyHours weeklyHours) {
+        if (hours.contains(weeklyHours)) {
+            return weeklyHours;
+        }
         hours.add(weeklyHours);
         return weeklyHours;
     }

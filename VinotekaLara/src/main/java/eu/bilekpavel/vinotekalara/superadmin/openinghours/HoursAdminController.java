@@ -5,13 +5,12 @@ import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
+import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.DayOfWeek;
 
@@ -29,9 +28,10 @@ public class HoursAdminController extends SuperAdminController {
     }
 
     @GetMapping("/hours")
-    public String list(Model model) {
+    public String list(Model model, @RequestParam(required = false) String message) {
         model.addAttribute("_openingHours", service.getWidgetData());
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
+        model.addAttribute("_message", message == null ? "" : message);
         return "admin/hours/index";
     }
 
@@ -70,5 +70,16 @@ public class HoursAdminController extends SuperAdminController {
         } else {
             return "redirect:/super-admin/hours/";
         }
+    }
+
+    @PostMapping("/hours/{id}/delete")
+    public String delete(@PathVariable int id, RedirectAttributes attributes) {
+        try {
+            service.delete(id);
+        } catch (RuntimeException e) {
+            attributes.addAttribute("message", e.getMessage());
+            return "redirect:/super-admin/hours";
+        }
+        return "redirect:/super-admin/hours";
     }
 }

@@ -15,7 +15,7 @@ public interface WeeklyHoursServiceInterface {
     boolean save(WeeklyHours hours);
     WeeklyHoursData get();
     WeeklyHoursData get(int id);
-    List<WeeklyHoursData> getAll();
+    List<WeeklyHoursData> getAll(boolean allowRemoved);
     LocalizedOpeningHours getTranslatedData(OpeningHoursTranslatorInterface hoursTranslator);
     List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator);
     List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator);
@@ -29,4 +29,6 @@ public interface WeeklyHoursServiceInterface {
 
     boolean areAfternoonHoursAllowed();
     void allowAfternoonHours(boolean isAllow);
+
+    void delete(int id);
 }
