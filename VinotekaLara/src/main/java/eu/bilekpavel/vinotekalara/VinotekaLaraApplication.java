@@ -58,6 +58,9 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		alertService.create(alert1);
 		alertService.create(alert2);
 
+		alertService.setActive(1);
+
+
 		DailyHours monday = new DailyHours(
 				DayOfWeek.MONDAY,
 				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),

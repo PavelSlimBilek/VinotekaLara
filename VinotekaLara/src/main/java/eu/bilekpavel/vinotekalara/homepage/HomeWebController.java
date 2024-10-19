@@ -37,10 +37,10 @@ public class HomeWebController {
         model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(translator.getPageTranslator()));
         model.addAttribute("_localizationWidget", translatorDataProvider.create(translator));
 
-        model.addAttribute("_isAlertBarAllowed", alertBarConfig.isDisplayed());
+        model.addAttribute("_isAlertBarDisplayed", alertBarConfig.isDisplayed());
+        model.addAttribute("_isAlertBarAllowed", alertBarConfig.isAllowed());
         model.addAttribute("_alertBar", alertBarService.getActive(translator.getLang()));
 
-        model.addAttribute("_areAfternoonHoursAllowed", AppSettings.areAfternoonHoursAllowed);
         model.addAttribute("_hoursWidget", hoursService.getTranslatedData(translator.getHoursTranslator()));
 
         return "home";

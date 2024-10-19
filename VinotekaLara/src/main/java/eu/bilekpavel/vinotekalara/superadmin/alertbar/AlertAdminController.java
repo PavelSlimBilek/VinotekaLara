@@ -39,6 +39,8 @@ public class AlertAdminController extends SuperAdminController {
         Translator locale = LOCALES.getLocale(lang);
 
         model.addAttribute("_alertBars", service.getAllLocalized(locale.getLang()));
+        model.addAttribute("_isAlertBarAllowed", service.isAllowed());
+        model.addAttribute("_isAlertBarDisplayed", service.isDisplayed());
         return "/admin/alert-bar/index";
     }
 
@@ -58,6 +60,13 @@ public class AlertAdminController extends SuperAdminController {
     public String allowAlert(Allow request) {
         boolean isAllowed = request.isAllowed();
         service.allow(isAllowed);
+        return "redirect:/super-admin/alert";
+    }
+
+    @PostMapping("/alert/display")
+    public String displayAlert(Allow request) {
+        boolean isAllowed = request.isAllowed();
+        service.display(isAllowed);
         return "redirect:/super-admin/alert";
     }
 

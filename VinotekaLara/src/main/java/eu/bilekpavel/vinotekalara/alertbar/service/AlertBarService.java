@@ -34,7 +34,6 @@ public class AlertBarService implements AlertServiceInterface {
         this.localizedStringFactory = localizedStringFactory;
         this.config = config;
     }
-    private static int activeAlertId = 1;
 
     @Override
     public void create(AlertRequest request) {
@@ -55,6 +54,7 @@ public class AlertBarService implements AlertServiceInterface {
         if (optAlert.isEmpty()) {
             return new LocalizedAlert(
                     0,
+                    true,
                     localizedStringFactory.create("err", "Something went wrong"),
                     "tomato"
             );
@@ -64,10 +64,12 @@ public class AlertBarService implements AlertServiceInterface {
         return alert.getLocalized(language) == null
                 ? new LocalizedAlert(
                         alert.getId(),
+                        alert.isActive(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
                         alert.getBackgroundColor())
                 : new LocalizedAlert(
                         alert.getId(),
+                        alert.isActive(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(Language.CZECH)),
                         alert.getBackgroundColor());
     }
@@ -77,6 +79,7 @@ public class AlertBarService implements AlertServiceInterface {
         return repo.findAll().stream()
                 .map((ab) -> new LocalizedAlert(
                         ab.getId(),
+                        ab.isActive(),
                         localizedStringFactory.create(language.getCode(), ab.getLocalized(language)),
                         ab.getBackgroundColor())
                 ).toList();
@@ -115,15 +118,25 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public void setActive(int id) {
-        activeAlertId = id;
+        Optional<Alert> oldActive = repo.findByIsActive(true);
+        Optional<Alert> newActive = repo.findById(id);
+
+        if (newActive.isPresent()) {
+            oldActive.ifPresent(alert -> alert.setActive(false));
+            newActive.get().setActive(true);
+
+            oldActive.ifPresent(alert -> repo.save(oldActive.get()));
+            repo.save(newActive.get());
+        }
     }
 
     @Override
     public LocalizedAlert getActive(Language language) {
-        Optional<Alert> active = repo.findById(activeAlertId);
+        Optional<Alert> active = repo.findByIsActive(true);
         if (active.isEmpty()) {
             return new LocalizedAlert(
                     0,
+                    true,
                     localizedStringFactory.create("err", "Something went wrong"),
                     "tomato"
             );
@@ -131,6 +144,7 @@ public class AlertBarService implements AlertServiceInterface {
 
         return new LocalizedAlert(
                 active.get().getId(),
+                true,
                 localizedStringFactory.create(language.getCode(), active.get().getLocalized(language)),
                 active.get().getBackgroundColor()
         );

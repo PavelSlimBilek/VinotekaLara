@@ -9,4 +9,5 @@ public interface AlertRepositoryInterface {
     Optional<Alert> findById(int id);
     List<Alert> findAll();
     Alert save(Alert alert);
+    Optional<Alert> findByIsActive(boolean isActive);
 }

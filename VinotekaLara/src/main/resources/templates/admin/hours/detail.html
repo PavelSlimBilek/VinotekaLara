@@ -6,7 +6,6 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-<tr class="weeklyHours">
     <h2 th:text="${_openingHours.userIdentifier()}"></h2>
 
     <table>
@@ -206,6 +205,7 @@
             </td>
         </tr>
     </table>
+
     <div class="buttonPanel">
         <a href="/super-admin/hours" class="button orange">back</a>
         <form th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/activate'}" method="post">
