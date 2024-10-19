@@ -1,8 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
-import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
-import eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours;
-import eu.bilekpavel.vinotekalara.openinghours.dto.WeeklyHoursData;
+import eu.bilekpavel.vinotekalara.openinghours.dto.*;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.repository.WeeklyHoursRepositoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
@@ -143,7 +141,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public WeeklyHours getGlobalHours() {
         if (currentGlobalHours == null) {
-            int id = 1;
+            int id = 1; // by default, we chose the first record added in `SpringBootApplication` after startup
             System.out.println("Setting global hours id: " + id);
             currentGlobalHours = repo.findById(id);
             System.out.println("Set: "  + currentGlobalHours.getUserIdentifier());
@@ -152,16 +150,46 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
         return currentGlobalHours;
     }
 
+    @Override
+    public HoursWidgetData getWidgetData() {
+        return new HoursWidgetData(
+            getAll(), get(currentGlobalHours.getId())
+        );
+    }
+
+    @Override
     public boolean isOpened() {
-        Time now = Time.valueOf(LocalTime.now());
+        LocalTime now = LocalTime.now();
         DailyHours hours = currentGlobalHours.getHours(LocalDate.now().getDayOfWeek());
-        return (hours.morningHours() != null && now.after(hours.morningHours().start()) && now.before(hours.morningHours().end())
-                || hours.afternoonHours() != null && now.after(hours.afternoonHours().start()) && now.before(hours.afternoonHours().end()));
+        return (hours.morningHours() != null
+                && now.isAfter(hours.morningHours().start())
+                && now.isBefore(hours.morningHours().end())
+                || hours.afternoonHours() != null
+                && now.isAfter(hours.afternoonHours().start())
+                && now.isBefore(hours.afternoonHours().end())
+        );
     }
 
     @Override
     public void activate(int id) {
         currentGlobalHours = repo.findById(id);
         System.out.println(currentGlobalHours.getId());
+    }
+
+    @Override
+    public void update(int id, DayOfWeek day, DailyHoursRequest data) {
+        System.out.println(data.afternoonStart() + " " + data.afternoonEnd());
+        DailyHours dailyHours = new DailyHours(
+                day,
+                data.morningStart() != null && data.morningEnd() != null && !data.morningEnd().isEmpty() && !data.morningStart().isEmpty()
+                        ? new TimeInterval(LocalTime.parse(data.morningStart()), LocalTime.parse(data.morningEnd()))
+                        : null,
+                data.afternoonStart() != null && data.afternoonEnd() != null && !data.afternoonStart().isEmpty() && !data.afternoonEnd().isEmpty()
+                        ? new TimeInterval(LocalTime.parse(data.afternoonStart()), LocalTime.parse(data.afternoonEnd()))
+                        : null
+        );
+        WeeklyHours weeklyHours = repo.findById(id);
+        weeklyHours.setDailyHours(dailyHours);
+        repo.save(weeklyHours);
     }
 }

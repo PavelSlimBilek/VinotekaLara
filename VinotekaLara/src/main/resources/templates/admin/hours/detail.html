@@ -31,7 +31,7 @@
                                                                               : _openingHours.monday().afternoonHours().end()}
                         ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
 
@@ -57,7 +57,7 @@
                                                                               : _openingHours.tuesday().afternoonHours().end()}
                         ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
 
@@ -83,7 +83,7 @@
                                                                               : _openingHours.wednesday().afternoonHours().end()}
                         ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
 
@@ -109,7 +109,7 @@
                                                                               : _openingHours.thursday().afternoonHours().end()}
                         ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
 
@@ -135,7 +135,7 @@
                                                                               : _openingHours.friday().afternoonHours().end()}
                         ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
 
@@ -161,7 +161,7 @@
                                                                               : _openingHours.saturday().afternoonHours().end()}
                         ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
 
@@ -187,14 +187,14 @@
                                                                           : _openingHours.sunday().afternoonHours().end()}
                     ">
 
-            <input type="submit" value="update" class="button notAllowed">
+            <input type="submit" value="update" class="button green">
         </form>
     </div>
     <div class="buttonPanel">
-        <a href="/super-admin/hours" class="button allowed">back</a>
+        <a href="/super-admin/hours" class="button orange">back</a>
         <form th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/activate'}" method="post">
             <input type="hidden" name value="">
-            <input type="submit" class="button notAllowed" value="activate">
+            <input type="submit" class="button green" value="activate">
         </form>
     </div>
 </div>

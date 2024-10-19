@@ -6,23 +6,28 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <div>
-            <table>
-                <tbody>
-                    <tr th:each="hours : ${_openingHours}">
-                        <td>
-                            <p th:text="${hours.userIdentifier()}"></p>
-                        </td>
-                        <td>
-                            <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
-                               th:text="${hours.userIdentifier()}"
-                               class="button smallBar">
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <a href="/super-admin">Back</a>
-        </div>
+        <h1 th:text="'Active hours: ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
+        <table>
+            <tbody>
+                <tr th:each="hours : ${_openingHours.weeklyHours()}">
+                    <td>
+                        <p th:text="${hours.userIdentifier()}"></p>
+                    </td>
+                    <td>
+                        <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
+                           class="button blue">
+                            edit
+                        </a>
+                    </td>
+                    <td>
+                        <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/activate'}" method="post">
+                            <input type="hidden" name value="">
+                            <input type="submit" class="button green" value="activate">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/super-admin" class="button orange">Back</a>
     </body>
 </html>

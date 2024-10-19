@@ -131,4 +131,16 @@ public class WeeklyHours {
             case SUNDAY -> sunday;
         };
     }
+
+    public void setDailyHours(DailyHours dailyHours) {
+        switch (dailyHours.dayOfWeek()) {
+            case MONDAY -> monday = dailyHours;
+            case TUESDAY -> tuesday = dailyHours;
+            case WEDNESDAY -> wednesday = dailyHours;
+            case THURSDAY -> thursday = dailyHours;
+            case FRIDAY -> friday = dailyHours;
+            case SATURDAY -> saturday = dailyHours;
+            case SUNDAY -> sunday = dailyHours;
+        }
+    }
 }

@@ -60,38 +60,38 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 
 		DailyHours monday = new DailyHours(
 				DayOfWeek.MONDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours tuesday = new DailyHours(
 				DayOfWeek.TUESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours wednesday = new DailyHours(
 				DayOfWeek.WEDNESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours thursday = new DailyHours(
 				DayOfWeek.THURSDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours friday = new DailyHours(
 				DayOfWeek.FRIDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours saturday = new DailyHours(
 				DayOfWeek.SATURDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(11, 30))),
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(11, 30)),
 				null
 		);
 		DailyHours sunday = new DailyHours(
 				DayOfWeek.SUNDAY,
 				null,
-				new TimeInterval(Time.valueOf(LocalTime.of(15, 0)), Time.valueOf(LocalTime.of(17, 0)))
+				new TimeInterval(LocalTime.of(15, 0), LocalTime.of(17, 30))
 		);
 
 		WeeklyHours summerHours = new WeeklyHours();
@@ -109,38 +109,38 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 
 		DailyHours monday2 = new DailyHours(
 				DayOfWeek.MONDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours tuesday2 = new DailyHours(
 				DayOfWeek.TUESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours wednesday2 = new DailyHours(
 				DayOfWeek.WEDNESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours thursday2 = new DailyHours(
 				DayOfWeek.THURSDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours friday2 = new DailyHours(
 				DayOfWeek.FRIDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours saturday2 = new DailyHours(
 				DayOfWeek.SATURDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(11, 0))),
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(11, 0)),
 				null
 		);
 		DailyHours sunday2 = new DailyHours(
 				DayOfWeek.SUNDAY,
 				null,
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(15, 0), LocalTime.of(17, 0))
 		);
 
 		WeeklyHours winterHours = new WeeklyHours();
