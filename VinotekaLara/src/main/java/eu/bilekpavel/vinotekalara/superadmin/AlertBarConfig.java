@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 public class AlertBarConfig {
     private boolean isAllowed = false;
-    private boolean isDisplayed = true;
+    private boolean isDisplayed = false;
 
     public void display(boolean isDisplayed) {
         this.isDisplayed = isDisplayed;

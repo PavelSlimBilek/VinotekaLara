@@ -10,13 +10,21 @@
         <h2 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h2>
 
         <div class="card">
-            <form th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
-                <label for="allowAfternoonHours">allow afternoon hours</label>
-                <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
-                <label for="disallowAfternoonHours">forbid afternoon hours</label>
-                <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
-                <input type="submit" value="ok" class="button green">
-            </form>
+            <table>
+                <tr class="inactive">
+                    <td>
+                        <form id="allowAfternoon" th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
+                            <label for="allowAfternoonHours">allow afternoon hours</label>
+                            <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
+                            <label for="disallowAfternoonHours">forbid afternoon hours</label>
+                            <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="allowAfternoon" type="submit" value="ok" class="button green">
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <div class="card">
