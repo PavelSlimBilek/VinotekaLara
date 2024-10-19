@@ -26,14 +26,15 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
             @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo
     ) {
         this.repo = repo;
-        currentGlobalHours = null;
     }
 
     @Override
     public boolean save(WeeklyHours hours) {
         try {
-            System.out.println("saving hours");
+            System.out.println("WeeklyHours::saving " + hours.getUserIdentifier());
             repo.save(hours);
+            System.out.println("Saved id: " + hours.getId());
+            System.out.println("---------------------------------------------------");
         } catch (Exception e) {
             return false;
         }
@@ -126,7 +127,6 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator) {
-
         return translator.transformAll(currentGlobalHours.getHours());
     }
 
@@ -138,6 +138,18 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface translator) {
         return translator.getIsOpenedMessage(isOpened());
+    }
+
+    @Override
+    public WeeklyHours getGlobalHours() {
+        if (currentGlobalHours == null) {
+            int id = 1;
+            System.out.println("Setting global hours id: " + id);
+            currentGlobalHours = repo.findById(id);
+            System.out.println("Set: "  + currentGlobalHours.getUserIdentifier());
+            System.out.println("---------------------------------------------------");
+        }
+        return currentGlobalHours;
     }
 
     public boolean isOpened() {

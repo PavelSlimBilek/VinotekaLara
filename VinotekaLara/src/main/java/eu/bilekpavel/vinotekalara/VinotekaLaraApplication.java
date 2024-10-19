@@ -36,6 +36,9 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
+		System.out.println("Slim-made");
+		System.out.println("---------------------------------------------------");
+
 		AlertRequest alert1 = new AlertRequest(
 				List.of(
 						new LocalizedStringRequest("Máme nový web!", "cz"),
@@ -99,9 +102,10 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		summerHours.setFriday(friday);
 		summerHours.setSaturday(saturday);
 		summerHours.setSunday(sunday);
-		summerHours.setUserIdentifier("summer hours");
+		summerHours.setUserIdentifier("Summer hours");
 
 		hoursService.save(summerHours);
+		hoursService.getGlobalHours();
 
 		DailyHours monday2 = new DailyHours(
 				DayOfWeek.MONDAY,
@@ -147,7 +151,7 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setFriday(friday2);
 		winterHours.setSaturday(saturday2);
 		winterHours.setSunday(sunday2);
-		winterHours.setUserIdentifier("winter hours");
+		winterHours.setUserIdentifier("Winter hours");
 
 		hoursService.save(winterHours);
 	}

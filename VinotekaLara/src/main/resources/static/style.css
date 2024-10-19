@@ -5,6 +5,15 @@
     text-decoration: none;
 }
 
+body {
+    display: grid;
+    justify-content: center;
+}
+
+.buttonPanel {
+    display: flex;
+}
+
 a, a:hover, a:active {
     color: inherit;
 }
@@ -61,4 +70,8 @@ a, a:hover, a:active {
 .smallBar {
     width: 20rem;
     padding: 1rem;
+}
+
+.dailyHours:hover {
+    background-color: #EEEEEE;
 }

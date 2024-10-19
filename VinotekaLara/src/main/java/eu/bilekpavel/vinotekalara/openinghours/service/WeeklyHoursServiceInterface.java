@@ -19,6 +19,7 @@ public interface WeeklyHoursServiceInterface {
     List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator);
     String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator);
     String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface translator);
+    WeeklyHours getGlobalHours();
     boolean isOpened();
     void activate(int id);
 }
