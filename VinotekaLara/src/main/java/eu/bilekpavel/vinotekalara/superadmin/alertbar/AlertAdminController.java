@@ -1,5 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.alertbar;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
+import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.app.Allow;
 import eu.bilekpavel.vinotekalara.app.Color;
@@ -10,11 +12,10 @@ import eu.bilekpavel.vinotekalara.translator.impl.TranslatorDataFactory;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 // NOTE: this inherits mapping '/super-admin'
@@ -104,6 +105,19 @@ public class AlertAdminController extends SuperAdminController {
             attributes.addAttribute("message", e.getMessage());
             return "redirect:/super-admin/alert";
         }
+        return "redirect:/super-admin/alert";
+    }
+
+    @PostMapping("/alert/create")
+    public String create(RedirectAttributes attributes) {
+        service.create(
+                new AlertRequest(List.of(
+                        new LocalizedStringRequest("Základní text", "cz"),
+                        new LocalizedStringRequest("Base text", "en"),
+                        new LocalizedStringRequest("Basistext", "de")),
+                        "#FFF")
+        );
+        attributes.addAttribute("message", "Successfully created");
         return "redirect:/super-admin/alert";
     }
 }
