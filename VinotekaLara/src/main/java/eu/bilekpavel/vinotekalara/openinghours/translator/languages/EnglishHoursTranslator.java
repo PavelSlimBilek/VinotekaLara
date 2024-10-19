@@ -1,13 +1,14 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
 
 
+import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
 import org.springframework.stereotype.Component;
 
 @Component("englishHoursTranslator")
 public class EnglishHoursTranslator extends AbstractOpeningHoursTranslator {
 
-    public EnglishHoursTranslator() {
+    public EnglishHoursTranslator(WeeklyHoursConfig config) {
         super("Opening hours",
                 "It's opened now",
                 "It's closed now",
@@ -23,7 +24,8 @@ public class EnglishHoursTranslator extends AbstractOpeningHoursTranslator {
                 "end",
                 "day",
                 "morning hours",
-                "afternoon hours"
+                "afternoon hours",
+                config
         );
     }
 }

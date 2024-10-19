@@ -7,6 +7,13 @@
     </head>
     <body>
         <h1 th:text="'Active hours: ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
+        <form th:action="@{/super-admin/hours/allow-afternoon-hours}", method="post">
+            <label for="allowAfternoonHours">allow afternoon hours</label>
+            <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
+            <label for="disallowAfternoonHours">forbid afternoon hours</label>
+            <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
+            <input type="submit" value="OK" class="button green">
+        </form>
         <table>
             <tbody>
                 <tr th:each="hours : ${_openingHours.weeklyHours()}">

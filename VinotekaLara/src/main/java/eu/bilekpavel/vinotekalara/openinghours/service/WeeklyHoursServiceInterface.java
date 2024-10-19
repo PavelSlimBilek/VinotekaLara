@@ -26,4 +26,7 @@ public interface WeeklyHoursServiceInterface {
     boolean isOpened();
     void activate(int id);
     void update(int id, DayOfWeek day, DailyHoursRequest data);
+
+    boolean areAfternoonHoursAllowed();
+    void allowAfternoonHours(boolean isAllow);
 }

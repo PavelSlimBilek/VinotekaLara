@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator;
 
 import eu.bilekpavel.vinotekalara.app.AppSettings;
+import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import lombok.AllArgsConstructor;
 
@@ -29,13 +30,13 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
     private final String MORNING_HOURS;
     private final String AFTERNOON_HOURS;
 
+    private WeeklyHoursConfig CONFIG;
+
     @Override
     public final String transform(DailyHours hours) {
         if (hours == null) {
             return null;
         }
-
-        System.out.println(hours.dayOfWeek());
 
         String translatedDay = switch(hours.dayOfWeek()) {
             case null -> this.SUNDAY;
@@ -55,7 +56,7 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
                 hours.morningHours() == null ? CLOSED : hours.morningHours().end().toString().substring(0, 5)
         ));
 
-        if (AppSettings.areAfternoonHoursAllowed) {
+        if (CONFIG.areAfternoonHoursAllowed()) {
             sb.append("  |  ");
             sb.append(hours.afternoonHours() == null
                     ? CLOSED

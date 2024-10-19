@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
+import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.dto.*;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.repository.WeeklyHoursRepositoryInterface;
@@ -17,12 +18,16 @@ import java.util.List;
 public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     private final WeeklyHoursRepositoryInterface repo;
+    private final WeeklyHoursConfig config;
+
     private WeeklyHours currentGlobalHours;
 
     public WeeklyHoursService(
-            @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo
+            @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo,
+            WeeklyHoursConfig config
     ) {
         this.repo = repo;
+        this.config = config;
     }
 
     @Override
@@ -166,7 +171,6 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public void activate(int id) {
         currentGlobalHours = repo.findById(id);
-        System.out.println(currentGlobalHours.getId());
     }
 
     @Override
@@ -183,5 +187,16 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
         WeeklyHours weeklyHours = repo.findById(id);
         weeklyHours.setDailyHours(dailyHours);
         repo.save(weeklyHours);
+    }
+
+    @Override
+    public boolean areAfternoonHoursAllowed() {
+        return config.areAfternoonHoursAllowed();
+    }
+
+    @Override
+    public void allowAfternoonHours(boolean isAllowed) {
+        System.out.println(isAllowed);
+        config.allowAfternoonHours(isAllowed);
     }
 }

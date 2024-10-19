@@ -138,7 +138,6 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public void allow(boolean isAllowed) {
-        System.out.println("invoked");
         config.allow(isAllowed);
     }
 

@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.superadmin.openinghours;
 
+import eu.bilekpavel.vinotekalara.app.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.net.http.HttpRequest;
 import java.time.DayOfWeek;
 
 @Controller
@@ -31,6 +31,7 @@ public class HoursAdminController extends SuperAdminController {
     @GetMapping("/hours")
     public String list(Model model) {
         model.addAttribute("_openingHours", service.getWidgetData());
+        model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         return "admin/hours/index";
     }
 
@@ -40,9 +41,14 @@ public class HoursAdminController extends SuperAdminController {
         return "/admin/hours/detail";
     }
 
+    @PostMapping("/hours/allow-afternoon-hours")
+    public String allowAfternoonHours(@ModelAttribute Allow dto) {
+        service.allowAfternoonHours(dto.isAllowed());
+        return "redirect:/super-admin/hours";
+    }
+
     @PostMapping("/hours/{id}/day/{day}")
     public String updateDailyHours(
-            Model model,
             @PathVariable int id,
             @PathVariable String day,
             @ModelAttribute DailyHoursRequest data
