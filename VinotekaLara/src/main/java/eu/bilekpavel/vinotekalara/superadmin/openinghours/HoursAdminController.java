@@ -82,4 +82,11 @@ public class HoursAdminController extends SuperAdminController {
         }
         return "redirect:/super-admin/hours";
     }
+
+    @PostMapping("/hours/create")
+    public String create(@RequestParam String name, RedirectAttributes attributes) {
+        service.create(name);
+        attributes.addAttribute("message", "Successfully created");
+        return "redirect:/super-admin/hours";
+    }
 }

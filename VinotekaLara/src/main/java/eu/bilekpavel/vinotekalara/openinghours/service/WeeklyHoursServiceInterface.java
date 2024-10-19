@@ -31,4 +31,5 @@ public interface WeeklyHoursServiceInterface {
     void allowAfternoonHours(boolean isAllow);
 
     void delete(int id);
+    void create(String name);
 }

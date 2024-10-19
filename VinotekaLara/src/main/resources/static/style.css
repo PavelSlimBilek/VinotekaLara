@@ -71,3 +71,7 @@ a, a:hover, a:active {
 .dailyHours:hover {
     background-color: #EEEEEE;
 }
+
+.active {
+    background-color: lightgreen;
+}

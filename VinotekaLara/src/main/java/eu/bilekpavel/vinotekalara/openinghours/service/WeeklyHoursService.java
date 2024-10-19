@@ -210,4 +210,10 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
         weeklyHours.setRemoved(true);
         repo.save(weeklyHours);
     }
+
+    @Override
+    public void create(String name) {
+        WeeklyHours hours = new WeeklyHours(name);
+        repo.save(hours);
+    }
 }

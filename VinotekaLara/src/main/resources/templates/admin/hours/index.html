@@ -17,7 +17,7 @@
         </form>
         <table>
             <tbody>
-                <tr th:each="hours : ${_openingHours.weeklyHours()}">
+                <tr th:each="hours : ${_openingHours.weeklyHours()}" th:class="${hours.equals(_openingHours.activeHours()) ? 'active' : ''}">
                     <td>
                         <p th:text="${hours.userIdentifier()}"></p>
                     </td>
@@ -38,6 +38,17 @@
                             <input type="hidden" name value="">
                             <input type="submit" class="button orange" value="delete">
                         </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form id="createWeeklyHours" th:action="@{/super-admin/hours/create}" method="post">
+                            <label for="name">create new hours:</label>
+                            <input id="name" name="name" required>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="createWeeklyHours" type="submit" class="button green" value="create">
                     </td>
                 </tr>
             </tbody>

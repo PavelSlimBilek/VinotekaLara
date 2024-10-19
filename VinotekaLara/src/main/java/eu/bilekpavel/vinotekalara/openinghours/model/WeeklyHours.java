@@ -110,13 +110,13 @@ public class WeeklyHours {
 
     public WeeklyHours(String userIdentifier) {
         this.userIdentifier = userIdentifier;
-        monday = null;
-        tuesday = null;
-        wednesday = null;
-        thursday = null;
-        friday = null;
-        saturday = null;
-        sunday = null;
+        monday = new DailyHours(DayOfWeek.MONDAY, null, null);
+        tuesday = new DailyHours(DayOfWeek.TUESDAY, null, null);
+        wednesday = new DailyHours(DayOfWeek.WEDNESDAY, null, null);
+        thursday = new DailyHours(DayOfWeek.THURSDAY, null, null);
+        friday = new DailyHours(DayOfWeek.FRIDAY, null, null);
+        saturday = new DailyHours(DayOfWeek.SATURDAY, null, null);
+        sunday = new DailyHours(DayOfWeek.SUNDAY, null, null);
     }
     
     public List<DailyHours> getHours() {
