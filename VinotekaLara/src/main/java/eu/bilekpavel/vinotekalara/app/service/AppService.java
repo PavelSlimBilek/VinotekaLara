@@ -19,30 +19,29 @@ public class AppService implements AppServiceInterface {
         return new LanguageWidgetData(
                 translatorRegistry.getAllowedLanguages(),
                 translatorRegistry.getSupported().stream().map(Translator::getLang).toList(),
-                config.getDefaultLanguage());
+                config.getDEFAULT());
     }
 
     @Override
     public void setDefaultLanguage(Language language) {
-        config.setDefaultLanguage(language);
+        config.setDEFAULT(language);
     }
 
     @Override
     public void toggleLanguage(Language language) {
-        Language initValue = config.getDefaultLanguage();
-        if (initValue == null) {
-            config.addLanguage(language);
-            config.setDefaultLanguage(language);
-        }
-
-        if (initValue == language && config.getDefaultLanguage().equals(language)) {
+        Language initValue = config.getDEFAULT();
+        if (initValue == language) {
             throw new RuntimeException("Cannot forbid default language");
         }
 
-        if (config.getAllowedLanguages().containsKey(language.name())) {
-            config.removeLanguage(language);
+        if (config.getAllowed().contains(language)) {
+            config.forbid(language);
             return;
         }
-        config.addLanguage(language);
+
+        config.allow(language);
+        if (initValue == null) {
+            config.setDEFAULT(language);
+        }
     }
 }

@@ -12,15 +12,20 @@ import java.util.*;
 public class AppConfig {
 
     @Setter
-    private Language defaultLanguage = null;
+    private Language DEFAULT = null;
 
-    private final Map<String, Language> allowedLanguages = new HashMap<>();
+    private final Map<String, Language> ALLOWED = new HashMap<>();
 
-    public void removeLanguage(Language language) {
-        allowedLanguages.remove(language.name());
+    public List<Language> getAllowed() {
+        return new ArrayList<>(ALLOWED.values());
     }
 
-    public void addLanguage(Language language) {
-        allowedLanguages.put(language.name(), language);
+
+    public void allow(Language language) {
+        ALLOWED.put(language.getCode(), language);
+    }
+
+    public void forbid(Language language) {
+        ALLOWED.remove(language.getCode());
     }
 }

@@ -37,14 +37,14 @@ public class TranslatorRegistry implements TranslatorRegistryInterface {
 
     @Override
     public Translator getLocale(String langCode) {
-        return isOnTheList(langCode) ? LOCALES.get(langCode) : LOCALES.get(config.getDefaultLanguage().getCode());
+        return isOnTheList(langCode) ? LOCALES.get(langCode) : LOCALES.get(config.getDEFAULT().getCode());
     }
 
     @Override
     public List<Language> getAllowedLanguages() {
         return LOCALES.values().stream()
                 .map(Translator::getLang)
-                .filter(lang -> config.getAllowedLanguages().containsKey(lang.name()))
+                .filter(lang -> config.getAllowed().contains(lang))
                 .toList();
     }
 
