@@ -5,6 +5,20 @@
     text-decoration: none;
 }
 
+body {
+    display: grid;
+    justify-content: center;
+}
+
+body > * {
+    margin-top: 1rem;
+}
+
+.buttonPanel {
+    display: flex;
+    gap: .4rem;
+}
+
 a, a:hover, a:active {
     color: inherit;
 }
@@ -44,7 +58,7 @@ a, a:hover, a:active {
 }
 
 .green:hover, .green:active, .green:focus {
-    background-color: limegreen;
+    background-color: #4fc24f;
 }
 
 .blue:hover, .blue:active, .blue:focus {
@@ -58,7 +72,54 @@ a, a:hover, a:active {
     padding: 1rem;
 }
 
-.smallBar {
-    width: 20rem;
+.dailyHours:hover {
+    background-color: #EEEEEE;
+}
+
+.active {
+    background-color: #a2f1a2;
+}
+
+.active:hover {
+    background-color: #59e359;
+}
+
+.inactive:hover {
+    background-color: #e2e2e2;
+}
+
+.inaccessible {
+    background-color: #f89898;
+}
+
+.inaccessible:hover {
+    background-color: #e45151;
+}
+
+.card {
+    border: 1px solid #e7e7e7;
+    border-radius: .5rem;
     padding: 1rem;
+}
+
+.card > * {
+    margin: .2rem;
+}
+
+table {
+    border-spacing: 0;
+    width: 100%;
+}
+
+td {
+    padding: .4rem;
+}
+
+tr{
+    width: 100%;
+}
+
+input {
+    padding: .4rem;
+    font-size: 1.3rem;
 }

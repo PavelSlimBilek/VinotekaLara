@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator.impl;
 
+import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.language.languages.Czech;
@@ -16,9 +17,10 @@ import java.util.Map;
 public class TranslatorRegistry implements TranslatorRegistryInterface {
 
     private final Map<String, Translator> LOCALES;
-    private final Translator DEFAULT; // settable fallback
+    private final AppConfig config;
 
     public TranslatorRegistry(
+            AppConfig config,
             Czech czech,
             English english,
             German german
@@ -28,15 +30,13 @@ public class TranslatorRegistry implements TranslatorRegistryInterface {
         locales.put(english.getLang().getCode(), english);
         locales.put(german.getLang().getCode(), german.allow(false));
 
-        DEFAULT = czech;
         LOCALES = Collections.unmodifiableMap(locales);
+        this.config = config;
     }
 
     @Override
     public Translator getLocale(String langCode) {
-        return isOnTheList(langCode)
-                ? LOCALES.get(langCode)
-                : DEFAULT;
+        return isOnTheList(langCode) ? LOCALES.get(langCode) : LOCALES.get(config.getDefaultLanguage().getCode());
     }
 
     @Override

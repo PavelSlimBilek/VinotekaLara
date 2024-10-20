@@ -22,9 +22,12 @@ public class WeeklyHours {
     private String userIdentifier;
 
     @Setter
+    private boolean isRemoved;
+
+    @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "monday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "monday_morning_end")),
@@ -35,8 +38,8 @@ public class WeeklyHours {
 
     @Setter
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "tuesday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "tuesday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "tuesday_morning_end")),
@@ -48,7 +51,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "wednesday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "wednesday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "wednesday_morning_end")),
@@ -60,7 +63,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "thursday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "thursday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "thursday_morning_end")),
@@ -72,7 +75,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "friday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "friday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "friday_morning_end")),
@@ -84,7 +87,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "saturday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "saturday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "saturday_morning_end")),
@@ -96,7 +99,7 @@ public class WeeklyHours {
     @Setter
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "monday_day_of_week", insertable = false, updatable = false)),
+            @AttributeOverride(name = "dayOfWeek", column = @Column(name = "sunday_day_of_week", updatable = false)),
 
             @AttributeOverride(name = "morningHours.start", column = @Column(name = "sunday_morning_start")),
             @AttributeOverride(name = "morningHours.end", column = @Column(name = "sunday_morning_end")),
@@ -107,13 +110,13 @@ public class WeeklyHours {
 
     public WeeklyHours(String userIdentifier) {
         this.userIdentifier = userIdentifier;
-        monday = null;
-        tuesday = null;
-        wednesday = null;
-        thursday = null;
-        friday = null;
-        saturday = null;
-        sunday = null;
+        monday = new DailyHours(DayOfWeek.MONDAY, null, null);
+        tuesday = new DailyHours(DayOfWeek.TUESDAY, null, null);
+        wednesday = new DailyHours(DayOfWeek.WEDNESDAY, null, null);
+        thursday = new DailyHours(DayOfWeek.THURSDAY, null, null);
+        friday = new DailyHours(DayOfWeek.FRIDAY, null, null);
+        saturday = new DailyHours(DayOfWeek.SATURDAY, null, null);
+        sunday = new DailyHours(DayOfWeek.SUNDAY, null, null);
     }
     
     public List<DailyHours> getHours() {
@@ -130,5 +133,17 @@ public class WeeklyHours {
             case SATURDAY -> saturday;
             case SUNDAY -> sunday;
         };
+    }
+
+    public void setDailyHours(DailyHours dailyHours) {
+        switch (dailyHours.dayOfWeek()) {
+            case MONDAY -> monday = dailyHours;
+            case TUESDAY -> tuesday = dailyHours;
+            case WEDNESDAY -> wednesday = dailyHours;
+            case THURSDAY -> thursday = dailyHours;
+            case FRIDAY -> friday = dailyHours;
+            case SATURDAY -> saturday = dailyHours;
+            case SUNDAY -> sunday = dailyHours;
+        }
     }
 }

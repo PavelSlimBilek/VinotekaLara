@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.alertbar.service;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.app.Color;
+import eu.bilekpavel.vinotekalara.app.dto.Color;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -14,7 +14,7 @@ public interface AlertServiceInterface {
     void create(AlertRequest request);
 
     LocalizedAlert getLocalized(int id, Language language);
-    List<LocalizedAlert> getAllLocalized(Language lang);
+    List<LocalizedAlert> getAllLocalized(Language lang, boolean allowRemoved);
 
     void updateColor(int id, Color color);
     void updateLocalization(int id, LocalizedStringRequest request);
@@ -30,4 +30,6 @@ public interface AlertServiceInterface {
 
     boolean isAllowed(); // adjustable from super-admin
     boolean isDisplayed(); // adjustable from custom-admin
+
+    void delete(int id);
 }

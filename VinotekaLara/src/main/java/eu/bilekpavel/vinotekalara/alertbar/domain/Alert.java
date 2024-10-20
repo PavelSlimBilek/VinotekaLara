@@ -20,6 +20,10 @@ public class Alert {
     @GeneratedValue
     private int id;
 
+    private boolean isActive;
+    @Setter
+    private boolean isRemoved;
+
     @ElementCollection
     private final Map<Language, String> localizations;
 
@@ -28,6 +32,7 @@ public class Alert {
 
     public Alert() {
         localizations = new HashMap<>();
+        isActive = false;
     }
 
     public String getLocalized(Language language) {
@@ -36,5 +41,13 @@ public class Alert {
 
     public void updateLocalization(LocalizedString content) {
         this.localizations.put(content.language(), content.content());
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }

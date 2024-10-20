@@ -1,8 +1,7 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
-import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
-import eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours;
-import eu.bilekpavel.vinotekalara.openinghours.dto.WeeklyHoursData;
+import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
+import eu.bilekpavel.vinotekalara.openinghours.dto.*;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.repository.WeeklyHoursRepositoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
@@ -10,32 +9,44 @@ import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     private final WeeklyHoursRepositoryInterface repo;
+    private final WeeklyHoursConfig config;
+
     private WeeklyHours currentGlobalHours;
 
     public WeeklyHoursService(
-            @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo
+            @Qualifier("hours_db_repository") WeeklyHoursRepositoryInterface repo,
+            WeeklyHoursConfig config
     ) {
         this.repo = repo;
-        currentGlobalHours = repo.findById(1);
+        this.config = config;
     }
 
     @Override
     public boolean save(WeeklyHours hours) {
-        return null != repo.save(hours);
+        try {
+            repo.save(hours);
+        } catch (Exception e) {
+            return false;
+        }
+            return true;
     }
 
     @Override
     public WeeklyHoursData get() {
+        if (currentGlobalHours == null) {
+            Optional<WeeklyHours> optHour = repo.findFirstBy();
+            currentGlobalHours = optHour.orElseThrow(RuntimeException::new);
+        }
         return new WeeklyHoursData(
                 currentGlobalHours.getId(),
                 currentGlobalHours.getUserIdentifier(),
@@ -51,11 +62,8 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public WeeklyHoursData get(int id) {
-        WeeklyHours hours = repo.findById(id);
-
-        if (hours == null) {
-            return null;
-        }
+        Optional<WeeklyHours> optHour = repo.findById(id);
+        WeeklyHours hours = optHour.orElseThrow(RuntimeException::new);
 
         return new WeeklyHoursData(
                 id,
@@ -71,8 +79,9 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     }
 
     @Override
-    public List<WeeklyHoursData> getAll() {
+    public List<WeeklyHoursData> getAll(boolean allowRemoved) {
         return repo.findAll().stream()
+                .filter((hours) -> allowRemoved || !hours.isRemoved())
                 .map(((hours) -> new WeeklyHoursData(
                     hours.getId(),
                     hours.getUserIdentifier(),
@@ -122,7 +131,6 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator) {
-        System.out.println("invoked ************************************************************************************************");
         return translator.transform(currentGlobalHours.getHours(LocalDate.now().getDayOfWeek()));
     }
 
@@ -131,16 +139,103 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
         return translator.getIsOpenedMessage(isOpened());
     }
 
+    @Override
+    public WeeklyHours getGlobalHours() {
+        if (currentGlobalHours == null) {
+            Optional<WeeklyHours> optHours = repo.findFirstBy();
+            currentGlobalHours = optHours.orElseThrow(RuntimeException::new);
+        }
+        return currentGlobalHours;
+    }
+
+    @Override
+    public HoursWidgetData getWidgetData() {
+        return new HoursWidgetData(
+            getAll(false), get(currentGlobalHours.getId())
+        );
+    }
+
+    @Override
     public boolean isOpened() {
-        Time now = Time.valueOf(LocalTime.now());
+        LocalTime now = LocalTime.now();
         DailyHours hours = currentGlobalHours.getHours(LocalDate.now().getDayOfWeek());
-        return (hours.morningHours() != null && now.after(hours.morningHours().start()) && now.before(hours.morningHours().end())
-                || hours.afternoonHours() != null && now.after(hours.afternoonHours().start()) && now.before(hours.afternoonHours().end()));
+        return (hours.morningHours() != null
+                && now.isAfter(hours.morningHours().start())
+                && now.isBefore(hours.morningHours().end())
+                || hours.afternoonHours() != null
+                && now.isAfter(hours.afternoonHours().start())
+                && now.isBefore(hours.afternoonHours().end())
+        );
     }
 
     @Override
     public void activate(int id) {
-        currentGlobalHours = repo.findById(id);
-        System.out.println(currentGlobalHours.getId());
+        Optional<WeeklyHours> optHour = repo.findById(id);
+        currentGlobalHours = optHour.orElse(currentGlobalHours);
+    }
+
+    @Override
+    public void update(int id, DayOfWeek day, DailyHoursRequest data) {
+        DailyHours dailyHours = new DailyHours(
+                day,
+                data.morningStart() != null && data.morningEnd() != null && !data.morningEnd().isEmpty() && !data.morningStart().isEmpty()
+                        ? new TimeInterval(LocalTime.parse(data.morningStart()), LocalTime.parse(data.morningEnd()))
+                        : null,
+                data.afternoonStart() != null && data.afternoonEnd() != null && !data.afternoonStart().isEmpty() && !data.afternoonEnd().isEmpty()
+                        ? new TimeInterval(LocalTime.parse(data.afternoonStart()), LocalTime.parse(data.afternoonEnd()))
+                        : null
+        );
+
+        Optional<WeeklyHours> optHours = repo.findById(id);
+        if (optHours.isEmpty()) {
+            return;
+        }
+
+        optHours.get().setDailyHours(dailyHours);
+        repo.save(optHours.get());
+    }
+
+    @Override
+    public boolean areAfternoonHoursAllowed() {
+        return config.areAfternoonHoursAllowed();
+    }
+
+    @Override
+    public void allowAfternoonHours(boolean isAllowed) {
+        System.out.println(isAllowed);
+        config.allowAfternoonHours(isAllowed);
+    }
+
+    @Override
+    public void delete(int id) {
+        if (id == currentGlobalHours.getId()) {
+            throw new RuntimeException("Cannot remove global hours");
+        }
+
+        Optional<WeeklyHours> optHours = repo.findById(id);
+        if(optHours.isEmpty()) {
+            return;
+        }
+
+        optHours.get().setRemoved(true);
+        repo.save(optHours.get());
+    }
+
+    @Override
+    public void create(String name) {
+        WeeklyHours hours = new WeeklyHours(name);
+        repo.save(hours);
+    }
+
+    @Override
+    public void setIdentifier(int id, String name) {
+        Optional<WeeklyHours> optHours = repo.findById(id);
+        if (optHours.isEmpty()) {
+            return;
+        }
+
+        WeeklyHours hours = optHours.get();
+        hours.setUserIdentifier(name);
+        repo.save(hours);
     }
 }

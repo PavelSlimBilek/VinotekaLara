@@ -13,8 +13,13 @@ import java.util.Optional;
 public interface AlertRepository extends AlertRepositoryInterface, JpaRepository<Alert, Integer> {
     @Override
     Optional<Alert> findById(int id);
+
     @Override
     List<Alert> findAll();
+
     @Override
     Alert save(Alert alert);
+
+    @Override
+    Optional<Alert> findByIsActive(boolean isActive);
 }

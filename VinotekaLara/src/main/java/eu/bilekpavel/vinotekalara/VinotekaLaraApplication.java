@@ -36,6 +36,9 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
+		System.out.println("Slim-made");
+		System.out.println("---------------------------------------------------");
+
 		AlertRequest alert1 = new AlertRequest(
 				List.of(
 						new LocalizedStringRequest("Máme nový web!", "cz"),
@@ -55,40 +58,43 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		alertService.create(alert1);
 		alertService.create(alert2);
 
+		alertService.setActive(1);
+
+
 		DailyHours monday = new DailyHours(
 				DayOfWeek.MONDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours tuesday = new DailyHours(
 				DayOfWeek.TUESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours wednesday = new DailyHours(
 				DayOfWeek.WEDNESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours thursday = new DailyHours(
 				DayOfWeek.THURSDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours friday = new DailyHours(
 				DayOfWeek.FRIDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(18, 0))
 		);
 		DailyHours saturday = new DailyHours(
 				DayOfWeek.SATURDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(9, 0)),Time.valueOf(LocalTime.of(11, 30))),
+				new TimeInterval(LocalTime.of(9, 0), LocalTime.of(11, 30)),
 				null
 		);
 		DailyHours sunday = new DailyHours(
 				DayOfWeek.SUNDAY,
 				null,
-				new TimeInterval(Time.valueOf(LocalTime.of(15, 0)), Time.valueOf(LocalTime.of(17, 0)))
+				new TimeInterval(LocalTime.of(15, 0), LocalTime.of(17, 30))
 		);
 
 		WeeklyHours summerHours = new WeeklyHours();
@@ -99,44 +105,45 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		summerHours.setFriday(friday);
 		summerHours.setSaturday(saturday);
 		summerHours.setSunday(sunday);
-		summerHours.setUserIdentifier("summer hours");
+		summerHours.setUserIdentifier("Summer hours");
 
 		hoursService.save(summerHours);
+		hoursService.getGlobalHours();
 
 		DailyHours monday2 = new DailyHours(
 				DayOfWeek.MONDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours tuesday2 = new DailyHours(
 				DayOfWeek.TUESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours wednesday2 = new DailyHours(
 				DayOfWeek.WEDNESDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours thursday2 = new DailyHours(
 				DayOfWeek.THURSDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours friday2 = new DailyHours(
 				DayOfWeek.FRIDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(12, 0))),
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(16, 30)))
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(12, 0)),
+				new TimeInterval(LocalTime.of(13, 0), LocalTime.of(17, 0))
 		);
 		DailyHours saturday2 = new DailyHours(
 				DayOfWeek.SATURDAY,
-				new TimeInterval(Time.valueOf(LocalTime.of(10, 0)),Time.valueOf(LocalTime.of(11, 0))),
+				new TimeInterval(LocalTime.of(10, 0), LocalTime.of(11, 0)),
 				null
 		);
 		DailyHours sunday2 = new DailyHours(
 				DayOfWeek.SUNDAY,
 				null,
-				new TimeInterval(Time.valueOf(LocalTime.of(13, 0)), Time.valueOf(LocalTime.of(18, 0)))
+				new TimeInterval(LocalTime.of(15, 0), LocalTime.of(17, 0))
 		);
 
 		WeeklyHours winterHours = new WeeklyHours();
@@ -147,7 +154,7 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setFriday(friday2);
 		winterHours.setSaturday(saturday2);
 		winterHours.setSunday(sunday2);
-		winterHours.setUserIdentifier("winter hours");
+		winterHours.setUserIdentifier("Winter hours");
 
 		hoursService.save(winterHours);
 	}

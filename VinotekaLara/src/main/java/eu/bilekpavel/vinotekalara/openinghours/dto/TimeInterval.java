@@ -2,11 +2,11 @@ package eu.bilekpavel.vinotekalara.openinghours.dto;
 
 import jakarta.persistence.Embeddable;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 @Embeddable
 public record TimeInterval(
-        Time start,
-        Time end
+        LocalTime start,
+        LocalTime end
 ) {
 }

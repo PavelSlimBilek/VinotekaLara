@@ -6,13 +6,68 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <h1>Opening hours admin</h1>
-        <div th:each="hours : ${_openingHours}">
-            <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
-               th:text="${hours.userIdentifier()}"
-               class="button smallBar">
-            </a>
+        <h1 th:text="'Active hours: ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
+        <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
+
+        <div class="card">
+            <table>
+                <tr class="inactive">
+                    <td>
+                        <form id="allowAfternoon" th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
+                            <label for="allowAfternoonHours">allow afternoon hours</label>
+                            <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
+                            <label for="disallowAfternoonHours">forbid afternoon hours</label>
+                            <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="allowAfternoon" type="submit" value="ok" class="button green">
+                    </td>
+                </tr>
+            </table>
         </div>
-        <a href="/super-admin">Back</a>
+
+        <div class="card">
+        <table>
+            <tbody>
+                <tr th:each="hours : ${_openingHours.weeklyHours()}" th:class="${hours.equals(_openingHours.activeHours()) ? 'active' : 'inactive'}">
+                    <td>
+                        <p th:text="${hours.userIdentifier()}"></p>
+                    </td>
+                    <td>
+                        <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
+                           class="button blue">
+                            edit
+                        </a>
+                    </td>
+                    <td>
+                        <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/activate'}" method="post">
+                            <input type="hidden" name value="">
+                            <input type="submit" class="button green" value="activate">
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/delete'}" method="post">
+                            <input type="hidden" name value="">
+                            <input type="submit" class="button orange" value="delete">
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form id="createWeeklyHours" th:action="@{/super-admin/hours/create}" method="post">
+                            <label for="name">create new hours:</label>
+                            <input id="name" name="name" required>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="createWeeklyHours" type="submit" class="button green" value="ok">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <a href="/super-admin" class="button orange">back</a>
     </body>
 </html>

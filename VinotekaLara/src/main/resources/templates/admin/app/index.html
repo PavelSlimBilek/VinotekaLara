@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>App settings</title>
+        <link rel="stylesheet" th:href="@{/style.css}">
+    </head>
+    <body>
+        <h1>App settings</h1>
+
+        <div class="card">
+            <h3>Default Language Settings</h3>
+            <table>
+                <tr>
+                    <td>
+                        <form id="languageSelect" th:action="@{/super-admin/app/default-language}" method="post">
+                            <label for="lang"></label>
+                            <select id="lang" name="code">
+                                <option th:each="lang : ${_languageWidget.supportedLanguages()}"
+                                        th:value="${lang.getCode()}"
+                                        th:text="${lang.getCode()} + ' - ' + ${lang.getSelfName()}"
+                                        th:selected="${lang.equals(_languageWidget.defaultLanguage())}">
+                                </option>
+                            </select>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="languageSelect" type="submit" value="ok">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </body>
+</html>

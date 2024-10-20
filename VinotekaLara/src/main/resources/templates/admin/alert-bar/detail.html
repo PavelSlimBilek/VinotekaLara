@@ -7,9 +7,34 @@
     </head>
 
     <body>
-        <div th:replace="fragments :: alert_update_localizations"></div>
-        <div th:replace="fragments :: alert_update_colors"></div>
-        <a href="/super-admin/alert" class="button orange">BACK</a>
+        <div class="card">
+            <div th:replace="fragments :: alert_update_localizations"></div>
+        </div>
+        <div class="card">
+            <table>
+                <tr>
+                    <td>
+                        <form id="colorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
+                            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+                            <label for="red">RED</label>
+                            <input type="range" min="0" max="255" id="red" name="red" >
+
+                            <label for="green">GREEN</label>
+                            <input type="range" min="0" max="255" id="green" name="green">
+
+                            <label for="blue">BLUE</label>
+                            <input type="range" min="0" max="255" id="blue" name="blue">
+                        </form>
+                    </td>
+                    <td>
+                        <input form="colorPicker" type="submit" class="button" id="backgroundColor" value="submit">
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <a href="/super-admin/alert" class="button orange">back</a>
     </body>
 
     <script th:src="@{colorPicker.js}" type="text/javascript"></script>

@@ -6,197 +6,229 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-<div class="weeklyHours">
     <h2 th:text="${_openingHours.userIdentifier()}"></h2>
 
-    <div class="dailyHours">
-        <span>Monday: </span>
-        <!-- MONDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/monday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.monday() == null || _openingHours.monday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.monday().morningHours().start()}
-                        ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.monday() == null || _openingHours.monday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.monday().morningHours().end()}
-                        ">
-
-            <input type="time" name="afternoonStart" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.monday().afternoonHours().start()}
-                        ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.monday().afternoonHours().end()}
-                        ">
-
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
+    <div class="card">
+        <table>
+            <tr>
+                <td>
+                    <form id="hoursName" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/identifier'}" method="post">
+                        <label for="name">name:</label>
+                        <input id="name" name="name" required>
+                    </form>
+                </td>
+                <td>
+                    <input form="hoursName" type="submit" value="set" class="button green">
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <div class="dailyHours">
-        <span>Tuesday: </span>
-        <!-- TUESDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/tuesday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.tuesday().morningHours().start()}
-                        ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.tuesday().morningHours().end()}
-                        ">
+    <div class="card">
+        <table>
+            <tr class="inactive">
+                <td>
+                    <span>Monday: </span>
+                    <!-- MONDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/monday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.monday() == null || _openingHours.monday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.monday().morningHours().start()}
+                                    ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.monday() == null || _openingHours.monday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.monday().morningHours().end()}
+                                    ">
 
-            <input type="time" name="afternoonStart" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.tuesday().afternoonHours().start()}
-                        ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.tuesday().afternoonHours().end()}
-                        ">
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.monday().afternoonHours().start()}
+                                    ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.monday() == null || _openingHours.monday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.monday().afternoonHours().end()}
+                                    ">
 
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
-    </div>
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
 
-    <div class="dailyHours">
-        <span>Wednesday: </span>
-        <!-- WEDNESDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/wednesday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.wednesday().morningHours().start()}
-                        ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.wednesday().morningHours().end()}
-                        ">
+            <tr class="inactive">
+                <td>
+                    <span>Tuesday: </span>
+                    <!-- TUESDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/tuesday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.tuesday().morningHours().start()}
+                                    ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.tuesday().morningHours().end()}
+                                    ">
 
-            <input type="time" name="afternoonStart" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.wednesday().afternoonHours().start()}
-                        ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.wednesday().afternoonHours().end()}
-                        ">
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.tuesday().afternoonHours().start()}
+                                    ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.tuesday().afternoonHours().end()}
+                                    ">
 
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
-    </div>
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
 
-    <div class="dailyHours">
-        <span>Thursday: </span>
-        <!-- THURSDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/thursday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.thursday() == null || _openingHours.thursday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.thursday().morningHours().start()}
-                        ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.thursday() == null || _openingHours.thursday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.thursday().morningHours().end()}
-                        ">
+            <tr class="inactive">
+                <td>
+                    <span>Wednesday: </span>
+                    <!-- WEDNESDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/wednesday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.wednesday().morningHours().start()}
+                                    ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.wednesday().morningHours().end()}
+                                    ">
 
-            <input type="time" name="afternoonStart" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.thursday().afternoonHours().start()}
-                        ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.thursday().afternoonHours().end()}
-                        ">
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.wednesday().afternoonHours().start()}
+                                    ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.wednesday().afternoonHours().end()}
+                                    ">
 
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
-    </div>
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
 
-    <div class="dailyHours">
-        <span>Friday: </span>
-        <!-- FRIDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/friday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.friday() == null || _openingHours.friday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.friday().morningHours().start()}
-                        ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.friday() == null || _openingHours.friday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.friday().morningHours().end()}
-                        ">
+            <tr class="inactive">
+                <td>
+                    <span>Thursday: </span>
+                    <!-- THURSDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/thursday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.thursday() == null || _openingHours.thursday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.thursday().morningHours().start()}
+                                    ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.thursday() == null || _openingHours.thursday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.thursday().morningHours().end()}
+                                    ">
 
-            <input type="time" name="afternoonStart" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.friday().afternoonHours().start()}
-                        ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.friday().afternoonHours().end()}
-                        ">
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.thursday().afternoonHours().start()}
+                                    ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.thursday() == null || _openingHours.thursday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.thursday().afternoonHours().end()}
+                                    ">
 
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
-    </div>
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
 
-    <div class="dailyHours">
-        <span>Saturday: </span>
-        <!-- SATURDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/saturday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.saturday() == null || _openingHours.saturday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.saturday().morningHours().start()}
-                        ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.saturday() == null || _openingHours.saturday().morningHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.saturday().morningHours().end()}
-                        ">
+            <tr class="inactive">
+                <td>
+                    <span>Friday: </span>
+                    <!-- FRIDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/friday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.friday() == null || _openingHours.friday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.friday().morningHours().start()}
+                                    ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.friday() == null || _openingHours.friday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.friday().morningHours().end()}
+                                    ">
 
-            <input type="time" name="afternoonStart" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.saturday().afternoonHours().start()}
-                        ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
-                                                                              ? 0
-                                                                              : _openingHours.saturday().afternoonHours().end()}
-                        ">
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.friday().afternoonHours().start()}
+                                    ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.friday() == null || _openingHours.friday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.friday().afternoonHours().end()}
+                                    ">
 
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
-    </div>
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
 
-    <div class="dailyHours">
-        <span>Sunday: </span>
-        <!-- SUNDAY -->
-        <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/sunday'}">
-            <input type="time" name="morningStart" th:value="${_openingHours.sunday() == null || _openingHours.sunday().morningHours() == null
-                                                                          ? 0
-                                                                          : _openingHours.sunday().morningHours().start()}
-                    ">
-            <input type="time" name="morningEnd" th:value="${_openingHours.sunday() == null || _openingHours.sunday().morningHours() == null
-                                                                          ? 0
-                                                                          : _openingHours.sunday().morningHours().end()}
-                    ">
+            <tr class="inactive">
+                <td>
+                    <span>Saturday: </span>
+                    <!-- SATURDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/saturday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.saturday() == null || _openingHours.saturday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.saturday().morningHours().start()}
+                                    ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.saturday() == null || _openingHours.saturday().morningHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.saturday().morningHours().end()}
+                                    ">
 
-            <input type="time" name="afternoonStart" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
-                                                                          ? 0
-                                                                          : _openingHours.sunday().afternoonHours().start()}
-                    ">
-            <input type="time" name="afternoonEnd" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
-                                                                          ? 0
-                                                                          : _openingHours.sunday().afternoonHours().end()}
-                    ">
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.saturday().afternoonHours().start()}
+                                    ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.saturday() == null || _openingHours.saturday().afternoonHours() == null
+                                                                                          ? 0
+                                                                                          : _openingHours.saturday().afternoonHours().end()}
+                                    ">
 
-            <input type="submit" value="update" class="button notAllowed">
-        </form>
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
+
+            <tr class="inactive">
+                <td>
+                    <span>Sunday: </span>
+                    <!-- SUNDAY -->
+                    <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/sunday'}">
+                        <input type="time" name="morningStart" th:value="${_openingHours.sunday() == null || _openingHours.sunday().morningHours() == null
+                                                                                      ? 0
+                                                                                      : _openingHours.sunday().morningHours().start()}
+                                ">
+                        <input type="time" name="morningEnd" th:value="${_openingHours.sunday() == null || _openingHours.sunday().morningHours() == null
+                                                                                      ? 0
+                                                                                      : _openingHours.sunday().morningHours().end()}
+                                ">
+
+                        <input type="time" name="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
+                                                                                      ? 0
+                                                                                      : _openingHours.sunday().afternoonHours().start()}
+                                ">
+                        <input type="time" name="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:value="${_openingHours.sunday() == null || _openingHours.sunday().afternoonHours() == null
+                                                                                      ? 0
+                                                                                      : _openingHours.sunday().afternoonHours().end()}
+                                ">
+
+                        <input type="submit" value="update" class="button green">
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="buttonPanel">
-        <a href="/super-admin/hours" class="button allowed">back</a>
+        <a href="/super-admin/hours" class="button orange">back</a>
         <form th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/activate'}" method="post">
             <input type="hidden" name value="">
-            <input type="submit" class="button notAllowed" value="activate">
+            <input type="submit" class="button green" value="activate">
         </form>
     </div>
-</div>
 </body>
 </html>

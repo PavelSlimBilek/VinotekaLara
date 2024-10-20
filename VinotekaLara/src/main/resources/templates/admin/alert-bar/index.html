@@ -6,25 +6,80 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <div>
-            <form th:action="@{'/super-admin/alert/allow'}" method="post">
-                <label for="allowAlertBar">Allow alert bar</label>
-                <input type="radio" id="allowAlertBar" name="isAllowed">
-                <input type="submit" value="OK">
-            </form>
+        <h1>Alert Bar</h1>
+        <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
+
+        <div class="card">
+            <table>
+                <tr class="inaccessible">
+                    <td>
+                        <form id="allowAlertBar" th:action="@{/super-admin/alert/allow}" method="post">
+                            <label for="allowAlert">allow alert bar</label>
+                            <input id="allowAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarAllowed} == true"/>
+                            <label for="disallowAlert">forbid alert bar</label>
+                            <input id="disallowAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_isAlertBarAllowed} == false"/>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="allowAlertBar" type="submit" value="ok" class="button green">
+                    </td>
+                </tr>
+
+                <tr class="inactive">
+                    <td>
+                        <form id="displayAlertBar" th:action="@{/super-admin/alert/display}" method="post">
+                            <label for="displayAlert">display alert bar</label>
+                            <input id="displayAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarDisplayed} == true"/>
+                            <label for="hideAlert">hide alert bar</label>
+                            <input id="hideAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_isAlertBarDisplayed} == false"/>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="displayAlertBar" type="submit" value="ok" class="button green">
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        <table>
-            <tr th:each="bar: ${_alertBars}">
-                <td th:text="${bar.content().content()}" th:style="'background-color: ' + ${bar.backgroundColor()}"></td>
-                <td><a th:href="@{'/super-admin/alert/' + ${bar.id()}}" class="button blue">EDIT</a></td>
-                <td>
-                    <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
-                    <input type="hidden" th:value="${bar.id()}">
-                    <input type="submit" value="ACTIVATE" class="button green">
-                    </form>
-                </td>
-            </tr>
-        </table>
+        <div class="card">
+            <table>
+                <tr th:each="bar: ${_alertBars}" th:class="${bar.isActive() ? 'active' : 'inactive'}">
+                    <td>
+                        <p th:text="${bar.content().content()}"></p>
+                    </td>
+
+                    <td>
+                        <a th:href="@{'/super-admin/alert/' + ${bar.id()}}" class="button blue">edit</a>
+                    </td>
+
+                    <td>
+                        <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
+                        <input type="hidden" th:value="${bar.id()}">
+                        <input type="submit" value="activate" class="button green">
+                        </form>
+                    </td>
+
+                    <td>
+                        <form th:action="@{'/super-admin/alert/' + ${bar.id()} + '/delete'}" method="post">
+                            <input type="hidden" th:value="${bar.id()}">
+                            <input type="submit" value="delete" class="button orange">
+                        </form>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <form id="createAlertBar" th:action="@{/super-admin/alert/create}" method="post">
+                            <p>create alert bar: </p>
+                        </form>
+                    </td>
+                    <td>
+                        <input form="createAlertBar" type="submit" value="ok" class="button green">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="/super-admin" class="button orange">back</a>
     </body>
 </html>

@@ -1,5 +1,7 @@
 package eu.bilekpavel.vinotekalara.openinghours.service;
 
+import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
+import eu.bilekpavel.vinotekalara.openinghours.dto.HoursWidgetData;
 import eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.WeeklyHoursData;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
@@ -13,12 +15,23 @@ public interface WeeklyHoursServiceInterface {
     boolean save(WeeklyHours hours);
     WeeklyHoursData get();
     WeeklyHoursData get(int id);
-    List<WeeklyHoursData> getAll();
+    List<WeeklyHoursData> getAll(boolean allowRemoved);
     LocalizedOpeningHours getTranslatedData(OpeningHoursTranslatorInterface hoursTranslator);
     List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator);
     List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator);
     String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator);
     String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface translator);
+    WeeklyHours getGlobalHours();
+    HoursWidgetData getWidgetData();
     boolean isOpened();
     void activate(int id);
+    void update(int id, DayOfWeek day, DailyHoursRequest data);
+
+    boolean areAfternoonHoursAllowed();
+    void allowAfternoonHours(boolean isAllow);
+
+    void delete(int id);
+    void create(String name);
+
+    void setIdentifier(int id, String name);
 }
