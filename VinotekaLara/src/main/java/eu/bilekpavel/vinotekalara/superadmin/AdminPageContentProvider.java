@@ -28,7 +28,11 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getApplyTranslation(),
                 translator.getSelectGlobalHoursTranslation(),
                 translator.getToggleLanguagesMessage(),
-                translator.getAppSettingsTranslation()
+                translator.getAppSettingsTranslation(),
+                translator.getAllowAlertBarTranslation(),
+                translator.getDisplayAlertBarTranslation(),
+                translator.getSelectActiveAlertTranslation(),
+                translator.getCreateAlertBarTranslation()
         );
     }
 }

@@ -28,7 +28,11 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "apply",
                 "select default language",
                 "allow/forbid languages",
-                "app settings"
+                "app settings",
+                "allow alert bar",
+                "display alert bar",
+                "select active alert bar",
+                "create new alert"
         );
     }
 }

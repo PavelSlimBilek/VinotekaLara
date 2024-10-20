@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertBarWidgetData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.dto.Color;
@@ -32,4 +33,6 @@ public interface AlertServiceInterface {
     boolean isDisplayed(); // adjustable from custom-admin
 
     void delete(int id);
+
+    AlertBarWidgetData getWidgetData(Language lang);
 }

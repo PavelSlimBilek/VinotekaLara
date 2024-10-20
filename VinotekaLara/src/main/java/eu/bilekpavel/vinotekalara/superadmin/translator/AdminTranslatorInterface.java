@@ -20,4 +20,8 @@ public interface AdminTranslatorInterface {
     String getSelectGlobalHoursTranslation();
     String getToggleLanguagesMessage();
     String getAppSettingsTranslation();
+    String getAllowAlertBarTranslation();
+    String getDisplayAlertBarTranslation();
+    String getSelectActiveAlertTranslation();
+    String getCreateAlertBarTranslation();
 }

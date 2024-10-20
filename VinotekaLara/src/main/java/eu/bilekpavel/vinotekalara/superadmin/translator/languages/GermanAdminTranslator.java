@@ -24,10 +24,14 @@ public class GermanAdminTranslator extends AbstractAdminTranslator {
                 "entfernen",
                 "erstellen",
                 "Bezeichnung",
-                "Anwenden",
+                "anwenden",
                 "Standard Sprache auswählen",
                 "Sprachen erlauben/verbieten",
-                "App-Einstellungen"
+                "App-Einstellungen",
+                "Benachrichtigungsleiste erlauben",
+                "Benachrichtigungsleiste anzeigen",
+                "Aktive Benachrichtigungsleiste auswählen",
+                "Eine neue Benachrichtigung erstellen"
         );
     }
 }

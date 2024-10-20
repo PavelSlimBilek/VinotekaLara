@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.service;
 
+import eu.bilekpavel.vinotekalara.alertbar.dto.AlertBarWidgetData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.app.dto.Color;
@@ -186,5 +187,14 @@ public class AlertBarService implements AlertServiceInterface {
             alert.get().setRemoved(true);
             repo.save(alert.get());
         }
+    }
+
+    @Override
+    public AlertBarWidgetData getWidgetData(Language lang) {
+        return new AlertBarWidgetData(
+                getAllLocalized(lang, false),
+                isAllowed(),
+                isDisplayed()
+        );
     }
 }

@@ -23,6 +23,11 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     public final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     public final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
 
+    public final String ALLOW_ALERT_BAR_TRANSLATION;
+    public final String DISPLAY_ALERT_BAR_TRANSLATION;
+    public final String SELECT_ACTIVE_ALERT_TRANSLATION;
+    public final String CREATE_ALERT_BAR_TRANSLATION;
+
     public AbstractAdminTranslator(
             String settingsTranslation,
             String openingHoursTranslation,
@@ -42,7 +47,11 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String applyTranslation,
             String selectLanguageTranslation,
             String toggleLanguagesMessageTranslation,
-            String appSettingsTranslation
+            String appSettingsTranslation,
+            String allowAlertBarTranslation,
+            String displayAlertBarTranslation,
+            String selectActiveAlertTranslation,
+            String createAlertBarTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -65,6 +74,11 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
         this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
         this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
+
+        this.ALLOW_ALERT_BAR_TRANSLATION = allowAlertBarTranslation;
+        this.DISPLAY_ALERT_BAR_TRANSLATION = displayAlertBarTranslation;
+        this.SELECT_ACTIVE_ALERT_TRANSLATION = selectActiveAlertTranslation;
+        this.CREATE_ALERT_BAR_TRANSLATION = createAlertBarTranslation;
     }
 
     @Override
@@ -150,6 +164,26 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     @Override
     public String getAppSettingsTranslation() {
         return APP_SETTINGS_TRANSLATION;
+    }
+
+    @Override
+    public String getAllowAlertBarTranslation() {
+        return ALLOW_ALERT_BAR_TRANSLATION;
+    }
+
+    @Override
+    public String getDisplayAlertBarTranslation() {
+        return DISPLAY_ALERT_BAR_TRANSLATION;
+    }
+
+    @Override
+    public String getSelectActiveAlertTranslation() {
+        return SELECT_ACTIVE_ALERT_TRANSLATION;
+    }
+
+    @Override
+    public String getCreateAlertBarTranslation() {
+        return CREATE_ALERT_BAR_TRANSLATION;
     }
 
     @Override

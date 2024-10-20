@@ -6,39 +6,41 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <h1>Alert Bar</h1>
+        <h1 th:text="${_locale.alertBarTranslation()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
             <div class="cardDescription">
-                <p>Settings:</p>
+                <p th:text="${_locale.settingsTranslation()}"></p>
             </div>
             <table>
                 <tr class="inaccessible">
                     <td>
                         <form id="allowAlertBar" th:action="@{/super-admin/alert/allow}" method="post">
-                            <label for="allowAlert">allow alert bar</label>
+                            <p th:text="${_locale.allowAlertBarTranslation()}"></p>
+                            <label for="allowAlert" th:text="${_locale.allowTranslation()}"></label>
                             <input id="allowAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarAllowed} == true"/>
-                            <label for="disallowAlert">forbid alert bar</label>
+                            <label for="disallowAlert" th:text="${_locale.forbidTranslation()}"></label>
                             <input id="disallowAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_isAlertBarAllowed} == false"/>
                         </form>
                     </td>
                     <td>
-                        <input form="allowAlertBar" type="submit" value="ok" class="button green">
+                        <input form="allowAlertBar" type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </td>
                 </tr>
 
                 <tr class="inactive">
                     <td>
                         <form id="displayAlertBar" th:action="@{/super-admin/alert/display}" method="post">
-                            <label for="displayAlert">display alert bar</label>
+                            <p th:text="${_locale.displayAlertBarTranslation()}"></p>
+                            <label for="displayAlert" th:text="${_locale.allowTranslation()}"></label>
                             <input id="displayAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarDisplayed} == true"/>
-                            <label for="hideAlert">hide alert bar</label>
+                            <label for="hideAlert" th:text="${_locale.forbidTranslation()}"></label>
                             <input id="hideAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_isAlertBarDisplayed} == false"/>
                         </form>
                     </td>
                     <td>
-                        <input form="displayAlertBar" type="submit" value="ok" class="button green">
+                        <input form="displayAlertBar" type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </td>
                 </tr>
             </table>
@@ -46,29 +48,29 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p>Select active alertbar:</p>
+                <p th:text="${_locale.selectActiveAlertTranslation()}"></p>
             </div>
             <table>
-                <tr th:each="bar: ${_alertBars}" th:class="${bar.isActive() ? 'active' : 'inactive'}">
+                <tr th:each="bar: ${_alertWidget.alertBars()}" th:class="${bar.isActive() ? 'active' : 'inactive'}">
                     <td>
                         <p th:text="${bar.content().content()}"></p>
                     </td>
 
                     <td>
-                        <a th:href="@{'/super-admin/alert/' + ${bar.id()}}" class="button blue">edit</a>
+                        <a th:href="@{'/super-admin/alert/' + ${bar.id()}}" class="button blue" th:text="${_locale.editTranslation()}"></a>
                     </td>
 
                     <td>
                         <form th:action="@{'/super-admin/alert/activate/' + ${bar.id()}}" method="post">
                         <input type="hidden" th:value="${bar.id()}">
-                        <input type="submit" value="activate" class="button green">
+                        <input type="submit" th:value="${_locale.activateTranslation()}" class="button green">
                         </form>
                     </td>
 
                     <td>
                         <form th:action="@{'/super-admin/alert/' + ${bar.id()} + '/delete'}" method="post">
                             <input type="hidden" th:value="${bar.id()}">
-                            <input type="submit" value="delete" class="button orange">
+                            <input type="submit" th:value="${_locale.deleteTranslation()}" class="button orange">
                         </form>
                     </td>
                 </tr>
@@ -76,16 +78,16 @@
                 <tr>
                     <td>
                         <form id="createAlertBar" th:action="@{/super-admin/alert/create}" method="post">
-                            <p>create alert bar: </p>
+                            <p th:text="${_locale.createAlertBarTranslation()}"></p>
                         </form>
                     </td>
                     <td>
-                        <input form="createAlertBar" type="submit" value="ok" class="button green">
+                        <input form="createAlertBar" type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </td>
                 </tr>
             </table>
         </div>
 
-        <a href="/super-admin" class="button orange">back</a>
+        <a href="/super-admin" class="button orange" th:text="${_locale.backTranslation()}"></a>
     </body>
 </html>

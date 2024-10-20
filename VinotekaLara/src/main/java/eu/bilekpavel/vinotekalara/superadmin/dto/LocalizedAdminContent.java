@@ -19,6 +19,10 @@ public record LocalizedAdminContent(
         String applyTranslation,
         String selectDefaultLanguageTranslation,
         String toggleLanguagesMessageTranslation,
-        String appSettingsTranslation
+        String appSettingsTranslation,
+        String allowAlertBarTranslation,
+        String displayAlertBarTranslation,
+        String selectActiveAlertTranslation,
+        String createAlertBarTranslation
 ) {
 }

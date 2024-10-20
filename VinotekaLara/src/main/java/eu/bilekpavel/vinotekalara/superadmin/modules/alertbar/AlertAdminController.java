@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-// NOTE: this inherits mapping '/super-admin'
 public class AlertAdminController extends SuperAdminController {
 
     private final AlertServiceInterface service;
@@ -42,7 +41,8 @@ public class AlertAdminController extends SuperAdminController {
     ) {
         Translator locale = LOCALES.getLocale(lang);
 
-        model.addAttribute("_alertBars", service.getAllLocalized(locale.getLang(), false));
+        model.addAttribute("_alertWidget", service.getWidgetData(locale.getLang()));
+        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         model.addAttribute("_isAlertBarAllowed", service.isAllowed());
         model.addAttribute("_isAlertBarDisplayed", service.isDisplayed());
         model.addAttribute("_message", message == null ? "" : message);
