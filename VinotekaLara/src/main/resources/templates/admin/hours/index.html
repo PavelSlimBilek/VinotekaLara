@@ -10,6 +10,9 @@
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
+            <div class="cardDescription">
+                <p>Settings:</p>
+            </div>
             <table>
                 <tr class="inactive">
                     <td>
@@ -28,6 +31,9 @@
         </div>
 
         <div class="card">
+            <div class="cardDescription">
+                <p>Select global opening hours:</p>
+            </div>
         <table>
             <tbody>
                 <tr th:each="hours : ${_openingHours.weeklyHours()}" th:class="${hours.equals(_openingHours.activeHours()) ? 'active' : 'inactive'}">

@@ -10,6 +10,9 @@
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
+            <div class="cardDescription">
+                <p>Settings:</p>
+            </div>
             <table>
                 <tr class="inaccessible">
                     <td>
@@ -42,6 +45,9 @@
         </div>
 
         <div class="card">
+            <div class="cardDescription">
+                <p>Select active alertbar:</p>
+            </div>
             <table>
                 <tr th:each="bar: ${_alertBars}" th:class="${bar.isActive() ? 'active' : 'inactive'}">
                     <td>

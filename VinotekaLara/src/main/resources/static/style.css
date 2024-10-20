@@ -11,7 +11,7 @@ body {
 }
 
 body > * {
-    margin-top: 1rem;
+    margin-top: 1.2rem;
 }
 
 .buttonPanel {
@@ -42,7 +42,7 @@ a, a:hover, a:active {
 
 .button {
     font-size: 1.2rem;
-    border: 1px solid black;
+    border: 1px solid #bdbdbd;
     border-radius: .3rem;
     padding: .6rem;
     background-color: lightgray;
@@ -50,7 +50,7 @@ a, a:hover, a:active {
 
 .button:hover, .button:focus {
     cursor: pointer;
-    box-shadow: 0 0 4px 0 black;
+    box-shadow: 0 0 3px 0 #373737;
 }
 
 .orange:hover, .orange:active, .orange:focus {
@@ -99,27 +99,44 @@ a, a:hover, a:active {
 .card {
     border: 1px solid #e7e7e7;
     border-radius: .5rem;
-    padding: 1rem;
-}
-
-.card > * {
-    margin: .2rem;
+    overflow: hidden;
 }
 
 table {
     border-spacing: 0;
     width: 100%;
+    border-collapse: separate;
+    overflow: hidden;
 }
 
 td {
     padding: .4rem;
 }
 
-tr{
+tr:first-child td {
+    border-top: none; /* Prevents double border at the top */
+}
+
+tr:last-child td {
+    border-bottom: none; /* Prevents double border at the bottom */
+}
+
+tr {
     width: 100%;
 }
 
 input {
     padding: .4rem;
     font-size: 1.3rem;
+}
+
+.cardDescription {
+    background-color: #e7e7e7;
+    margin: 0;
+    padding: .2rem;
+}
+
+.cardDescription > p {
+    font-size: .7rem;
+    font-weight: bold;
 }
