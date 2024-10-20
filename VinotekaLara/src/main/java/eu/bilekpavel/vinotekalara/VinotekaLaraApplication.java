@@ -163,7 +163,6 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 
 		hoursService.save(winterHours);
 
-		appService.setDefaultLanguage(Language.CZECH);
 		appService.toggleLanguage(Language.CZECH);
 	}
 }

@@ -7,6 +7,7 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AppAdminController extends SuperAdminController{
@@ -21,23 +22,36 @@ public class AppAdminController extends SuperAdminController{
     }
 
     @GetMapping("/app")
-    public String app(Model model) {
+    public String app(
+            Model model,
+            @RequestParam(required = false) String message
+    ) {
         model.addAttribute("_languageWidget", service.getLanguageWidgetData());
+        model.addAttribute("_message", message == null ? "" : message);
+
         return "/admin/app/index";
     }
 
     @PostMapping("/app/default-language")
     public String setLang(@RequestParam String code) {
         Language lang = LOCALES.getLocale(code).getLang();
-        System.out.println(lang.getCode() + " " + lang.getSelfName());
         service.setDefaultLanguage(lang);
+
         return "redirect:/super-admin/app";
     }
 
     @PostMapping("/app/language/{name}/toggle")
-    public String toggleLanguage(@PathVariable String name) {
+    public String toggleLanguage(
+            @PathVariable String name,
+            RedirectAttributes attributes
+    ) {
         Language lang = Language.valueOf(name);
-        service.toggleLanguage(lang);
-        return "redirect:/super-admin/app";
+        try {
+            service.toggleLanguage(lang);
+            attributes.addAttribute("message", String.format("[%s] - %s was updated", lang.getCode(), lang.getSelfName()));
+        } catch (RuntimeException e) {
+            attributes.addAttribute("message", e.getMessage());
+        }
+            return "redirect:/super-admin/app";
     }
 }

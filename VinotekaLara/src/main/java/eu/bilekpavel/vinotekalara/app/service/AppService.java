@@ -29,7 +29,17 @@ public class AppService implements AppServiceInterface {
 
     @Override
     public void toggleLanguage(Language language) {
-        if ((config.getAllowedLanguages().containsKey(language.name()))) {
+        Language initValue = config.getDefaultLanguage();
+        if (initValue == null) {
+            config.addLanguage(language);
+            config.setDefaultLanguage(language);
+        }
+
+        if (initValue == language && config.getDefaultLanguage().equals(language)) {
+            throw new RuntimeException("Cannot forbid default language");
+        }
+
+        if (config.getAllowedLanguages().containsKey(language.name())) {
             config.removeLanguage(language);
             return;
         }
