@@ -25,20 +25,20 @@ class ColorPicker {
     }
 }
 
-let colorPicker = new ColorPicker(
-    document.getElementById('colorBox'),
-);
-
 function updateColor() {
     let red = document.getElementById('red').value;
     let green = document.getElementById('green').value;
-    let blue = document.getElementById('blue').value;
 
+    let blue = document.getElementById('blue').value;
     let color = new Color(red, green, blue);
     colorPicker.updateColor(color);
+
 }
 
 document.getElementById('red').addEventListener('input', updateColor);
 document.getElementById('green').addEventListener('input', updateColor);
 document.getElementById('blue').addEventListener('input', updateColor);
-updateColor();
+
+let colorPicker = new ColorPicker(
+    document.getElementById('backgroundColor'),
+);

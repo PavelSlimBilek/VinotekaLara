@@ -72,6 +72,12 @@ public class HoursAdminController extends SuperAdminController {
         }
     }
 
+    @PostMapping("/hours/{id}/identifier")
+    public String setIdentifier(@PathVariable int id, @RequestParam String name) {
+        service.setIdentifier(id, name);
+        return "redirect:/super-admin/hours/" + id;
+    }
+
     @PostMapping("/hours/{id}/delete")
     public String delete(@PathVariable int id, RedirectAttributes attributes) {
         try {

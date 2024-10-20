@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Qualifier("hours_db_repository")
@@ -14,7 +15,9 @@ public interface WeeklyHoursRepository extends JpaRepository<WeeklyHours, Intege
     @Override
     WeeklyHours save(@Nonnull WeeklyHours hours);
     @Override
-    WeeklyHours findById(int id);
+    Optional<WeeklyHours> findById(int id);
     @Override
     List<WeeklyHours> findAll();
+    @Override
+    Optional<WeeklyHours> findFirstBy();
 }

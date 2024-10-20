@@ -72,7 +72,6 @@
                 <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
                 <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload" th:value="${_alertBar.getLocalized(locale.getLang()).content()}">
 
-                <br> <!-- !!  -->
                 <input type="submit" th:value="ok">
             </form>
         </div>

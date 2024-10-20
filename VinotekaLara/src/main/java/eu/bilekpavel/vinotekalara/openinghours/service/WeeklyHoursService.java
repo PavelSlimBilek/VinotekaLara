@@ -13,6 +13,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeeklyHoursService implements WeeklyHoursServiceInterface {
@@ -43,7 +44,8 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public WeeklyHoursData get() {
         if (currentGlobalHours == null) {
-            currentGlobalHours = repo.findById(1);
+            Optional<WeeklyHours> optHour = repo.findFirstBy();
+            currentGlobalHours = optHour.orElseThrow(RuntimeException::new);
         }
         return new WeeklyHoursData(
                 currentGlobalHours.getId(),
@@ -60,11 +62,8 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public WeeklyHoursData get(int id) {
-        WeeklyHours hours = repo.findById(id);
-
-        if (hours == null) {
-            return null;
-        }
+        Optional<WeeklyHours> optHour = repo.findById(id);
+        WeeklyHours hours = optHour.orElseThrow(RuntimeException::new);
 
         return new WeeklyHoursData(
                 id,
@@ -143,8 +142,8 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     @Override
     public WeeklyHours getGlobalHours() {
         if (currentGlobalHours == null) {
-            int id = 1; // by default, we chose the first record added in `SpringBootApplication` after startup
-            currentGlobalHours = repo.findById(id);
+            Optional<WeeklyHours> optHours = repo.findFirstBy();
+            currentGlobalHours = optHours.orElseThrow(RuntimeException::new);
         }
         return currentGlobalHours;
     }
@@ -171,7 +170,8 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public void activate(int id) {
-        currentGlobalHours = repo.findById(id);
+        Optional<WeeklyHours> optHour = repo.findById(id);
+        currentGlobalHours = optHour.orElse(currentGlobalHours);
     }
 
     @Override
@@ -185,9 +185,14 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
                         ? new TimeInterval(LocalTime.parse(data.afternoonStart()), LocalTime.parse(data.afternoonEnd()))
                         : null
         );
-        WeeklyHours weeklyHours = repo.findById(id);
-        weeklyHours.setDailyHours(dailyHours);
-        repo.save(weeklyHours);
+
+        Optional<WeeklyHours> optHours = repo.findById(id);
+        if (optHours.isEmpty()) {
+            return;
+        }
+
+        optHours.get().setDailyHours(dailyHours);
+        repo.save(optHours.get());
     }
 
     @Override
@@ -206,14 +211,31 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
         if (id == currentGlobalHours.getId()) {
             throw new RuntimeException("Cannot remove global hours");
         }
-        WeeklyHours weeklyHours = repo.findById(id);
-        weeklyHours.setRemoved(true);
-        repo.save(weeklyHours);
+
+        Optional<WeeklyHours> optHours = repo.findById(id);
+        if(optHours.isEmpty()) {
+            return;
+        }
+
+        optHours.get().setRemoved(true);
+        repo.save(optHours.get());
     }
 
     @Override
     public void create(String name) {
         WeeklyHours hours = new WeeklyHours(name);
+        repo.save(hours);
+    }
+
+    @Override
+    public void setIdentifier(int id, String name) {
+        Optional<WeeklyHours> optHours = repo.findById(id);
+        if (optHours.isEmpty()) {
+            return;
+        }
+
+        WeeklyHours hours = optHours.get();
+        hours.setUserIdentifier(name);
         repo.save(hours);
     }
 }

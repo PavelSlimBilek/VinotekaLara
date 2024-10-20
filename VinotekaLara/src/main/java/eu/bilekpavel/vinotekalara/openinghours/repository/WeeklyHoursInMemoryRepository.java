@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 @Qualifier("hours_in_memory_repository")
@@ -30,7 +31,12 @@ public class WeeklyHoursInMemoryRepository implements WeeklyHoursRepositoryInter
     }
 
     @Override
-    public WeeklyHours findById(int id) {
-        return HOURS.get(id);
+    public Optional<WeeklyHours> findById(int id) {
+        return Optional.ofNullable(HOURS.get(id));
+    }
+
+    @Override
+    public Optional<WeeklyHours> findFirstBy() {
+        return HOURS.values().stream().findFirst();
     }
 }

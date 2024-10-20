@@ -32,4 +32,6 @@ public interface WeeklyHoursServiceInterface {
 
     void delete(int id);
     void create(String name);
+
+    void setIdentifier(int id, String name);
 }
