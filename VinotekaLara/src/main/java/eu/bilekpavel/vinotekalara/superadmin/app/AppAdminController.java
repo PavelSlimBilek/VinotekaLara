@@ -6,10 +6,7 @@ import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AppAdminController extends SuperAdminController{
@@ -34,6 +31,13 @@ public class AppAdminController extends SuperAdminController{
         Language lang = LOCALES.getLocale(code).getLang();
         System.out.println(lang.getCode() + " " + lang.getSelfName());
         service.setDefaultLanguage(lang);
+        return "redirect:/super-admin/app";
+    }
+
+    @PostMapping("/app/language/{name}/toggle")
+    public String toggleLanguage(@PathVariable String name) {
+        Language lang = Language.valueOf(name);
+        service.toggleLanguage(lang);
         return "redirect:/super-admin/app";
     }
 }

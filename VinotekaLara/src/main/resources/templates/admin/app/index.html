@@ -18,7 +18,7 @@
                         <form id="languageSelect" th:action="@{/super-admin/app/default-language}" method="post">
                             <label for="lang"></label>
                             <select id="lang" name="code">
-                                <option th:each="lang : ${_languageWidget.supportedLanguages()}"
+                                <option th:each="lang : ${_languageWidget.languages()}"
                                         th:value="${lang.getCode()}"
                                         th:text="${lang.getCode()} + ' - ' + ${lang.getSelfName()}"
                                         th:selected="${lang.equals(_languageWidget.defaultLanguage())}">
@@ -28,6 +28,32 @@
                     </td>
                     <td>
                         <input form="languageSelect" class="button green" type="submit" value="ok">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="cardDescription">
+                <p>Toggle languages:</p>
+            </div>
+            <table>
+                <tr th:each="supportedLang : ${_languageWidget.allLanguages()}"
+                    th:class="${_languageWidget.languages().contains(supportedLang)} ? 'active' : 'inaccessible'">
+                    <td>
+                        <p th:text="'[' + ${supportedLang.getCode().toUpperCase()} + '] - ' + ${supportedLang.getSelfName()}"></p>
+                    </td>
+                    <td>
+                        <form th:id="'toggleLanguage' + ${supportedLang}"
+                              th:action="@{'/super-admin/app/language/' + ${supportedLang.name()} + '/toggle'}"
+                              method="post">
+                        </form>
+                    </td>
+                    <td>
+                        <input type="submit"
+                               th:form="'toggleLanguage' + ${supportedLang}"
+                               th:class="'button ' + ${_languageWidget.languages().contains(supportedLang) ? 'orange' : 'green'}"
+                               th:value="${_languageWidget.languages().contains(supportedLang) ? 'forbid' : 'allow'}">
                     </td>
                 </tr>
             </table>

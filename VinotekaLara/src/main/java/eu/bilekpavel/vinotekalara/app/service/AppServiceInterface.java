@@ -6,4 +6,5 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 public interface AppServiceInterface {
     LanguageWidgetData getLanguageWidgetData();
     void setDefaultLanguage(Language lang);
+    void toggleLanguage(Language lang);
 }

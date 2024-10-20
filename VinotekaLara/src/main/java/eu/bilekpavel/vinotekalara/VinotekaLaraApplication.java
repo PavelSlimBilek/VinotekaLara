@@ -2,11 +2,13 @@ package eu.bilekpavel.vinotekalara;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
+import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
+import eu.bilekpavel.vinotekalara.translator.language.Language;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,11 +23,14 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 
 	private final AlertServiceInterface alertService;
 	private final WeeklyHoursServiceInterface hoursService;
+    private final AppServiceInterface appService;
 
 	public VinotekaLaraApplication(
+			AppServiceInterface appService,
 			AlertServiceInterface alertService,
 			WeeklyHoursServiceInterface hoursService
 	) {
+		this.appService = appService;
 		this.alertService = alertService;
 		this.hoursService = hoursService;
 	}
@@ -157,5 +162,8 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setUserIdentifier("Winter hours");
 
 		hoursService.save(winterHours);
+
+		appService.setDefaultLanguage(Language.CZECH);
+		appService.toggleLanguage(Language.CZECH);
 	}
 }
