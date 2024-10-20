@@ -15,10 +15,13 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     public final String CREATE_TRANSLATION;
     public final String NAME_TRANSLATION;
     public final String APPLY_TRANSLATION;
+    public final String APP_SETTINGS_TRANSLATION;
 
     public final String SELECT_GLOBAL_HOURS_TRANSLATION;
     public final String ACTIVE_HOURS_TRANSLATION;
 
+    public final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
+    public final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
 
     public AbstractAdminTranslator(
             String settingsTranslation,
@@ -36,7 +39,10 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String deleteTranslation,
             String createTranslation,
             String nameTranslation,
-            String applyTranslation
+            String applyTranslation,
+            String selectLanguageTranslation,
+            String toggleLanguagesMessageTranslation,
+            String appSettingsTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -52,9 +58,13 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
         this.CREATE_TRANSLATION = createTranslation;
         this.NAME_TRANSLATION = nameTranslation;
         this.APPLY_TRANSLATION = applyTranslation;
+        this.APP_SETTINGS_TRANSLATION = appSettingsTranslation;
 
         this.SELECT_GLOBAL_HOURS_TRANSLATION = selectGlobalHoursTranslation;
         this.ACTIVE_HOURS_TRANSLATION = activeHoursTranslation;
+
+        this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
+        this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
     }
 
     @Override
@@ -130,6 +140,16 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     @Override
     public String getSelectGlobalHoursTranslation() {
         return SELECT_GLOBAL_HOURS_TRANSLATION;
+    }
+
+    @Override
+    public String getToggleLanguagesMessage() {
+        return TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
+    }
+
+    @Override
+    public String getAppSettingsTranslation() {
+        return APP_SETTINGS_TRANSLATION;
     }
 
     @Override

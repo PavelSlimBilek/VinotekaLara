@@ -24,7 +24,10 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "smazat",
                 "vytvořit",
                 "název",
-                "použít"
+                "použít",
+                "zvolte výchozí jazyk",
+                "povolit/zakázat jazyky",
+                "nastavení aplikace"
         );
     }
 }

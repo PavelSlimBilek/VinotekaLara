@@ -16,7 +16,8 @@ public interface AdminTranslatorInterface {
     String getApplyTranslation();
 
     String getCreateTranslation();
-    String getSelectGlobalHoursTranslation();
-
     String getActiveHoursTranslation();
+    String getSelectGlobalHoursTranslation();
+    String getToggleLanguagesMessage();
+    String getAppSettingsTranslation();
 }

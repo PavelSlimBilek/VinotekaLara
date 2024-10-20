@@ -110,7 +110,7 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		summerHours.setFriday(friday);
 		summerHours.setSaturday(saturday);
 		summerHours.setSunday(sunday);
-		summerHours.setUserIdentifier("Summer hours");
+		summerHours.setUserIdentifier("Letní hodiny");
 
 		hoursService.save(summerHours);
 		hoursService.getGlobalHours();
@@ -159,7 +159,7 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setFriday(friday2);
 		winterHours.setSaturday(saturday2);
 		winterHours.setSunday(sunday2);
-		winterHours.setUserIdentifier("Winter hours");
+		winterHours.setUserIdentifier("Zimní hodiny");
 
 		hoursService.save(winterHours);
 

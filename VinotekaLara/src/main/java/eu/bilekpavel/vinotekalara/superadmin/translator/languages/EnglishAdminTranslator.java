@@ -25,7 +25,10 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "remove",
                 "create",
                 "name",
-                "apply"
+                "apply",
+                "select default language",
+                "allow/forbid languages",
+                "app settings"
         );
     }
 }

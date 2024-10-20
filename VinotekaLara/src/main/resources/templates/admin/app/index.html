@@ -6,12 +6,12 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <h1>App settings</h1>
+        <h1 th:text="${_locale.appSettingsTranslation()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
             <div class="cardDescription">
-                <p>Select default language:</p>
+                <p th:text="${_locale.selectDefaultLanguageTranslation()} + ':'"></p>
             </div>
             <table>
                 <tr>
@@ -28,7 +28,7 @@
                         </form>
                     </td>
                     <td>
-                        <input form="languageSelect" class="button green" type="submit" value="ok">
+                        <input form="languageSelect" class="button green" type="submit" th:value="${_locale.applyTranslation()}">
                     </td>
                 </tr>
             </table>
@@ -36,7 +36,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p>Toggle languages:</p>
+                <p th:text="${_locale.toggleLanguagesMessageTranslation()}"></p>
             </div>
             <table>
                 <tr th:each="supportedLang : ${_localizationWidget.allLanguages()}"
@@ -54,12 +54,12 @@
                         <input type="submit"
                                th:form="'toggleLanguage' + ${supportedLang}"
                                th:class="'button ' + ${_localizationWidget.languages().contains(supportedLang) ? 'orange' : 'green'}"
-                               th:value="${_localizationWidget.languages().contains(supportedLang) ? 'forbid' : 'allow'}">
+                               th:value="${_localizationWidget.languages().contains(supportedLang) ? _locale.forbidTranslation() : _locale.allowTranslation()}">
                     </td>
                 </tr>
             </table>
         </div>
 
-        <a href="/super-admin" class="button orange">back</a>
+        <a href="/super-admin" class="button orange" th:text="${_locale.backTranslation()}"></a>
     </body>
 </html>

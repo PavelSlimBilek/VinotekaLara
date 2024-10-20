@@ -16,6 +16,9 @@ public record LocalizedAdminContent(
         String deleteTranslation,
         String createTranslation,
         String nameTranslation,
-        String applyTranslation
+        String applyTranslation,
+        String selectDefaultLanguageTranslation,
+        String toggleLanguagesMessageTranslation,
+        String appSettingsTranslation
 ) {
 }

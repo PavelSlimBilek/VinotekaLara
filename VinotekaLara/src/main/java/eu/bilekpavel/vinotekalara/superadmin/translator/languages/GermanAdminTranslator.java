@@ -24,7 +24,10 @@ public class GermanAdminTranslator extends AbstractAdminTranslator {
                 "entfernen",
                 "erstellen",
                 "Bezeichnung",
-                "Anwenden"
+                "Anwenden",
+                "Standard Sprache auswählen",
+                "Sprachen erlauben/verbieten",
+                "App-Einstellungen"
         );
     }
 }
