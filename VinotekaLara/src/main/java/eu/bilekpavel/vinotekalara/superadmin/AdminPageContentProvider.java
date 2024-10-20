@@ -10,9 +10,20 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
     @Override
     public LocalizedAdminContent getLocalizedAdminPage(AdminTranslatorInterface translator) {
         return new LocalizedAdminContent(
+                translator.getSettingsTranslation(),
                 translator.getOpeningHoursTranslation(),
                 translator.getAppTranslation(),
-                translator.getAlertBarTranslation()
+                translator.getAlertBarTranslation(),
+                translator.getAllowTranslation(),
+                translator.getForbidTranslation(),
+                translator.getActivateTranslation(),
+                translator.getSubmitTranslation(),
+                translator.getEditTranslation(),
+                translator.getBackTranslation(),
+                translator.getSelectGlobalHoursTranslation(),
+                translator.getActiveHoursTranslation(),
+                translator.getDeleteTranslation(),
+                translator.getCreateTranslation()
         );
     }
 }

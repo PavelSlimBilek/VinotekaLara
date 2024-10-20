@@ -6,20 +6,21 @@
         <link rel="stylesheet" th:href="@{/style.css}">
     </head>
     <body>
-        <h1 th:text="'Active hours: ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
+        <h1 th:text="${_locale.activeHoursTranslation()} + ': ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
             <div class="cardDescription">
-                <p>Settings:</p>
+                <p th:text="${_locale.settingsTranslation()} + ': '"></p>
             </div>
             <table>
                 <tr class="inactive">
                     <td>
                         <form id="allowAfternoon" th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
-                            <label for="allowAfternoonHours">allow afternoon hours</label>
+                            <p th:text="${_hoursWidget.afternoonHours() + ': '}"></p>
+                            <label for="allowAfternoonHours" th:text="${_locale.allowTranslation()}"></label>
                             <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
-                            <label for="disallowAfternoonHours">forbid afternoon hours</label>
+                            <label for="disallowAfternoonHours" th:text="${_locale.forbidTranslation()}"></label>
                             <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
                         </form>
                     </td>
@@ -32,7 +33,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p>Select global opening hours:</p>
+                <p th:text="${_locale.selectGlobalHoursTranslation()} + ': '"></p>
             </div>
         <table>
             <tbody>
@@ -42,27 +43,25 @@
                     </td>
                     <td>
                         <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
+                           th:text="${_locale.editTranslation()}"
                            class="button blue">
-                            edit
                         </a>
                     </td>
                     <td>
                         <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/activate'}" method="post">
-                            <input type="hidden" name value="">
-                            <input type="submit" class="button green" value="activate">
+                            <input type="submit" class="button green" th:value="${_locale.activateTranslation()}">
                         </form>
                     </td>
                     <td>
                         <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/delete'}" method="post">
-                            <input type="hidden" name value="">
-                            <input type="submit" class="button orange" value="delete">
+                            <input type="submit" class="button orange" th:value="${_locale.deleteTranslation()}">
                         </form>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <form id="createWeeklyHours" th:action="@{/super-admin/hours/create}" method="post">
-                            <label for="name">create new hours:</label>
+                            <label for="name" th:text="${_locale.createTranslation() + ' ' + _locale.openingHoursTranslation()}"></label>
                             <input id="name" name="name" required>
                         </form>
                     </td>
@@ -74,6 +73,6 @@
         </table>
         </div>
 
-        <a href="/super-admin" class="button orange">back</a>
+        <a href="/super-admin" class="button orange" th:value="${_locale.backTranslation()}"></a>
     </body>
 </html>

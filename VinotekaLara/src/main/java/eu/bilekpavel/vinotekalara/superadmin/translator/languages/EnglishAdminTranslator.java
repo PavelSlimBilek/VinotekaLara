@@ -21,7 +21,9 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "edit",
                 "back",
                 "select global opening hours",
-                "current opening hours"
+                "current opening hours",
+                "remove",
+                "create"
         );
     }
 }

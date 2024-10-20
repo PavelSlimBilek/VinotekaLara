@@ -20,7 +20,9 @@ public class GermanAdminTranslator extends AbstractAdminTranslator {
                 "bearbeiten",
                 "zurück",
                 "Globale Öffnungszeiten auswählen",
-                "Aktuelle Öffnungszeiten"
+                "Aktuelle Öffnungszeiten",
+                "entfernen",
+                "erstellen"
         );
     }
 }
