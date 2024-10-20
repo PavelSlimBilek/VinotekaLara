@@ -1,6 +1,5 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator;
 
-import eu.bilekpavel.vinotekalara.app.AppSettings;
 import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.superadmin.openinghours;
 
-import eu.bilekpavel.vinotekalara.app.Allow;
+import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;

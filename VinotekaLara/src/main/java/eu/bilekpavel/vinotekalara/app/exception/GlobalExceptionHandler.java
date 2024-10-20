@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.app;
+package eu.bilekpavel.vinotekalara.app.exception;
 
 import eu.bilekpavel.vinotekalara.translator.error.LocalizedStringException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

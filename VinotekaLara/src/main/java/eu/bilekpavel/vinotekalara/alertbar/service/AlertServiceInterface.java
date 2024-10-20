@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.alertbar.service;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.app.Color;
+import eu.bilekpavel.vinotekalara.app.dto.Color;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;

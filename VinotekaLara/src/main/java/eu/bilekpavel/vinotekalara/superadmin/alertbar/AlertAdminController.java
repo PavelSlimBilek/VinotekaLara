@@ -1,10 +1,9 @@
 package eu.bilekpavel.vinotekalara.superadmin.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
-import eu.bilekpavel.vinotekalara.app.Allow;
-import eu.bilekpavel.vinotekalara.app.Color;
+import eu.bilekpavel.vinotekalara.app.dto.Allow;
+import eu.bilekpavel.vinotekalara.app.dto.Color;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
