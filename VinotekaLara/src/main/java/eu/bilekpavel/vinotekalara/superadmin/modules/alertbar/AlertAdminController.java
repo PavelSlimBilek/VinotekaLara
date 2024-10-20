@@ -115,7 +115,8 @@ public class AlertAdminController extends SuperAdminController {
                 new AlertRequest(List.of(
                         new LocalizedStringRequest("Základní text", "cz"),
                         new LocalizedStringRequest("Base text", "en"),
-                        new LocalizedStringRequest("Basistext", "de")),
+                        new LocalizedStringRequest("Basistext", "de"),
+                        new LocalizedStringRequest("Основний текст", "uk")),
                         "#FFF")
         );
         attributes.addAttribute("message", "Successfully created");
