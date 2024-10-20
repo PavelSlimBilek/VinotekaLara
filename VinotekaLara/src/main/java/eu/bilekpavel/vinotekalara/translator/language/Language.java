@@ -7,7 +7,8 @@ public enum Language {
 
     CZECH("cz", "česky"),
     ENGLISH("en", "english"),
-    GERMAN("de", "deutsch");
+    GERMAN("de", "deutsch"),
+    UKRAINIAN("uk", "український");
 
     private final String code;
     private final String selfName;

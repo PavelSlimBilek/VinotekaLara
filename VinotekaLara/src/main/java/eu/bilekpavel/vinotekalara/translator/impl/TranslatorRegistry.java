@@ -7,6 +7,7 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 import eu.bilekpavel.vinotekalara.translator.language.languages.Czech;
 import eu.bilekpavel.vinotekalara.translator.language.languages.English;
 import eu.bilekpavel.vinotekalara.translator.language.languages.German;
+import eu.bilekpavel.vinotekalara.translator.language.languages.Ukrainian;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -24,12 +25,14 @@ public class TranslatorRegistry implements TranslatorRegistryInterface {
             AppConfig config,
             Czech czech,
             English english,
-            German german
+            German german,
+            Ukrainian ukrainian
     ) {
         Map<String, Translator>locales = new HashMap<>();
         locales.put(czech.getLang().getCode(), czech);
         locales.put(english.getLang().getCode(), english);
         locales.put(german.getLang().getCode(), german);
+        locales.put(ukrainian.getLang().getCode(), ukrainian);
 
         LOCALES = Collections.unmodifiableMap(locales);
         this.config = config;
