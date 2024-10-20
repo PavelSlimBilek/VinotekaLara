@@ -9,9 +9,18 @@ import org.springframework.stereotype.Component;
 public class GermanAdminTranslator extends AbstractAdminTranslator {
     public GermanAdminTranslator() {
         super(
+                "Einstellungen",
                 "Öffnungszeiten",
                 "Anwendung",
-                "Alarmleiste"
+                "Alarmleiste",
+                "erlauben",
+                "verbieten",
+                "aktivieren",
+                "absenden",
+                "bearbeiten",
+                "zurück",
+                "Globale Öffnungszeiten auswählen",
+                "Aktuelle Öffnungszeiten"
         );
     }
 }

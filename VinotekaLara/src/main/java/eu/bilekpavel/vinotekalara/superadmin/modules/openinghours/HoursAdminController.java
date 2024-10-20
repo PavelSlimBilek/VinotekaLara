@@ -1,9 +1,12 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.openinghours;
 
+import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
+import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
+import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -17,27 +20,54 @@ import java.time.DayOfWeek;
 public class HoursAdminController extends SuperAdminController {
 
     private final WeeklyHoursServiceInterface service;
+    private final AppConfig config;
 
     public HoursAdminController(
             WeeklyHoursServiceInterface service,
-            TranslatorRegistry LOCALES
+            TranslatorRegistry LOCALES,
+            AdminPageContentProviderInterface CONTENT_PROVIDER,
+            AppConfig config
     ) {
-        super(LOCALES);
+        super(LOCALES, CONTENT_PROVIDER);
         this.service = service;
+        this.config = config;
     }
 
     @GetMapping("/hours")
-    public String list(Model model, @RequestParam(required = false) String message) {
+    public String list(
+            Model model,
+            @RequestParam(required = false) String message,
+            @RequestParam(required = false) String lang,
+            RedirectAttributes attributes
+    ) {
+        Translator locale = lang == null || lang.isEmpty() || !LOCALES.isOnTheList(lang)
+                ? LOCALES.getLocale(config.getDEFAULT().getCode())
+                : LOCALES.getLocale(lang);
+
         model.addAttribute("_openingHours", service.getWidgetData());
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
+        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         model.addAttribute("_message", message == null ? "" : message);
+        attributes.addAttribute("lang", locale.getCode());
         return "admin/hours/index";
     }
 
     @GetMapping("/hours/{id}")
-    public String detail(Model model, @PathVariable int id) {
+    public String detail(
+            Model model,
+            @PathVariable int id,
+            @RequestParam(required = false) String lang,
+            RedirectAttributes attributes
+    ) {
+        Translator locale = lang == null || lang.isEmpty() || !LOCALES.isOnTheList(lang)
+                ? LOCALES.getLocale(config.getDEFAULT().getCode())
+                : LOCALES.getLocale(lang);
+
         model.addAttribute("_openingHours", service.get(id));
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
+        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
+        attributes.addAttribute("lang", locale.getCode());
+
         return "/admin/hours/detail";
     }
 

@@ -9,9 +9,18 @@ import org.springframework.stereotype.Component;
 public class CzechAdminTranslator extends AbstractAdminTranslator {
     public CzechAdminTranslator() {
         super(
+                "nastavení",
                 "otevírací hodiny",
                 "aplikace",
-                "lišta upozornění"
+                "lišta upozornění",
+                "povolit",
+                "zakázat",
+                "aktivovat",
+                "odeslat",
+                "upravit",
+                "zpět",
+                "zvolte globální otevírací dobu",
+                "aktuální otevírací doba"
         );
     }
 }

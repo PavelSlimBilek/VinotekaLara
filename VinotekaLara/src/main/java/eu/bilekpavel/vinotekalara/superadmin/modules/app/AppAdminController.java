@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.app;
 
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
+import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -15,9 +16,10 @@ public class AppAdminController extends SuperAdminController{
 
     public AppAdminController(
             TranslatorRegistry LOCALES,
+            AdminPageContentProviderInterface CONTENT_PROVIDER,
             AppServiceInterface service
     ) {
-        super(LOCALES);
+        super(LOCALES, CONTENT_PROVIDER);
         this.service = service;
     }
 

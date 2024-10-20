@@ -10,8 +10,18 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
 
     public EnglishAdminTranslator() {
         super(
+                "settings",
                 "opening hours",
                 "application",
-                "alert bar");
+                "alert bar",
+                "allow",
+                "forbid",
+                "activate",
+                "submit",
+                "edit",
+                "back",
+                "select global opening hours",
+                "current opening hours"
+        );
     }
 }

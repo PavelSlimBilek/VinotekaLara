@@ -4,6 +4,7 @@ import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.dto.Color;
+import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
@@ -26,9 +27,10 @@ public class AlertAdminController extends SuperAdminController {
     public AlertAdminController(
             TranslatorRegistry LOCALES,
             AlertServiceInterface alertService,
-            TranslatorDataFactory translatorDataFactory
+            TranslatorDataFactory translatorDataFactory,
+            AdminPageContentProviderInterface CONTENT_PROVIDER
     ) {
-        super(LOCALES);
+        super(LOCALES, CONTENT_PROVIDER);
         service = alertService;
         translatorDataProvider = translatorDataFactory;
     }

@@ -11,4 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public abstract class SuperAdminController {
 
     protected final TranslatorRegistry LOCALES;
+    protected final AdminPageContentProviderInterface CONTENT_PROVIDER;
+
 }
