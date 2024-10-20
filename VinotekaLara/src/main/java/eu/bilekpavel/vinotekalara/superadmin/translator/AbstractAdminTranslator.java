@@ -13,6 +13,8 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     public final String BACK_TRANSLATION;
     public final String DELETE_TRANSLATION;
     public final String CREATE_TRANSLATION;
+    public final String NAME_TRANSLATION;
+    public final String APPLY_TRANSLATION;
 
     public final String SELECT_GLOBAL_HOURS_TRANSLATION;
     public final String ACTIVE_HOURS_TRANSLATION;
@@ -32,7 +34,9 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String selectGlobalHoursTranslation,
             String activeHoursTranslation,
             String deleteTranslation,
-            String createTranslation
+            String createTranslation,
+            String nameTranslation,
+            String applyTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -46,6 +50,8 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
         this.BACK_TRANSLATION = backTranslation;
         this.DELETE_TRANSLATION = deleteTranslation;
         this.CREATE_TRANSLATION = createTranslation;
+        this.NAME_TRANSLATION = nameTranslation;
+        this.APPLY_TRANSLATION = applyTranslation;
 
         this.SELECT_GLOBAL_HOURS_TRANSLATION = selectGlobalHoursTranslation;
         this.ACTIVE_HOURS_TRANSLATION = activeHoursTranslation;
@@ -104,6 +110,16 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     @Override
     public String getDeleteTranslation() {
         return DELETE_TRANSLATION;
+    }
+
+    @Override
+    public String getNameTranslation() {
+        return NAME_TRANSLATION;
+    }
+
+    @Override
+    public String getApplyTranslation() {
+        return APPLY_TRANSLATION;
     }
 
     @Override

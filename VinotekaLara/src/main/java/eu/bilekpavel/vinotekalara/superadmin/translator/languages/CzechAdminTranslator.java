@@ -22,7 +22,9 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "zvolte globální otevírací dobu",
                 "aktuální otevírací doba",
                 "smazat",
-                "vytvořit"
+                "vytvořit",
+                "název",
+                "použít"
         );
     }
 }

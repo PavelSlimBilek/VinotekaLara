@@ -6,19 +6,19 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <h2 th:text="${_openingHours.userIdentifier()}"></h2>
+    <h2 th:text="${_locale.openingHoursTranslation() + ': ' + _openingHours.userIdentifier()}"></h2>
 
     <div class="card">
         <table>
             <tr>
                 <td>
                     <form id="hoursName" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/identifier'}" method="post">
-                        <label for="name">name:</label>
+                        <label for="name" th:text="${_locale.nameTranslation()} + ':'"></label>
                         <input id="name" name="name" required>
                     </form>
                 </td>
                 <td>
-                    <input form="hoursName" type="submit" value="set" class="button green">
+                    <input form="hoursName" type="submit" th:value="${_locale.submitTranslation()}" class="button green">
                 </td>
             </tr>
         </table>
@@ -28,7 +28,7 @@
         <table>
             <tr class="inactive">
                 <td>
-                    <span>Monday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(0).translation()}"></span>
                     <!-- MONDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/monday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.monday() == null || _openingHours.monday().morningHours() == null
@@ -49,14 +49,14 @@
                                                                                           : _openingHours.monday().afternoonHours().end()}
                                     ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
 
             <tr class="inactive">
                 <td>
-                    <span>Tuesday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(1).translation()}"></span>
                     <!-- TUESDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/tuesday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().morningHours() == null
@@ -77,14 +77,14 @@
                                                                                           : _openingHours.tuesday().afternoonHours().end()}
                                     ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
 
             <tr class="inactive">
                 <td>
-                    <span>Wednesday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(2).translation()}"></span>
                     <!-- WEDNESDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/wednesday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().morningHours() == null
@@ -105,14 +105,14 @@
                                                                                           : _openingHours.wednesday().afternoonHours().end()}
                                     ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
 
             <tr class="inactive">
                 <td>
-                    <span>Thursday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(3).translation()}"></span>
                     <!-- THURSDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/thursday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.thursday() == null || _openingHours.thursday().morningHours() == null
@@ -133,14 +133,14 @@
                                                                                           : _openingHours.thursday().afternoonHours().end()}
                                     ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
 
             <tr class="inactive">
                 <td>
-                    <span>Friday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(4).translation()}"></span>
                     <!-- FRIDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/friday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.friday() == null || _openingHours.friday().morningHours() == null
@@ -161,14 +161,14 @@
                                                                                           : _openingHours.friday().afternoonHours().end()}
                                     ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
 
             <tr class="inactive">
                 <td>
-                    <span>Saturday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(5).translation()}"></span>
                     <!-- SATURDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/saturday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.saturday() == null || _openingHours.saturday().morningHours() == null
@@ -189,14 +189,14 @@
                                                                                           : _openingHours.saturday().afternoonHours().end()}
                                     ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
 
             <tr class="inactive">
                 <td>
-                    <span>Sunday: </span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(6).translation()}"></span>
                     <!-- SUNDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/sunday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.sunday() == null || _openingHours.sunday().morningHours() == null
@@ -217,17 +217,16 @@
                                                                                       : _openingHours.sunday().afternoonHours().end()}
                                 ">
 
-                        <input type="submit" value="update" class="button green">
+                        <input type="submit" th:value="${_locale.applyTranslation()}" class="button green">
                     </form>
                 </td>
             </tr>
         </table>
     </div>
     <div class="buttonPanel">
-        <a href="/super-admin/hours" class="button orange">back</a>
+        <a href="/super-admin/hours" class="button orange" th:text="${_locale.backTranslation()}"></a>
         <form th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/activate'}" method="post">
-            <input type="hidden" name value="">
-            <input type="submit" class="button green" value="activate">
+            <input type="submit" class="button green" th:value="${_locale.activateTranslation()}">
         </form>
     </div>
 </body>

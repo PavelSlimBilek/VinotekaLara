@@ -23,7 +23,9 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getSelectGlobalHoursTranslation(),
                 translator.getActiveHoursTranslation(),
                 translator.getDeleteTranslation(),
-                translator.getCreateTranslation()
+                translator.getCreateTranslation(),
+                translator.getNameTranslation(),
+                translator.getApplyTranslation()
         );
     }
 }

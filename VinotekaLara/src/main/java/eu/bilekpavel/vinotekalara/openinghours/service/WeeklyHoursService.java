@@ -202,7 +202,6 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
 
     @Override
     public void allowAfternoonHours(boolean isAllowed) {
-        System.out.println(isAllowed);
         config.allowAfternoonHours(isAllowed);
     }
 

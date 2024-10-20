@@ -12,8 +12,11 @@ public interface AdminTranslatorInterface {
     String getEditTranslation();
     String getBackTranslation();
     String getDeleteTranslation();
-    String getCreateTranslation();
+    String getNameTranslation();
+    String getApplyTranslation();
 
+    String getCreateTranslation();
     String getSelectGlobalHoursTranslation();
+
     String getActiveHoursTranslation();
 }

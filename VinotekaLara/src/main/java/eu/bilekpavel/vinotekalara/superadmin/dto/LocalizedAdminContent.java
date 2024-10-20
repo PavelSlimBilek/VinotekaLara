@@ -14,6 +14,8 @@ public record LocalizedAdminContent(
         String selectGlobalHoursTranslation,
         String activeHoursTranslation,
         String deleteTranslation,
-        String createTranslation
+        String createTranslation,
+        String nameTranslation,
+        String applyTranslation
 ) {
 }
