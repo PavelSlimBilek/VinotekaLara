@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.superadmin.app;
+package eu.bilekpavel.vinotekalara.superadmin.modules.app;
 
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
@@ -26,7 +26,7 @@ public class AppAdminController extends SuperAdminController{
             Model model,
             @RequestParam(required = false) String message
     ) {
-        model.addAttribute("_languageWidget", service.getLanguageWidgetData());
+        model.addAttribute("_localizationWidget", service.getLanguageWidgetData());
         model.addAttribute("_message", message == null ? "" : message);
 
         return "/admin/app/index";

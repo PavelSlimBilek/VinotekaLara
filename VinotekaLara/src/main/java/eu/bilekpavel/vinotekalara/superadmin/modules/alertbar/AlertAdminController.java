@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.superadmin.alertbar;
+package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;

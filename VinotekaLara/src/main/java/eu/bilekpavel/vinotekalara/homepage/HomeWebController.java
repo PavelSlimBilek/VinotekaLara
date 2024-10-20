@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.homepage;
 
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
-import eu.bilekpavel.vinotekalara.superadmin.AlertBarConfig;
+import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorDataFactory;

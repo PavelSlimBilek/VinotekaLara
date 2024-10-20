@@ -2,6 +2,8 @@ package eu.bilekpavel.vinotekalara.translator.impl;
 
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
+import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
+import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -14,17 +16,20 @@ public abstract class Locale implements Translator {
 
     private final OpeningHoursTranslatorInterface hoursTranslator;
     private final HomePageTranslatorInterface pageTranslator;
+    private final AdminTranslatorInterface adminTranslator;
 
     public Locale(
             Language language,
             Flag flag,
             OpeningHoursTranslatorInterface hoursTranslator,
-            HomePageTranslatorInterface pageTranslator
+            HomePageTranslatorInterface pageTranslator,
+            AdminTranslatorInterface adminTranslator
     ) {
         this.language = language;
         this.flag = flag;
         this.hoursTranslator = hoursTranslator;
         this.pageTranslator = pageTranslator;
+        this.adminTranslator = adminTranslator;
     }
 
     @Override
@@ -61,5 +66,10 @@ public abstract class Locale implements Translator {
     @Override
     public OpeningHoursTranslatorInterface getHoursTranslator() {
         return hoursTranslator;
+    }
+
+    @Override
+    public AdminTranslatorInterface getAdminTranslator() {
+        return adminTranslator;
     }
 }

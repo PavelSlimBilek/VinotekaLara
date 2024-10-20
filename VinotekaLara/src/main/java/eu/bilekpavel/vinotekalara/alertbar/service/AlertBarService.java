@@ -7,7 +7,7 @@ import eu.bilekpavel.vinotekalara.alertbar.domain.Alert;
 import eu.bilekpavel.vinotekalara.alertbar.domain.AlertBuilder;
 import eu.bilekpavel.vinotekalara.alertbar.repository.AlertRepositoryInterface;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
-import eu.bilekpavel.vinotekalara.superadmin.AlertBarConfig;
+import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;

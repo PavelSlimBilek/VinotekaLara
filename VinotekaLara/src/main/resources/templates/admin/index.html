@@ -2,15 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Superadmin 0.4</title>
+        <title>Super Admin 0.4</title>
     </head>
     <body>
-        <h1>Superadmin 0.4</h1>
+        <h1>Super Admin 0.4</h1>
         <div class="card">
-        <a href="super-admin/app">App</a>
+        <a href="super-admin/app" th:text="${_locale.appTranslation()}"></a>
         <br>
-        <a href="super-admin/alert">Alert Bar</a>
+        <a href="super-admin/alert" th:text="${_locale.alertBarTranslation()}"></a>
         <br>
-        <a href="super-admin/hours">Opening Hours</a>
+        <a href="super-admin/hours" th:text="${_locale.openingHoursTranslation()}"></a>
     </body>
 </html>

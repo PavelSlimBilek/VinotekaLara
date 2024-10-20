@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.superadmin;
+package eu.bilekpavel.vinotekalara.alertbar.config;
 
 import lombok.Getter;
 import org.springframework.context.annotation.Configuration;

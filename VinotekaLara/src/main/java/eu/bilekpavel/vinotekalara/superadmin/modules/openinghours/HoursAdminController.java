@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.superadmin.openinghours;
+package eu.bilekpavel.vinotekalara.superadmin.modules.openinghours;
 
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;

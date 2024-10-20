@@ -9,7 +9,7 @@
 
     <div th:fragment="localeSwitcher">
         <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
-        <div th:each="locale : ${_localizationWidget.locales()}">
+        <div th:if="${_localizationWidget.allowedLanguages().size() > 1}" th:each="locale : ${_localizationWidget.locales()}">
             <!--/*@thymesVar id="_requestURI" type="java.lang.String"*/-->
             <a th:href="@{|?lang=${locale.getCode()}&return=${_requestURI}|}"
                th:if="${_localizationWidget.allowedLanguages().contains(locale.getLang())}">
