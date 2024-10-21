@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.superadmin.translator;
 
-public class AbstractAdminTranslator implements AdminTranslatorInterface {
+public abstract class AbstractAdminTranslator implements AdminTranslatorInterface {
     public final String SETTINGS_TRANSLATION;
     public final String OPENING_HOURS_TRANSLATION;
     public final String APP_TRANSLATION;
@@ -16,6 +16,7 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     public final String NAME_TRANSLATION;
     public final String APPLY_TRANSLATION;
     public final String APP_SETTINGS_TRANSLATION;
+    public final String PREVIEW_TRANSLATION;
 
     public final String SELECT_GLOBAL_HOURS_TRANSLATION;
     public final String ACTIVE_HOURS_TRANSLATION;
@@ -68,7 +69,8 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String blueTranslation,
             String setOpeningHoursTranslation,
             String fontColorTranslation,
-            String selectFontTranslation
+            String selectFontTranslation,
+            String previewTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -85,6 +87,7 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
         this.NAME_TRANSLATION = nameTranslation;
         this.APPLY_TRANSLATION = applyTranslation;
         this.APP_SETTINGS_TRANSLATION = appSettingsTranslation;
+        this.PREVIEW_TRANSLATION = previewTranslation;
 
         this.SELECT_GLOBAL_HOURS_TRANSLATION = selectGlobalHoursTranslation;
         this.ACTIVE_HOURS_TRANSLATION = activeHoursTranslation;
@@ -165,6 +168,11 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     @Override
     public String getNameTranslation() {
         return NAME_TRANSLATION;
+    }
+
+    @Override
+    public String getPreviewTranslation() {
+        return PREVIEW_TRANSLATION;
     }
 
     @Override

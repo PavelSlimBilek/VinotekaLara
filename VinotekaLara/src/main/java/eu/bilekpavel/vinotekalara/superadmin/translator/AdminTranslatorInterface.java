@@ -13,8 +13,9 @@ public interface AdminTranslatorInterface {
     String getBackTranslation();
     String getDeleteTranslation();
     String getNameTranslation();
-    String getApplyTranslation();
+    String getPreviewTranslation();
 
+    String getApplyTranslation();
     String getCreateTranslation();
     String getActiveHoursTranslation();
     String getSelectGlobalHoursTranslation();
@@ -23,16 +24,17 @@ public interface AdminTranslatorInterface {
     String getAppSettingsTranslation();
     String getAllowAlertBarTranslation();
     String getDisplayAlertBarTranslation();
-    String getSelectActiveAlertTranslation();
 
+    String getSelectActiveAlertTranslation();
     String getCreateAlertBarTranslation();
     String getUpdateLocalizationsTranslation();
     String getBackgroundColorTranslation();
     String getRedTranslation();
     String getBlueTranslation();
-    String getGreenTranslation();
 
+    String getGreenTranslation();
     String getSetOpeningHoursTranslation();
     String getFontColorTranslation();
+
     String getSelectFontTranslation();
 }

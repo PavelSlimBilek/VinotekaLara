@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Qualifier("englishAdmin")
-public class EnglishAdminTranslator extends AbstractAdminTranslator {
+public final class EnglishAdminTranslator extends AbstractAdminTranslator {
 
     public EnglishAdminTranslator() {
         super(
@@ -40,7 +40,8 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "blue",
                 "set opening hours",
                 "font color",
-                "select font"
+                "select font",
+                "preview"
         );
     }
 }

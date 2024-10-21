@@ -40,7 +40,8 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getBlueTranslation(),
                 translator.getSetOpeningHoursTranslation(),
                 translator.getFontColorTranslation(),
-                translator.getSelectFontTranslation()
+                translator.getSelectFontTranslation(),
+                translator.getPreviewTranslation()
         );
     }
 }

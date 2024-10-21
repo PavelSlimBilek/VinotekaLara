@@ -39,7 +39,8 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "modrá",
                 "upravte otevírací hodiny",
                 "barva písma",
-                "zvolte písmo"
+                "zvolte písmo",
+                "náhled"
         );
     }
 }
