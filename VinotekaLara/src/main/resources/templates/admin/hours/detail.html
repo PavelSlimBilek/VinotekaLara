@@ -17,7 +17,7 @@
                 <td>
                     <form id="hoursName" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/identifier'}" method="post">
                         <label for="name" th:text="${_locale.nameTranslation()} + ':'"></label>
-                        <input id="name" name="name" required>
+                        <input id="name" name="name" th:value="${_openingHours.userIdentifier()}" required>
                     </form>
                 </td>
                 <td>
