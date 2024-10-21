@@ -17,19 +17,21 @@ public interface AlertServiceInterface {
     LocalizedAlert getLocalized(int id, Language language);
     List<LocalizedAlert> getAllLocalized(Language lang, boolean allowRemoved);
 
-    void updateColor(int id, Color color);
+    void updateBackgroundColor(int id, Color color);
+    void updateFontColor(int id, Color color);
+
     void updateLocalization(int id, LocalizedStringRequest request);
 
     Optional<AlertFullData> get(int id);
-
     void setActive(int id);
-    LocalizedAlert getActive(Language language);
 
+    LocalizedAlert getActive(Language language);
     void allow(boolean isAllowed);
     void display(boolean isDisplayed);
-    void toggle();
 
+    void toggle();
     boolean isAllowed(); // adjustable from super-admin
+
     boolean isDisplayed(); // adjustable from custom-admin
 
     void delete(int id);

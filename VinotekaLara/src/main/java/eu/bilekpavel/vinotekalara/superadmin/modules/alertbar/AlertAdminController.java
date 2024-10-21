@@ -76,10 +76,21 @@ public class AlertAdminController extends SuperAdminController {
         return "redirect:/super-admin/alert";
     }
 
-    @PostMapping("/alert/{id}/color")
-    public String updateColor(@PathVariable int id,
-                              Color color) {
-        service.updateColor(id, color);
+    @PostMapping("/alert/{id}/background-color")
+    public String updateColor(
+            @PathVariable int id,
+            Color color
+    ) {
+        service.updateBackgroundColor(id, color);
+        return "redirect:/super-admin/alert/" + id;
+    }
+
+    @PostMapping("/alert/{id}/font-color")
+    public String updateFontColor(
+            @PathVariable int id,
+            Color color
+    ) {
+        service.updateFontColor(id, color);
         return "redirect:/super-admin/alert/" + id;
     }
 

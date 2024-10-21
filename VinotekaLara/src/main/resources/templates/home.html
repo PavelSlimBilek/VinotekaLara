@@ -9,7 +9,7 @@
         <nav>
         </nav>
         <main>
-            <div th:if="${_isAlertBarAllowed && _isAlertBarDisplayed}" th:style="'background-color: ' + ${_alertBar.backgroundColor()}">
+            <div th:if="${_isAlertBarAllowed && _isAlertBarDisplayed}" th:style="'background-color: ' + ${_alertBar.backgroundColor()} + '; color: ' + ${_alertBar.fontColor()}">
                 <p class="alertBar" th:text="${_alertBar.content().content()}"></p>
             </div>
 

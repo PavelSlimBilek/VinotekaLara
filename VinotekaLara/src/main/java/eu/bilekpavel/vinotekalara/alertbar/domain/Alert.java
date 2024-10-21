@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,21 +25,21 @@ public class Alert {
     @ElementCollection
     private final Map<Language, String> localizations;
 
-    @Setter
     @Embedded
+    @Setter
     @AttributeOverrides({
-            @AttributeOverride( name = "red", column = @Column(name = "background_red")),
-            @AttributeOverride( name = "green", column = @Column(name = "background_green")),
-            @AttributeOverride( name = "blue", column = @Column(name = "background_blue"))
+            @AttributeOverride(name = "red", column = @Column(name = "background_red")),
+            @AttributeOverride(name = "green", column = @Column(name = "background_green")),
+            @AttributeOverride(name = "blue", column = @Column(name = "background_blue"))
     })
     private Color backgroundColor;
 
-    @Setter
     @Embedded
+    @Setter
     @AttributeOverrides({
-            @AttributeOverride( name = "red", column = @Column(name = "font_red")),
-            @AttributeOverride( name = "green", column = @Column(name = "font_green")),
-            @AttributeOverride( name = "blue", column = @Column(name = "font_blue"))
+            @AttributeOverride(name = "red", column = @Column(name = "font_red")),
+            @AttributeOverride(name = "green", column = @Column(name = "font_green")),
+            @AttributeOverride(name = "blue", column = @Column(name = "font_blue"))
     })
     private Color fontColor;
 

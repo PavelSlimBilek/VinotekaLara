@@ -6,6 +6,7 @@ public record LocalizedAlert(
         int id,
         boolean isActive,
         LocalizedString content,
-        String backgroundColor
+        String backgroundColor,
+        String fontColor
 ) {
 }
