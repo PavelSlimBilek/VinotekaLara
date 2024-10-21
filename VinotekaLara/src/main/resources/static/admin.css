@@ -114,11 +114,11 @@ td {
 }
 
 tr:first-child td {
-    border-top: none; /* Prevents double border at the top */
+    border-top: none;
 }
 
 tr:last-child td {
-    border-bottom: none; /* Prevents double border at the bottom */
+    border-bottom: none;
 }
 
 tr {
@@ -133,10 +133,12 @@ input {
 .cardDescription {
     background-color: #e7e7e7;
     margin: 0;
-    padding: .2rem;
+    padding: .3rem;
 }
 
 .cardDescription > p {
     font-size: .7rem;
     font-weight: bold;
+    text-transform: uppercase;
+    content: ":";
 }

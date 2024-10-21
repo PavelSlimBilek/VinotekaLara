@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Opening hours</title>
-        <link rel="stylesheet" th:href="@{/style.css}">
+        <link rel="stylesheet" th:href="@{/admin.css}">
     </head>
     <body>
         <h1 th:text="${_locale.activeHoursTranslation()} + ': ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
@@ -11,7 +11,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.settingsTranslation()} + ': '"></p>
+                <p th:text="${_locale.settingsTranslation()}"></p>
             </div>
             <table>
                 <tr class="inactive">
@@ -33,7 +33,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.selectGlobalHoursTranslation()} + ': '"></p>
+                <p th:text="${_locale.selectGlobalHoursTranslation()}"></p>
             </div>
         <table>
             <tbody>

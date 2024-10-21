@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>App settings</title>
-        <link rel="stylesheet" th:href="@{/style.css}">
+        <link rel="stylesheet" th:href="@{/admin.css}">
     </head>
     <body>
         <h1 th:text="${_locale.appSettingsTranslation()}"></h1>
@@ -11,7 +11,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.selectDefaultLanguageTranslation()} + ':'"></p>
+                <p th:text="${_locale.selectDefaultLanguageTranslation()}"></p>
             </div>
             <table>
                 <tr>

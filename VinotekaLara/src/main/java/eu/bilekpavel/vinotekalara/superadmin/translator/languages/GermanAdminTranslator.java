@@ -36,7 +36,8 @@ public class GermanAdminTranslator extends AbstractAdminTranslator {
                 "Hintergrundfarbe",
                 "Rot",
                 "Grün",
-                "Blau"
+                "Blau",
+                "Öffnungszeiten bearbeiten"
         );
     }
 }

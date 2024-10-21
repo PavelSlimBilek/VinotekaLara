@@ -30,6 +30,7 @@ public interface AdminTranslatorInterface {
     String getBackgroundColorTranslation();
     String getRedTranslation();
     String getBlueTranslation();
-
     String getGreenTranslation();
+
+    String getSetOpeningHoursTranslation();
 }

@@ -28,6 +28,7 @@ public record LocalizedAdminContent(
         String backgroundColorTranslation,
         String redTranslation,
         String greenTranslation,
-        String blueTranslation
+        String blueTranslation,
+        String setOpeningHoursTranslation
 ) {
 }

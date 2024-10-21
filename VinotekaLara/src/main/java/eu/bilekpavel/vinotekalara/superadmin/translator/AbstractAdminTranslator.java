@@ -19,6 +19,7 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
     public final String SELECT_GLOBAL_HOURS_TRANSLATION;
     public final String ACTIVE_HOURS_TRANSLATION;
+    public final String SET_OPENING_HOURS_TRANLSATION;
 
     public final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     public final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
@@ -62,7 +63,8 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String backgroundColorTranslation,
             String redTranslation,
             String greenTranslation,
-            String blueTranslation
+            String blueTranslation,
+            String setOpeningHoursTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -82,6 +84,7 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
         this.SELECT_GLOBAL_HOURS_TRANSLATION = selectGlobalHoursTranslation;
         this.ACTIVE_HOURS_TRANSLATION = activeHoursTranslation;
+        this.SET_OPENING_HOURS_TRANLSATION = setOpeningHoursTranslation;
 
         this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
         this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
@@ -231,6 +234,11 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     @Override
     public String getGreenTranslation() {
         return GREEN_TRANSLATION;
+    }
+
+    @Override
+    public String getSetOpeningHoursTranslation() {
+        return SET_OPENING_HOURS_TRANLSATION;
     }
 
     @Override

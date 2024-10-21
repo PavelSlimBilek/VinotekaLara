@@ -37,7 +37,8 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "background color",
                 "red",
                 "green",
-                "blue"
+                "blue",
+                "set opening hours"
         );
     }
 }

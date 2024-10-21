@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Opening Hours</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/admin.css}">
 </head>
 <body>
     <h2 th:text="${_locale.openingHoursTranslation() + ': ' + _openingHours.userIdentifier()}"></h2>
 
     <div class="card">
+        <div class="cardDescription">
+            <p th:text="${_locale.nameTranslation()}"></p>
+        </div>
         <table>
             <tr>
                 <td>
@@ -25,6 +28,9 @@
     </div>
 
     <div class="card">
+        <div class="cardDescription">
+            <p th:text="${_locale.setOpeningHoursTranslation()}"></p>
+        </div>
         <table>
             <tr class="inactive">
                 <td>

@@ -28,7 +28,7 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "zvolte výchozí jazyk",
                 "povolit/zakázat jazyky",
                 "nastavení aplikace",
-                "povolit notifikačn lištu",
+                "povolit notifikační lištu",
                 "zobrazit notifikační lištu",
                 "zvolte aktivní lištu",
                 "vytvořit lištu",
@@ -36,7 +36,8 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "barva pozadí",
                 "červená",
                 "zelená",
-                "modrá"
+                "modrá",
+                "upravte otevírací hodiny"
         );
     }
 }
