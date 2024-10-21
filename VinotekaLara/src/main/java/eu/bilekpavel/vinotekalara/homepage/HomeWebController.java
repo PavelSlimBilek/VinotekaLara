@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.homepage;
 
+import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @AllArgsConstructor
 public class HomeWebController {
 
+    private final AppConfig config;
+
     private final HomePageContentProviderInterface pageContentProvider;
     private final TranslatorRegistry localizations;
     private final TranslatorDataFactory translatorDataProvider;
@@ -30,17 +33,19 @@ public class HomeWebController {
                        HttpServletRequest request,
                        @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang) {
 
-        Translator translator = this.localizations.getLocale(lang);
+        Translator locale = lang == null || lang.isEmpty() || !localizations.isOnTheList(lang) ||  !config.isAllowed(lang)
+                ? this.localizations.getLocale(config.getDEFAULT().getCode())
+                : this.localizations.getLocale(lang);
 
         model.addAttribute("_requestURI", request.getRequestURI());
-        model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(translator.getPageTranslator()));
-        model.addAttribute("_localizationWidget", translatorDataProvider.create(translator));
+        model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(locale.getPageTranslator()));
+        model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
 
         model.addAttribute("_isAlertBarDisplayed", alertBarConfig.isDisplayed());
         model.addAttribute("_isAlertBarAllowed", alertBarConfig.isAllowed());
-        model.addAttribute("_alertBar", alertBarService.getActive(translator.getLang()));
+        model.addAttribute("_alertBar", alertBarService.getActive(locale.getLang()));
 
-        model.addAttribute("_hoursWidget", hoursService.getTranslatedData(translator.getHoursTranslator()));
+        model.addAttribute("_hoursWidget", hoursService.getTranslatedData(locale.getHoursTranslator()));
 
         return "home";
     }

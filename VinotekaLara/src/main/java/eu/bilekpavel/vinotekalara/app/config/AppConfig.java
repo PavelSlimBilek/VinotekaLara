@@ -28,4 +28,12 @@ public class AppConfig {
     public void forbid(Language language) {
         ALLOWED.remove(language.getCode());
     }
+
+    public boolean isAllowed(String code) {
+        return ALLOWED.containsKey(code);
+    }
+
+    public boolean isAllowed(Language language) {
+        return ALLOWED.containsValue(language);
+    }
 }
