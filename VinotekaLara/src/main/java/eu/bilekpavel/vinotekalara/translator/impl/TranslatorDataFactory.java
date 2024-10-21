@@ -19,6 +19,7 @@ public class TranslatorDataFactory implements TranslatorDataFactoryInterface {
     public TranslatorData create(Translator translator) {
         return new TranslatorData(
             translator.getCode(),
+            translator.getLang(),
             registry.getSupported(),
             config.getAllowed()
         );
