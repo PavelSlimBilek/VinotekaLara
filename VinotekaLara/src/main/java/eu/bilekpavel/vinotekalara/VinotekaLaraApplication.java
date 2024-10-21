@@ -49,7 +49,8 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 						new LocalizedStringRequest("Máme nový web!", Language.CZECH.getCode()),
 						new LocalizedStringRequest("We have a new website!", Language.ENGLISH.getCode()),
 						new LocalizedStringRequest("Wir haben eine neue Website", Language.GERMAN.getCode()),
-						new LocalizedStringRequest("У нас новий вебсайт!", Language.UKRAINIAN.getCode())
+						new LocalizedStringRequest("У нас новий вебсайт!", Language.UKRAINIAN.getCode()),
+						new LocalizedStringRequest("Nous avons un nouveau site web !", Language.FRENCH.getCode())
 				), "#7777FF"
 		);
 
@@ -58,7 +59,8 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 						new LocalizedStringRequest("Vytvořeno Liborem Skunkem!", Language.CZECH.getCode()),
 						new LocalizedStringRequest("Made by Libor Skunk!", Language.ENGLISH.getCode()),
 						new LocalizedStringRequest("Hergestellt von Libor Skunk!", Language.GERMAN.getCode()),
-						new LocalizedStringRequest("Створено Лібором Скунком!", Language.UKRAINIAN.getCode())
+						new LocalizedStringRequest("Створено Лібором Скунком!", Language.UKRAINIAN.getCode()),
+						new LocalizedStringRequest("Créé par Libor Skunk !", Language.FRENCH.getCode())
 				), "#7777FF"
 		);
 

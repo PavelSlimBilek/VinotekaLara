@@ -4,10 +4,7 @@ import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
-import eu.bilekpavel.vinotekalara.translator.language.languages.Czech;
-import eu.bilekpavel.vinotekalara.translator.language.languages.English;
-import eu.bilekpavel.vinotekalara.translator.language.languages.German;
-import eu.bilekpavel.vinotekalara.translator.language.languages.Ukrainian;
+import eu.bilekpavel.vinotekalara.translator.language.languages.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -26,13 +23,15 @@ public class TranslatorRegistry implements TranslatorRegistryInterface {
             Czech czech,
             English english,
             German german,
-            Ukrainian ukrainian
+            Ukrainian ukrainian,
+            French french
     ) {
         Map<String, Translator>locales = new HashMap<>();
         locales.put(czech.getLang().getCode(), czech);
         locales.put(english.getLang().getCode(), english);
         locales.put(german.getLang().getCode(), german);
         locales.put(ukrainian.getLang().getCode(), ukrainian);
+        locales.put(french.getLang().getCode(), french);
 
         LOCALES = Collections.unmodifiableMap(locales);
         this.config = config;

@@ -31,7 +31,12 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "povolit notifikačn lištu",
                 "zobrazit notifikační lištu",
                 "zvolte aktivní lištu",
-                "vytvořit lištu"
+                "vytvořit lištu",
+                "aktualizovat lokalizace",
+                "barva pozadí",
+                "červená",
+                "zelená",
+                "modrá"
         );
     }
 }

@@ -14,7 +14,7 @@
             </div>
 
             <div class="localizationWidget" th:replace="fragments :: localeSwitcher"></div>
-            <div th:replace="fragments :: navigation"></div>
+            <!-- <div th:replace="fragments :: navigation"></div> -->
 
             <h1 th:text="${_pageContent.welcomeMessage()}"></h1>
             <h2 th:if="${_hoursWidget.todayHours()} != null" th:text="${_hoursWidget.todayHours()}"></h2>

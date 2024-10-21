@@ -32,7 +32,12 @@ public class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "allow alert bar",
                 "display alert bar",
                 "select active alert bar",
-                "create new alert"
+                "create new alert",
+                "update localizations",
+                "background color",
+                "red",
+                "green",
+                "blue"
         );
     }
 }

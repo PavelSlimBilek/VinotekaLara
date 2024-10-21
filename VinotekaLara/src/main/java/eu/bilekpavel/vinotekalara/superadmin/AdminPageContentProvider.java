@@ -26,13 +26,18 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getCreateTranslation(),
                 translator.getNameTranslation(),
                 translator.getApplyTranslation(),
-                translator.getSelectGlobalHoursTranslation(),
+                translator.getSelectDefaultLanguageTranslation(),
                 translator.getToggleLanguagesMessage(),
                 translator.getAppSettingsTranslation(),
                 translator.getAllowAlertBarTranslation(),
                 translator.getDisplayAlertBarTranslation(),
                 translator.getSelectActiveAlertTranslation(),
-                translator.getCreateAlertBarTranslation()
+                translator.getCreateAlertBarTranslation(),
+                translator.getUpdateLocalizationsTranslation(),
+                translator.getBackgroundColorTranslation(),
+                translator.getRedTranslation(),
+                translator.getBlueTranslation(),
+                translator.getGreenTranslation()
         );
     }
 }

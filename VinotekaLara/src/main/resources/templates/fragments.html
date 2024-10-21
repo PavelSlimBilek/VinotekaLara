@@ -57,25 +57,30 @@
     </div>
 
     <div th:fragment="alert_update_localizations">
+        <table>
         <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
-        <div th:each="locale : ${_localizationWidget.locales()}">
-            <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
-            <form th:action="@{'/super-admin/alert/' + ${_alertBar.id()}}" method="post">
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+            <tr th:each="locale : ${_localizationWidget.locales()}" class="inactive">
+                <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
+                <td>
+                    <form th:id="'localization' + ${locale.lang.name()}" th:action="@{'/super-admin/alert/' + ${_alertBar.id()}}" method="post">
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-                <label th:for="${locale.getCode()}"></label>
-                <span>
-                    <img th:src="@{${locale.getFlag().path()}}" th:alt="${locale.getLang().getSelfName()}" class="flag">
-                </span>
+                        <label th:for="${locale.getCode()}"></label>
+                        <span>
+                            <img th:src="@{${locale.getFlag().path()}}" th:alt="${locale.getLang().getSelfName()}" class="flag">
+                        </span>
 
-                <input type="hidden" th:value="${locale.getCode()}" name="langCode">
+                        <input type="hidden" th:value="${locale.getCode()}" name="langCode">
 
-                <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
-                <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload" th:value="${_alertBar.getLocalized(locale.getLang()).content()}">
-
-                <input type="submit" th:value="ok">
-            </form>
-        </div>
+                        <label th:for="${locale.getCode()} + '_alertBarContent'" th:text="${locale.getCode()}"></label>
+                        <input th:id="${locale.getCode()} + '_alertBarContent'" name="payload" th:value="${_alertBar.getLocalized(locale.getLang()).content()}">
+                    </form>
+                </td>
+                <td>
+                    <input type="submit" th:form="'localization' + ${locale.lang.name()}" class="button green" th:value="${_locale.applyTranslation()}">
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours"*/-->

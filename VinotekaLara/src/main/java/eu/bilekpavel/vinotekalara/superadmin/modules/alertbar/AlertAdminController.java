@@ -58,6 +58,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertBar", service.get(id).get());
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
+        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         return "admin/alert-bar/detail";
     }
 
@@ -116,7 +117,9 @@ public class AlertAdminController extends SuperAdminController {
                         new LocalizedStringRequest("Základní text", "cz"),
                         new LocalizedStringRequest("Base text", "en"),
                         new LocalizedStringRequest("Basistext", "de"),
-                        new LocalizedStringRequest("Основний текст", "uk")),
+                        new LocalizedStringRequest("Основний текст", "uk"),
+                        new LocalizedStringRequest("Texte de base", "fr")
+                ),
                         "#FFF")
         );
         attributes.addAttribute("message", "Successfully created");

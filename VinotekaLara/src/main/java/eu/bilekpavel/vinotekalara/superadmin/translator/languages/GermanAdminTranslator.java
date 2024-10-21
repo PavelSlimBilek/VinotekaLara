@@ -31,7 +31,12 @@ public class GermanAdminTranslator extends AbstractAdminTranslator {
                 "Benachrichtigungsleiste erlauben",
                 "Benachrichtigungsleiste anzeigen",
                 "Aktive Benachrichtigungsleiste auswählen",
-                "Eine neue Benachrichtigung erstellen"
+                "Eine neue Benachrichtigung erstellen",
+                "Lokalisierungen aktualisieren",
+                "Hintergrundfarbe",
+                "Rot",
+                "Grün",
+                "Blau"
         );
     }
 }

@@ -23,6 +23,11 @@ public record LocalizedAdminContent(
         String allowAlertBarTranslation,
         String displayAlertBarTranslation,
         String selectActiveAlertTranslation,
-        String createAlertBarTranslation
+        String createAlertBarTranslation,
+        String updateLocalizationsTranslation,
+        String backgroundColorTranslation,
+        String redTranslation,
+        String greenTranslation,
+        String blueTranslation
 ) {
 }

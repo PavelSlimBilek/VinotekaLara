@@ -28,6 +28,12 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     public final String SELECT_ACTIVE_ALERT_TRANSLATION;
     public final String CREATE_ALERT_BAR_TRANSLATION;
 
+    public final String UPDATE_LOCALIZATIONS_TRANSLATION;
+    public final String BACKGROUND_COLOR_TRANSLATION;
+    public final String RED_TRANSLATION;
+    public final String GREEN_TRANSLATION;
+    public final String BLUE_TRANSLATION;
+
     public AbstractAdminTranslator(
             String settingsTranslation,
             String openingHoursTranslation,
@@ -51,7 +57,12 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String allowAlertBarTranslation,
             String displayAlertBarTranslation,
             String selectActiveAlertTranslation,
-            String createAlertBarTranslation
+            String createAlertBarTranslation,
+            String updateLocalizationsTranslation,
+            String backgroundColorTranslation,
+            String redTranslation,
+            String greenTranslation,
+            String blueTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -79,6 +90,12 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
         this.DISPLAY_ALERT_BAR_TRANSLATION = displayAlertBarTranslation;
         this.SELECT_ACTIVE_ALERT_TRANSLATION = selectActiveAlertTranslation;
         this.CREATE_ALERT_BAR_TRANSLATION = createAlertBarTranslation;
+
+        this.UPDATE_LOCALIZATIONS_TRANSLATION = updateLocalizationsTranslation;
+        this.BACKGROUND_COLOR_TRANSLATION = backgroundColorTranslation;
+        this.RED_TRANSLATION = redTranslation;
+        this.GREEN_TRANSLATION = greenTranslation;
+        this.BLUE_TRANSLATION = blueTranslation;
     }
 
     @Override
@@ -157,6 +174,11 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     }
 
     @Override
+    public String getSelectDefaultLanguageTranslation() {
+        return SELECT_DEFAULT_LANGUAGE_TRANSLATION;
+    }
+
+    @Override
     public String getToggleLanguagesMessage() {
         return TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
     }
@@ -184,6 +206,31 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
     @Override
     public String getCreateAlertBarTranslation() {
         return CREATE_ALERT_BAR_TRANSLATION;
+    }
+
+    @Override
+    public String getUpdateLocalizationsTranslation() {
+        return UPDATE_LOCALIZATIONS_TRANSLATION;
+    }
+
+    @Override
+    public String getBackgroundColorTranslation() {
+        return BACKGROUND_COLOR_TRANSLATION;
+    }
+
+    @Override
+    public String getRedTranslation() {
+        return RED_TRANSLATION;
+    }
+
+    @Override
+    public String getBlueTranslation() {
+        return BLUE_TRANSLATION;
+    }
+
+    @Override
+    public String getGreenTranslation() {
+        return GREEN_TRANSLATION;
     }
 
     @Override
