@@ -142,11 +142,3 @@ input {
     text-transform: uppercase;
     content: ":";
 }
-
-.previewBox {
-    height: 3rem;
-}
-
-.previewBox > p {
-    text-align: center;
-}

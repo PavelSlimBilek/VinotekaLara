@@ -19,26 +19,35 @@ class ColorPicker {
         this.colorBox = colorBox;
     }
 
-    updateColor(color) {
-        this.colorBox.style.backgroundColor = color.toValue();
-        this.colorBox.innerText = color.toValue();
+    updateColor(backgroundColor, fontColor) {
+        this.colorBox.style.backgroundColor = backgroundColor.toValue();
+        this.colorBox.style.color = fontColor.toValue();
     }
 }
 
 function updateColor() {
-    let red = document.getElementById('red').value;
-    let green = document.getElementById('green').value;
+    let bckRed = document.getElementById('bckRed').value;
+    let bckGreen = document.getElementById('bckGreen').value;
+    let bckBlue = document.getElementById('bckBlue').value;
 
-    let blue = document.getElementById('blue').value;
-    let color = new Color(red, green, blue);
-    colorPicker.updateColor(color);
+    let fntRed = document.getElementById('fntRed').value;
+    let fntGreen = document.getElementById('fntGreen').value;
+    let fntBlue = document.getElementById('fntBlue').value;
+
+    let backgroundColor = new Color(bckRed, bckGreen, bckBlue);
+    let fontColor = new Color(fntRed, fntGreen, fntBlue);
+    colorPicker.updateColor(backgroundColor, fontColor);
 
 }
 
-document.getElementById('red').addEventListener('input', updateColor);
-document.getElementById('green').addEventListener('input', updateColor);
-document.getElementById('blue').addEventListener('input', updateColor);
+document.getElementById('bckRed').addEventListener('input', updateColor);
+document.getElementById('bckGreen').addEventListener('input', updateColor);
+document.getElementById('bckBlue').addEventListener('input', updateColor);
+
+document.getElementById('fntRed').addEventListener('input', updateColor);
+document.getElementById('fntGreen').addEventListener('input', updateColor);
+document.getElementById('fntBlue').addEventListener('input', updateColor);
 
 let colorPicker = new ColorPicker(
-    document.getElementById('backgroundColor'),
+    document.getElementById('previewBox'),
 );

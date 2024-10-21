@@ -74,16 +74,14 @@
             <div class="cardDescription">
                 <p th:text="${_locale.previewTranslation()}"></p>
             </div>
-            <div id="previewBox" class="alertBar" th:style="'background-color: ' + ${_alertBar.backgroundColor().toRgbString()}">
-                <p
-                        th:text="${_alertBar.localizedStrings().get(_localizationWidget.activeLanguage())}"
-                        th:style="'color: ' + ${_alertBar.fontColor().toRgbString()}">
-                </p>
+            <div id="previewBox" class="alertBar"
+                 th:style="'background-color: ' + ${_alertBar.backgroundColor().toRgbString()} + '; color: ' + ${_alertBar.fontColor().toRgbString()}"
+                 th:text="${_alertBar.localizedStrings().get(_localizationWidget.activeLanguage())}">
             </div>
         </div>
 
         <a href="/super-admin/alert" class="button orange" th:text="${_locale.backTranslation()}"></a>
     </body>
 
-    <script th:src="@{colorPicker.js}" type="text/javascript"></script>
+    <script th:src="@{/colorPicker.js}"></script>
 </html>
