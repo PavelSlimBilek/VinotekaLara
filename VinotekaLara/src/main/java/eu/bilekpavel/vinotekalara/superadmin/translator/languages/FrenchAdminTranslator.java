@@ -37,7 +37,9 @@ public class FrenchAdminTranslator extends AbstractAdminTranslator {
                 "rouge",
                 "vert",
                 "bleu",
-                "modifier les horaires d'ouverture"
+                "modifier les horaires d'ouverture",
+                "couleur de la police",
+                "sélectionner la police"
         );
     }
 }

@@ -1,14 +1,13 @@
 package eu.bilekpavel.vinotekalara.alertbar.domain;
 
+import eu.bilekpavel.vinotekalara.app.dto.Color;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +27,28 @@ public class Alert {
     private final Map<Language, String> localizations;
 
     @Setter
-    private String backgroundColor;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride( name = "red", column = @Column(name = "background_red")),
+            @AttributeOverride( name = "green", column = @Column(name = "background_green")),
+            @AttributeOverride( name = "blue", column = @Column(name = "background_blue"))
+    })
+    private Color backgroundColor;
+
+    @Setter
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride( name = "red", column = @Column(name = "font_red")),
+            @AttributeOverride( name = "green", column = @Column(name = "font_green")),
+            @AttributeOverride( name = "blue", column = @Column(name = "font_blue"))
+    })
+    private Color fontColor;
 
     public Alert() {
         localizations = new HashMap<>();
         isActive = false;
+        backgroundColor = new Color(255, 255, 255);
+        fontColor = new Color(0, 0, 0);
     }
 
     public String getLocalized(Language language) {

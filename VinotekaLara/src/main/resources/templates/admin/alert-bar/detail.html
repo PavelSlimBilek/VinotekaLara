@@ -8,12 +8,14 @@
 
     <body>
         <h1 th:text="${_locale.alertBarTranslation()} + ' : ' + ${_alertBar.id()}"></h1>
+
         <div class="card">
             <div class="cardDescription">
                 <p th:text="${_locale.updateLocalizationsTranslation()}"></p>
             </div>
             <div th:replace="fragments :: alert_update_localizations"></div>
         </div>
+
         <div class="card">
             <div class="cardDescription">
                 <p th:text="${_locale.backgroundColorTranslation()}"></p>
@@ -21,26 +23,71 @@
             <table>
                 <tr>
                     <td>
-                        <form id="colorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
+                        <form id="backgroundColorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
                             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-                            <label for="red" th:text="${_locale.redTranslation()}"></label>
-                            <input type="range" min="0" max="255" id="red" name="red" >
+                            <label for="bckRed" th:text="${_locale.redTranslation()}"></label>
+                            <input type="range" min="0" max="255" id="bckRed" name="bckRed" th:value="${_alertBar.backgroundColor().red()}">
 
-                            <label for="green" th:text="${_locale.greenTranslation()}"></label>
-                            <input type="range" min="0" max="255" id="green" name="green">
+                            <label for="bckGreen" th:text="${_locale.greenTranslation()}"></label>
+                            <input type="range" min="0" max="255" id="bckGreen" name="bckGreen" th:value="${_alertBar.backgroundColor().green()}">
 
-                            <label for="blue" th:text="${_locale.blueTranslation()}"></label>
-                            <input type="range" min="0" max="255" id="blue" name="blue">
+                            <label for="bckBlue" th:text="${_locale.blueTranslation()}"></label>
+                            <input type="range" min="0" max="255" id="bckBlue" name="bckBlue" th:value="${_alertBar.backgroundColor().blue()}">
                         </form>
                     </td>
                     <td>
-                        <input form="colorPicker" type="submit" class="button" id="backgroundColor" th:value="${_locale.applyTranslation()}">
+                        <input form="backgroundColorPicker" type="submit" class="button" id="backgroundColor" th:value="${_locale.applyTranslation()}">
                     </td>
                 </tr>
             </table>
-
         </div>
+
+        <div class="card">
+            <div class="cardDescription">
+                <p th:text="${_locale.fontColorTranslation()}"></p>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <form id="fontColorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
+                            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+                            <label for="fntRed" th:text="${_locale.redTranslation()}"></label>
+                            <input type="range" min="0" max="255" id="fntRed" name="fntRed" th:value="${_alertBar.fontColor().red()}">
+
+                            <label for="fntGreen" th:text="${_locale.greenTranslation()}"></label>
+                            <input type="range" min="0" max="255" id="fntGreen" name="fntGreen" th:value="${_alertBar.fontColor().green()}">
+
+                            <label for="fntBlue" th:text="${_locale.blueTranslation()}"></label>
+                            <input type="range" min="0" max="255" id="fntBlue" name="fntBlue" th:value="${_alertBar.fontColor().blue()}">
+                        </form>
+                    </td>
+                    <td>
+                        <input form="fontColorPicker" type="submit" class="button" id="fontColor" th:value="${_locale.applyTranslation()}">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="cardDescription">
+                <p th:text="${_locale.selectFontTranslation()}"></p>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <form id="colorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
+                            <input name="kokot">
+                        </form>
+                    </td>
+                    <td>
+                        <input form="colorPicker" type="submit" class="button" id="selectFont" th:value="${_locale.applyTranslation()}">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <a href="/super-admin/alert" class="button orange" th:text="${_locale.backTranslation()}"></a>
     </body>
 

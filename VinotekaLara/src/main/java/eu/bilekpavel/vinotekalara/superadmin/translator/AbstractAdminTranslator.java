@@ -19,7 +19,7 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
     public final String SELECT_GLOBAL_HOURS_TRANSLATION;
     public final String ACTIVE_HOURS_TRANSLATION;
-    public final String SET_OPENING_HOURS_TRANLSATION;
+    public final String SET_OPENING_HOURS_TRANSLATION;
 
     public final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     public final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
@@ -31,6 +31,8 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
     public final String UPDATE_LOCALIZATIONS_TRANSLATION;
     public final String BACKGROUND_COLOR_TRANSLATION;
+    public final String FONT_COLOR_TRANSLATION;
+    public final String SELECT_FONT_TRANSLATION;
     public final String RED_TRANSLATION;
     public final String GREEN_TRANSLATION;
     public final String BLUE_TRANSLATION;
@@ -64,7 +66,9 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
             String redTranslation,
             String greenTranslation,
             String blueTranslation,
-            String setOpeningHoursTranslation
+            String setOpeningHoursTranslation,
+            String fontColorTranslation,
+            String selectFontTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
@@ -84,7 +88,7 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
         this.SELECT_GLOBAL_HOURS_TRANSLATION = selectGlobalHoursTranslation;
         this.ACTIVE_HOURS_TRANSLATION = activeHoursTranslation;
-        this.SET_OPENING_HOURS_TRANLSATION = setOpeningHoursTranslation;
+        this.SET_OPENING_HOURS_TRANSLATION = setOpeningHoursTranslation;
 
         this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
         this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
@@ -93,6 +97,8 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
         this.DISPLAY_ALERT_BAR_TRANSLATION = displayAlertBarTranslation;
         this.SELECT_ACTIVE_ALERT_TRANSLATION = selectActiveAlertTranslation;
         this.CREATE_ALERT_BAR_TRANSLATION = createAlertBarTranslation;
+        this.FONT_COLOR_TRANSLATION = fontColorTranslation;
+        this.SELECT_FONT_TRANSLATION = selectFontTranslation;
 
         this.UPDATE_LOCALIZATIONS_TRANSLATION = updateLocalizationsTranslation;
         this.BACKGROUND_COLOR_TRANSLATION = backgroundColorTranslation;
@@ -238,7 +244,17 @@ public class AbstractAdminTranslator implements AdminTranslatorInterface {
 
     @Override
     public String getSetOpeningHoursTranslation() {
-        return SET_OPENING_HOURS_TRANLSATION;
+        return SET_OPENING_HOURS_TRANSLATION;
+    }
+
+    @Override
+    public String getFontColorTranslation() {
+        return FONT_COLOR_TRANSLATION;
+    }
+
+    @Override
+    public String getSelectFontTranslation() {
+        return SELECT_FONT_TRANSLATION;
     }
 
     @Override

@@ -33,4 +33,6 @@ public interface AdminTranslatorInterface {
     String getGreenTranslation();
 
     String getSetOpeningHoursTranslation();
+    String getFontColorTranslation();
+    String getSelectFontTranslation();
 }

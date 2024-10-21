@@ -67,12 +67,12 @@ public class AlertBarService implements AlertServiceInterface {
                         alert.getId(),
                         alert.isActive(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
-                        alert.getBackgroundColor())
+                        alert.getBackgroundColor().toRgbString())
                 : new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
                         localizedStringFactory.create(language.getCode(), alert.getLocalized(Language.CZECH)),
-                        alert.getBackgroundColor());
+                        alert.getBackgroundColor().toRgbString());
     }
 
     @Override
@@ -83,7 +83,7 @@ public class AlertBarService implements AlertServiceInterface {
                         ab.getId(),
                         ab.isActive(),
                         localizedStringFactory.create(language.getCode(), ab.getLocalized(language)),
-                        ab.getBackgroundColor())
+                        ab.getBackgroundColor().toRgbString())
                 ).toList();
     }
 
@@ -94,7 +94,7 @@ public class AlertBarService implements AlertServiceInterface {
             return;
         }
 
-        optAlert.get().setBackgroundColor(color.toRgbString());
+        optAlert.get().setBackgroundColor(color);
         repo.save(optAlert.get());
     }
 
@@ -114,7 +114,8 @@ public class AlertBarService implements AlertServiceInterface {
         return alert.map(value -> new AlertFullData(
                 value.getId(),
                 value.getLocalizations(),
-                value.getBackgroundColor()
+                value.getBackgroundColor(),
+                value.getFontColor()
         ));
     }
 
@@ -148,7 +149,7 @@ public class AlertBarService implements AlertServiceInterface {
                 active.get().getId(),
                 true,
                 localizedStringFactory.create(language.getCode(), active.get().getLocalized(language)),
-                active.get().getBackgroundColor()
+                active.get().getBackgroundColor().toRgbString()
         );
     }
 

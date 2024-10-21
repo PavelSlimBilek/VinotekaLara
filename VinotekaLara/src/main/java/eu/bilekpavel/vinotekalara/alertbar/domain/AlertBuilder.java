@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.domain;
 
+import eu.bilekpavel.vinotekalara.app.dto.Color;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 
 public final class AlertBuilder {
@@ -11,7 +12,7 @@ public final class AlertBuilder {
         return this;
     }
 
-    public AlertBuilder setColor(String color) {
+    public AlertBuilder setColor(Color color) {
         ALERT.setBackgroundColor(color);
         return this;
     }
