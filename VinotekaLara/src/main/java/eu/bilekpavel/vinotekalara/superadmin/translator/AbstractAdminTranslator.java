@@ -1,42 +1,42 @@
 package eu.bilekpavel.vinotekalara.superadmin.translator;
 
 public abstract class AbstractAdminTranslator implements AdminTranslatorInterface {
-    public final String SETTINGS_TRANSLATION;
-    public final String OPENING_HOURS_TRANSLATION;
-    public final String APP_TRANSLATION;
-    public final String ALERT_BAR_TRANSLATION;
-    public final String ALLOW_TRANSLATION;
-    public final String FORBID_TRANSLATION;
-    public final String ACTIVATE_TRANSLATION;
-    public final String SUBMIT_TRANSLATION;
-    public final String EDIT_TRANSLATION;
-    public final String BACK_TRANSLATION;
-    public final String DELETE_TRANSLATION;
-    public final String CREATE_TRANSLATION;
-    public final String NAME_TRANSLATION;
-    public final String APPLY_TRANSLATION;
-    public final String APP_SETTINGS_TRANSLATION;
-    public final String PREVIEW_TRANSLATION;
+    private final String SETTINGS_TRANSLATION;
+    private final String OPENING_HOURS_TRANSLATION;
+    private final String APP_TRANSLATION;
+    private final String ALERT_BAR_TRANSLATION;
+    private final String ALLOW_TRANSLATION;
+    private final String FORBID_TRANSLATION;
+    private final String ACTIVATE_TRANSLATION;
+    private final String SUBMIT_TRANSLATION;
+    private final String EDIT_TRANSLATION;
+    private final String BACK_TRANSLATION;
+    private final String DELETE_TRANSLATION;
+    private final String CREATE_TRANSLATION;
+    private final String NAME_TRANSLATION;
+    private final String APPLY_TRANSLATION;
+    private final String APP_SETTINGS_TRANSLATION;
+    private final String PREVIEW_TRANSLATION;
 
-    public final String SELECT_GLOBAL_HOURS_TRANSLATION;
-    public final String ACTIVE_HOURS_TRANSLATION;
-    public final String SET_OPENING_HOURS_TRANSLATION;
+    private final String SELECT_GLOBAL_HOURS_TRANSLATION;
+    private final String ACTIVE_HOURS_TRANSLATION;
+    private final String SET_OPENING_HOURS_TRANSLATION;
 
-    public final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
-    public final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
+    private final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
+    private final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
 
-    public final String ALLOW_ALERT_BAR_TRANSLATION;
-    public final String DISPLAY_ALERT_BAR_TRANSLATION;
-    public final String SELECT_ACTIVE_ALERT_TRANSLATION;
-    public final String CREATE_ALERT_BAR_TRANSLATION;
+    private final String ALLOW_ALERT_BAR_TRANSLATION;
+    private final String DISPLAY_ALERT_BAR_TRANSLATION;
+    private final String SELECT_ACTIVE_ALERT_TRANSLATION;
+    private final String CREATE_ALERT_BAR_TRANSLATION;
 
-    public final String UPDATE_LOCALIZATIONS_TRANSLATION;
-    public final String BACKGROUND_COLOR_TRANSLATION;
-    public final String FONT_COLOR_TRANSLATION;
-    public final String SELECT_FONT_TRANSLATION;
-    public final String RED_TRANSLATION;
-    public final String GREEN_TRANSLATION;
-    public final String BLUE_TRANSLATION;
+    private final String UPDATE_LOCALIZATIONS_TRANSLATION;
+    private final String BACKGROUND_COLOR_TRANSLATION;
+    private final String FONT_COLOR_TRANSLATION;
+    private final String SELECT_FONT_TRANSLATION;
+    private final String RED_TRANSLATION;
+    private final String GREEN_TRANSLATION;
+    private final String BLUE_TRANSLATION;
 
     public AbstractAdminTranslator(
             String settingsTranslation,

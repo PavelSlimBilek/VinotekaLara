@@ -1,0 +1,8 @@
+unify translators, divide to smaller widget data factories, unify naming - establish core translator
+error handling
+translate error messages
+favorite colors in admin
+_openingHours should return better dto instead of just list of daily hours
+
+add news module
+add store module
