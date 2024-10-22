@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator.language.languages;
 
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
@@ -14,14 +15,16 @@ public class Ukrainian extends Locale {
     public Ukrainian(
             @Qualifier("ukrainianHoursTranslator") OpeningHoursTranslatorInterface hoursTranslator,
             @Qualifier("ukrainianPageTranslator") HomePageTranslatorInterface pageTranslator,
-            @Qualifier("ukrainianAdmin") AdminTranslatorInterface adminTranslator
+            @Qualifier("ukrainianAdmin") AdminTranslatorInterface adminTranslator,
+            AlertBarTranslator alertBarTranslator
     ) {
         super(
                 Language.UKRAINIAN,
                 new Flag("/images/flags/ukraine.png", "український"),
                 hoursTranslator,
                 pageTranslator,
-                adminTranslator
+                adminTranslator,
+                alertBarTranslator
         );
     }
 }

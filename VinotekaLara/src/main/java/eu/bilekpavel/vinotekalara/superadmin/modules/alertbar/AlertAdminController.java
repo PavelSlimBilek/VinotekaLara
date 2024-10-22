@@ -2,6 +2,7 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.dto.Color;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
@@ -22,16 +23,19 @@ public class AlertAdminController extends SuperAdminController {
 
     private final AlertServiceInterface service;
     private final TranslatorDataFactory translatorDataProvider;
+    private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
 
     public AlertAdminController(
             TranslatorRegistry LOCALES,
             AlertServiceInterface alertService,
             TranslatorDataFactory translatorDataFactory,
-            AdminPageContentProviderInterface CONTENT_PROVIDER
+            AdminPageContentProviderInterface CONTENT_PROVIDER,
+            AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider
     ) {
         super(LOCALES, CONTENT_PROVIDER);
         service = alertService;
         translatorDataProvider = translatorDataFactory;
+        this.alertLocalizationDataProvider = alertLocalizationDataProvider;
     }
 
     @GetMapping("/alert")
@@ -43,6 +47,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertWidget", service.getWidgetData(locale.getLang()));
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
+        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.getAlertBarTranslator()));
         model.addAttribute("_isAlertBarAllowed", service.isAllowed());
         model.addAttribute("_isAlertBarDisplayed", service.isDisplayed());
         model.addAttribute("_message", message == null ? "" : message);

@@ -4,7 +4,6 @@ public interface AdminTranslatorInterface {
     String getSettingsTranslation();
     String getOpeningHoursTranslation();
     String getAppTranslation();
-    String getAlertBarTranslation();
     String getAllowTranslation();
     String getForbidTranslation();
     String getActivateTranslation();
@@ -22,16 +21,11 @@ public interface AdminTranslatorInterface {
     String getSelectDefaultLanguageTranslation();
     String getToggleLanguagesMessage();
     String getAppSettingsTranslation();
-    String getAllowAlertBarTranslation();
-    String getDisplayAlertBarTranslation();
 
-    String getSelectActiveAlertTranslation();
-    String getCreateAlertBarTranslation();
     String getUpdateLocalizationsTranslation();
     String getBackgroundColorTranslation();
     String getRedTranslation();
     String getBlueTranslation();
-
     String getGreenTranslation();
     String getSetOpeningHoursTranslation();
     String getFontColorTranslation();

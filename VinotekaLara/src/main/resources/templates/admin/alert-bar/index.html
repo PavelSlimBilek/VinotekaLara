@@ -6,7 +6,7 @@
         <link rel="stylesheet" th:href="@{/admin.css}">
     </head>
     <body>
-        <h1 th:text="${_locale.alertBarTranslation()}"></h1>
+        <h1 th:text="${_alertLocalization.alertBar()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
@@ -17,7 +17,7 @@
                 <tr class="inaccessible">
                     <td>
                         <form id="allowAlertBar" th:action="@{/super-admin/alert/allow}" method="post">
-                            <p th:text="${_locale.allowAlertBarTranslation()}"></p>
+                            <p th:text="${_alertLocalization.allowAlertBar()}"></p>
                             <label for="allowAlert" th:text="${_locale.allowTranslation()}"></label>
                             <input id="allowAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarAllowed} == true"/>
                             <label for="disallowAlert" th:text="${_locale.forbidTranslation()}"></label>
@@ -32,7 +32,7 @@
                 <tr class="inactive">
                     <td>
                         <form id="displayAlertBar" th:action="@{/super-admin/alert/display}" method="post">
-                            <p th:text="${_locale.displayAlertBarTranslation()}"></p>
+                            <p th:text="${_alertLocalization.displayAlertBar()}"></p>
                             <label for="displayAlert" th:text="${_locale.allowTranslation()}"></label>
                             <input id="displayAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarDisplayed} == true"/>
                             <label for="hideAlert" th:text="${_locale.forbidTranslation()}"></label>
@@ -48,7 +48,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.selectActiveAlertTranslation()}"></p>
+                <p th:text="${_alertLocalization.selectActiveAlertBar()}"></p>
             </div>
             <table>
                 <tr th:each="bar: ${_alertWidget.alertBars()}" th:class="${bar.isActive() ? 'active' : 'inactive'}">
@@ -78,7 +78,7 @@
                 <tr>
                     <td>
                         <form id="createAlertBar" th:action="@{/super-admin/alert/create}" method="post">
-                            <p th:text="${_locale.createAlertBarTranslation()}"></p>
+                            <p th:text="${_alertLocalization.createAlertBar()}"></p>
                         </form>
                     </td>
                     <td>

@@ -4,7 +4,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     private final String SETTINGS_TRANSLATION;
     private final String OPENING_HOURS_TRANSLATION;
     private final String APP_TRANSLATION;
-    private final String ALERT_BAR_TRANSLATION;
     private final String ALLOW_TRANSLATION;
     private final String FORBID_TRANSLATION;
     private final String ACTIVATE_TRANSLATION;
@@ -25,11 +24,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     private final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     private final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
 
-    private final String ALLOW_ALERT_BAR_TRANSLATION;
-    private final String DISPLAY_ALERT_BAR_TRANSLATION;
-    private final String SELECT_ACTIVE_ALERT_TRANSLATION;
-    private final String CREATE_ALERT_BAR_TRANSLATION;
-
     private final String UPDATE_LOCALIZATIONS_TRANSLATION;
     private final String BACKGROUND_COLOR_TRANSLATION;
     private final String FONT_COLOR_TRANSLATION;
@@ -42,7 +36,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
             String settingsTranslation,
             String openingHoursTranslation,
             String appTranslation,
-            String alertbarTranslation,
             String allowTranslation,
             String forbidTranslation,
             String activateTranslation,
@@ -58,10 +51,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
             String selectLanguageTranslation,
             String toggleLanguagesMessageTranslation,
             String appSettingsTranslation,
-            String allowAlertBarTranslation,
-            String displayAlertBarTranslation,
-            String selectActiveAlertTranslation,
-            String createAlertBarTranslation,
             String updateLocalizationsTranslation,
             String backgroundColorTranslation,
             String redTranslation,
@@ -75,7 +64,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
         this.SETTINGS_TRANSLATION = settingsTranslation;
         this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
         this.APP_TRANSLATION = appTranslation;
-        this.ALERT_BAR_TRANSLATION = alertbarTranslation;
         this.ALLOW_TRANSLATION = allowTranslation;
         this.FORBID_TRANSLATION = forbidTranslation;
         this.ACTIVATE_TRANSLATION = activateTranslation;
@@ -96,10 +84,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
         this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
         this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
 
-        this.ALLOW_ALERT_BAR_TRANSLATION = allowAlertBarTranslation;
-        this.DISPLAY_ALERT_BAR_TRANSLATION = displayAlertBarTranslation;
-        this.SELECT_ACTIVE_ALERT_TRANSLATION = selectActiveAlertTranslation;
-        this.CREATE_ALERT_BAR_TRANSLATION = createAlertBarTranslation;
         this.FONT_COLOR_TRANSLATION = fontColorTranslation;
         this.SELECT_FONT_TRANSLATION = selectFontTranslation;
 
@@ -123,11 +107,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     @Override
     public String getAppTranslation() {
         return APP_TRANSLATION;
-    }
-
-    @Override
-    public String getAlertBarTranslation() {
-        return ALERT_BAR_TRANSLATION;
     }
 
     @Override
@@ -203,26 +182,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     @Override
     public String getAppSettingsTranslation() {
         return APP_SETTINGS_TRANSLATION;
-    }
-
-    @Override
-    public String getAllowAlertBarTranslation() {
-        return ALLOW_ALERT_BAR_TRANSLATION;
-    }
-
-    @Override
-    public String getDisplayAlertBarTranslation() {
-        return DISPLAY_ALERT_BAR_TRANSLATION;
-    }
-
-    @Override
-    public String getSelectActiveAlertTranslation() {
-        return SELECT_ACTIVE_ALERT_TRANSLATION;
-    }
-
-    @Override
-    public String getCreateAlertBarTranslation() {
-        return CREATE_ALERT_BAR_TRANSLATION;
     }
 
     @Override

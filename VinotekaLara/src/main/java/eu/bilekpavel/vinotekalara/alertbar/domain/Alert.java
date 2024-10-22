@@ -18,9 +18,10 @@ public class Alert {
     @GeneratedValue
     private int id;
 
-    private boolean isActive;
     @Setter
-    private boolean isRemoved;
+    private boolean active;
+    @Setter
+    private boolean removed;
 
     @ElementCollection
     private final Map<Language, String> localizations;
@@ -45,7 +46,7 @@ public class Alert {
 
     public Alert() {
         localizations = new HashMap<>();
-        isActive = false;
+        active = false;
         backgroundColor = new Color(255, 255, 255);
         fontColor = new Color(0, 0, 0);
     }
@@ -56,13 +57,5 @@ public class Alert {
 
     public void updateLocalization(LocalizedString content) {
         this.localizations.put(content.language(), content.content());
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
     }
 }

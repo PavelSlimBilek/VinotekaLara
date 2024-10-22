@@ -22,7 +22,7 @@ import java.util.Optional;
 @Service
 public class AlertBarService implements AlertServiceInterface {
 
-    private final AlertRepositoryInterface repo;
+    @Qualifier("alert_db_repository") private final AlertRepositoryInterface repo;
     private final LocalizedStringFactoryInterface localizedStringFactory;
     private final AlertBarConfig config;
 
@@ -135,7 +135,7 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public void setActive(int id) {
-        Optional<Alert> oldActive = repo.findByIsActive(true);
+        Optional<Alert> oldActive = repo.findByActive(true);
         Optional<Alert> newActive = repo.findById(id);
 
         if (newActive.isPresent()) {
@@ -149,7 +149,7 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public LocalizedAlert getActive(Language language) {
-        Optional<Alert> optActive = repo.findByIsActive(true);
+        Optional<Alert> optActive = repo.findByActive(true);
         if (optActive.isEmpty()) {
             return new LocalizedAlert(
                     0,
@@ -172,17 +172,17 @@ public class AlertBarService implements AlertServiceInterface {
 
     @Override
     public void allow(boolean isAllowed) {
-        config.allow(isAllowed);
+        config.setAllowed(isAllowed);
     }
 
     @Override
     public void display(boolean isDisplayed) {
-        config.display(isDisplayed);
+        config.setDisplayed(isDisplayed);
     }
 
     @Override
     public void toggle() {
-        config.display(!config.isDisplayed());
+        config.setDisplayed(!config.isDisplayed());
     }
 
     @Override

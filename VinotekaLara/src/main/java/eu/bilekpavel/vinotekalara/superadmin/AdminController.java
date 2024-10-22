@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.superadmin;
 
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
@@ -17,6 +18,8 @@ public class AdminController {
     private final AdminPageContentProviderInterface contentProvider;
     private final TranslatorRegistry locales;
 
+    private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
+
     private final AppConfig config;
 
     @GetMapping("/super-admin")
@@ -30,6 +33,7 @@ public class AdminController {
                 : locales.getLocale(lang);
 
         model.addAttribute("_locale", contentProvider.getLocalizedAdminPage(locale.getAdminTranslator()));
+        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.getAlertBarTranslator()));
         attributes.addAttribute("lang", lang);
         return "/admin/index";
     }

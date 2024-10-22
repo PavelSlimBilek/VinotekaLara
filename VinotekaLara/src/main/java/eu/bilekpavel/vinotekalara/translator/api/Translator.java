@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator.api;
 
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
@@ -18,4 +19,5 @@ public interface Translator {
     HomePageTranslatorInterface getPageTranslator();
     OpeningHoursTranslatorInterface getHoursTranslator();
     AdminTranslatorInterface getAdminTranslator();
+    AlertBarTranslator getAlertBarTranslator();
 }

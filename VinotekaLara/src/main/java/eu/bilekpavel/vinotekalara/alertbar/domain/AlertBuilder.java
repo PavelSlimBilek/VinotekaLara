@@ -12,8 +12,13 @@ public final class AlertBuilder {
         return this;
     }
 
-    public AlertBuilder setColor(Color color) {
+    public AlertBuilder setBackgroundColor(Color color) {
         ALERT.setBackgroundColor(color);
+        return this;
+    }
+
+    public AlertBuilder setFontColor(Color color) {
+        ALERT.setFontColor(color);
         return this;
     }
 
