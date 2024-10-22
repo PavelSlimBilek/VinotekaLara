@@ -10,18 +10,6 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
     @Override
     public LocalizedAdminContent getLocalizedAdminPage(AdminTranslatorInterface translator) {
         return new LocalizedAdminContent(
-                translator.getSettingsTranslation(),
-                translator.getAppTranslation(),
-                translator.getAllowTranslation(),
-                translator.getForbidTranslation(),
-                translator.getActivateTranslation(),
-                translator.getSubmitTranslation(),
-                translator.getEditTranslation(),
-                translator.getBackTranslation(),
-                translator.getDeleteTranslation(),
-                translator.getCreateTranslation(),
-                translator.getNameTranslation(),
-                translator.getApplyTranslation(),
                 translator.getSelectDefaultLanguageTranslation(),
                 translator.getToggleLanguagesMessage(),
                 translator.getAppSettingsTranslation(),
@@ -31,8 +19,7 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getGreenTranslation(),
                 translator.getBlueTranslation(),
                 translator.getFontColorTranslation(),
-                translator.getSelectFontTranslation(),
-                translator.getPreviewTranslation()
+                translator.getSelectFontTranslation()
         );
     }
 }

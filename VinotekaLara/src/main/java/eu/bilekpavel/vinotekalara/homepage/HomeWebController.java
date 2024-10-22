@@ -45,7 +45,7 @@ public class HomeWebController {
         model.addAttribute("_isAlertBarAllowed", alertBarConfig.isAllowed());
         model.addAttribute("_alertBar", alertBarService.getActive(locale.getLang()));
 
-        model.addAttribute("_hoursWidget", hoursService.getTranslatedData(locale.getHoursTranslator()));
+        model.addAttribute("_hoursWidget", hoursService.getTranslatedData(locale.hoursTranslator()));
 
         return "home";
     }

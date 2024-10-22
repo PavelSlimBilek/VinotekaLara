@@ -18,20 +18,7 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "upravit",
                 "zpět",
                 "smazat",
-                "vytvořit",
-                "název",
-                "použít",
-                "zvolte výchozí jazyk",
-                "povolit/zakázat jazyky",
-                "nastavení aplikace",
-                "aktualizovat lokalizace",
-                "barva pozadí",
-                "červená",
-                "zelená",
-                "modrá",
-                "barva písma",
-                "zvolte písmo",
-                "náhled"
+                "vytvořit"
         );
     }
 }

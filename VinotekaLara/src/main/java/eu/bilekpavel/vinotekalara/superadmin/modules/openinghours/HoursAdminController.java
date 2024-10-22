@@ -51,8 +51,8 @@ public class HoursAdminController extends SuperAdminController {
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
 
-        model.addAttribute("_hoursWidget", service.getTranslatedData(locale.getHoursTranslator()));
-        model.addAttribute("_hoursLocalization", hoursLocalizationProvider.create(locale.getHoursTranslator()));
+        model.addAttribute("_hoursWidget", service.getTranslatedData(locale.hoursTranslator()));
+        model.addAttribute("_hoursLocalization", hoursLocalizationProvider.create(locale.hoursTranslator()));
 
         model.addAttribute("_message", message == null ? "" : message);
 
@@ -75,7 +75,7 @@ public class HoursAdminController extends SuperAdminController {
         model.addAttribute("_openingHours", service.get(id));
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
-        model.addAttribute("_hoursWidget", service.getTranslatedData(locale.getHoursTranslator()));
+        model.addAttribute("_hoursWidget", service.getTranslatedData(locale.hoursTranslator()));
         model.addAttribute("_message", message == null ? "" : message);
 
         attributes.addAttribute("lang", locale.getCode());

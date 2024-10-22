@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.translator.language.languages;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
@@ -16,11 +17,13 @@ public class English extends Locale {
     public English(@Qualifier("englishHoursTranslator") OpeningHoursTranslator hoursTranslator,
                    @Qualifier("englishPageTranslator") HomePageTranslatorInterface pageTranslator,
                    @Qualifier("englishAdmin") AdminTranslatorInterface adminTranslator,
-                   AlertBarTranslator alertBarTranslator
+                   AlertBarTranslator alertBarTranslator,
+                   CoreTranslator coreTranslator
     ) {
         super(
                 Language.ENGLISH,
                 new Flag("/images/flags/uk.png", "english"),
+                coreTranslator,
                 hoursTranslator,
                 pageTranslator,
                 adminTranslator,

@@ -1,20 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.translator;
 
 public abstract class AbstractAdminTranslator implements AdminTranslatorInterface {
-    private final String SETTINGS_TRANSLATION;
-    private final String APP_TRANSLATION;
-    private final String ALLOW_TRANSLATION;
-    private final String FORBID_TRANSLATION;
-    private final String ACTIVATE_TRANSLATION;
-    private final String SUBMIT_TRANSLATION;
-    private final String EDIT_TRANSLATION;
-    private final String BACK_TRANSLATION;
-    private final String DELETE_TRANSLATION;
-    private final String CREATE_TRANSLATION;
-    private final String NAME_TRANSLATION;
-    private final String APPLY_TRANSLATION;
     private final String APP_SETTINGS_TRANSLATION;
-    private final String PREVIEW_TRANSLATION;
 
     private final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     private final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
@@ -28,18 +15,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     private final String BLUE_TRANSLATION;
 
     public AbstractAdminTranslator(
-            String settingsTranslation,
-            String appTranslation,
-            String allowTranslation,
-            String forbidTranslation,
-            String activateTranslation,
-            String submitTranslation,
-            String editTranslation,
-            String backTranslation,
-            String deleteTranslation,
-            String createTranslation,
-            String nameTranslation,
-            String applyTranslation,
             String selectLanguageTranslation,
             String toggleLanguagesMessageTranslation,
             String appSettingsTranslation,
@@ -49,23 +24,9 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
             String greenTranslation,
             String blueTranslation,
             String fontColorTranslation,
-            String selectFontTranslation,
-            String previewTranslation
+            String selectFontTranslation
     ) {
-        this.SETTINGS_TRANSLATION = settingsTranslation;
-        this.APP_TRANSLATION = appTranslation;
-        this.ALLOW_TRANSLATION = allowTranslation;
-        this.FORBID_TRANSLATION = forbidTranslation;
-        this.ACTIVATE_TRANSLATION = activateTranslation;
-        this.SUBMIT_TRANSLATION = submitTranslation;
-        this.EDIT_TRANSLATION = editTranslation;
-        this.BACK_TRANSLATION = backTranslation;
-        this.DELETE_TRANSLATION = deleteTranslation;
-        this.CREATE_TRANSLATION = createTranslation;
-        this.NAME_TRANSLATION = nameTranslation;
-        this.APPLY_TRANSLATION = applyTranslation;
         this.APP_SETTINGS_TRANSLATION = appSettingsTranslation;
-        this.PREVIEW_TRANSLATION = previewTranslation;
 
         this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
         this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
@@ -78,71 +39,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
         this.RED_TRANSLATION = redTranslation;
         this.GREEN_TRANSLATION = greenTranslation;
         this.BLUE_TRANSLATION = blueTranslation;
-    }
-
-    @Override
-    public String getSettingsTranslation() {
-        return SETTINGS_TRANSLATION;
-    }
-
-    @Override
-    public String getAppTranslation() {
-        return APP_TRANSLATION;
-    }
-
-    @Override
-    public String getAllowTranslation() {
-        return ALLOW_TRANSLATION;
-    }
-
-    @Override
-    public String getForbidTranslation() {
-        return FORBID_TRANSLATION;
-    }
-
-    @Override
-    public String getActivateTranslation() {
-        return ACTIVATE_TRANSLATION;
-    }
-
-    @Override
-    public String getSubmitTranslation() {
-        return SUBMIT_TRANSLATION;
-    }
-
-    @Override
-    public String getEditTranslation() {
-        return EDIT_TRANSLATION;
-    }
-
-    @Override
-    public String getBackTranslation() {
-        return BACK_TRANSLATION;
-    }
-
-    @Override
-    public String getDeleteTranslation() {
-        return DELETE_TRANSLATION;
-    }
-
-    @Override
-    public String getNameTranslation() {
-        return NAME_TRANSLATION;
-    }
-
-    @Override
-    public String getPreviewTranslation() {
-        return PREVIEW_TRANSLATION;
-    }
-
-    @Override
-    public String getApplyTranslation() {
-        return APPLY_TRANSLATION;
-    }
-
-    @Override
-    public String getCreateTranslation() {
-        return CREATE_TRANSLATION;
     }
 
     @Override

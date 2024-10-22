@@ -2,6 +2,7 @@ package eu.bilekpavel.vinotekalara.superadmin;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
@@ -21,6 +22,7 @@ public class AdminController {
 
     private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationDataProvider;
+    private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
 
     private final AppConfig config;
 
@@ -35,8 +37,9 @@ public class AdminController {
                 : locales.getLocale(lang);
 
         model.addAttribute("_locale", contentProvider.getLocalizedAdminPage(locale.getAdminTranslator()));
-        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.getAlertBarTranslator()));
-        model.addAttribute("_hoursLocalization", hoursLocalizationDataProvider.create(locale.getHoursTranslator()));
+        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.alertTranslator()));
+        model.addAttribute("_hoursLocalization", hoursLocalizationDataProvider.create(locale.hoursTranslator()));
+        model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         attributes.addAttribute("lang", lang);
         return "/admin/index";
     }

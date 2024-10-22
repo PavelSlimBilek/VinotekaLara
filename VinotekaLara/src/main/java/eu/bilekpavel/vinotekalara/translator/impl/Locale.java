@@ -1,50 +1,26 @@
 package eu.bilekpavel.vinotekalara.translator.impl;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public abstract class Locale implements Translator {
-    private boolean isAllowed = true; // allow locale as
     private final Language language;
 
     private final Flag flag;
 
+    private final CoreTranslator coreTranslator;
     private final OpeningHoursTranslator hoursTranslator;
     private final HomePageTranslatorInterface pageTranslator;
     private final AdminTranslatorInterface adminTranslator;
     private final AlertBarTranslator alertBarTranslator;
-
-    public Locale(
-            Language language,
-            Flag flag,
-            OpeningHoursTranslator hoursTranslator,
-            HomePageTranslatorInterface pageTranslator,
-            AdminTranslatorInterface adminTranslator,
-            AlertBarTranslator alertBarTranslator
-    ) {
-        this.language = language;
-        this.flag = flag;
-        this.hoursTranslator = hoursTranslator;
-        this.pageTranslator = pageTranslator;
-        this.adminTranslator = adminTranslator;
-        this.alertBarTranslator = alertBarTranslator;
-    }
-
-    @Override
-    public Translator allow(boolean isAllowed) {
-        this.isAllowed = isAllowed;
-        return this;
-    }
-
-    @Override
-    public boolean isAllowed() {
-        return isAllowed;
-    }
 
     @Override
     public String getCode() {
@@ -61,13 +37,19 @@ public abstract class Locale implements Translator {
         return language;
     }
 
+
+    @Override
+    public CoreTranslator coreTranslator() {
+        return coreTranslator;
+    }
+
     @Override
     public HomePageTranslatorInterface getPageTranslator() {
         return pageTranslator;
     }
 
     @Override
-    public OpeningHoursTranslator getHoursTranslator() {
+    public OpeningHoursTranslator hoursTranslator() {
         return hoursTranslator;
     }
 
@@ -77,7 +59,7 @@ public abstract class Locale implements Translator {
     }
 
     @Override
-    public AlertBarTranslator getAlertBarTranslator() {
+    public AlertBarTranslator alertTranslator() {
         return alertBarTranslator;
     }
 }

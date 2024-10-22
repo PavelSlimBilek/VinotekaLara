@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.translator.api;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
@@ -13,11 +14,9 @@ public interface Translator {
     String getCode();
     Flag getFlag();
 
-    boolean isAllowed();
-    Translator allow(boolean isAllowed);
-
+    CoreTranslator coreTranslator();
     HomePageTranslatorInterface getPageTranslator();
-    OpeningHoursTranslator getHoursTranslator();
+    OpeningHoursTranslator hoursTranslator();
     AdminTranslatorInterface getAdminTranslator();
-    AlertBarTranslator getAlertBarTranslator();
+    AlertBarTranslator alertTranslator();
 }

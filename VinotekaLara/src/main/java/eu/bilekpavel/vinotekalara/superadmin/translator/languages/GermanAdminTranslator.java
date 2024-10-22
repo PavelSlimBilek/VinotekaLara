@@ -18,20 +18,7 @@ public class GermanAdminTranslator extends AbstractAdminTranslator {
                 "absenden",
                 "bearbeiten",
                 "zurück",
-                "Globale Öffnungszeiten auswählen",
-                "Aktuelle Öffnungszeiten",
-                "entfernen",
-                "erstellen",
-                "Bezeichnung",
-                "anwenden",
-                "Standard Sprache auswählen",
-                "Sprachen erlauben/verbieten",
-                "App-Einstellungen",
-                "Lokalisierungen aktualisieren",
-                "Hintergrundfarbe",
-                "Rot",
-                "Grün",
-                "Blau"
+                "Globale Öffnungszeiten auswählen"
         );
     }
 }

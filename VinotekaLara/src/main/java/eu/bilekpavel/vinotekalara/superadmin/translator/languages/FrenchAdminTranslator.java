@@ -18,20 +18,7 @@ public class FrenchAdminTranslator extends AbstractAdminTranslator {
                 "soumettre",
                 "modifier",
                 "retour",
-                "sélectionner les horaires d'ouverture globaux",
-                "horaires d'ouverture actuels",
-                "supprimer",
-                "créer",
-                "nom",
-                "appliquer",
-                "sélectionner la langue par défaut",
-                "autoriser/interdire les langues",
-                "paramètres de l'application",
-                "mettre à jour les localisations",
-                "couleur de fond",
-                "rouge",
-                "vert",
-                "bleu"
+                "sélectionner les horaires d'ouverture globaux"
         );
     }
 }

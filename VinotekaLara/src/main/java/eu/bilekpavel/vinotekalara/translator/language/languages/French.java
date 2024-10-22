@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.translator.language.languages;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
@@ -16,11 +17,13 @@ public class French extends Locale {
             @Qualifier("frenchHoursTranslator") OpeningHoursTranslator hoursTranslator,
             @Qualifier("frenchPageTranslator") HomePageTranslatorInterface pageTranslator,
             @Qualifier("frenchAdmin") AdminTranslatorInterface adminTranslator,
-            AlertBarTranslator alertBarTranslator
+            AlertBarTranslator alertBarTranslator,
+            CoreTranslator coreTranslator
     ) {
         super(
                 Language.FRENCH,
                 new Flag("/images/flags/france.png", "français"),
+                coreTranslator,
                 hoursTranslator,
                 pageTranslator,
                 adminTranslator,

@@ -2,7 +2,6 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
-import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
@@ -44,7 +43,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertWidget", service.getWidgetData(locale.getLang()));
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
-        model.addAttribute("_alertLocalization", service.getTranslatorData(locale.getAlertBarTranslator()));
+        model.addAttribute("_alertLocalization", service.getTranslatorData(locale.alertTranslator()));
         model.addAttribute("_isAlertBarAllowed", service.isAllowed());
         model.addAttribute("_isAlertBarDisplayed", service.isDisplayed());
         model.addAttribute("_message", message == null ? "" : message);
@@ -60,7 +59,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertBar", service.get(id));
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
-        model.addAttribute("_alertLocalization", service.getTranslatorData(locale.getAlertBarTranslator()));
+        model.addAttribute("_alertLocalization", service.getTranslatorData(locale.alertTranslator()));
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         return "admin/alert-bar/detail";
     }

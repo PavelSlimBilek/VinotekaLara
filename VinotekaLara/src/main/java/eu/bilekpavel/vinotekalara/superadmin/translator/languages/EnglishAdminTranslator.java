@@ -19,20 +19,7 @@ public final class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "edit",
                 "back",
                 "remove",
-                "create",
-                "name",
-                "apply",
-                "select default language",
-                "allow/forbid languages",
-                "app settings",
-                "update localizations",
-                "background color",
-                "red",
-                "green",
-                "blue",
-                "font color",
-                "select font",
-                "preview"
+                "create"
         );
     }
 }
