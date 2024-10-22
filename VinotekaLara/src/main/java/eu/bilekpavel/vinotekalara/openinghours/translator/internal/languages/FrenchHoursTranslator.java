@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator.internal.languages;
 
-import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
+import eu.bilekpavel.vinotekalara.openinghours.config.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.translator.internal.AbstractOpeningHoursTranslator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -25,6 +25,9 @@ public class FrenchHoursTranslator extends AbstractOpeningHoursTranslator {
                 "jour",
                 "heures du matin",
                 "heures de l'après-midi",
+                "",
+                "",
+                "",
                 CONFIG
         );    }
 }

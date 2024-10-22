@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator.internal;
 
-import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
+import eu.bilekpavel.vinotekalara.openinghours.config.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import lombok.AllArgsConstructor;
@@ -8,13 +8,13 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTranslator {
-
+public class AbstractOpeningHoursTranslator implements OpeningHoursTranslator {
     private final String OPENING_HOURS;
 
     private final String OPENED_MESSAGE;
     private final String CLOSED_MESSAGE;
 
+    private final String DAY;
     private final String MONDAY;
     private final String TUESDAY;
     private final String WEDNESDAY;
@@ -26,9 +26,13 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
 
     private final String START;
     private final String END;
-    private final String DAY;
+
     private final String MORNING_HOURS;
     private final String AFTERNOON_HOURS;
+
+    private final String SELECT_HOURS;
+    private final String ACTIVE_HOURS;
+    private final String SET_HOURS;
 
     private WeeklyHoursConfig CONFIG;
 
@@ -73,72 +77,87 @@ public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTran
     }
 
     @Override
-    public final String getIsOpenedMessage(boolean isOpened) {
-        return isOpened ? OPENED_MESSAGE : CLOSED_MESSAGE;
+    public String isOpenedMessage(boolean isOpened) {
+        return isOpened ? OPENED_MESSAGE : CLOSED_MESSAGE; // TODO this logic should be moved!!
     }
 
     @Override
-    public final String getMonday() {
-        return MONDAY;
-    }
-
-    @Override
-    public final String getTuesday() {
-        return TUESDAY;
-    }
-
-    @Override
-    public final String getWednesday() {
-        return WEDNESDAY;
-    }
-
-    @Override
-    public final String getThursday() {
-        return THURSDAY;
-    }
-
-    @Override
-    public final String getFriday() {
-        return FRIDAY;
-    }
-
-    @Override
-    public final String getSaturday() {
-        return SATURDAY;
-    }
-
-    @Override
-    public final String getSunday() {
-        return SUNDAY;
-    }
-
-    @Override
-    public final String getDay() {
+    public String day() {
         return DAY;
     }
 
     @Override
-    public final String getStart() {
+    public String monday() {
+        return MONDAY;
+    }
+
+    @Override
+    public String tuesday() {
+        return TUESDAY;
+    }
+
+    @Override
+    public String wednesday() {
+        return WEDNESDAY;
+    }
+
+    @Override
+    public String thursday() {
+        return THURSDAY;
+    }
+
+    @Override
+    public String friday() {
+        return FRIDAY;
+    }
+
+    @Override
+    public String saturday() {
+        return SATURDAY;
+    }
+
+    @Override
+    public String sunday() {
+        return SUNDAY;
+    }
+
+    @Override
+    public String start() {
         return START;
     }
 
     @Override
-    public final String getEnd(){
+    public String end() {
         return END;
     }
 
     @Override
-    public final String getMorningHours() {
+    public String morningHours() {
         return MORNING_HOURS;
     }
 
     @Override
-    public final String getAfternoonHours() {
+    public String afternoonHours() {
         return AFTERNOON_HOURS;
     }
 
     @Override
-    public final String getOpeningHours() {
+    public String openingHours() {
         return OPENING_HOURS;
+    }
+
+    @Override
+    public String selectHours() {
+        return SELECT_HOURS;
+    }
+
+    @Override
+    public String activeHours() {
+        return ACTIVE_HOURS;
+    }
+
+    @Override
+    public String setHours() {
+        return SET_HOURS;
     }
 }

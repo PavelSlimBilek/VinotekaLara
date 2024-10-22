@@ -2,7 +2,6 @@ package eu.bilekpavel.vinotekalara.superadmin.translator;
 
 public interface AdminTranslatorInterface {
     String getSettingsTranslation();
-    String getOpeningHoursTranslation();
     String getAppTranslation();
     String getAllowTranslation();
     String getForbidTranslation();
@@ -16,8 +15,6 @@ public interface AdminTranslatorInterface {
 
     String getApplyTranslation();
     String getCreateTranslation();
-    String getActiveHoursTranslation();
-    String getSelectGlobalHoursTranslation();
     String getSelectDefaultLanguageTranslation();
     String getToggleLanguagesMessage();
     String getAppSettingsTranslation();
@@ -27,7 +24,6 @@ public interface AdminTranslatorInterface {
     String getRedTranslation();
     String getBlueTranslation();
     String getGreenTranslation();
-    String getSetOpeningHoursTranslation();
     String getFontColorTranslation();
 
     String getSelectFontTranslation();

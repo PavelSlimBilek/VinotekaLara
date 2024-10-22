@@ -7,6 +7,7 @@ import eu.bilekpavel.vinotekalara.openinghours.dto.WeeklyHoursData;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
+import eu.bilekpavel.vinotekalara.openinghours.translator.dto.WeeklyHoursTranslatorData;
 
 import java.time.DayOfWeek;
 import java.util.List;
@@ -22,16 +23,17 @@ public interface WeeklyHoursServiceInterface {
     String getTranslatedTodayHours(OpeningHoursTranslator translator);
     String getTranslatedOpenedMessage(OpeningHoursTranslator translator);
     WeeklyHours getGlobalHours();
-    HoursWidgetData getWidgetData();
     boolean isOpened();
     void activate(int id);
     void update(int id, DayOfWeek day, DailyHoursRequest data);
-
     boolean areAfternoonHoursAllowed();
+
     void allowAfternoonHours(boolean isAllow);
-
     void delete(int id);
-    void create(String name);
 
+    void create(String name);
     void setIdentifier(int id, String name);
+
+    HoursWidgetData getWidgetData();
+    WeeklyHoursTranslatorData getTranslatorData(OpeningHoursTranslator locale);
 }

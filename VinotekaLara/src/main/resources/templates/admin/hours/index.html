@@ -6,7 +6,7 @@
         <link rel="stylesheet" th:href="@{/admin.css}">
     </head>
     <body>
-        <h1 th:text="${_locale.activeHoursTranslation()} + ': ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
+        <h1 th:text="${_hoursLocalization.activeHours()} + ': ' + ${_openingHours.activeHours().userIdentifier()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
@@ -33,7 +33,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.selectGlobalHoursTranslation()}"></p>
+                <p th:text="${_hoursLocalization.selectHours()}"></p>
             </div>
         <table>
             <tbody>
@@ -61,7 +61,7 @@
                 <tr>
                     <td>
                         <form id="createWeeklyHours" th:action="@{/super-admin/hours/create}" method="post">
-                            <label for="name" th:text="${_locale.createTranslation() + ' ' + _locale.openingHoursTranslation()}"></label>
+                            <label for="name" th:text="${_locale.createTranslation() + ' ' + _hoursLocalization.openingHours()}"></label> <!-- TODO create single translator field -->
                             <input id="name" name="name" required>
                         </form>
                     </td>

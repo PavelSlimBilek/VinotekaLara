@@ -7,22 +7,24 @@ import java.util.List;
 public interface OpeningHoursTranslator {
     String transform(DailyHours hours);
     List<String> transformAll(List<DailyHours> hours);
-    String getIsOpenedMessage(boolean isOpened);
+    String isOpenedMessage(boolean isOpened);
 
-    String getDay();
-    String getMonday();
-    String getTuesday();
-    String getWednesday();
-    String getThursday();
-    String getFriday();
-    String getSaturday();
+    String day();
+    String monday();
+    String tuesday();
+    String wednesday();
+    String thursday();
+    String friday();
+    String saturday();
+    String sunday();
 
-    String getSunday();
+    String start();
+    String end();
+    String morningHours();
+    String afternoonHours();
 
-    String getOpeningHours();
-    String getStart();
-    String getEnd();
-    String getMorningHours();
-    String getAfternoonHours();
-
+    String openingHours();
+    String selectHours();
+    String activeHours();
+    String setHours();
 }

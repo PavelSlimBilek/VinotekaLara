@@ -11,7 +11,6 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
     public LocalizedAdminContent getLocalizedAdminPage(AdminTranslatorInterface translator) {
         return new LocalizedAdminContent(
                 translator.getSettingsTranslation(),
-                translator.getOpeningHoursTranslation(),
                 translator.getAppTranslation(),
                 translator.getAllowTranslation(),
                 translator.getForbidTranslation(),
@@ -19,8 +18,6 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getSubmitTranslation(),
                 translator.getEditTranslation(),
                 translator.getBackTranslation(),
-                translator.getSelectGlobalHoursTranslation(),
-                translator.getActiveHoursTranslation(),
                 translator.getDeleteTranslation(),
                 translator.getCreateTranslation(),
                 translator.getNameTranslation(),
@@ -33,7 +30,6 @@ public class AdminPageContentProvider implements AdminPageContentProviderInterfa
                 translator.getRedTranslation(),
                 translator.getGreenTranslation(),
                 translator.getBlueTranslation(),
-                translator.getSetOpeningHoursTranslation(),
                 translator.getFontColorTranslation(),
                 translator.getSelectFontTranslation(),
                 translator.getPreviewTranslation()

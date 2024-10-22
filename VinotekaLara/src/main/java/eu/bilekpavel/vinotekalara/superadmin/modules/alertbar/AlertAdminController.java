@@ -22,20 +22,17 @@ import java.util.List;
 public class AlertAdminController extends SuperAdminController {
 
     private final AlertBarServiceInterface service;
-    private final TranslatorDataFactory translatorDataProvider;
-    private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
+    private final TranslatorDataFactory translatorDataProvider; // TODO change to appservice for translations
 
     public AlertAdminController(
             TranslatorRegistry LOCALES,
             AlertBarServiceInterface alertService,
             TranslatorDataFactory translatorDataFactory,
-            AdminPageContentProviderInterface CONTENT_PROVIDER,
-            AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider
+            AdminPageContentProviderInterface CONTENT_PROVIDER
     ) {
         super(LOCALES, CONTENT_PROVIDER);
         service = alertService;
         translatorDataProvider = translatorDataFactory;
-        this.alertLocalizationDataProvider = alertLocalizationDataProvider;
     }
 
     @GetMapping("/alert")
@@ -47,7 +44,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertWidget", service.getWidgetData(locale.getLang()));
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
-        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.getAlertBarTranslator()));
+        model.addAttribute("_alertLocalization", service.getTranslatorData(locale.getAlertBarTranslator()));
         model.addAttribute("_isAlertBarAllowed", service.isAllowed());
         model.addAttribute("_isAlertBarDisplayed", service.isDisplayed());
         model.addAttribute("_message", message == null ? "" : message);
@@ -63,7 +60,7 @@ public class AlertAdminController extends SuperAdminController {
 
         model.addAttribute("_alertBar", service.get(id));
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
-        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.getAlertBarTranslator()));
+        model.addAttribute("_alertLocalization", service.getTranslatorData(locale.getAlertBarTranslator()));
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         return "admin/alert-bar/detail";
     }

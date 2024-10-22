@@ -4,6 +4,7 @@ import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
+import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -19,17 +20,19 @@ import java.time.DayOfWeek;
 @Controller
 public class HoursAdminController extends SuperAdminController {
 
+    private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider;
     private final WeeklyHoursServiceInterface service;
     private final AppConfig config;
 
     public HoursAdminController(
             WeeklyHoursServiceInterface service,
             TranslatorRegistry LOCALES,
-            AdminPageContentProviderInterface CONTENT_PROVIDER,
+            AdminPageContentProviderInterface CONTENT_PROVIDER, OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider,
             AppConfig config
     ) {
         super(LOCALES, CONTENT_PROVIDER);
         this.service = service;
+        this.hoursLocalizationProvider = hoursLocalizationProvider;
         this.config = config;
     }
 
@@ -47,7 +50,10 @@ public class HoursAdminController extends SuperAdminController {
         model.addAttribute("_openingHours", service.getWidgetData());
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
+
         model.addAttribute("_hoursWidget", service.getTranslatedData(locale.getHoursTranslator()));
+        model.addAttribute("_hoursLocalization", hoursLocalizationProvider.create(locale.getHoursTranslator()));
+
         model.addAttribute("_message", message == null ? "" : message);
 
         attributes.addAttribute("lang", locale.getCode());

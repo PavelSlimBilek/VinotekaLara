@@ -4,6 +4,9 @@ import eu.bilekpavel.vinotekalara.alertbar.dto.AlertBarWidgetData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.error.AlertBarNotFoundException;
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.alertbar.translator.dto.AlertBarTranslatorData;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
 import eu.bilekpavel.vinotekalara.alertbar.model.AlertBuilder;
@@ -25,15 +28,18 @@ public class AlertBarService implements AlertBarServiceInterface {
 
     @Qualifier("alert_db_repository") private final AlertRepositoryInterface repo;
     private final LocalizedStringFactoryInterface localizedStringFactory;
+    private final AlertBarTranslatorDataFactoryInterface alertBarLocalizationProvider;
     private final AlertBarConfig config;
 
     public AlertBarService(
             @Qualifier("alert_db_repository") AlertRepositoryInterface repo,
             LocalizedStringFactoryInterface localizedStringFactory,
+            AlertBarTranslatorDataFactoryInterface alertBarLocalizationProvider,
             AlertBarConfig config
     ) {
         this.repo = repo;
         this.localizedStringFactory = localizedStringFactory;
+        this.alertBarLocalizationProvider = alertBarLocalizationProvider;
         this.config = config;
     }
 
@@ -196,6 +202,11 @@ public class AlertBarService implements AlertBarServiceInterface {
                 isAllowed(),
                 isDisplayed()
         );
+    }
+
+    @Override
+    public AlertBarTranslatorData getTranslatorData(AlertBarTranslator locale) {
+        return alertBarLocalizationProvider.create(locale);
     }
 
     private Alert getAlert(int id) {

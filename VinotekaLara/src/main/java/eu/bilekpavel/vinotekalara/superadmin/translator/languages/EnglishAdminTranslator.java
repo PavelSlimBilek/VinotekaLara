@@ -11,7 +11,6 @@ public final class EnglishAdminTranslator extends AbstractAdminTranslator {
     public EnglishAdminTranslator() {
         super(
                 "settings",
-                "opening hours",
                 "application",
                 "allow",
                 "forbid",
@@ -19,8 +18,6 @@ public final class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "submit",
                 "edit",
                 "back",
-                "select global opening hours",
-                "current opening hours",
                 "remove",
                 "create",
                 "name",
@@ -33,7 +30,6 @@ public final class EnglishAdminTranslator extends AbstractAdminTranslator {
                 "red",
                 "green",
                 "blue",
-                "set opening hours",
                 "font color",
                 "select font",
                 "preview"

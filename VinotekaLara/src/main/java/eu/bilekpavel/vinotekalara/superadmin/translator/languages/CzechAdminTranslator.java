@@ -10,7 +10,6 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
     public CzechAdminTranslator() {
         super(
                 "nastavení",
-                "otevírací hodiny",
                 "aplikace",
                 "povolit",
                 "zakázat",
@@ -18,8 +17,6 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "odeslat",
                 "upravit",
                 "zpět",
-                "zvolte globální otevírací dobu",
-                "aktuální otevírací doba",
                 "smazat",
                 "vytvořit",
                 "název",
@@ -32,7 +29,6 @@ public class CzechAdminTranslator extends AbstractAdminTranslator {
                 "červená",
                 "zelená",
                 "modrá",
-                "upravte otevírací hodiny",
                 "barva písma",
                 "zvolte písmo",
                 "náhled"

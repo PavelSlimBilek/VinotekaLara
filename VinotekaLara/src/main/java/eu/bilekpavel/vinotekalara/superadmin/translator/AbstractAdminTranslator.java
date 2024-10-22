@@ -2,7 +2,6 @@ package eu.bilekpavel.vinotekalara.superadmin.translator;
 
 public abstract class AbstractAdminTranslator implements AdminTranslatorInterface {
     private final String SETTINGS_TRANSLATION;
-    private final String OPENING_HOURS_TRANSLATION;
     private final String APP_TRANSLATION;
     private final String ALLOW_TRANSLATION;
     private final String FORBID_TRANSLATION;
@@ -17,10 +16,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     private final String APP_SETTINGS_TRANSLATION;
     private final String PREVIEW_TRANSLATION;
 
-    private final String SELECT_GLOBAL_HOURS_TRANSLATION;
-    private final String ACTIVE_HOURS_TRANSLATION;
-    private final String SET_OPENING_HOURS_TRANSLATION;
-
     private final String SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     private final String TOGGLE_LANGUAGES_MESSAGE_TRANSLATION;
 
@@ -34,7 +29,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
 
     public AbstractAdminTranslator(
             String settingsTranslation,
-            String openingHoursTranslation,
             String appTranslation,
             String allowTranslation,
             String forbidTranslation,
@@ -42,8 +36,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
             String submitTranslation,
             String editTranslation,
             String backTranslation,
-            String selectGlobalHoursTranslation,
-            String activeHoursTranslation,
             String deleteTranslation,
             String createTranslation,
             String nameTranslation,
@@ -56,13 +48,11 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
             String redTranslation,
             String greenTranslation,
             String blueTranslation,
-            String setOpeningHoursTranslation,
             String fontColorTranslation,
             String selectFontTranslation,
             String previewTranslation
     ) {
         this.SETTINGS_TRANSLATION = settingsTranslation;
-        this.OPENING_HOURS_TRANSLATION = openingHoursTranslation;
         this.APP_TRANSLATION = appTranslation;
         this.ALLOW_TRANSLATION = allowTranslation;
         this.FORBID_TRANSLATION = forbidTranslation;
@@ -76,10 +66,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
         this.APPLY_TRANSLATION = applyTranslation;
         this.APP_SETTINGS_TRANSLATION = appSettingsTranslation;
         this.PREVIEW_TRANSLATION = previewTranslation;
-
-        this.SELECT_GLOBAL_HOURS_TRANSLATION = selectGlobalHoursTranslation;
-        this.ACTIVE_HOURS_TRANSLATION = activeHoursTranslation;
-        this.SET_OPENING_HOURS_TRANSLATION = setOpeningHoursTranslation;
 
         this.SELECT_DEFAULT_LANGUAGE_TRANSLATION = selectLanguageTranslation;
         this.TOGGLE_LANGUAGES_MESSAGE_TRANSLATION = toggleLanguagesMessageTranslation;
@@ -97,11 +83,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     @Override
     public String getSettingsTranslation() {
         return SETTINGS_TRANSLATION;
-    }
-
-    @Override
-    public String getOpeningHoursTranslation() {
-        return OPENING_HOURS_TRANSLATION;
     }
 
     @Override
@@ -165,11 +146,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     }
 
     @Override
-    public String getSelectGlobalHoursTranslation() {
-        return SELECT_GLOBAL_HOURS_TRANSLATION;
-    }
-
-    @Override
     public String getSelectDefaultLanguageTranslation() {
         return SELECT_DEFAULT_LANGUAGE_TRANSLATION;
     }
@@ -210,11 +186,6 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     }
 
     @Override
-    public String getSetOpeningHoursTranslation() {
-        return SET_OPENING_HOURS_TRANSLATION;
-    }
-
-    @Override
     public String getFontColorTranslation() {
         return FONT_COLOR_TRANSLATION;
     }
@@ -222,10 +193,5 @@ public abstract class AbstractAdminTranslator implements AdminTranslatorInterfac
     @Override
     public String getSelectFontTranslation() {
         return SELECT_FONT_TRANSLATION;
-    }
-
-    @Override
-    public String getActiveHoursTranslation() {
-        return ACTIVE_HOURS_TRANSLATION;
     }
 }

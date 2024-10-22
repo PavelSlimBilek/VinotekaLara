@@ -3,6 +3,8 @@ package eu.bilekpavel.vinotekalara.alertbar.service;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertBarWidgetData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
+import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.alertbar.translator.dto.AlertBarTranslatorData;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
@@ -35,4 +37,5 @@ public interface AlertBarServiceInterface {
     void delete(int id);
 
     AlertBarWidgetData getWidgetData(Language lang);
+    AlertBarTranslatorData getTranslatorData(AlertBarTranslator locale);
 }

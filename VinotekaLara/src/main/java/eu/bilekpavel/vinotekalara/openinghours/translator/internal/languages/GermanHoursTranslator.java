@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.openinghours.translator.internal.languages;
 
-import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
+import eu.bilekpavel.vinotekalara.openinghours.config.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.translator.internal.AbstractOpeningHoursTranslator;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +24,9 @@ public class GermanHoursTranslator extends AbstractOpeningHoursTranslator {
                 "Tag",
                 "Vormittag",
                 "Nachmittag",
+                "",
+                "",
+                "",
                 config
         );
     }

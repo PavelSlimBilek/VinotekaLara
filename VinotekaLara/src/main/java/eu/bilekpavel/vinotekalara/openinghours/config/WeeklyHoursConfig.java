@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.openinghours;
+package eu.bilekpavel.vinotekalara.openinghours.config;
 
 import org.springframework.context.annotation.Configuration;
 

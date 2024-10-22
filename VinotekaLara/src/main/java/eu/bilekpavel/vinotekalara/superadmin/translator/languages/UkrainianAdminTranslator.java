@@ -31,11 +31,7 @@ public class UkrainianAdminTranslator extends AbstractAdminTranslator {
                 "колір фону",
                 "червоний",
                 "зелений",
-                "синій",
-                "редагувати години роботи",
-                "колір шрифту",
-                "вибрати шрифт",
-                "попередній перегляд"
+                "синій"
         );
     }
 }
