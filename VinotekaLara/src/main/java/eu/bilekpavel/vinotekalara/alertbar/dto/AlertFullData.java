@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.alertbar.dto;
 
-import eu.bilekpavel.vinotekalara.app.dto.Color;
+import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 

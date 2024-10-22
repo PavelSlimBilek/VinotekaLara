@@ -34,7 +34,7 @@
         <table>
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(0).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(0).localization()}"></span>
                     <!-- MONDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/monday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.monday() == null || _openingHours.monday().morningHours() == null
@@ -62,7 +62,7 @@
 
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(1).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(1).localization()}"></span>
                     <!-- TUESDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/tuesday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.tuesday() == null || _openingHours.tuesday().morningHours() == null
@@ -90,7 +90,7 @@
 
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(2).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(2).localization()}"></span>
                     <!-- WEDNESDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/wednesday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.wednesday() == null || _openingHours.wednesday().morningHours() == null
@@ -118,7 +118,7 @@
 
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(3).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(3).localization()}"></span>
                     <!-- THURSDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/thursday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.thursday() == null || _openingHours.thursday().morningHours() == null
@@ -146,7 +146,7 @@
 
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(4).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(4).localization()}"></span>
                     <!-- FRIDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/friday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.friday() == null || _openingHours.friday().morningHours() == null
@@ -174,7 +174,7 @@
 
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(5).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(5).localization()}"></span>
                     <!-- SATURDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/saturday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.saturday() == null || _openingHours.saturday().morningHours() == null
@@ -202,7 +202,7 @@
 
             <tr class="inactive">
                 <td>
-                    <span th:text="${_hoursWidget.daysOfWeek().get(6).translation()}"></span>
+                    <span th:text="${_hoursWidget.daysOfWeek().get(6).localization()}"></span>
                     <!-- SUNDAY -->
                     <form method="post" th:action="@{'/super-admin/hours/' + ${_openingHours.id()} + '/day/sunday'}">
                         <input type="time" name="morningStart" th:value="${_openingHours.sunday() == null || _openingHours.sunday().morningHours() == null

@@ -5,7 +5,7 @@ import eu.bilekpavel.vinotekalara.openinghours.dto.HoursWidgetData;
 import eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.WeeklyHoursData;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
-import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
+import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
 
 import java.time.DayOfWeek;
@@ -16,11 +16,11 @@ public interface WeeklyHoursServiceInterface {
     WeeklyHoursData get();
     WeeklyHoursData get(int id);
     List<WeeklyHoursData> getAll(boolean allowRemoved);
-    LocalizedOpeningHours getTranslatedData(OpeningHoursTranslatorInterface hoursTranslator);
-    List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator);
-    List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator);
-    String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator);
-    String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface translator);
+    LocalizedOpeningHours getTranslatedData(OpeningHoursTranslator hoursTranslator);
+    List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslator translator);
+    List<String> getTranslatedOpeningHours(OpeningHoursTranslator translator);
+    String getTranslatedTodayHours(OpeningHoursTranslator translator);
+    String getTranslatedOpenedMessage(OpeningHoursTranslator translator);
     WeeklyHours getGlobalHours();
     HoursWidgetData getWidgetData();
     boolean isOpened();

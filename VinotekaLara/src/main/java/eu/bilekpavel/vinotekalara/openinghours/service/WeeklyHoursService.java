@@ -4,7 +4,7 @@ import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.dto.*;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.repository.WeeklyHoursRepositoryInterface;
-import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
+import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -96,7 +96,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     }
 
     @Override
-    public LocalizedOpeningHours getTranslatedData(OpeningHoursTranslatorInterface hoursTranslator) {
+    public LocalizedOpeningHours getTranslatedData(OpeningHoursTranslator hoursTranslator) {
         return new LocalizedOpeningHours(
                 hoursTranslator.getDay(),
                 hoursTranslator.getStart(),
@@ -112,7 +112,7 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     }
 
     @Override
-    public List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslatorInterface translator) {
+    public List<LocalizedDayOfWeek> getTranslatedDaysOfWeek(OpeningHoursTranslator translator) {
         return List.of(
                 new LocalizedDayOfWeek(DayOfWeek.MONDAY.getValue(), translator.getMonday()),
                 new LocalizedDayOfWeek(DayOfWeek.TUESDAY.getValue(), translator.getTuesday()),
@@ -125,17 +125,17 @@ public class WeeklyHoursService implements WeeklyHoursServiceInterface {
     }
 
     @Override
-    public List<String> getTranslatedOpeningHours(OpeningHoursTranslatorInterface translator) {
+    public List<String> getTranslatedOpeningHours(OpeningHoursTranslator translator) {
         return translator.transformAll(currentGlobalHours.getHours());
     }
 
     @Override
-    public String getTranslatedTodayHours(OpeningHoursTranslatorInterface translator) {
+    public String getTranslatedTodayHours(OpeningHoursTranslator translator) {
         return translator.transform(currentGlobalHours.getHours(LocalDate.now().getDayOfWeek()));
     }
 
     @Override
-    public String getTranslatedOpenedMessage(OpeningHoursTranslatorInterface translator) {
+    public String getTranslatedOpenedMessage(OpeningHoursTranslator translator) {
         return translator.getIsOpenedMessage(isOpened());
     }
 

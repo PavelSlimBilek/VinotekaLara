@@ -1,6 +1,6 @@
-package eu.bilekpavel.vinotekalara.alertbar.domain;
+package eu.bilekpavel.vinotekalara.alertbar.model;
 
-import eu.bilekpavel.vinotekalara.app.dto.Color;
+import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 
 public final class AlertBuilder {
@@ -19,6 +19,12 @@ public final class AlertBuilder {
 
     public AlertBuilder setFontColor(Color color) {
         ALERT.setFontColor(color);
+        return this;
+    }
+
+    public AlertBuilder setColors(Color background, Color font) {
+        ALERT.setBackgroundColor(background);
+        ALERT.setFontColor(font);
         return this;
     }
 

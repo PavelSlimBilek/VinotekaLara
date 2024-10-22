@@ -1,13 +1,14 @@
-package eu.bilekpavel.vinotekalara.openinghours.translator;
+package eu.bilekpavel.vinotekalara.openinghours.translator.internal;
 
 import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
+import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTranslatorInterface {
+public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTranslator {
 
     private final String OPENING_HOURS;
 

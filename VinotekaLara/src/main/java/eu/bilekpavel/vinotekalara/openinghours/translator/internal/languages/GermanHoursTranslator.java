@@ -1,7 +1,7 @@
-package eu.bilekpavel.vinotekalara.openinghours.translator.languages;
+package eu.bilekpavel.vinotekalara.openinghours.translator.internal.languages;
 
 import eu.bilekpavel.vinotekalara.openinghours.WeeklyHoursConfig;
-import eu.bilekpavel.vinotekalara.openinghours.translator.AbstractOpeningHoursTranslator;
+import eu.bilekpavel.vinotekalara.openinghours.translator.internal.AbstractOpeningHoursTranslator;
 import org.springframework.stereotype.Component;
 
 @Component("germanHoursTranslator")

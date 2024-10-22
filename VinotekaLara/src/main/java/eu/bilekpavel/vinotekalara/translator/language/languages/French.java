@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.translator.language.languages;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorInterface;
-import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorInterface;
+import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.impl.Locale;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class French extends Locale {
     public French(
-            @Qualifier("frenchHoursTranslator") OpeningHoursTranslatorInterface hoursTranslator,
+            @Qualifier("frenchHoursTranslator") OpeningHoursTranslator hoursTranslator,
             @Qualifier("frenchPageTranslator") HomePageTranslatorInterface pageTranslator,
             @Qualifier("frenchAdmin") AdminTranslatorInterface adminTranslator,
             AlertBarTranslator alertBarTranslator

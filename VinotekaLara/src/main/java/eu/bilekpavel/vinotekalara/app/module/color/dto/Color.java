@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.app.dto;
+package eu.bilekpavel.vinotekalara.app.module.color.dto;
 
 import jakarta.persistence.Embeddable;
 

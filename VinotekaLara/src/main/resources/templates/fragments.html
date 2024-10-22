@@ -91,7 +91,7 @@
 
                 <label for="day" th:text="${_hoursWidget.dayWord()}"></label>
                 <select name="dayValue" id="day" required>
-                    <option th:each="day : ${_hoursWidget.daysOfWeek()}" th:value="${day.dayValue()}" th:text="${day.translation()}"></option>
+                    <option th:each="day : ${_hoursWidget.daysOfWeek()}" th:value="${day.dayValue()}" th:text="${day.localization()}"></option>
                 </select>
 
                 <label for="start" th:text="${_hoursWidget.startWord()}"></label>

@@ -6,6 +6,6 @@ import java.util.List;
 
 public record AlertRequest(
         List<LocalizedStringRequest> translations,
-        String backgroundColor
+        String backgroundColor // TODO change to Color!!!!! th:object
 ) {
 }

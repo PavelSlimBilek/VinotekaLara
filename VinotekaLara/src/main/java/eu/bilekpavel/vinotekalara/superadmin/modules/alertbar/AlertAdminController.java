@@ -1,10 +1,10 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
-import eu.bilekpavel.vinotekalara.app.dto.Color;
+import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -21,13 +21,13 @@ import java.util.List;
 @Controller
 public class AlertAdminController extends SuperAdminController {
 
-    private final AlertServiceInterface service;
+    private final AlertBarServiceInterface service;
     private final TranslatorDataFactory translatorDataProvider;
     private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
 
     public AlertAdminController(
             TranslatorRegistry LOCALES,
-            AlertServiceInterface alertService,
+            AlertBarServiceInterface alertService,
             TranslatorDataFactory translatorDataFactory,
             AdminPageContentProviderInterface CONTENT_PROVIDER,
             AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider
@@ -61,8 +61,9 @@ public class AlertAdminController extends SuperAdminController {
 
         Translator locale = LOCALES.getLocale(lang);
 
-        model.addAttribute("_alertBar", service.get(id).get());
+        model.addAttribute("_alertBar", service.get(id));
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
+        model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.getAlertBarTranslator()));
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         return "admin/alert-bar/detail";
     }

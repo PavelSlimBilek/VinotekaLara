@@ -4,7 +4,7 @@ import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 
 import java.util.List;
 
-public interface OpeningHoursTranslatorInterface {
+public interface OpeningHoursTranslator {
     String transform(DailyHours hours);
     List<String> transformAll(List<DailyHours> hours);
     String getIsOpenedMessage(boolean isOpened);

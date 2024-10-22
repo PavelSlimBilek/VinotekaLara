@@ -1,6 +1,6 @@
-package eu.bilekpavel.vinotekalara.alertbar.domain;
+package eu.bilekpavel.vinotekalara.alertbar.model;
 
-import eu.bilekpavel.vinotekalara.app.dto.Color;
+import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import jakarta.persistence.*;
@@ -17,6 +17,9 @@ public class Alert {
     @Id
     @GeneratedValue
     private int id;
+
+    @Setter
+    private String userIdentifier;
 
     @Setter
     private boolean active;
@@ -49,6 +52,7 @@ public class Alert {
         active = false;
         backgroundColor = new Color(255, 255, 255);
         fontColor = new Color(0, 0, 0);
+
     }
 
     public String getLocalized(Language language) {
