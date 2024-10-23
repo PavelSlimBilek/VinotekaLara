@@ -22,7 +22,8 @@ public final class SampleAlertBarTranslator extends AbstractCoreTranslator {
                 "BACK",
                 "DELETE",
                 "CREATE",
-                "APPLY"
+                "APPLY",
+                "TRANSLATOR"
         );
     }
 }

@@ -15,6 +15,7 @@ public record CoreTranslatorData(
         String back,
         String delete,
         String create,
-        String apply
+        String apply,
+        String translator
 ) {
 }

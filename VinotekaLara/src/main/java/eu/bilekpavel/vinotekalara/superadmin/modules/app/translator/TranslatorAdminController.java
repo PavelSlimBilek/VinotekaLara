@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.superadmin.modules.app;
+package eu.bilekpavel.vinotekalara.superadmin.modules.app.translator;
 
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;

@@ -16,4 +16,5 @@ public interface CoreTranslator {
     String delete();
     String create();
     String apply();
+    String translator();
 }

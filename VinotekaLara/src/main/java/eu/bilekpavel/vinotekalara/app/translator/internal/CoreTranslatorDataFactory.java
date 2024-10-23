@@ -24,7 +24,8 @@ public final class CoreTranslatorDataFactory implements CoreTranslatorDataFactor
                 locale.back(),
                 locale.delete(),
                 locale.create(),
-                locale.apply()
+                locale.apply(),
+                locale.translator()
         );
     }
 }

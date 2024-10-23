@@ -20,6 +20,7 @@ public abstract class AbstractCoreTranslator implements CoreTranslator {
     private final String DELETE;
     private final String CREATE;
     private final String APPLY;
+    private final String TRANSLATOR;
 
 
     @Override
@@ -95,5 +96,10 @@ public abstract class AbstractCoreTranslator implements CoreTranslator {
     @Override
     public String apply() {
         return APPLY;
+    }
+
+    @Override
+    public String translator() {
+        return TRANSLATOR;
     }
 }

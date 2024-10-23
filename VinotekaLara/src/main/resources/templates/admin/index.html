@@ -6,8 +6,11 @@
     </head>
     <body>
         <h1 th:text="${_adminLocalization.title()}"></h1>
-        <div class="card">
-        <a href="super-admin/app" th:text="${_coreLocalization.application()}"></a>
+        <h3 th:text="${_coreLocalization.settings()}"></h3>
+
+        <a href="super-admin">FAVORITE_COLORS</a>
+        <br>
+        <a href="super-admin/translator" th:text="${_coreLocalization.translator()}"></a>
         <br>
         <a href="super-admin/alert" th:text="${_alertLocalization.alertBar()}"></a>
         <br>

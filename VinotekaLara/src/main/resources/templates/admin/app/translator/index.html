@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>App settings</title>
+        <title th:text="${_coreLocalization.translator()}"></title>
         <link rel="stylesheet" th:href="@{/admin.css}">
     </head>
     <body>
-        <h1 th:text="${_coreLocalization.application()}"></h1>
+        <h1 th:text="${_coreLocalization.translator()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
