@@ -37,7 +37,7 @@
                         </form>
                     </td>
                     <td>
-                        <input form="backgroundColorPicker" type="submit" class="button green" id="backgroundColor" th:value="${_locale.applyTranslation()}">
+                        <input form="backgroundColorPicker" type="submit" class="button green" id="backgroundColor" th:value="${_coreLocalization.apply()}">
                     </td>
                 </tr>
             </table>
@@ -64,7 +64,7 @@
                         </form>
                     </td>
                     <td>
-                        <input form="fontColorPicker" type="submit" class="button green" id="fontColor" th:value="${_locale.applyTranslation()}">
+                        <input form="fontColorPicker" type="submit" class="button green" id="fontColor" th:value="${_coreLocalization.apply()}">
                     </td>
                 </tr>
             </table>
@@ -72,7 +72,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.previewTranslation()}"></p>
+                <p th:text="${_coreLocalization.preview()}"></p>
             </div>
             <div id="previewBox" class="alertBar"
                  th:style="'background-color: ' + ${_alertBar.backgroundColor().toRgbString()} + '; color: ' + ${_alertBar.fontColor().toRgbString()}"
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <a href="/super-admin/alert" class="button orange" th:text="${_locale.backTranslation()}"></a>
+        <a href="/super-admin/alert" class="button orange" th:text="${_coreLocalization.back()}"></a>
     </body>
 
     <script th:src="@{/colorPicker.js}"></script>

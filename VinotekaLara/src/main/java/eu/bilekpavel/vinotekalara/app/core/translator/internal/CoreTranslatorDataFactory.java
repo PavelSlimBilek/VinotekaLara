@@ -21,7 +21,7 @@ public class CoreTranslatorDataFactory implements CoreTranslatorDataFactoryInter
                 locale.activate(),
                 locale.submit(),
                 locale.edit(),
-                locale.edit(),
+                locale.back(),
                 locale.delete(),
                 locale.create(),
                 locale.apply()

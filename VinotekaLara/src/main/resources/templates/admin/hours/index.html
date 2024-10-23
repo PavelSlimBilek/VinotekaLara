@@ -11,21 +11,21 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.settingsTranslation()}"></p>
+                <p th:text="${_coreLocalization.settings()}"></p>
             </div>
             <table>
                 <tr class="inactive">
                     <td>
                         <form id="allowAfternoon" th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
                             <p th:text="${_hoursWidget.afternoonHours() + ': '}"></p>
-                            <label for="allowAfternoonHours" th:text="${_locale.allowTranslation()}"></label>
+                            <label for="allowAfternoonHours" th:text="${_coreLocalization.allow()}"></label>
                             <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
-                            <label for="disallowAfternoonHours" th:text="${_locale.forbidTranslation()}"></label>
+                            <label for="disallowAfternoonHours" th:text="${_coreLocalization.forbid()}"></label>
                             <input id="disallowAfternoonHours" type="radio" name="isAllowed" th:value="false" th:checked="${_areAfternoonHoursAllowed} == false"/>
                         </form>
                     </td>
                     <td>
-                        <input form="allowAfternoon" type="submit" value="ok" class="button green">
+                        <input form="allowAfternoon" type="submit" th:value="${_coreLocalization.submit()}" class="button green">
                     </td>
                 </tr>
             </table>
@@ -43,36 +43,36 @@
                     </td>
                     <td>
                         <a th:href="@{'/super-admin/hours/' + ${hours.id()}}"
-                           th:text="${_locale.editTranslation()}"
+                           th:text="${_coreLocalization.edit()}"
                            class="button blue">
                         </a>
                     </td>
                     <td>
                         <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/activate'}" method="post">
-                            <input type="submit" class="button green" th:value="${_locale.activateTranslation()}">
+                            <input type="submit" class="button green" th:value="${_coreLocalization.activate()}">
                         </form>
                     </td>
                     <td>
                         <form th:action="@{'/super-admin/hours/' + ${hours.id()} + '/delete'}" method="post">
-                            <input type="submit" class="button orange" th:value="${_locale.deleteTranslation()}">
+                            <input type="submit" class="button orange" th:value="${_coreLocalization.delete()}">
                         </form>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <form id="createWeeklyHours" th:action="@{/super-admin/hours/create}" method="post">
-                            <label for="name" th:text="${_locale.createTranslation() + ' ' + _hoursLocalization.openingHours()}"></label> <!-- TODO create single translator field -->
+                            <label for="name" th:text="${_coreLocalization.create() + ' ' + _hoursLocalization.openingHours()}"></label> <!-- TODO create single translator field -->
                             <input id="name" name="name" required>
                         </form>
                     </td>
                     <td>
-                        <input form="createWeeklyHours" type="submit" class="button green" value="ok">
+                        <input form="createWeeklyHours" type="submit" class="button green" th:value="${_coreLocalization.create()}">
                     </td>
                 </tr>
             </tbody>
         </table>
         </div>
 
-        <a href="/super-admin" class="button orange" th:text="${_locale.backTranslation()}"></a>
+        <a href="/super-admin" class="button orange" th:text="${_coreLocalization.back()}"></a>
     </body>
 </html>

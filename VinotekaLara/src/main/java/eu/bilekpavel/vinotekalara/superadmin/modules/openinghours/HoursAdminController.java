@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.openinghours;
 
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
@@ -20,6 +21,7 @@ import java.time.DayOfWeek;
 @Controller
 public class HoursAdminController extends SuperAdminController {
 
+    private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider;
     private final WeeklyHoursServiceInterface service;
     private final AppConfig config;
@@ -27,11 +29,14 @@ public class HoursAdminController extends SuperAdminController {
     public HoursAdminController(
             WeeklyHoursServiceInterface service,
             TranslatorRegistry LOCALES,
-            AdminPageContentProviderInterface CONTENT_PROVIDER, OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider,
+            AdminPageContentProviderInterface CONTENT_PROVIDER,
+            CoreTranslatorDataFactoryInterface coreLocalizationProvider,
+            OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider,
             AppConfig config
     ) {
         super(LOCALES, CONTENT_PROVIDER);
         this.service = service;
+        this.coreLocalizationProvider = coreLocalizationProvider;
         this.hoursLocalizationProvider = hoursLocalizationProvider;
         this.config = config;
     }
@@ -47,10 +52,11 @@ public class HoursAdminController extends SuperAdminController {
                 ? LOCALES.getLocale(config.getDEFAULT().getCode())
                 : LOCALES.getLocale(lang);
 
-        model.addAttribute("_openingHours", service.getWidgetData());
-        model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
-        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
+        model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
+        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator())); // TODO to be removed
 
+        model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
+        model.addAttribute("_openingHours", service.getWidgetData());
         model.addAttribute("_hoursWidget", service.getTranslatedData(locale.hoursTranslator()));
         model.addAttribute("_hoursLocalization", hoursLocalizationProvider.create(locale.hoursTranslator()));
 
@@ -75,7 +81,6 @@ public class HoursAdminController extends SuperAdminController {
         model.addAttribute("_openingHours", service.get(id));
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
-        model.addAttribute("_hoursWidget", service.getTranslatedData(locale.hoursTranslator()));
         model.addAttribute("_message", message == null ? "" : message);
 
         attributes.addAttribute("lang", locale.getCode());

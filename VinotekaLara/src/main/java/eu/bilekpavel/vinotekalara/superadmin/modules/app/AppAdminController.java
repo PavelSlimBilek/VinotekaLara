@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.app;
 
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
@@ -16,15 +17,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AppAdminController extends SuperAdminController{
     private final AppServiceInterface SERVICE;
     private final AppConfig CONFIG;
+    private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
 
     public AppAdminController(
             TranslatorRegistry LOCALES,
             AdminPageContentProviderInterface CONTENT_PROVIDER,
-            AppServiceInterface service, AppConfig config
+            AppServiceInterface service,
+            AppConfig config,
+            CoreTranslatorDataFactoryInterface coreLocalizationProvider
     ) {
         super(LOCALES, CONTENT_PROVIDER);
         this.SERVICE = service;
         this.CONFIG = config;
+        this.coreLocalizationProvider = coreLocalizationProvider;
     }
 
     @GetMapping("/app")
@@ -39,6 +44,7 @@ public class AppAdminController extends SuperAdminController{
 
         model.addAttribute("_localizationWidget", SERVICE.getLanguageWidgetData());
         model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
+        model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_message", message == null ? "" : message);
 
         return "/admin/app/index";

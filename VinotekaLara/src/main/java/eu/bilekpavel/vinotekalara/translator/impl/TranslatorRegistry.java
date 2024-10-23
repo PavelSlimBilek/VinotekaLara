@@ -57,8 +57,6 @@ public class TranslatorRegistry implements TranslatorRegistryInterface {
 
     @Override
     public List<Translator> getSupported() {
-        return LOCALES.values().stream()
-                .filter(t -> config.isAllowed(t.getLang()))
-                .toList();
+        return LOCALES.values().stream().toList();
     }
 }

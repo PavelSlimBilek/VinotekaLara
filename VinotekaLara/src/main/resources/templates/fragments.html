@@ -29,7 +29,6 @@
         <!--------------------------------------    ADMIN    ----------------------------------------->
         <!-------------------------------------------  ----------------------------------------------->
 
-        <!-- TODO messy HTML -->
         <div th:fragment="alert_toggle">
             <form th:action="@{/admin/alert-bar/toggle}" method="post">
                 <!--/*@thymesVar id="_isAlertBarAllowed" type="java.lang.Boolean"*/-->
@@ -38,27 +37,10 @@
             </form>
         </div>
 
-        <div th:fragment="alert_update_colors">
-            <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
-            <form th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/color'}" method="post">
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-
-                <label for="red">RED</label>
-                <input type="range" min="0" max="255" id="red" name="red">
-
-                <label for="green">GREEN</label>
-                <input type="range" min="0" max="255" id="green" name="green">
-
-                <label for="blue">BLUE</label>
-                <input type="range" min="0" max="255" id="blue" name="blue">
-
-                <button type="submit" class="button" id="colorBox"></button>
-            </form>
-        </div>
-
         <div th:fragment="alert_update_localizations">
             <table>
             <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
+            <!--/*@thymesVar id="_coreLocalization" type="eu.bilekpavel.vinotekalara.app.core.translator.dto.CoreTranslatorData"*/-->
                 <tr th:each="locale : ${_localizationWidget.locales()}" class="inactive">
                     <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
                     <td>
@@ -77,34 +59,35 @@
                         </form>
                     </td>
                     <td>
-                        <input type="submit" th:form="'localization' + ${locale.lang.name()}" class="button green" th:value="${_locale.applyTranslation()}">
+                        <input type="submit" th:form="'localization' + ${locale.lang.name()}" class="button green" th:value="${_coreLocalization.apply()}">
                     </td>
                 </tr>
             </table>
         </div>
 
-        <!--/*@thymesVar id="_hoursWidget" type="eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours"*/-->
+        <!--/*@thymesVar id="_hoursLocalization" type="eu.bilekpavel.vinotekalara.openinghours.translator.dto.WeeklyHoursTranslatorData"*/-->
+        <!--/*@thymesVar id="_coreLocalization" type="eu.bilekpavel.vinotekalara.app.core.translator.dto.CoreTranslatorData"*/-->
         <!--/*@thymesVar id="_areAfternoonHoursAllowed" type="java.lang.Boolean"*/-->
         <div th:fragment="admin_hours">
             <form th:action="@{/admin/opening-hours}" method="post">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-                <label for="day" th:text="${_hoursWidget.dayWord()}"></label>
+                <label for="day" th:text="${_hoursLocalization.day()}"></label>
                 <select name="dayValue" id="day" required>
-                    <option th:each="day : ${_hoursWidget.daysOfWeek()}" th:value="${day.dayValue()}" th:text="${day.localization()}"></option>
+                    <option th:each="day : ${_hoursLocalization.daysOfWeek()}" th:value="${day.dayValue()}" th:text="${day.localization()}"></option>
                 </select>
 
-                <label for="start" th:text="${_hoursWidget.startWord()}"></label>
+                <label for="start" th:text="${_hoursLocalization.start()}"></label>
                 <input type="time" name="morningStart" id="start" required>
 
-                <label for="end" th:text="${_hoursWidget.endWord()}"></label>
+                <label for="end" th:text="${_hoursLocalization.end()}"></label>
                 <input type="time" name="morningEnd" id="end" required>
 
 
-                <label for="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursWidget.afternoonHours() + ' ' + _hoursWidget.startWord()}"></label>
+                <label for="afternoonStart" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursLocalization.afternoonHours() + ' - ' + _hoursLocalization.start()}"></label>
                 <input type="time" name="afternoonStart" id="afternoonStart" th:if="${_areAfternoonHoursAllowed}">
 
-                <label for="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursWidget.afternoonHours() + ' ' + _hoursWidget.endWord()}"></label>
+                <label for="afternoonEnd" th:if="${_areAfternoonHoursAllowed}" th:text="${_hoursLocalization.afternoonHours() + ' - ' + _hoursLocalization.end()}"></label>
                 <input type="time" name="afternoonEnd" id="afternoonEnd" th:if="${_areAfternoonHoursAllowed}">
 
                 <input type="submit" value="OK">
