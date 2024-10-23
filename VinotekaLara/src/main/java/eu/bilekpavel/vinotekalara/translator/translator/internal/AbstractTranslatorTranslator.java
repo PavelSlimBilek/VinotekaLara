@@ -11,6 +11,7 @@ public class AbstractTranslatorTranslator implements TranslatorTranslator {
     private final String ALLOWED_LANGUAGES;
     private final String SELECT_DEFAULT_LANGUAGE;
     private final String TOGGLE_LANGUAGE;
+    private final String UPDATE_LOCALIZATIONS;
 
     @Override
     public String language() {
@@ -38,7 +39,12 @@ public class AbstractTranslatorTranslator implements TranslatorTranslator {
     }
 
     @Override
-    public String toggleLanguage() {
+    public String toggleLanguages() {
         return TOGGLE_LANGUAGE;
+    }
+
+    @Override
+    public String updateLocalizations() {
+        return UPDATE_LOCALIZATIONS;
     }
 }

@@ -39,7 +39,7 @@ public class HomeWebController {
                 : this.localizations.getLocale(lang);
 
         model.addAttribute("_requestURI", request.getRequestURI());
-        model.addAttribute("_pageContent", pageLocalizationProvider.create(locale.homePageTranslator()));
+        model.addAttribute("_homePageLocalization", pageLocalizationProvider.create(locale.homePageTranslator()));
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
 
         model.addAttribute("_isAlertBarDisplayed", alertBarConfig.isDisplayed());

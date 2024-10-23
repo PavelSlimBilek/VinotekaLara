@@ -7,6 +7,7 @@ import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslatorDataFactoryInterface;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,17 +18,20 @@ public class AppAdminController extends SuperAdminController{
     private final AppServiceInterface SERVICE;
     private final AppConfig CONFIG;
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
+    private final TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider;
 
     public AppAdminController(
             TranslatorRegistry LOCALES,
             AppServiceInterface service,
             AppConfig config,
-            CoreTranslatorDataFactoryInterface coreLocalizationProvider
+            CoreTranslatorDataFactoryInterface coreLocalizationProvider,
+            TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider
     ) {
         super(LOCALES);
         this.SERVICE = service;
         this.CONFIG = config;
         this.coreLocalizationProvider = coreLocalizationProvider;
+        this.translatorLocalizationProvider = translatorLocalizationProvider;
     }
 
     @GetMapping("/app")
@@ -40,8 +44,10 @@ public class AppAdminController extends SuperAdminController{
                 ? LOCALES.getLocale(CONFIG.getDEFAULT().getCode())
                 : LOCALES.getLocale(lang);
 
-        model.addAttribute("_localizationWidget", SERVICE.getLanguageWidgetData());
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
+        model.addAttribute("_translatorLocalization", translatorLocalizationProvider.create(locale.translatorTranslator()));
+
+        model.addAttribute("_localizationWidget", SERVICE.getLanguageWidgetData());
         model.addAttribute("_message", message == null ? "" : message);
 
         return "/admin/app/index";

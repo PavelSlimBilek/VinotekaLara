@@ -6,5 +6,6 @@ public interface TranslatorTranslator {
     String supportedLanguages();
     String allowedLanguages();
     String selectDefaultLanguage();
-    String toggleLanguage();
+    String toggleLanguages();
+    String updateLocalizations();
 }

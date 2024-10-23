@@ -13,7 +13,8 @@ public final class SampleTranslatorTranslator extends AbstractTranslatorTranslat
                 "SUPPORTED_LANGUAGES",
                 "ALLOWED_LANGUAGES",
                 "SELECT_DEFAULT_LANGUAGE",
-                "TOGGLE_LANGUAGE"
+                "TOGGLE_LANGUAGE",
+                "UPDATE_LOCALIZATIONS"
         );
     }
 }

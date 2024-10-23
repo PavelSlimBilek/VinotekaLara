@@ -11,14 +11,14 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.updateLocalizationsTranslation()}"></p>
+                <p th:text="${_translatorLocalization.updateLocalizations()}"></p>
             </div>
             <div th:replace="fragments :: alert_update_localizations"></div>
         </div>
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.backgroundColorTranslation()}"></p>
+                <p>DODĚLEJ MĚ!!! KURVAAA! BACKGROUND</p>
             </div>
             <table>
                 <tr>
@@ -26,13 +26,13 @@
                         <form id="backgroundColorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/background-color'}" method="post">
                             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-                            <label for="bckRed" th:text="${_locale.redTranslation()}"></label>
+                            <label for="bckRed" th:text="${_coreColorLocalization.red()}"></label>
                             <input type="range" min="0" max="255" id="bckRed" name="red" th:value="${_alertBar.backgroundColor().red()}">
 
-                            <label for="bckGreen" th:text="${_locale.greenTranslation()}"></label>
+                            <label for="bckGreen" th:text="${_coreColorLocalization.green()}"></label>
                             <input type="range" min="0" max="255" id="bckGreen" name="green" th:value="${_alertBar.backgroundColor().green()}">
 
-                            <label for="bckBlue" th:text="${_locale.blueTranslation()}"></label>
+                            <label for="bckBlue" th:text="${_coreColorLocalization.blue()}"></label>
                             <input type="range" min="0" max="255" id="bckBlue" name="blue" th:value="${_alertBar.backgroundColor().blue()}">
                         </form>
                     </td>
@@ -45,7 +45,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.fontColorTranslation()}"></p>
+                <p>DODĚLEJ MĚ!!! KURVAAA! FONT</p>
             </div>
             <table>
                 <tr>
@@ -53,13 +53,13 @@
                         <form id="fontColorPicker" th:action="@{'/super-admin/alert/' + ${_alertBar.id()} + '/font-color'}" method="post">
                             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-                            <label for="fntRed" th:text="${_locale.redTranslation()}"></label>
+                            <label for="fntRed" th:text="${_coreColorLocalization.red()}"></label>
                             <input type="range" min="0" max="255" id="fntRed" name="red" th:value="${_alertBar.fontColor().red()}">
 
-                            <label for="fntGreen" th:text="${_locale.greenTranslation()}"></label>
+                            <label for="fntGreen" th:text="${_coreColorLocalization.green()}"></label>
                             <input type="range" min="0" max="255" id="fntGreen" name="green" th:value="${_alertBar.fontColor().green()}">
 
-                            <label for="fntBlue" th:text="${_locale.blueTranslation()}"></label>
+                            <label for="fntBlue" th:text="${_coreColorLocalization.blue()}"></label>
                             <input type="range" min="0" max="255" id="fntBlue" name="blue" th:value="${_alertBar.fontColor().blue()}">
                         </form>
                     </td>

@@ -2,6 +2,8 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
+import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslator;
+import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
@@ -10,6 +12,7 @@ import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorWidgetDataFactory;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslatorDataFactoryInterface;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,19 +24,29 @@ import java.util.List;
 public class AlertAdminController extends SuperAdminController {
 
     private final AlertBarServiceInterface service;
-    private final TranslatorWidgetDataFactory translatorDataProvider; // TODO change to appservice for translations
+
+    private final TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider;
+    private final TranslatorWidgetDataFactory translatorWidgetDataProvider;
+    // TODO change to app service for translations - TBH i dont know now what that means!
+
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
+    private final CoreColorTranslatorDataFactoryInterface coreColorLocalizationProvider;
+
 
     public AlertAdminController(
             TranslatorRegistry LOCALES,
             AlertBarServiceInterface alertService,
             TranslatorWidgetDataFactory translatorWidgetDataFactory,
-            CoreTranslatorDataFactoryInterface coreLocalizationProvider
+            TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider,
+            CoreTranslatorDataFactoryInterface coreLocalizationProvider,
+            CoreColorTranslatorDataFactoryInterface coreColorLocalizationProvider
     ) {
         super(LOCALES);
         service = alertService;
-        translatorDataProvider = translatorWidgetDataFactory;
+        this.translatorWidgetDataProvider = translatorWidgetDataFactory;
         this.coreLocalizationProvider = coreLocalizationProvider;
+        this.coreColorLocalizationProvider = coreColorLocalizationProvider;
+        this.translatorLocalizationProvider = translatorLocalizationProvider;
     }
 
     @GetMapping("/alert")
@@ -60,8 +73,12 @@ public class AlertAdminController extends SuperAdminController {
         Translator locale = LOCALES.getLocale(lang);
 
         model.addAttribute("_alertBar", service.get(id));
-        model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
+
+        model.addAttribute("_localizationWidget", translatorWidgetDataProvider.create(locale));
+        model.addAttribute("_translatorLocalization", translatorLocalizationProvider.create(locale.translatorTranslator()));
+
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
+        model.addAttribute("_coreColorLocalization", coreColorLocalizationProvider.create(locale.coreColorTranslator()));
         model.addAttribute("_alertLocalization", service.getTranslatorData(locale.alertTranslator()));
         return "admin/alert-bar/detail";
     }

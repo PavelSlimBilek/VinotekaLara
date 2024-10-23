@@ -6,12 +6,12 @@
         <link rel="stylesheet" th:href="@{/admin.css}">
     </head>
     <body>
-        <h1 th:text="${_locale.appSettingsTranslation()}"></h1>
+        <h1 th:text="${_coreLocalization.application()}"></h1>
         <h3 th:if="${_message != null && !_message.isEmpty()}" th:text="${_message}"></h3>
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.selectDefaultLanguageTranslation()}"></p>
+                <p th:text="${_translatorLocalization.selectDefaultLanguage()}"></p>
             </div>
             <table>
                 <tr>
@@ -36,7 +36,7 @@
 
         <div class="card">
             <div class="cardDescription">
-                <p th:text="${_locale.toggleLanguagesMessageTranslation()}"></p>
+                <p th:text="${_translatorLocalization.toggleLanguages()}"></p>
             </div>
             <table>
                 <tr th:each="supportedLang : ${_localizationWidget.allLanguages()}"
