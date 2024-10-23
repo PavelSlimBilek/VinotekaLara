@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class TranslatorWidgetDataFactory implements TranslatorWidgetDataFactoryInterface {
+public final class TranslatorWidgetDataFactory implements TranslatorWidgetDataFactoryInterface {
 
     private TranslatorRegistryInterface registry;
     private AppConfig config;

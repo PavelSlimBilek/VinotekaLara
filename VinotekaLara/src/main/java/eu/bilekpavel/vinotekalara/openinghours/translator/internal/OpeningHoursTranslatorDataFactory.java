@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.openinghours.translator.dto.WeeklyHoursTransla
 import org.springframework.stereotype.Component;
 
 @Component
-public class OpeningHoursTranslatorDataFactory implements OpeningHoursTranslatorDataFactoryInterface {
+public final class OpeningHoursTranslatorDataFactory implements OpeningHoursTranslatorDataFactoryInterface {
     @Override
     public WeeklyHoursTranslatorData create(OpeningHoursTranslator locale) {
         return new WeeklyHoursTranslatorData(

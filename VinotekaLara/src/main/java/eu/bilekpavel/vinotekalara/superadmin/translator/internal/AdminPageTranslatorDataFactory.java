@@ -6,7 +6,8 @@ import eu.bilekpavel.vinotekalara.superadmin.translator.dto.AdminPageTranslatorD
 import org.springframework.stereotype.Component;
 
 @Component
-public class AdminPageTranslatorDataFactory implements AdminPageTranslatorDataFactoryInterface {
+public final class AdminPageTranslatorDataFactory implements AdminPageTranslatorDataFactoryInterface {
+
     @Override
     public AdminPageTranslatorData create(AdminPageTranslator locale) {
         return new AdminPageTranslatorData(

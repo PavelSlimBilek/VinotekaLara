@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class TranslatorRegistry implements TranslatorRegistryInterface {
+public final class TranslatorRegistry implements TranslatorRegistryInterface {
 
     private final Map<String, Translator> LOCALES;
     private final AppConfig config;

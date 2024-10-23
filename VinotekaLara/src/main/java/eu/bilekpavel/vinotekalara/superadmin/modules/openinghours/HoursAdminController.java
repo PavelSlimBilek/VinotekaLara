@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.DayOfWeek;
 
 @Controller
-public class HoursAdminController extends SuperAdminController {
+public final class HoursAdminController extends SuperAdminController {
 
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider;

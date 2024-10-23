@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.alertbar.translator.dto.AlertBarTranslatorData;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
-import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
+import eu.bilekpavel.vinotekalara.alertbar.translator.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
-public class AdminController {
+public final class AdminController {
 
     private final TranslatorRegistry locales;
 

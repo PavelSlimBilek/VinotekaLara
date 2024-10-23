@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AppService implements AppServiceInterface {
+public final class AppService implements AppServiceInterface {
     private TranslatorRegistry translatorRegistry;
     private AppConfig config;
 

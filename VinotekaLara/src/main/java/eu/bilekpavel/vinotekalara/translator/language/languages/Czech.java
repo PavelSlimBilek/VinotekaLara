@@ -13,7 +13,7 @@ import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
 import org.springframework.stereotype.Component;
 
 @Component("czechLocale")
-public class Czech extends Locale {
+public final class Czech extends Locale {
 
     public Czech(
             CoreTranslator coreTranslator,

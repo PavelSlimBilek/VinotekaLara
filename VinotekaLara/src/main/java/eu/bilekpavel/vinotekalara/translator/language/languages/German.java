@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("germanLocale")
-public class German extends Locale {
+public final class German extends Locale {
 
     public German(
             CoreTranslator coreTranslator,

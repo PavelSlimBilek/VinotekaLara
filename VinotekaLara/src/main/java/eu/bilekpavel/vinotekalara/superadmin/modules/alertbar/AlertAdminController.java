@@ -2,7 +2,6 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
-import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslator;
 import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
@@ -21,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-public class AlertAdminController extends SuperAdminController {
+public final class AlertAdminController extends SuperAdminController {
 
     private final AlertBarServiceInterface service;
 

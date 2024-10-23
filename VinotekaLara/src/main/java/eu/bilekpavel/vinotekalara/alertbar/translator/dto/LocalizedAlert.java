@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.alertbar.dto;
+package eu.bilekpavel.vinotekalara.alertbar.translator.dto;
 
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 

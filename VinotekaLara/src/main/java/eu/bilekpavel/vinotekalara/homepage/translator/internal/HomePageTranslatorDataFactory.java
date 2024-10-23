@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.homepage.translator.dto.HomePageTranslatorData
 import org.springframework.stereotype.Component;
 
 @Component
-public class HomePageTranslatorDataFactory implements HomePageTranslatorDataFactoryInterface {
+public final class HomePageTranslatorDataFactory implements HomePageTranslatorDataFactoryInterface {
     @Override
     public HomePageTranslatorData create(HomePageTranslator locale) {
         return new HomePageTranslatorData(

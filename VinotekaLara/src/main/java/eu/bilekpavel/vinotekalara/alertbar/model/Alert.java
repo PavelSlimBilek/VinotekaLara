@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Getter
 @Entity
-public class Alert {
+public final class Alert {
 
     @Id
     @GeneratedValue

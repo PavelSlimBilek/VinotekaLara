@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 @Qualifier("hours_in_memory_repository")
-public class WeeklyHoursInMemoryRepository implements WeeklyHoursRepositoryInterface{
+public final class WeeklyHoursInMemoryRepository implements WeeklyHoursRepositoryInterface{
 
     private final Map<Integer, WeeklyHours> HOURS;
 

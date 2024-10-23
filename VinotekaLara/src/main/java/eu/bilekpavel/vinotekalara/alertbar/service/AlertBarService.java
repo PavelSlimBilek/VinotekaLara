@@ -11,7 +11,7 @@ import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.alertbar.model.Alert;
 import eu.bilekpavel.vinotekalara.alertbar.model.AlertBuilder;
 import eu.bilekpavel.vinotekalara.alertbar.repository.AlertRepositoryInterface;
-import eu.bilekpavel.vinotekalara.alertbar.dto.LocalizedAlert;
+import eu.bilekpavel.vinotekalara.alertbar.translator.dto.LocalizedAlert;
 import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AlertBarService implements AlertBarServiceInterface {
+public final class AlertBarService implements AlertBarServiceInterface {
 
     @Qualifier("alert_db_repository") private final AlertRepositoryInterface repo;
     private final LocalizedStringFactoryInterface localizedStringFactory;

@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.alertbar.translator.dto.AlertBarTranslatorData
 import org.springframework.stereotype.Component;
 
 @Component
-public class AlertBarTranslatorDataFactory implements AlertBarTranslatorDataFactoryInterface {
+public final class AlertBarTranslatorDataFactory implements AlertBarTranslatorDataFactoryInterface {
 
     @Override
     public AlertBarTranslatorData create(AlertBarTranslator locale) {

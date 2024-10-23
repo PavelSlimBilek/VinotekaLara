@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.openinghours.service;
 
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.dto.HoursWidgetData;
-import eu.bilekpavel.vinotekalara.openinghours.dto.LocalizedOpeningHours;
+import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedOpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.WeeklyHoursData;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;

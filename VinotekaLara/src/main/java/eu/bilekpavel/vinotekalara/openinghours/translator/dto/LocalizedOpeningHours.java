@@ -1,6 +1,4 @@
-package eu.bilekpavel.vinotekalara.openinghours.dto;
-
-import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
+package eu.bilekpavel.vinotekalara.openinghours.translator.dto;
 
 import java.util.List;
 

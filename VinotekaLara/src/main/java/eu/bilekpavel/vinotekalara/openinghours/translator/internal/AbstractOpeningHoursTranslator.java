@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor
-public class AbstractOpeningHoursTranslator implements OpeningHoursTranslator {
+public abstract class AbstractOpeningHoursTranslator implements OpeningHoursTranslator {
     private final String OPENING_HOURS;
 
     private final String OPENED_MESSAGE;

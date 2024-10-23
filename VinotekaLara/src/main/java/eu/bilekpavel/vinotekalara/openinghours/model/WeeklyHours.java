@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class WeeklyHours {
+public final class WeeklyHours {
 
     @Id
     @GeneratedValue

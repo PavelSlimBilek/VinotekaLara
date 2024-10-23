@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.translator.translator.dto.TranslatorTranslator
 import org.springframework.stereotype.Component;
 
 @Component
-public class TranslatorTranslatorDataFactory implements TranslatorTranslatorDataFactoryInterface {
+public final class TranslatorTranslatorDataFactory implements TranslatorTranslatorDataFactoryInterface {
 
     @Override
     public TranslatorTranslatorData create(TranslatorTranslator locale) {

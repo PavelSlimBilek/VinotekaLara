@@ -7,6 +7,7 @@ import eu.bilekpavel.vinotekalara.openinghours.repository.WeeklyHoursRepositoryI
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedDayOfWeek;
+import eu.bilekpavel.vinotekalara.openinghours.translator.dto.LocalizedOpeningHours;
 import eu.bilekpavel.vinotekalara.openinghours.translator.dto.WeeklyHoursTranslatorData;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

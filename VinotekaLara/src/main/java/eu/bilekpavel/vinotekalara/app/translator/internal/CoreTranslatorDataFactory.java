@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.app.translator.dto.CoreTranslatorData;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CoreTranslatorDataFactory implements CoreTranslatorDataFactoryInterface {
+public final class CoreTranslatorDataFactory implements CoreTranslatorDataFactoryInterface {
     @Override
     public CoreTranslatorData create(CoreTranslator locale) {
         return new CoreTranslatorData(

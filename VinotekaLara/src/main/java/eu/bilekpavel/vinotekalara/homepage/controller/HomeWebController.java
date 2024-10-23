@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
-public class HomeWebController {
+public final class HomeWebController {
 
     private final AppConfig config;
 

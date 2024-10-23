@@ -4,7 +4,7 @@ import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class AbstractTranslatorTranslator implements TranslatorTranslator {
+public abstract class AbstractTranslatorTranslator implements TranslatorTranslator {
     private final String LANGUAGE;
     private final String LANGUAGES;
     private final String SUPPORTED_LANGUAGES;

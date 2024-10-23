@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class AppAdminController extends SuperAdminController{
+public final class AppAdminController extends SuperAdminController{
     private final AppServiceInterface SERVICE;
     private final AppConfig CONFIG;
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;

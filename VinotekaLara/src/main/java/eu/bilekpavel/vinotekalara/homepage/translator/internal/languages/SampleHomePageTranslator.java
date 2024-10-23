@@ -4,9 +4,9 @@ import eu.bilekpavel.vinotekalara.homepage.translator.internal.AbstractHomePageT
 import org.springframework.stereotype.Component;
 
 @Component
-public final class CzechHomePageTranslator extends AbstractHomePageTranslator {
+public final class SampleHomePageTranslator extends AbstractHomePageTranslator {
 
-    public CzechHomePageTranslator() {
+    public SampleHomePageTranslator() {
         super(
                 "TITLE",
                 "WELCOME_MESSAGE",
