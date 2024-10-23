@@ -75,7 +75,10 @@ public class HoursAdminController extends SuperAdminController {
                 ? LOCALES.getLocale(config.getDEFAULT().getCode())
                 : LOCALES.getLocale(lang);
 
+        model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
+
         model.addAttribute("_openingHours", service.get(id));
+        model.addAttribute("_hoursLocalization", hoursLocalizationProvider.create(locale.hoursTranslator()));
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         model.addAttribute("_message", message == null ? "" : message);
 
