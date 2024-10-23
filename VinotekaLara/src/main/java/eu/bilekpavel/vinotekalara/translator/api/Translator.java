@@ -8,6 +8,7 @@ import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
 
 public interface Translator {
     Language getLang();
@@ -16,9 +17,11 @@ public interface Translator {
     Flag getFlag();
 
     CoreTranslator coreTranslator();
+    TranslatorTranslator translatorTranslator();
     CoreColorTranslator coreColorTranslator();
     HomePageTranslator homePageTranslator();
-    OpeningHoursTranslator hoursTranslator();
     AdminPageTranslator getAdminTranslator();
+
     AlertBarTranslator alertTranslator();
+    OpeningHoursTranslator hoursTranslator();
 }

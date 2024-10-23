@@ -9,6 +9,7 @@ import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -19,6 +20,7 @@ public abstract class Locale implements Translator {
     // CORE
     private final CoreTranslator coreTranslator;
     private final CoreColorTranslator coreColorTranslator;
+    private final TranslatorTranslator translatorTranslator;
     private final AdminPageTranslator adminTranslator;
     private final HomePageTranslator homePageTranslator;
 
@@ -42,10 +44,14 @@ public abstract class Locale implements Translator {
     }
 
 
-    // composite translators
     @Override
     public CoreTranslator coreTranslator() {
         return coreTranslator;
+    }
+
+    @Override
+    public TranslatorTranslator translatorTranslator() {
+        return translatorTranslator;
     }
 
     @Override

@@ -9,6 +9,7 @@ import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.impl.Locale;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ public class Ukrainian extends Locale {
     public Ukrainian(
             CoreTranslator coreTranslator,
             CoreColorTranslator coreColorTranslator,
+            TranslatorTranslator translatorTranslator,
             OpeningHoursTranslator hoursTranslator,
             HomePageTranslator pageTranslator,
             AdminPageTranslator adminTranslator,
@@ -28,6 +30,7 @@ public class Ukrainian extends Locale {
                 new Flag("/images/flags/ukraine.png", "SELF_NAME"),
                 coreTranslator,
                 coreColorTranslator,
+                translatorTranslator,
                 adminTranslator,
                 pageTranslator,
                 hoursTranslator,
