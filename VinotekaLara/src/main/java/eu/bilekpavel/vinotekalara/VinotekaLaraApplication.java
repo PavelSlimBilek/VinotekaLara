@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
@@ -20,13 +20,13 @@ import java.util.List;
 @SpringBootApplication
 public class VinotekaLaraApplication implements CommandLineRunner {
 
-	private final AlertBarServiceInterface alertService;
+	private final AlertServiceInterface alertService;
 	private final WeeklyHoursServiceInterface hoursService;
     private final AppServiceInterface appService;
 
 	public VinotekaLaraApplication(
 			AppServiceInterface appService,
-			AlertBarServiceInterface alertService,
+			AlertServiceInterface alertService,
 			WeeklyHoursServiceInterface hoursService
 	) {
 		this.appService = appService;

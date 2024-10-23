@@ -4,10 +4,10 @@ import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
-import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorWidgetDataFactory;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.internal.TranslatorWidgetDataFactory;
+import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public final class HomeWebController {
     private final TranslatorWidgetDataFactory translatorDataProvider;
 
     private final WeeklyHoursServiceInterface hoursService;
-    private final AlertBarServiceInterface alertBarService;
+    private final AlertServiceInterface alertBarService;
     private final AlertBarConfig alertBarConfig;
 
     @GetMapping("/home")

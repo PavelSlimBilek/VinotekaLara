@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Super Admin 0.5</title>
+        <title th:text="${_adminLocalization.title()}"></title>
     </head>
     <body>
-        <h1>Super Admin 0.5</h1>
+        <h1 th:text="${_adminLocalization.title()}"></h1>
         <div class="card">
         <a href="super-admin/app" th:text="${_coreLocalization.application()}"></a>
         <br>

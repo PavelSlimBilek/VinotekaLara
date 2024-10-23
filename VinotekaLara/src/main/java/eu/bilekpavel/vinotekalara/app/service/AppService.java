@@ -3,7 +3,7 @@ package eu.bilekpavel.vinotekalara.app.service;
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LanguageWidgetData;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

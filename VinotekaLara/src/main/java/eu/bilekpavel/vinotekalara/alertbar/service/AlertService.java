@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public final class AlertBarService implements AlertBarServiceInterface {
+public final class AlertService implements AlertServiceInterface {
 
     @Qualifier("alert_db_repository") private final AlertRepositoryInterface repo;
     private final LocalizedStringFactoryInterface localizedStringFactory;
     private final AlertBarTranslatorDataFactoryInterface alertBarLocalizationProvider;
     private final AlertBarConfig config;
 
-    public AlertBarService(
+    public AlertService(
             @Qualifier("alert_db_repository") AlertRepositoryInterface repo,
             LocalizedStringFactoryInterface localizedStringFactory,
             AlertBarTranslatorDataFactoryInterface alertBarLocalizationProvider,

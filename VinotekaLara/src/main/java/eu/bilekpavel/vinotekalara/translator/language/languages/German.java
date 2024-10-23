@@ -8,9 +8,8 @@ import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
-import eu.bilekpavel.vinotekalara.translator.impl.Locale;
+import eu.bilekpavel.vinotekalara.translator.internal.Locale;
 import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("germanLocale")

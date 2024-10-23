@@ -4,11 +4,8 @@ public interface AdminPageTranslator {
     String title();
 
     /*
-    String getSelectDefaultLanguageTranslation();
-    String getToggleLanguagesMessage();
     String getAppSettingsTranslation();
 
-    String getUpdateLocalizationsTranslation();
     String getBackgroundColorTranslation();
     String getFontColorTranslation();
 

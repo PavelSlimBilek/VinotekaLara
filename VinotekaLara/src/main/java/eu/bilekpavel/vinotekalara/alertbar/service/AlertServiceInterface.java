@@ -12,7 +12,7 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 
 import java.util.List;
 
-public interface AlertBarServiceInterface {
+public interface AlertServiceInterface {
     void create(AlertRequest request);
 
     LocalizedAlert getLocalized(int id, Language language);

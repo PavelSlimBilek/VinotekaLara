@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
-import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
+import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
@@ -9,8 +9,8 @@ import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorWidgetDataFactory;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.internal.TranslatorWidgetDataFactory;
+import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslatorDataFactoryInterface;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 public final class AlertAdminController extends SuperAdminController {
 
-    private final AlertBarServiceInterface service;
+    private final AlertServiceInterface service;
 
     private final TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider;
     private final TranslatorWidgetDataFactory translatorWidgetDataProvider;
@@ -34,7 +34,7 @@ public final class AlertAdminController extends SuperAdminController {
 
     public AlertAdminController(
             TranslatorRegistry LOCALES,
-            AlertBarServiceInterface alertService,
+            AlertServiceInterface alertService,
             TranslatorWidgetDataFactory translatorWidgetDataFactory,
             TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider,
             CoreTranslatorDataFactoryInterface coreLocalizationProvider,

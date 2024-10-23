@@ -6,7 +6,7 @@ import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterf
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +37,7 @@ public final class AdminController {
                 ? locales.getLocale(config.getDEFAULT().getCode())
                 : locales.getLocale(lang);
 
-        model.addAttribute("_locale", adminLocalizationDataProvider.create(locale.getAdminTranslator()));
+        model.addAttribute("_adminLocalization", adminLocalizationDataProvider.create(locale.getAdminTranslator()));
         model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.alertTranslator()));
         model.addAttribute("_hoursLocalization", hoursLocalizationDataProvider.create(locale.hoursTranslator()));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));

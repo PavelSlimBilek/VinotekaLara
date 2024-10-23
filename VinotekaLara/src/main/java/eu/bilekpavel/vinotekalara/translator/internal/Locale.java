@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.translator.impl;
+package eu.bilekpavel.vinotekalara.translator.internal;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslator;

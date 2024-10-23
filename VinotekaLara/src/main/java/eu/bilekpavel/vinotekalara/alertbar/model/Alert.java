@@ -1,5 +1,7 @@
 package eu.bilekpavel.vinotekalara.alertbar.model;
 
+import eu.bilekpavel.vinotekalara.app.api.internal.SoftRemovable;
+import eu.bilekpavel.vinotekalara.app.api.internal.Switchable;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 @Getter
 @Entity
-public final class Alert {
+public final class Alert implements SoftRemovable, Switchable {
 
     @Id
     @GeneratedValue
@@ -61,5 +63,36 @@ public final class Alert {
 
     public void updateLocalization(LocalizedString content) {
         this.localizations.put(content.language(), content.content());
+    }
+
+
+    @Override
+    public void remove() {
+        removed = true;
+    }
+
+    @Override
+    public void restore() {
+        removed = false;
+    }
+
+    @Override
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    @Override
+    public void setActiveState() {
+        active = true;
+    }
+
+    @Override
+    public void setInactiveState() {
+        active = false;
+    }
+
+    @Override
+    public boolean isInActiveState() {
+        return active;
     }
 }
