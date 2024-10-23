@@ -1,8 +1,8 @@
-package eu.bilekpavel.vinotekalara.app.core.translator.internal;
+package eu.bilekpavel.vinotekalara.app.translator.internal;
 
-import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslator;
-import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
-import eu.bilekpavel.vinotekalara.app.core.translator.dto.CoreTranslatorData;
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslator;
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.app.translator.dto.CoreTranslatorData;
 import org.springframework.stereotype.Component;
 
 @Component

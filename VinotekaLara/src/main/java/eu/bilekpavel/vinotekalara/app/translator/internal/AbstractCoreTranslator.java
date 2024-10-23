@@ -1,6 +1,6 @@
-package eu.bilekpavel.vinotekalara.app.core.translator.internal;
+package eu.bilekpavel.vinotekalara.app.translator.internal;
 
-import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslator;
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslator;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

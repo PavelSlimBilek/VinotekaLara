@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.app.core.translator;
+package eu.bilekpavel.vinotekalara.app.translator;
 
 public interface CoreTranslator {
     String application();

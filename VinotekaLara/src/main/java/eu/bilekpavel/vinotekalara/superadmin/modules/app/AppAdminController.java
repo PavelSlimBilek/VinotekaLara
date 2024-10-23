@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.app;
 
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
-import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;

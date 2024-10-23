@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.app.core.translator.dto;
+package eu.bilekpavel.vinotekalara.app.translator.dto;
 
 public record CoreTranslatorData(
         String application,

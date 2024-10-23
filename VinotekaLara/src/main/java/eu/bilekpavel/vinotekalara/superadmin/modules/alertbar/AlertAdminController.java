@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.alertbar;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
-import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
 import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;

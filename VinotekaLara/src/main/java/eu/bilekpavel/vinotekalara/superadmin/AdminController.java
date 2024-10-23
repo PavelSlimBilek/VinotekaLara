@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.superadmin;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
-import eu.bilekpavel.vinotekalara.app.core.translator.CoreTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
