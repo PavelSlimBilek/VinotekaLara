@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.translator.language.languages;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
+import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslator;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
@@ -13,19 +14,23 @@ import org.springframework.stereotype.Component;
 
 @Component("germanLocale")
 public class German extends Locale {
-    public German(OpeningHoursTranslator hoursTranslator,
-                  HomePageTranslator pageTranslator,
-                  AdminPageTranslator adminTranslator,
-                  AlertBarTranslator alertBarTranslator,
-                  CoreTranslator coreTranslator
+
+    public German(
+            CoreTranslator coreTranslator,
+            CoreColorTranslator coreColorTranslator,
+            OpeningHoursTranslator hoursTranslator,
+            HomePageTranslator pageTranslator,
+            AdminPageTranslator adminTranslator,
+            AlertBarTranslator alertBarTranslator
     ) {
         super(
                 Language.GERMAN,
-                new Flag("/images/flags/germany.png", "deutsch"),
+                new Flag("/images/flags/germany.png", "SELF_NAME"),
                 coreTranslator,
-                hoursTranslator,
-                pageTranslator,
+                coreColorTranslator,
                 adminTranslator,
+                pageTranslator,
+                hoursTranslator,
                 alertBarTranslator
         );
     }

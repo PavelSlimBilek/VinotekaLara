@@ -10,9 +10,6 @@ public interface AdminPageTranslator {
 
     String getUpdateLocalizationsTranslation();
     String getBackgroundColorTranslation();
-    String getRedTranslation();
-    String getBlueTranslation();
-    String getGreenTranslation();
     String getFontColorTranslation();
 
     String getSelectFontTranslation();
