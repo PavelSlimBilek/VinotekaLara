@@ -16,7 +16,7 @@
             <table>
                 <tr>
                     <td>
-                        <form id="languageSelect" th:action="@{/super-admin/app/default-language}" method="post">
+                        <form id="languageSelect" th:action="@{/super-admin/translator/default-language}" method="post">
                             <label for="lang"></label>
                             <select id="lang" name="code">
                                 <option th:each="lang : ${_localizationWidget.languages()}"
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         <form th:id="'toggleLanguage' + ${supportedLang}"
-                              th:action="@{'/super-admin/app/language/' + ${supportedLang.name()} + '/toggle'}"
+                              th:action="@{'/super-admin/translator/' + ${supportedLang.name()} + '/toggle'}"
                               method="post">
                         </form>
                     </td>

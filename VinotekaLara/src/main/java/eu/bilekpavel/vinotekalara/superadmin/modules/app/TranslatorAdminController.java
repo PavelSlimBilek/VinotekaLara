@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public final class AppAdminController extends SuperAdminController{
+public final class TranslatorAdminController extends SuperAdminController{
     private final AppServiceInterface SERVICE;
     private final AppConfig CONFIG;
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
     private final TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider;
 
-    public AppAdminController(
+    public TranslatorAdminController(
             TranslatorRegistry LOCALES,
             AppServiceInterface service,
             AppConfig config,
@@ -34,7 +34,7 @@ public final class AppAdminController extends SuperAdminController{
         this.translatorLocalizationProvider = translatorLocalizationProvider;
     }
 
-    @GetMapping("/app")
+    @GetMapping("/translator")
     public String app(
             Model model,
             @RequestParam(required = false) String message,
@@ -47,21 +47,21 @@ public final class AppAdminController extends SuperAdminController{
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_translatorLocalization", translatorLocalizationProvider.create(locale.translatorTranslator()));
 
-        model.addAttribute("_localizationWidget", SERVICE.getLanguageWidgetData());
+        model.addAttribute("_localizationWidget", SERVICE.getTranslatorWidgetData());
         model.addAttribute("_message", message == null ? "" : message);
 
-        return "/admin/app/index";
+        return "/admin/app/translator/index";
     }
 
-    @PostMapping("/app/default-language")
+    @PostMapping("/translator/default-language")
     public String setLang(@RequestParam String code) {
         Language lang = LOCALES.getLocale(code).getLang();
         SERVICE.setDefaultLanguage(lang);
 
-        return "redirect:/super-admin/app";
+        return "redirect:/super-admin/translator";
     }
 
-    @PostMapping("/app/language/{name}/toggle")
+    @PostMapping("/translator/{name}/toggle")
     public String toggleLanguage(
             @PathVariable String name,
             RedirectAttributes attributes
@@ -73,6 +73,6 @@ public final class AppAdminController extends SuperAdminController{
         } catch (RuntimeException e) {
             attributes.addAttribute("message", e.getMessage());
         }
-            return "redirect:/super-admin/app";
+            return "redirect:/super-admin/translator";
     }
 }

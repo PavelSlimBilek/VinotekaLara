@@ -15,7 +15,7 @@ public final class AppService implements AppServiceInterface {
     private AppConfig config;
 
     @Override
-    public LanguageWidgetData getLanguageWidgetData() {
+    public LanguageWidgetData getTranslatorWidgetData() {
         return new LanguageWidgetData(
                 translatorRegistry.getAllowedLanguages(),
                 translatorRegistry.getSupported().stream().map(Translator::getLang).toList(),
