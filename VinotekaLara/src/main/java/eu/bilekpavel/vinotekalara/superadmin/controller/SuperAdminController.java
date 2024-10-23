@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.superadmin;
+package eu.bilekpavel.vinotekalara.superadmin.controller;
 
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import lombok.AllArgsConstructor;
@@ -11,5 +11,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public abstract class SuperAdminController {
 
     protected final TranslatorRegistry LOCALES;
-    protected final AdminPageContentProviderInterface CONTENT_PROVIDER;
 }

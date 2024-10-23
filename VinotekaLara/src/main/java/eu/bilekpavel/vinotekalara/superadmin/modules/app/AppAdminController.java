@@ -3,8 +3,7 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.app;
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
-import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
-import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
+import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -21,12 +20,11 @@ public class AppAdminController extends SuperAdminController{
 
     public AppAdminController(
             TranslatorRegistry LOCALES,
-            AdminPageContentProviderInterface CONTENT_PROVIDER,
             AppServiceInterface service,
             AppConfig config,
             CoreTranslatorDataFactoryInterface coreLocalizationProvider
     ) {
-        super(LOCALES, CONTENT_PROVIDER);
+        super(LOCALES);
         this.SERVICE = service;
         this.CONFIG = config;
         this.coreLocalizationProvider = coreLocalizationProvider;
@@ -43,7 +41,6 @@ public class AppAdminController extends SuperAdminController{
                 : LOCALES.getLocale(lang);
 
         model.addAttribute("_localizationWidget", SERVICE.getLanguageWidgetData());
-        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_message", message == null ? "" : message);
 

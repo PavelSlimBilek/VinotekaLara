@@ -6,8 +6,7 @@ import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
-import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
-import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
+import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,12 +28,11 @@ public class HoursAdminController extends SuperAdminController {
     public HoursAdminController(
             WeeklyHoursServiceInterface service,
             TranslatorRegistry LOCALES,
-            AdminPageContentProviderInterface CONTENT_PROVIDER,
             CoreTranslatorDataFactoryInterface coreLocalizationProvider,
             OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider,
             AppConfig config
     ) {
-        super(LOCALES, CONTENT_PROVIDER);
+        super(LOCALES);
         this.service = service;
         this.coreLocalizationProvider = coreLocalizationProvider;
         this.hoursLocalizationProvider = hoursLocalizationProvider;
@@ -53,7 +51,6 @@ public class HoursAdminController extends SuperAdminController {
                 : LOCALES.getLocale(lang);
 
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
-        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator())); // TODO to be removed
 
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
         model.addAttribute("_openingHours", service.getWidgetData());
@@ -80,7 +77,6 @@ public class HoursAdminController extends SuperAdminController {
 
         model.addAttribute("_openingHours", service.get(id));
         model.addAttribute("_areAfternoonHoursAllowed", service.areAfternoonHoursAllowed());
-        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         model.addAttribute("_message", message == null ? "" : message);
 
         attributes.addAttribute("lang", locale.getCode());

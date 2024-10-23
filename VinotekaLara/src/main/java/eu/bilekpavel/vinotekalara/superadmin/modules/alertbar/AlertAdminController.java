@@ -5,8 +5,7 @@ import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
-import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
-import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
+import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorWidgetDataFactory;
@@ -29,9 +28,9 @@ public class AlertAdminController extends SuperAdminController {
             TranslatorRegistry LOCALES,
             AlertBarServiceInterface alertService,
             TranslatorWidgetDataFactory translatorWidgetDataFactory,
-            AdminPageContentProviderInterface CONTENT_PROVIDER, CoreTranslatorDataFactoryInterface coreLocalizationProvider
+            CoreTranslatorDataFactoryInterface coreLocalizationProvider
     ) {
-        super(LOCALES, CONTENT_PROVIDER);
+        super(LOCALES);
         service = alertService;
         translatorDataProvider = translatorWidgetDataFactory;
         this.coreLocalizationProvider = coreLocalizationProvider;
@@ -45,7 +44,6 @@ public class AlertAdminController extends SuperAdminController {
         Translator locale = LOCALES.getLocale(lang);
 
         model.addAttribute("_alertWidget", service.getWidgetData(locale.getLang()));
-        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_alertLocalization", service.getTranslatorData(locale.alertTranslator()));
         model.addAttribute("_isAlertBarAllowed", service.isAllowed());
@@ -65,7 +63,6 @@ public class AlertAdminController extends SuperAdminController {
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_alertLocalization", service.getTranslatorData(locale.alertTranslator()));
-        model.addAttribute("_locale", CONTENT_PROVIDER.getLocalizedAdminPage(locale.getAdminTranslator()));
         return "admin/alert-bar/detail";
     }
 

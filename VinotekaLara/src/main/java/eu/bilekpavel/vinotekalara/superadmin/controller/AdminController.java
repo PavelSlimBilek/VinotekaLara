@@ -1,9 +1,10 @@
-package eu.bilekpavel.vinotekalara.superadmin;
+package eu.bilekpavel.vinotekalara.superadmin.controller;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import lombok.AllArgsConstructor;
@@ -17,9 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @AllArgsConstructor
 public class AdminController {
 
-    private final AdminPageContentProviderInterface contentProvider;
     private final TranslatorRegistry locales;
 
+    private final AdminPageTranslatorDataFactoryInterface adminLocalizationDataProvider;
     private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationDataProvider;
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
@@ -36,7 +37,7 @@ public class AdminController {
                 ? locales.getLocale(config.getDEFAULT().getCode())
                 : locales.getLocale(lang);
 
-        model.addAttribute("_locale", contentProvider.getLocalizedAdminPage(locale.getAdminTranslator()));
+        model.addAttribute("_locale", adminLocalizationDataProvider.create(locale.getAdminTranslator()));
         model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.alertTranslator()));
         model.addAttribute("_hoursLocalization", hoursLocalizationDataProvider.create(locale.hoursTranslator()));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));

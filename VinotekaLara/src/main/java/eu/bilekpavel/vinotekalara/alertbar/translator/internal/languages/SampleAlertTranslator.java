@@ -5,16 +5,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("czechAlertTranslator")
-public final class CzechAlertTranslator extends AbstractAlertBarTranslator {
+public final class SampleAlertTranslator extends AbstractAlertBarTranslator {
 
-    public CzechAlertTranslator() {
+    public SampleAlertTranslator() {
         super(
-                "lišta upozornění",
-                "povolit lištu",
-                "zobrazit lištu",
-                "vyberte lištu",
-                "vytvořit lištu"
+                "ALERT_BAR",
+                "ALLOW_ALERT_BAR",
+                "DISPLAY_ALERT_BAR",
+                "SELECT_ALERT_BAR",
+                "CREATE_ALERT_BAR"
         );
     }
 }

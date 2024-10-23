@@ -1,6 +1,9 @@
 package eu.bilekpavel.vinotekalara.superadmin.translator;
 
-public interface AdminTranslatorInterface {
+public interface AdminPageTranslator {
+    String title();
+
+    /*
     String getSelectDefaultLanguageTranslation();
     String getToggleLanguagesMessage();
     String getAppSettingsTranslation();
@@ -13,4 +16,5 @@ public interface AdminTranslatorInterface {
     String getFontColorTranslation();
 
     String getSelectFontTranslation();
+     */
 }

@@ -4,7 +4,7 @@ import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
-import eu.bilekpavel.vinotekalara.superadmin.translator.AdminTranslatorInterface;
+import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
@@ -19,7 +19,7 @@ public abstract class Locale implements Translator {
     private final CoreTranslator coreTranslator;
     private final OpeningHoursTranslator hoursTranslator;
     private final HomePageTranslator pageTranslator;
-    private final AdminTranslatorInterface adminTranslator;
+    private final AdminPageTranslator adminTranslator;
     private final AlertBarTranslator alertBarTranslator;
 
     @Override
@@ -54,7 +54,7 @@ public abstract class Locale implements Translator {
     }
 
     @Override
-    public AdminTranslatorInterface getAdminTranslator() {
+    public AdminPageTranslator getAdminTranslator() {
         return adminTranslator;
     }
 
