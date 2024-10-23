@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 @Qualifier("alert_map_repository")
-public final class AlertInMemoryRepository implements AlertRepositoryInterface {
+public class AlertInMemoryRepository implements AlertRepositoryInterface {
 
     private final Map<Integer, Alert> ALERTS;
 
