@@ -1,11 +1,12 @@
-package eu.bilekpavel.vinotekalara.homepage;
+package eu.bilekpavel.vinotekalara.homepage.controller;
 
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertBarServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorDataFactory;
+import eu.bilekpavel.vinotekalara.translator.impl.TranslatorWidgetDataFactory;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -20,9 +21,9 @@ public class HomeWebController {
 
     private final AppConfig config;
 
-    private final HomePageContentProviderInterface pageContentProvider;
+    private final HomePageTranslatorDataFactoryInterface pageLocalizationProvider;
     private final TranslatorRegistry localizations;
-    private final TranslatorDataFactory translatorDataProvider;
+    private final TranslatorWidgetDataFactory translatorDataProvider;
 
     private final WeeklyHoursServiceInterface hoursService;
     private final AlertBarServiceInterface alertBarService;
@@ -38,7 +39,7 @@ public class HomeWebController {
                 : this.localizations.getLocale(lang);
 
         model.addAttribute("_requestURI", request.getRequestURI());
-        model.addAttribute("_pageContent", pageContentProvider.getTranslatedContent(locale.getPageTranslator()));
+        model.addAttribute("_pageContent", pageLocalizationProvider.create(locale.homePageTranslator()));
         model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
 
         model.addAttribute("_isAlertBarDisplayed", alertBarConfig.isDisplayed());

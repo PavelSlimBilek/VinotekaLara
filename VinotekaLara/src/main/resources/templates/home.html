@@ -19,7 +19,7 @@
             <h1 th:text="${_pageContent.welcomeMessage()}"></h1>
             <h2 th:if="${_hoursWidget.todayHours()} != null" th:text="${_hoursWidget.todayHours()}"></h2>
             <h3 th:text="${_hoursWidget.isOpenedMessage()}"></h3>
-            <p th:text="${_pageContent.description()}"></p>
+            <p th:text="${_pageContent.shortDescription()}"></p>
 
             <h3 th:text="${_hoursWidget.openingHours()}"></h3>
             <p th:each="hours : ${_hoursWidget.openingHoursList()}" th:text="${hours}"></p>

@@ -9,7 +9,7 @@ import eu.bilekpavel.vinotekalara.superadmin.AdminPageContentProviderInterface;
 import eu.bilekpavel.vinotekalara.superadmin.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
-import eu.bilekpavel.vinotekalara.translator.impl.TranslatorDataFactory;
+import eu.bilekpavel.vinotekalara.translator.impl.TranslatorWidgetDataFactory;
 import eu.bilekpavel.vinotekalara.translator.impl.TranslatorRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +22,18 @@ import java.util.List;
 public class AlertAdminController extends SuperAdminController {
 
     private final AlertBarServiceInterface service;
-    private final TranslatorDataFactory translatorDataProvider; // TODO change to appservice for translations
+    private final TranslatorWidgetDataFactory translatorDataProvider; // TODO change to appservice for translations
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
 
     public AlertAdminController(
             TranslatorRegistry LOCALES,
             AlertBarServiceInterface alertService,
-            TranslatorDataFactory translatorDataFactory,
+            TranslatorWidgetDataFactory translatorWidgetDataFactory,
             AdminPageContentProviderInterface CONTENT_PROVIDER, CoreTranslatorDataFactoryInterface coreLocalizationProvider
     ) {
         super(LOCALES, CONTENT_PROVIDER);
         service = alertService;
-        translatorDataProvider = translatorDataFactory;
+        translatorDataProvider = translatorWidgetDataFactory;
         this.coreLocalizationProvider = coreLocalizationProvider;
     }
 

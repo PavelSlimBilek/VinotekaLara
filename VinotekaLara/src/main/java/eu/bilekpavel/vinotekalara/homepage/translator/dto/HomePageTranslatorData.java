@@ -1,8 +1,8 @@
 package eu.bilekpavel.vinotekalara.homepage.translator.dto;
 
-public record LocalizedHomePageContent(
+public record HomePageTranslatorData(
         String title,
         String welcomeMessage,
-        String description
+        String shortDescription
 ) {
 }

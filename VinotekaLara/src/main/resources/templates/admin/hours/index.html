@@ -17,7 +17,7 @@
                 <tr class="inactive">
                     <td>
                         <form id="allowAfternoon" th:action="@{/super-admin/hours/allow-afternoon-hours}" method="post">
-                            <p th:text="${_hoursWidget.afternoonHours() + ': '}"></p>
+                            <p th:text="${_hoursWidget.afternoonHours()}"></p>
                             <label for="allowAfternoonHours" th:text="${_coreLocalization.allow()}"></label>
                             <input id="allowAfternoonHours" type="radio" name="isAllowed" th:value="true" th:checked="${_areAfternoonHoursAllowed} == true"/>
                             <label for="disallowAfternoonHours" th:text="${_coreLocalization.forbid()}"></label>

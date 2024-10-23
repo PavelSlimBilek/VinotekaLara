@@ -8,7 +8,7 @@
     <body>
 
         <div th:fragment="localeSwitcher">
-            <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
+            <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorWidgetData"*/-->
             <div th:if="${_localizationWidget.allowedLanguages().size() > 1}" th:each="locale : ${_localizationWidget.locales()}">
                 <!--/*@thymesVar id="_requestURI" type="java.lang.String"*/-->
                 <a th:href="@{|?lang=${locale.getCode()}&return=${_requestURI}|}"
@@ -39,7 +39,7 @@
 
         <div th:fragment="alert_update_localizations">
             <table>
-            <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorData"*/-->
+                <!--/*@thymesVar id="_localizationWidget" type="eu.bilekpavel.vinotekalara.translator.dto.TranslatorWidgetData"*/-->
                 <!--/*@thymesVar id="_coreLocalization" type="eu.bilekpavel.vinotekalara.app.translator.dto.CoreTranslatorData"*/-->
                 <tr th:each="locale : ${_localizationWidget.locales()}" class="inactive">
                     <!--/*@thymesVar id="_alertBar" type="eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData"*/-->
