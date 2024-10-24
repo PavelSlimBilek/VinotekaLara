@@ -11,6 +11,12 @@ public final class CoreColorTranslatorDataFactory implements CoreColorTranslator
     @Override
     public CoreColorTranslatorData create(CoreColorTranslator locale) {
         return new CoreColorTranslatorData(
+                locale.color(),
+                locale.colors(),
+                locale.selectColor(),
+                locale.selectColors(),
+                locale.favoriteColor(),
+                locale.palette(),
                 locale.red(),
                 locale.green(),
                 locale.blue()

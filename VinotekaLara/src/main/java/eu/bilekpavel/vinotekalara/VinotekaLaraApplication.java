@@ -2,6 +2,9 @@ package eu.bilekpavel.vinotekalara;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
+import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
+import eu.bilekpavel.vinotekalara.app.module.color.model.Palette;
+import eu.bilekpavel.vinotekalara.app.module.color.repository.PaletteRepository;
 import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
@@ -24,15 +27,18 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 	private final WeeklyHoursServiceInterface hoursService;
     private final AppServiceInterface appService;
 
+	private final PaletteRepository repo;
+
 	public VinotekaLaraApplication(
-			AppServiceInterface appService,
-			AlertServiceInterface alertService,
-			WeeklyHoursServiceInterface hoursService
-	) {
+            AppServiceInterface appService,
+            AlertServiceInterface alertService,
+            WeeklyHoursServiceInterface hoursService, PaletteRepository repo
+    ) {
 		this.appService = appService;
 		this.alertService = alertService;
 		this.hoursService = hoursService;
-	}
+        this.repo = repo;
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(VinotekaLaraApplication.class, args);
@@ -165,7 +171,13 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setUserIdentifier("Zimní hodiny");
 
 		hoursService.save(winterHours);
-
 		appService.toggleLanguage(Language.CZECH);
+
+        Palette palette = new Palette(List.of(new Color(0, 0, 0), new Color(255, 255, 255)));
+		System.out.println("saving" + palette);
+        repo.save(palette);
+		System.out.println("saved");
+		System.out.println(repo.findById(1).get().getColors().get(0));
+		System.out.println(repo.findById(1).get().getColors().get(1));
 	}
 }
