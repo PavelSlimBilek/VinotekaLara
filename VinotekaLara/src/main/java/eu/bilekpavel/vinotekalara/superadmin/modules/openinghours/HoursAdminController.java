@@ -1,15 +1,15 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.openinghours;
 
-import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
+import eu.bilekpavel.vinotekalara.app.translator.service.TranslatorServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
-import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,26 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.DayOfWeek;
 
 @Controller
+@AllArgsConstructor
 public final class HoursAdminController extends SuperAdminController {
+    private final WeeklyHoursServiceInterface service;
+    private final TranslatorServiceInterface translatorService;
 
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider;
-    private final WeeklyHoursServiceInterface service;
-    private final AppConfig config;
-
-    public HoursAdminController(
-            WeeklyHoursServiceInterface service,
-            TranslatorRegistry LOCALES,
-            CoreTranslatorDataFactoryInterface coreLocalizationProvider,
-            OpeningHoursTranslatorDataFactoryInterface hoursLocalizationProvider,
-            AppConfig config
-    ) {
-        super(LOCALES);
-        this.service = service;
-        this.coreLocalizationProvider = coreLocalizationProvider;
-        this.hoursLocalizationProvider = hoursLocalizationProvider;
-        this.config = config;
-    }
 
     @GetMapping("/hours")
     public String list(
@@ -46,9 +33,7 @@ public final class HoursAdminController extends SuperAdminController {
             @RequestParam(required = false) String lang,
             RedirectAttributes attributes
     ) {
-        Translator locale = lang == null || lang.isEmpty() || !LOCALES.isOnTheList(lang)
-                ? LOCALES.getLocale(config.getDEFAULT().getCode())
-                : LOCALES.getLocale(lang);
+        Translator locale = translatorService.getLocale(lang);
 
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
 
@@ -71,9 +56,7 @@ public final class HoursAdminController extends SuperAdminController {
             @RequestParam(required = false) String lang,
             RedirectAttributes attributes
     ) {
-        Translator locale = lang == null || lang.isEmpty() || !LOCALES.isOnTheList(lang)
-                ? LOCALES.getLocale(config.getDEFAULT().getCode())
-                : LOCALES.getLocale(lang);
+        Translator locale = translatorService.getLocale(lang);
 
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
 

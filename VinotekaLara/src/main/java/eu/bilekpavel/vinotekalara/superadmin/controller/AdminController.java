@@ -34,7 +34,7 @@ public final class AdminController {
             RedirectAttributes attributes
     ) {
         Translator locale = lang == null || lang.isEmpty() || !locales.isOnTheList(lang)
-                ? locales.getLocale(config.getDEFAULT().getCode())
+                ? locales.getLocale(config.getDefaultLanguage().getCode())
                 : locales.getLocale(lang);
 
         model.addAttribute("_adminLocalization", adminLocalizationDataProvider.create(locale.getAdminTranslator()));

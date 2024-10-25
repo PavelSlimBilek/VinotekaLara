@@ -12,21 +12,12 @@ import java.util.*;
 public class AppConfig {
 
     @Setter
-    private Language DEFAULT = null;
+    private Language defaultLanguage = Language.CZECH;
 
     private final Map<String, Language> ALLOWED = new HashMap<>();
 
     public List<Language> getAllowed() {
         return new ArrayList<>(ALLOWED.values());
-    }
-
-
-    public void allow(Language language) {
-        ALLOWED.put(language.getCode(), language);
-    }
-
-    public void forbid(Language language) {
-        ALLOWED.remove(language.getCode());
     }
 
     public boolean isAllowed(String code) {
@@ -35,5 +26,13 @@ public class AppConfig {
 
     public boolean isAllowed(Language language) {
         return ALLOWED.containsValue(language);
+    }
+
+    public void toggle(Language language) {
+        if (!ALLOWED.containsKey(language.getCode())) {
+            ALLOWED.put(language.getCode(), language);
+        } else {
+            ALLOWED.remove(language.getCode());
+        }
     }
 }

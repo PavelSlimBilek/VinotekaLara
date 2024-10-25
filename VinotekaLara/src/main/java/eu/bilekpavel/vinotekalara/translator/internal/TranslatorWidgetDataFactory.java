@@ -12,15 +12,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public final class TranslatorWidgetDataFactory implements TranslatorWidgetDataFactoryInterface {
 
-    private TranslatorRegistryInterface registry;
-    private AppConfig config;
-
     @Override
-    public TranslatorWidgetData create(Translator translator) {
+    public TranslatorWidgetData create(Translator currentTranslator, AppConfig config, TranslatorRegistryInterface registry) {
         return new TranslatorWidgetData(
-            translator.getCode(),
-            translator.getLang(),
-            registry.getSupported(),
+            currentTranslator.getLang(),
+            registry.getAll(),
             config.getAllowed()
         );
     }

@@ -1,38 +1,23 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.app.translator;
 
-import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
-import eu.bilekpavel.vinotekalara.app.service.AppServiceInterface;
+import eu.bilekpavel.vinotekalara.app.translator.service.TranslatorServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
-import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
-import eu.bilekpavel.vinotekalara.translator.language.Language;
 import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslatorDataFactoryInterface;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@AllArgsConstructor
 public final class TranslatorAdminController extends SuperAdminController{
-    private final AppServiceInterface SERVICE;
-    private final AppConfig CONFIG;
+    private final TranslatorServiceInterface service;
+
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
     private final TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider;
-
-    public TranslatorAdminController(
-            TranslatorRegistry LOCALES,
-            AppServiceInterface service,
-            AppConfig config,
-            CoreTranslatorDataFactoryInterface coreLocalizationProvider,
-            TranslatorTranslatorDataFactoryInterface translatorLocalizationProvider
-    ) {
-        super(LOCALES);
-        this.SERVICE = service;
-        this.CONFIG = config;
-        this.coreLocalizationProvider = coreLocalizationProvider;
-        this.translatorLocalizationProvider = translatorLocalizationProvider;
-    }
 
     @GetMapping("/translator")
     public String app(
@@ -40,36 +25,37 @@ public final class TranslatorAdminController extends SuperAdminController{
             @RequestParam(required = false) String message,
             @RequestParam(required = false) String lang
     ) {
-        Translator locale = lang == null || lang.isEmpty() || !LOCALES.isOnTheList(lang)
-                ? LOCALES.getLocale(CONFIG.getDEFAULT().getCode())
-                : LOCALES.getLocale(lang);
-
+        Translator locale = service.getLocale(lang);
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_translatorLocalization", translatorLocalizationProvider.create(locale.translatorTranslator()));
 
-        model.addAttribute("_localizationWidget", SERVICE.getTranslatorWidgetData());
+        model.addAttribute("_localizationWidget", service.getTranslatorWidgetData(locale));
         model.addAttribute("_message", message == null ? "" : message);
 
         return "/admin/app/translator/index";
     }
 
     @PostMapping("/translator/default-language")
-    public String setLang(@RequestParam String code) {
-        Language lang = LOCALES.getLocale(code).getLang();
-        SERVICE.setDefaultLanguage(lang);
+    public String setLang(@RequestParam String langCode) {
+        Translator locale = service.getLocale(langCode);
+        service.setDefaultTranslator(locale.getLang());
 
         return "redirect:/super-admin/translator";
     }
 
-    @PostMapping("/translator/{name}/toggle")
+    @PostMapping("/translator/{langCode}/toggle")
     public String toggleLanguage(
-            @PathVariable String name,
+            @PathVariable String langCode,
             RedirectAttributes attributes
     ) {
-        Language lang = Language.valueOf(name);
         try {
-            SERVICE.toggleLanguage(lang);
-            attributes.addAttribute("message", String.format("[%s] - %s was updated", lang.getCode(), lang.getSelfName()));
+            Translator locale = service.toggleTranslator(langCode);
+            attributes.addAttribute(
+                    "message",
+                    String.format("[%s] - %s was updated",
+                            locale.getCode(),
+                            locale.getLang().getSelfName())
+            );
         } catch (RuntimeException e) {
             attributes.addAttribute("message", e.getMessage());
         }

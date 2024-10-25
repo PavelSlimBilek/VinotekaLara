@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.translator.language;
 
+import eu.bilekpavel.vinotekalara.translator.error.InvalidLangCodeTranslatorException;
 import lombok.Getter;
 
 @Getter
@@ -18,4 +19,14 @@ public enum Language {
         this.code = code;
         this.selfName = selfName;
     }
+
+    public static Language fromLangCode(String langCode) {
+        for (Language lang : Language.values()) {
+            if (lang.getCode().equalsIgnoreCase(langCode)) {
+                return lang;
+            }
+        }
+        throw new InvalidLangCodeTranslatorException(langCode);
+    }
 }
+

@@ -6,6 +6,7 @@ import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterfa
 import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
+import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.internal.TranslatorWidgetDataFactory;
 import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public final class HomeWebController {
     private final AppConfig config;
 
     private final HomePageTranslatorDataFactoryInterface pageLocalizationProvider;
-    private final TranslatorRegistry localizations;
+    private final TranslatorRegistryInterface localizations;
     private final TranslatorWidgetDataFactory translatorDataProvider;
 
     private final WeeklyHoursServiceInterface hoursService;
@@ -35,12 +36,12 @@ public final class HomeWebController {
                        @RequestParam(name = "lang", required = false, defaultValue = "cs") String lang) {
 
         Translator locale = lang == null || lang.isEmpty() || !localizations.isOnTheList(lang) ||  !config.isAllowed(lang)
-                ? this.localizations.getLocale(config.getDEFAULT().getCode())
+                ? this.localizations.getLocale(config.getDefaultLanguage().getCode())
                 : this.localizations.getLocale(lang);
 
         model.addAttribute("_requestURI", request.getRequestURI());
         model.addAttribute("_homePageLocalization", pageLocalizationProvider.create(locale.homePageTranslator()));
-        model.addAttribute("_localizationWidget", translatorDataProvider.create(locale));
+        model.addAttribute("_localizationWidget", translatorDataProvider.create(locale, config, localizations));
 
         model.addAttribute("_isAlertBarDisplayed", alertBarConfig.isDisplayed());
         model.addAttribute("_isAlertBarAllowed", alertBarConfig.isAllowed());

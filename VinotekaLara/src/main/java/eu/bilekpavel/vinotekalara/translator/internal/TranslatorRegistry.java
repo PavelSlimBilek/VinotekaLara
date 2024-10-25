@@ -1,9 +1,7 @@
 package eu.bilekpavel.vinotekalara.translator.internal;
 
-import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
-import eu.bilekpavel.vinotekalara.translator.language.Language;
 import eu.bilekpavel.vinotekalara.translator.language.languages.*;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +13,9 @@ import java.util.Map;
 @Component
 public final class TranslatorRegistry implements TranslatorRegistryInterface {
 
-    private final Map<String, Translator> LOCALES;
-    private final AppConfig config;
+    private final Map<String, Translator> locales;
 
     public TranslatorRegistry(
-            AppConfig config,
             Czech czech,
             English english,
             German german,
@@ -33,30 +29,21 @@ public final class TranslatorRegistry implements TranslatorRegistryInterface {
         locales.put(ukrainian.getLang().getCode(), ukrainian);
         locales.put(french.getLang().getCode(), french);
 
-        LOCALES = Collections.unmodifiableMap(locales);
-        this.config = config;
-    }
-
-    @Override
-    public Translator getLocale(String langCode) {
-        return isOnTheList(langCode) ? LOCALES.get(langCode) : LOCALES.get(config.getDEFAULT().getCode());
-    }
-
-    @Override
-    public List<Language> getAllowedLanguages() {
-        return LOCALES.values().stream()
-                .map(Translator::getLang)
-                .filter(lang -> config.getAllowed().contains(lang))
-                .toList();
+        this.locales = Collections.unmodifiableMap(locales);
     }
 
     @Override
     public boolean isOnTheList(String langCode) {
-        return LOCALES.containsKey(langCode);
+        return locales.containsKey(langCode);
     }
 
     @Override
-    public List<Translator> getSupported() {
-        return LOCALES.values().stream().toList();
+    public List<Translator> getAll() {
+        return locales.values().stream().toList();
+    }
+
+    @Override
+    public Translator getLocale(String langCode) {
+        return locales.get(langCode);
     }
 }

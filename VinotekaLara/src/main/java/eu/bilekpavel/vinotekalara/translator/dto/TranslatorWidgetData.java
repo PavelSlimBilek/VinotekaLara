@@ -6,7 +6,6 @@ import eu.bilekpavel.vinotekalara.translator.language.Language;
 import java.util.List;
 
 public record TranslatorWidgetData(
-        String langCode,
         Language activeLanguage,
         List<Translator> locales,
         List<Language> allowedLanguages
