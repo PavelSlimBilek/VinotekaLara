@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.app.translator.service;
+package eu.bilekpavel.vinotekalara.translator.service;
 
 import eu.bilekpavel.vinotekalara.app.config.AppConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;

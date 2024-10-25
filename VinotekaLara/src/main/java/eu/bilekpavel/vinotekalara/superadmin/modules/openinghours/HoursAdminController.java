@@ -2,7 +2,7 @@ package eu.bilekpavel.vinotekalara.superadmin.modules.openinghours;
 
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
-import eu.bilekpavel.vinotekalara.app.translator.service.TranslatorServiceInterface;
+import eu.bilekpavel.vinotekalara.translator.service.TranslatorServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHoursRequest;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;

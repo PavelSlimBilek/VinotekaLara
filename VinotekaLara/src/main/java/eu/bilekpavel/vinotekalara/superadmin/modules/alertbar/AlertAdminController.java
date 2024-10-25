@@ -7,13 +7,12 @@ import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslato
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.dto.Allow;
 import eu.bilekpavel.vinotekalara.app.module.color.dto.Color;
-import eu.bilekpavel.vinotekalara.app.translator.service.TranslatorServiceInterface;
+import eu.bilekpavel.vinotekalara.translator.service.TranslatorServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.internal.TranslatorWidgetDataFactory;
-import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslatorDataFactoryInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
