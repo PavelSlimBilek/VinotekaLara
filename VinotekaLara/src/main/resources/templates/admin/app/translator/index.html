@@ -19,10 +19,10 @@
                         <form id="languageSelect" th:action="@{/super-admin/translator/default-language}" method="post">
                             <label for="lang"></label>
                             <select id="lang" name="langCode">
-                                <option th:each="lang : ${_localizationWidget.allowedLanguages()}"
+                                <option th:each="lang : ${_translatorWidget.allowedLanguages()}"
                                         th:value="${lang.getCode()}"
                                         th:text="${lang.getCode()} + ' - ' + ${lang.getSelfName()}"
-                                        th:selected="${lang.equals(_localizationWidget.activeLanguage())}">
+                                        th:selected="${lang.equals(_translatorWidget.activeLanguage())}">
                                 </option>
                             </select>
                         </form>
@@ -39,8 +39,8 @@
                 <p th:text="${_translatorLocalization.toggleLanguages()}"></p>
             </div>
             <table>
-                <tr th:each="supportedLang : ${_localizationWidget.supportedLanguages()}"
-                    th:class="${_localizationWidget.allowedLanguages().contains(supportedLang)} ? 'active' : 'inaccessible'">
+                <tr th:each="supportedLang : ${_translatorWidget.supportedLanguages()}"
+                    th:class="${_translatorWidget.allowedLanguages().contains(supportedLang)} ? 'active' : 'inaccessible'">
                     <td>
                         <p th:text="'[' + ${supportedLang.getCode().toUpperCase()} + '] - ' + ${supportedLang.getSelfName()}"></p>
                     </td>
@@ -53,8 +53,8 @@
                     <td>
                         <input type="submit"
                                th:form="'toggleLanguage' + ${supportedLang}"
-                               th:class="'button ' + ${_localizationWidget.allowedLanguages().contains(supportedLang) ? 'orange' : 'green'}"
-                               th:value="${_localizationWidget.allowedLanguages().contains(supportedLang) ? _coreLocalization.forbid() : _coreLocalization.allow()}">
+                               th:class="'button ' + ${_translatorWidget.allowedLanguages().contains(supportedLang) ? 'orange' : 'green'}"
+                               th:value="${_translatorWidget.allowedLanguages().contains(supportedLang) ? _coreLocalization.forbid() : _coreLocalization.allow()}">
                     </td>
                 </tr>
             </table>

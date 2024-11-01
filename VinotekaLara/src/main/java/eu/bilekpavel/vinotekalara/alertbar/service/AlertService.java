@@ -62,13 +62,13 @@ public final class AlertService implements AlertServiceInterface {
                 ? new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
-                        localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
+                        localizedStringFactory.create(language, alert.getLocalized(language)),
                         alert.getBackgroundColor().toRgbString(),
                         alert.getFontColor().toRgbString())
                 : new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
-                        localizedStringFactory.create(language.getCode(), alert.getLocalized(Language.CZECH)),
+                        localizedStringFactory.create(language, alert.getLocalized(Language.CZECH)),
                         alert.getBackgroundColor().toRgbString(),
                         alert.getFontColor().toRgbString());
     }
@@ -80,7 +80,7 @@ public final class AlertService implements AlertServiceInterface {
                 .map(alert -> new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
-                        localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
+                        localizedStringFactory.create(language, alert.getLocalized(language)),
                         alert.getBackgroundColor().toRgbString(),
                         alert.getFontColor().toRgbString())
                 ).toList();
@@ -147,7 +147,7 @@ public final class AlertService implements AlertServiceInterface {
             return new LocalizedAlert(
                     0,
                     true,
-                    localizedStringFactory.create("err", "Something went wrong"),
+                    localizedStringFactory.create(language, "Something went wrong"),
                     "tomato",
                     "black"
             );
@@ -157,7 +157,7 @@ public final class AlertService implements AlertServiceInterface {
         return new LocalizedAlert(
                 alert.getId(),
                 true,
-                localizedStringFactory.create(language.getCode(), alert.getLocalized(language)),
+                localizedStringFactory.create(language, alert.getLocalized(language)),
                 alert.getBackgroundColor().toRgbString(),
                 alert.getFontColor().toRgbString()
         );

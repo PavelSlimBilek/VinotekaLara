@@ -16,9 +16,7 @@ public final class LocalizedStringFactory implements LocalizedStringFactoryInter
     private final LocalizedStringValidatorInterface validator;
 
     @Override
-    public LocalizedString create(String langCode, String content) {
-        validator.validate(langCode, content);
-        Language language = registry.getLocale(langCode).getLang();
+    public LocalizedString create(Language language, String content) {
         return new LocalizedString(language, content);
     }
 

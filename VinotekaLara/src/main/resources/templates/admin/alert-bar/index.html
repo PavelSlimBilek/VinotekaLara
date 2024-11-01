@@ -19,9 +19,9 @@
                         <form id="allowAlertBar" th:action="@{/super-admin/alert/allow}" method="post">
                             <p th:text="${_alertLocalization.allowAlertBar()}"></p>
                             <label for="allowAlert" th:text="${_coreLocalization.allow()}"></label>
-                            <input id="allowAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarAllowed} == true"/>
+                            <input id="allowAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_alertWidget.isAlertBarAllowed()} == true"/>
                             <label for="disallowAlert" th:text="${_coreLocalization.forbid()}"></label>
-                            <input id="disallowAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_isAlertBarAllowed} == false"/>
+                            <input id="disallowAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_alertWidget.isAlertBarAllowed()} == false"/>
                         </form>
                     </td>
                     <td>
@@ -34,9 +34,9 @@
                         <form id="displayAlertBar" th:action="@{/super-admin/alert/display}" method="post">
                             <p th:text="${_alertLocalization.displayAlertBar()}"></p>
                             <label for="displayAlert" th:text="${_coreLocalization.allow()}"></label>
-                            <input id="displayAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_isAlertBarDisplayed} == true"/>
+                            <input id="displayAlert" type="radio" name="isAllowed" th:value="true" th:checked="${_alertWidget.isAlertBarDisplayed()} == true"/>
                             <label for="hideAlert" th:text="${_coreLocalization.forbid()}"></label>
-                            <input id="hideAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_isAlertBarDisplayed} == false"/>
+                            <input id="hideAlert" type="radio" name="isAllowed" th:value="false" th:checked="${_alertWidget.isAlertBarDisplayed()} == false"/>
                         </form>
                     </td>
                     <td>

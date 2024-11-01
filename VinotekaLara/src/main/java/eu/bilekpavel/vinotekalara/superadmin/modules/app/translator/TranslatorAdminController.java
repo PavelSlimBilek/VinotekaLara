@@ -30,7 +30,7 @@ public final class TranslatorAdminController extends SuperAdminController{
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         model.addAttribute("_translatorLocalization", translatorLocalizationProvider.create(locale.translatorTranslator()));
 
-        model.addAttribute("_localizationWidget", service.getTranslatorWidgetData(locale));
+        model.addAttribute("_translatorWidget", service.getTranslatorWidgetData(locale));
         model.addAttribute("_message", message == null ? "TRANSLATOR_SETTINGS" : message);
 
         return "/admin/app/translator/index";
