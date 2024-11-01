@@ -8,6 +8,7 @@ import java.util.List;
 public record TranslatorWidgetData(
         Language activeLanguage,
         List<Translator> locales,
-        List<Language> allowedLanguages
+        List<Language> allowedLanguages,
+        List<Language> supportedLanguages
 ) {
 }

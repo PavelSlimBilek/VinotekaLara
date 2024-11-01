@@ -1,11 +1,15 @@
 package eu.bilekpavel.vinotekalara.translator.service;
 
-import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.app.config.TranslatorConfig;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorWidgetDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.TranslatorWidgetData;
+import eu.bilekpavel.vinotekalara.translator.error.CannotForbidDefaultLanguageTranslatorException;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslator;
+import eu.bilekpavel.vinotekalara.translator.translator.TranslatorTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.translator.translator.dto.TranslatorTranslatorData;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +17,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class TranslatorService implements TranslatorServiceInterface {
 
+    private final TranslatorConfig config;
     private final TranslatorRegistryInterface registry;
+
     private final TranslatorWidgetDataFactoryInterface widgetDataProvider;
-    private final AppConfig config;
+    private final TranslatorTranslatorDataFactoryInterface translatorLocalizationDataProvider;
 
     @Override
     public Translator getLocale(String langCode) {
@@ -28,16 +34,23 @@ public class TranslatorService implements TranslatorServiceInterface {
     }
 
     @Override
+    public TranslatorTranslatorData getTranslatorTranslatorData(TranslatorTranslator locale) {
+        return translatorLocalizationDataProvider.create(locale);
+    }
+
+    @Override
     public void setDefaultTranslator(Language language) {
         config.setDefaultLanguage(language);
     }
 
     @Override
     public Translator toggleTranslator(String langCode) {
-        if (isValidTranslatorCode(langCode) && config.getDefaultLanguage() != Language.fromLangCode(langCode)) {
+        if (!isValidTranslatorCode(langCode) || config.getDefaultLanguage() == Language.fromLangCode(langCode)) {
+            throw new CannotForbidDefaultLanguageTranslatorException();
+        } else {
             config.toggle(Language.fromLangCode(langCode));
+            return get(langCode);
         }
-        return get(langCode);
     }
 
     private Translator get(String langCode) {

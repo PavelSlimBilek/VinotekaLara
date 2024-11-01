@@ -1,7 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.controller;
 
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
-import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.app.config.TranslatorConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslatorDataFactoryInterface;
@@ -25,7 +25,7 @@ public final class AdminController {
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationDataProvider;
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
 
-    private final AppConfig config;
+    private final TranslatorConfig config;
 
     @GetMapping("/super-admin")
     public String baseView(

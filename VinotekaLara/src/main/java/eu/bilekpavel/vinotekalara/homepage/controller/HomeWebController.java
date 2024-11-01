@@ -1,6 +1,6 @@
 package eu.bilekpavel.vinotekalara.homepage.controller;
 
-import eu.bilekpavel.vinotekalara.app.config.AppConfig;
+import eu.bilekpavel.vinotekalara.app.config.TranslatorConfig;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.alertbar.config.AlertBarConfig;
@@ -8,7 +8,6 @@ import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.api.TranslatorRegistryInterface;
 import eu.bilekpavel.vinotekalara.translator.internal.TranslatorWidgetDataFactory;
-import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @AllArgsConstructor
 public final class HomeWebController {
 
-    private final AppConfig config;
+    private final TranslatorConfig config;
 
     private final HomePageTranslatorDataFactoryInterface pageLocalizationProvider;
     private final TranslatorRegistryInterface localizations;

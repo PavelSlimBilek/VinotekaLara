@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.app.translator;
 
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.translator.error.CannotForbidDefaultLanguageTranslatorException;
 import eu.bilekpavel.vinotekalara.translator.service.TranslatorServiceInterface;
 import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -30,16 +31,20 @@ public final class TranslatorAdminController extends SuperAdminController{
         model.addAttribute("_translatorLocalization", translatorLocalizationProvider.create(locale.translatorTranslator()));
 
         model.addAttribute("_localizationWidget", service.getTranslatorWidgetData(locale));
-        model.addAttribute("_message", message == null ? "" : message);
+        model.addAttribute("_message", message == null ? "TRANSLATOR_SETTINGS" : message);
 
         return "/admin/app/translator/index";
     }
 
     @PostMapping("/translator/default-language")
-    public String setLang(@RequestParam String langCode) {
+    public String setLang(
+            @RequestParam String langCode,
+            RedirectAttributes attributes
+    ) {
         Translator locale = service.getLocale(langCode);
         service.setDefaultTranslator(locale.getLang());
 
+        attributes.addAttribute("message", "Set default language to " + locale.getLang().getSelfName());
         return "redirect:/super-admin/translator";
     }
 
@@ -48,6 +53,7 @@ public final class TranslatorAdminController extends SuperAdminController{
             @PathVariable String langCode,
             RedirectAttributes attributes
     ) {
+        final String redirect = "redirect:/super-admin/translator";
         try {
             Translator locale = service.toggleTranslator(langCode);
             attributes.addAttribute(
@@ -56,9 +62,9 @@ public final class TranslatorAdminController extends SuperAdminController{
                             locale.getCode(),
                             locale.getLang().getSelfName())
             );
-        } catch (RuntimeException e) {
+        } catch (CannotForbidDefaultLanguageTranslatorException e) {
             attributes.addAttribute("message", e.getMessage());
         }
-            return "redirect:/super-admin/translator";
+        return redirect;
     }
 }

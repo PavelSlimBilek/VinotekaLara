@@ -165,7 +165,5 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setUserIdentifier("Zimní hodiny");
 
 		hoursService.save(winterHours);
-		translatorService.toggleTranslator(Language.CZECH.getCode());
-		translatorService.setDefaultTranslator(Language.CZECH);
 	}
 }
