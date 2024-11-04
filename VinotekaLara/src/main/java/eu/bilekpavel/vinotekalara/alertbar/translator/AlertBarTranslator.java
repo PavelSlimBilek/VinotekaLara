@@ -6,4 +6,6 @@ public interface AlertBarTranslator {
     String displayAlertBar();
     String selectActiveAlertBar();
     String createAlertBar();
+    String backgroundColor();
+    String fontColor();
 }

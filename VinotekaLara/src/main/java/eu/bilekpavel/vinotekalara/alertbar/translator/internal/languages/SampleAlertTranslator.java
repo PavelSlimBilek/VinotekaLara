@@ -13,7 +13,9 @@ public final class SampleAlertTranslator extends AbstractAlertBarTranslator {
                 "ALLOW_ALERT_BAR",
                 "DISPLAY_ALERT_BAR",
                 "SELECT_ALERT_BAR",
-                "CREATE_ALERT_BAR"
+                "CREATE_ALERT_BAR",
+                "BACKGROUND_COLOR",
+                "FONT_COLOR"
         );
     }
 }

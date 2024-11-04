@@ -5,6 +5,8 @@ public record AlertBarTranslatorData(
         String allowAlertBar,
         String displayAlertBar,
         String selectActiveAlertBar,
-        String createAlertBar
+        String createAlertBar,
+        String backgroundColor,
+        String fontColor
 ) {
 }

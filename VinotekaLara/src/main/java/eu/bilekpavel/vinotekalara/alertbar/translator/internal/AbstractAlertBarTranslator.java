@@ -10,6 +10,8 @@ public abstract class AbstractAlertBarTranslator implements AlertBarTranslator {
     private final String DISPLAY_ALERT_BAR;
     private final String SELECT_ACTIVE_ALERT_BAR;
     private final String CREATE_ALERT_BAR;
+    private final String BACKGROUND_COLOR;
+    private final String FONT_COLOR;
 
     @Override
     public String allowAlertBar() {
@@ -34,5 +36,15 @@ public abstract class AbstractAlertBarTranslator implements AlertBarTranslator {
     @Override
     public String alertBar() {
         return ALERT_BAR;
+    }
+
+    @Override
+    public String backgroundColor() {
+        return BACKGROUND_COLOR;
+    }
+
+    @Override
+    public String fontColor() {
+        return FONT_COLOR;
     }
 }

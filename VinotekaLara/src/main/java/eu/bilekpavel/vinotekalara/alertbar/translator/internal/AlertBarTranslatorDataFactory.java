@@ -15,7 +15,9 @@ public final class AlertBarTranslatorDataFactory implements AlertBarTranslatorDa
                 locale.allowAlertBar(),
                 locale.displayAlertBar(),
                 locale.selectActiveAlertBar(),
-                locale.createAlertBar()
+                locale.createAlertBar(),
+                locale.backgroundColor(),
+                locale.fontColor()
         );
     }
 }
