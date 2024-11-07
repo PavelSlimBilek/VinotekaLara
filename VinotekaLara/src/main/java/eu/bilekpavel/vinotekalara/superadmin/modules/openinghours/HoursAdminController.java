@@ -66,7 +66,7 @@ public final class HoursAdminController extends SuperAdminController {
         model.addAttribute("_message", message == null ? "" : message);
 
         attributes.addAttribute("lang", locale.getCode());
-        return "/admin/hours/detail";
+        return "admin/hours/detail";
     }
 
     @PostMapping("/hours/allow-afternoon-hours")

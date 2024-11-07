@@ -42,6 +42,6 @@ public final class AdminController {
         model.addAttribute("_hoursLocalization", hoursLocalizationDataProvider.create(locale.hoursTranslator()));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
         attributes.addAttribute("lang", lang);
-        return "/admin/index";
+        return "admin/index";
     }
 }

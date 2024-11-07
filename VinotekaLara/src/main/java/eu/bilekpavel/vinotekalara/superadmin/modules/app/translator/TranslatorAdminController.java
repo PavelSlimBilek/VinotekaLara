@@ -33,7 +33,7 @@ public final class TranslatorAdminController extends SuperAdminController{
         model.addAttribute("_translatorWidget", service.getTranslatorWidgetData(locale));
         model.addAttribute("_message", message == null ? "TRANSLATOR_SETTINGS" : message);
 
-        return "/admin/app/translator/index";
+        return "admin/app/translator/index";
     }
 
     @PostMapping("/translator/default-language")

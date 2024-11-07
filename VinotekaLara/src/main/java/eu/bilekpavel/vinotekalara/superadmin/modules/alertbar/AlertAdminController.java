@@ -40,7 +40,7 @@ public final class AlertAdminController extends SuperAdminController {
         model.addAttribute("_alertLocalization", service.getTranslatorData(locale.alertTranslator()));
 
         model.addAttribute("_message", message == null ? "" : message);
-        return "/admin/alert-bar/index";
+        return "admin/alert-bar/index";
     }
 
     @GetMapping("/alert/{id}")
