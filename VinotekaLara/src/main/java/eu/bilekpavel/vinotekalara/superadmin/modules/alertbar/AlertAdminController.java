@@ -119,7 +119,6 @@ public final class AlertAdminController extends SuperAdminController {
             service.delete(id);
         } catch (RuntimeException e) {
             attributes.addAttribute("message", e.getMessage());
-            return "redirect:/super-admin/alert";
         }
         return "redirect:/super-admin/alert";
     }
