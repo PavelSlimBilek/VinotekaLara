@@ -116,7 +116,7 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		summerHours.setUserIdentifier("Letní hodiny");
 
 		hoursService.save(summerHours);
-		hoursService.getGlobalHours();
+		hoursService.getGlobalHours(); // to init that
 
 		DailyHours monday2 = new DailyHours(
 				DayOfWeek.MONDAY,
