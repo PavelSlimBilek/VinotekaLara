@@ -11,4 +11,7 @@ public interface NewsServiceInterface {
     List<NewsData> getAll();
     NewsData create(NewsRequest request);
     void update(int id, NewsRequest request);
+    void softDelete(int id);
+    void activate(int id);
+    void deactivate(int id);
 }

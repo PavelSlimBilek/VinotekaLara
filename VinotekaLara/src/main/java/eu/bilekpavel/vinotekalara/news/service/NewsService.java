@@ -2,6 +2,7 @@ package eu.bilekpavel.vinotekalara.news.service;
 
 import eu.bilekpavel.vinotekalara.news.dto.NewsData;
 import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
+import eu.bilekpavel.vinotekalara.news.error.CannotRemoveActiveNewsException;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotFoundException;
 import eu.bilekpavel.vinotekalara.news.model.News;
 import eu.bilekpavel.vinotekalara.news.repository.NewsRepositoryInterface;
@@ -49,6 +50,43 @@ public class NewsService implements NewsServiceInterface {
         News news = optNews.get();
         news.setContent(request.content());
         repository.save(news);
+    }
+
+    @Override
+    public void softDelete(int id) {
+        Optional<News> optNews = repository.findById(id);
+        if (optNews.isEmpty()) {
+            throw new NewsNotFoundException(String.valueOf(id));
+        }
+
+        News news = optNews.get();
+        if (news.isActive()) {
+            throw new CannotRemoveActiveNewsException();
+        }
+
+        repository.save(news);
+    }
+
+    @Override
+    public void activate(int id) {
+        Optional<News> optNews = repository.findById(id);
+        if (optNews.isEmpty()) {
+            throw new NewsNotFoundException(String.valueOf(id));
+        }
+
+        optNews.get().setActiveState();
+        repository.save(optNews.get());
+    }
+
+    @Override
+    public void deactivate(int id) {
+        Optional<News> optNews = repository.findById(id);
+        if (optNews.isEmpty()) {
+            throw new NewsNotFoundException(String.valueOf(id));
+        }
+
+        optNews.get().setInactiveState();
+        repository.save(optNews.get());
     }
 
     private NewsData populate(News news) {

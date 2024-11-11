@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.news.model;
 
+import eu.bilekpavel.vinotekalara.app.api.internal.SoftRemovable;
 import eu.bilekpavel.vinotekalara.app.api.internal.Switchable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @NoArgsConstructor
-public final class News implements Switchable {
+public final class News implements SoftRemovable, Switchable {
 
     @Id
     @GeneratedValue
@@ -21,6 +22,7 @@ public final class News implements Switchable {
     private String content;
 
     private boolean isActive;
+    private boolean isRemoved;
 
     public News(String content) {
         isActive = true;
@@ -40,5 +42,20 @@ public final class News implements Switchable {
     @Override
     public boolean isInActiveState() {
         return isActive;
+    }
+
+    @Override
+    public void remove() {
+        isRemoved = true;
+    }
+
+    @Override
+    public void restore() {
+        isRemoved = false;
+    }
+
+    @Override
+    public boolean isRemoved() {
+        return isRemoved;
     }
 }

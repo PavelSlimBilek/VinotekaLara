@@ -9,8 +9,7 @@ import eu.bilekpavel.vinotekalara.translator.service.TranslatorServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -39,5 +38,11 @@ public class NewsAdminController extends SuperAdminController {
     @GetMapping("/news/{id}")
     public String detail() {
         return "admin/news/detail";
+    }
+
+    @PostMapping("/news/{id}/delete")
+    public String delete(@PathVariable int id) {
+        service.softDelete(id);
+        return "redirect:/news";
     }
 }
