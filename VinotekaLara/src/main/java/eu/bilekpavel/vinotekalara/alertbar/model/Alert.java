@@ -23,8 +23,8 @@ public final class Alert implements SoftRemovable, Switchable {
     @Setter
     private String userIdentifier;
 
-    @Setter
-    private boolean active;
+    private boolean isActive;
+
     @Setter
     private boolean removed;
 
@@ -51,7 +51,7 @@ public final class Alert implements SoftRemovable, Switchable {
 
     public Alert() {
         localizations = new HashMap<>();
-        active = false;
+        isActive = false;
         backgroundColor = new Color(255, 255, 255);
         fontColor = new Color(0, 0, 0);
 
@@ -83,16 +83,16 @@ public final class Alert implements SoftRemovable, Switchable {
 
     @Override
     public void setActiveState() {
-        active = true;
+        isActive = true;
     }
 
     @Override
     public void setInactiveState() {
-        active = false;
+        isActive = false;
     }
 
     @Override
     public boolean isInActiveState() {
-        return active;
+        return isActive;
     }
 }

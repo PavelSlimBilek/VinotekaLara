@@ -22,5 +22,5 @@ public interface AlertRepository extends AlertRepositoryInterface, JpaRepository
     Alert save(Alert alert);
 
     @Override
-    Optional<Alert> findByActive(boolean isActive);
+    Optional<Alert> findByIsActive(boolean isActive);
 }

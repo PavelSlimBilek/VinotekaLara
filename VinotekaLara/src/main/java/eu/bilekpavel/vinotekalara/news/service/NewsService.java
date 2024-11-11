@@ -36,7 +36,6 @@ public class NewsService implements NewsServiceInterface {
     @Override
     public NewsData create(NewsRequest request) {
         News news = new News(request.content());
-        System.out.println(news.getId());
         return new NewsData(repository.save(news));
     }
 

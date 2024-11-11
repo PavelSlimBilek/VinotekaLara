@@ -40,7 +40,7 @@ public class AlertInMemoryRepository implements AlertRepositoryInterface {
     }
 
     @Override
-    public Optional<Alert> findByActive(boolean isActive) {
+    public Optional<Alert> findByIsActive(boolean isActive) {
         return ALERTS.values().stream()
                 .filter(a -> a.isActive() == isActive)
                 .findFirst();

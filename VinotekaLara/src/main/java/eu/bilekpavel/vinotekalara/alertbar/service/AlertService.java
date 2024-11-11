@@ -128,12 +128,12 @@ public final class AlertService implements AlertServiceInterface {
 
     @Override
     public void setActive(int id) {
-        Optional<Alert> oldActive = repo.findByActive(true);
+        Optional<Alert> oldActive = repo.findByIsActive(true);
         Optional<Alert> newActive = repo.findById(id);
 
         if (newActive.isPresent()) {
-            oldActive.ifPresent(alert -> alert.setActive(false));
-            newActive.get().setActive(true);
+            oldActive.ifPresent(Alert::setInactiveState);
+            newActive.get().setActiveState();
 
             oldActive.ifPresent(alert -> repo.save(oldActive.get()));
             repo.save(newActive.get());
@@ -142,7 +142,7 @@ public final class AlertService implements AlertServiceInterface {
 
     @Override
     public LocalizedAlert getActive(Language language) {
-        Optional<Alert> optActive = repo.findByActive(true);
+        Optional<Alert> optActive = repo.findByIsActive(true);
         if (optActive.isEmpty()) {
             return new LocalizedAlert(
                     0,
