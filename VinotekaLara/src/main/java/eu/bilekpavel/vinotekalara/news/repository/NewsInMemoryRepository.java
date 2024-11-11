@@ -34,6 +34,6 @@ public class NewsInMemoryRepository implements NewsRepositoryInterface {
 
     @Override
     public Optional<News> findByActive(boolean isActive) {
-        return Optional.empty();
+        return news.values().stream().filter(News::isActive).findFirst();
     }
 }
