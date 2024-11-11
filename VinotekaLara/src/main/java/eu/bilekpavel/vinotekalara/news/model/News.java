@@ -1,4 +1,4 @@
-package eu.bilekpavel.vinotekalara.news;
+package eu.bilekpavel.vinotekalara.news.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
