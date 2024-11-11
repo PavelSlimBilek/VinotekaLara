@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:lang="${_lang}">
     <head>
         <meta charset="UTF-8">
         <title th:text="${_adminLocalization.title()}"></title>
     </head>
     <body>
         <h1 th:text="${_adminLocalization.title()}"></h1>
-        <h3 th:text="${_coreLocalization.settings()}"></h3>
 
-        <a href="super-admin">FAVORITE_COLORS</a>
-        <br>
+        <h3 th:text="${_coreLocalization.settings()}"></h3>
         <a href="super-admin/translator" th:text="${_coreLocalization.translator()}"></a>
         <br>
         <a href="super-admin/alert" th:text="${_alertLocalization.alertBar()}"></a>
@@ -19,7 +17,6 @@
         <br>
 
         <h3 th:text="${_coreLocalization.content()}"></h3>
-
         <a href="super-admin/news" th:text="${_newsLocalization.news()}"></a>
     </body>
 </html>

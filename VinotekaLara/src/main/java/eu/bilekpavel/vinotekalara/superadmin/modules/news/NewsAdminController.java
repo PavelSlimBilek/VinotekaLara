@@ -1,5 +1,6 @@
 package eu.bilekpavel.vinotekalara.superadmin.modules.news;
 
+import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.news.service.NewsServiceInterface;
 import eu.bilekpavel.vinotekalara.news.translator.NewsTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.superadmin.controller.SuperAdminController;
@@ -19,16 +20,18 @@ public class NewsAdminController extends SuperAdminController {
     private final TranslatorServiceInterface translatorService;
 
     private final NewsTranslatorDataFactoryInterface newsLocalizationDataProvider;
+    private final CoreTranslatorDataFactoryInterface coreLocalizationDataProvider;
 
     @GetMapping("/news")
     public String index(
             Model model,
-            @RequestParam("lang") String langCode
+            @RequestParam(value = "lang", required = false) String langCode
     ) {
         Translator locale = translatorService.getLocale(langCode);
 
-        model.addAttribute("_news", service.getAll());
+        model.addAttribute("_coreLocalization", coreLocalizationDataProvider.create(locale.coreTranslator()));
         model.addAttribute("_newsLocalization", newsLocalizationDataProvider.create(locale.newsTranslator()));
+        model.addAttribute("_news", service.getAll());
 
         return "admin/news/index";
     }
