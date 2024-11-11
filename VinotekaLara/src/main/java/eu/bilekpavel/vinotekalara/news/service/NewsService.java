@@ -29,9 +29,9 @@ public class NewsService implements NewsServiceInterface {
     }
 
     @Override
-    public void create(NewsRequest request) {
+    public NewsData create(NewsRequest request) {
         News news = new News(request);
-        repository.save(news);
+        return new NewsData(repository.save(news));
     }
 
     @Override

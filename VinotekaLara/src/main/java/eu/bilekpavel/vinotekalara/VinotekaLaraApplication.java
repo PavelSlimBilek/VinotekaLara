@@ -2,13 +2,16 @@ package eu.bilekpavel.vinotekalara;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
-import eu.bilekpavel.vinotekalara.translator.service.TranslatorServiceInterface;
+import eu.bilekpavel.vinotekalara.news.dto.NewsData;
+import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
+import eu.bilekpavel.vinotekalara.news.service.NewsServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
 import eu.bilekpavel.vinotekalara.openinghours.dto.TimeInterval;
 import eu.bilekpavel.vinotekalara.openinghours.model.WeeklyHours;
 import eu.bilekpavel.vinotekalara.openinghours.service.WeeklyHoursServiceInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,21 +21,12 @@ import java.time.LocalTime;
 import java.util.List;
 
 @SpringBootApplication
+@AllArgsConstructor
 public class VinotekaLaraApplication implements CommandLineRunner {
 
 	private final AlertServiceInterface alertService;
 	private final WeeklyHoursServiceInterface hoursService;
-    private final TranslatorServiceInterface translatorService;
-
-	public VinotekaLaraApplication(
-			TranslatorServiceInterface translatorService,
-			AlertServiceInterface alertService,
-			WeeklyHoursServiceInterface hoursService
-	) {
-		this.translatorService = translatorService;
-		this.alertService = alertService;
-		this.hoursService = hoursService;
-	}
+	private final NewsServiceInterface newsService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(VinotekaLaraApplication.class, args);
@@ -165,5 +159,11 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setUserIdentifier("Zimní hodiny");
 
 		hoursService.save(winterHours);
+
+		System.out.println(
+				newsService.create(
+						new NewsRequest("Nová novinka!")
+				).content()
+		);
 	}
 }

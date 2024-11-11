@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface NewsServiceInterface {
     Optional<NewsData> get(int id);
     List<NewsData> getAll();
-    void create(NewsRequest request);
+    NewsData create(NewsRequest request);
     void update(int id, NewsRequest request);
 }
