@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.news.model;
 
 import eu.bilekpavel.vinotekalara.app.api.internal.Switchable;
+import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -21,6 +22,10 @@ public final class News implements Switchable {
     private String content;
 
     private boolean isActive = true;
+
+    public News(NewsRequest request) {
+        content = request.content();
+    }
 
     @Override
     public void setActiveState() {
