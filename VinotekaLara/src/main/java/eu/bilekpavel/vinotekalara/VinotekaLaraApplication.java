@@ -2,7 +2,6 @@ package eu.bilekpavel.vinotekalara;
 
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.service.AlertServiceInterface;
-import eu.bilekpavel.vinotekalara.news.dto.NewsData;
 import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
 import eu.bilekpavel.vinotekalara.news.service.NewsServiceInterface;
 import eu.bilekpavel.vinotekalara.openinghours.dto.DailyHours;
