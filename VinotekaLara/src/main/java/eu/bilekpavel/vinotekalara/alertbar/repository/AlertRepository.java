@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 @Qualifier("alert_db_repository")
 public interface AlertRepository extends AlertRepositoryInterface, JpaRepository<Alert, Integer> {
+
     @Override
     Optional<Alert> findById(int id);
 

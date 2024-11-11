@@ -9,5 +9,5 @@ public interface NewsRepositoryInterface {
     Optional<News> findById(int id);
     List<News> findAll();
     News save(News news);
-    Optional<News> findByActive(boolean isActive);
+    Optional<News> findByIsActive(boolean isActive);
 }

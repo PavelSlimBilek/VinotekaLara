@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>News</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>News</title>
+        <link rel="stylesheet" href="/admin.css">
+    </head>
+    <body>
+        <div class="card">
+            <div class="cardDescription">
+                <p>NEWS</p>
+            </div>
 
-</body>
+            <table>
+                <tr class="inactive" th:each="news : ${_news}">
+                    <td>
+                        <p th:text="${news.id()} + ' - ' + ${news.content()}"></p>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </body>
 </html>

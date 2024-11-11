@@ -5,17 +5,22 @@ import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotFoundException;
 import eu.bilekpavel.vinotekalara.news.model.News;
 import eu.bilekpavel.vinotekalara.news.repository.NewsRepositoryInterface;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class NewsService implements NewsServiceInterface {
 
     private final NewsRepositoryInterface repository;
+
+    public NewsService(
+            @Qualifier("news_db_repository") NewsRepositoryInterface repository
+    ) {
+        this.repository = repository;
+    }
 
     @Override
     public Optional<NewsData> get(int id) {
@@ -30,7 +35,8 @@ public class NewsService implements NewsServiceInterface {
 
     @Override
     public NewsData create(NewsRequest request) {
-        News news = new News(request);
+        News news = new News(request.content());
+        System.out.println(news.getId());
         return new NewsData(repository.save(news));
     }
 

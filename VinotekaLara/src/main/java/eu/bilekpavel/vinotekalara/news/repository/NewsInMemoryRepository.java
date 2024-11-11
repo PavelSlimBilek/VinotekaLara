@@ -1,6 +1,7 @@
 package eu.bilekpavel.vinotekalara.news.repository;
 
 import eu.bilekpavel.vinotekalara.news.model.News;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Repository
+@Qualifier("news_map_repository")
 public class NewsInMemoryRepository implements NewsRepositoryInterface {
     private final Map<Integer, News> news;
 
@@ -33,7 +35,7 @@ public class NewsInMemoryRepository implements NewsRepositoryInterface {
     }
 
     @Override
-    public Optional<News> findByActive(boolean isActive) {
+    public Optional<News> findByIsActive(boolean isActive) {
         return news.values().stream().filter(News::isActive).findFirst();
     }
 }

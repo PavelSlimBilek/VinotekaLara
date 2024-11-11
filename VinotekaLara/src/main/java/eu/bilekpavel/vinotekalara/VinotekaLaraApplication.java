@@ -164,5 +164,6 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 						new NewsRequest("Nová novinka!")
 				).content()
 		);
+		newsService.create(new NewsRequest("Ještě novější novinka!"));
 	}
 }
