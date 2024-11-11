@@ -12,6 +12,7 @@ public final class CoreTranslatorDataFactory implements CoreTranslatorDataFactor
         return new CoreTranslatorData(
                 locale.application(),
                 locale.settings(),
+                locale.content(),
                 locale.preview(),
                 locale.name(),
                 locale.allow(),

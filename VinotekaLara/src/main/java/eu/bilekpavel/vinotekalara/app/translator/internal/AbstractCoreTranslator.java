@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 public abstract class AbstractCoreTranslator implements CoreTranslator {
     private final String APPLICATION;
     private final String SETTINGS;
+    private final String CONTENT;
     private final String PREVIEW;
     private final String NAME;
     private final String ALLOW;
@@ -31,6 +32,11 @@ public abstract class AbstractCoreTranslator implements CoreTranslator {
     @Override
     public String settings() {
         return SETTINGS;
+    }
+
+    @Override
+    public String content() {
+        return CONTENT;
     }
 
     @Override

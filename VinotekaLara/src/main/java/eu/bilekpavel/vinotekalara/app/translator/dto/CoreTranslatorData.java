@@ -3,6 +3,7 @@ package eu.bilekpavel.vinotekalara.app.translator.dto;
 public record CoreTranslatorData(
         String application,
         String settings,
+        String content,
         String preview,
         String name,
         String allow,

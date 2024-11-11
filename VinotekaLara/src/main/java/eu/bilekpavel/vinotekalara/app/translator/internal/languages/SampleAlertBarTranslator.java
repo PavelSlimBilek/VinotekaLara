@@ -10,6 +10,7 @@ public final class SampleAlertBarTranslator extends AbstractCoreTranslator {
         super(
                 "APPLICATION",
                 "SETTINGS",
+                "CONTENT",
                 "PREVIEW",
                 "NAME",
                 "ALLOW",

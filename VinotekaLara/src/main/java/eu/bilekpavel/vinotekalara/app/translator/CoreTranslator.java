@@ -3,6 +3,7 @@ package eu.bilekpavel.vinotekalara.app.translator;
 public interface CoreTranslator {
     String application();
     String settings();
+    String content();
     String preview();
     String name();
     String allow();
