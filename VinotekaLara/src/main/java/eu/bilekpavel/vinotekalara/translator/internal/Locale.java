@@ -4,6 +4,7 @@ import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslator;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslator;
+import eu.bilekpavel.vinotekalara.news.translator.NewsTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
@@ -27,6 +28,7 @@ public abstract class Locale implements Translator {
     // MODULES
     private final OpeningHoursTranslator hoursTranslator;
     private final AlertBarTranslator alertBarTranslator;
+    private final NewsTranslator newsTranslator;
 
     @Override
     public String getCode() {
@@ -77,5 +79,10 @@ public abstract class Locale implements Translator {
     @Override
     public AlertBarTranslator alertTranslator() {
         return alertBarTranslator;
+    }
+
+    @Override
+    public NewsTranslator newsTranslator() {
+        return newsTranslator;
     }
 }

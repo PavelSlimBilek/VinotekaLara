@@ -3,10 +3,13 @@ package eu.bilekpavel.vinotekalara.superadmin.controller;
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.app.config.TranslatorConfig;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslatorDataFactoryInterface;
+import eu.bilekpavel.vinotekalara.news.translator.NewsTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.translator.api.Translator;
 import eu.bilekpavel.vinotekalara.translator.internal.TranslatorRegistry;
+import eu.bilekpavel.vinotekalara.translator.service.TranslatorService;
+import eu.bilekpavel.vinotekalara.translator.service.TranslatorServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +27,9 @@ public final class AdminController {
     private final AlertBarTranslatorDataFactoryInterface alertLocalizationDataProvider;
     private final OpeningHoursTranslatorDataFactoryInterface hoursLocalizationDataProvider;
     private final CoreTranslatorDataFactoryInterface coreLocalizationProvider;
+    private final NewsTranslatorDataFactoryInterface newsLocalizationProvider;
 
-    private final TranslatorConfig config;
+    private final TranslatorServiceInterface translatorService;
 
     @GetMapping("/super-admin")
     public String baseView(
@@ -33,14 +37,13 @@ public final class AdminController {
             @RequestParam(required = false) String lang,
             RedirectAttributes attributes
     ) {
-        Translator locale = lang == null || lang.isEmpty() || !locales.isOnTheList(lang)
-                ? locales.getLocale(config.getDefaultLanguage().getCode())
-                : locales.getLocale(lang);
+        Translator locale = translatorService.getLocale(lang);
 
         model.addAttribute("_adminLocalization", adminLocalizationDataProvider.create(locale.getAdminTranslator()));
         model.addAttribute("_alertLocalization", alertLocalizationDataProvider.create(locale.alertTranslator()));
         model.addAttribute("_hoursLocalization", hoursLocalizationDataProvider.create(locale.hoursTranslator()));
         model.addAttribute("_coreLocalization", coreLocalizationProvider.create(locale.coreTranslator()));
+        model.addAttribute("_newsLocalization", newsLocalizationProvider.create(locale.newsTranslator()));
         attributes.addAttribute("lang", lang);
         return "admin/index";
     }

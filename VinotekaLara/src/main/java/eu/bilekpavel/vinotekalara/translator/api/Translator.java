@@ -4,6 +4,7 @@ import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.app.module.color.translator.CoreColorTranslator;
 import eu.bilekpavel.vinotekalara.app.translator.CoreTranslator;
 import eu.bilekpavel.vinotekalara.homepage.translator.HomePageTranslator;
+import eu.bilekpavel.vinotekalara.news.translator.NewsTranslator;
 import eu.bilekpavel.vinotekalara.openinghours.translator.OpeningHoursTranslator;
 import eu.bilekpavel.vinotekalara.superadmin.translator.AdminPageTranslator;
 import eu.bilekpavel.vinotekalara.translator.dto.Flag;
@@ -16,12 +17,14 @@ public interface Translator {
     String getCode();
     Flag getFlag();
 
-    CoreTranslator coreTranslator();
     TranslatorTranslator translatorTranslator();
+    CoreTranslator coreTranslator();
     CoreColorTranslator coreColorTranslator();
+
     HomePageTranslator homePageTranslator();
     AdminPageTranslator getAdminTranslator();
 
     AlertBarTranslator alertTranslator();
     OpeningHoursTranslator hoursTranslator();
+    NewsTranslator newsTranslator();
 }
