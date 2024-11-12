@@ -2,6 +2,7 @@ package eu.bilekpavel.vinotekalara.news.service;
 
 import eu.bilekpavel.vinotekalara.news.dto.NewsFullData;
 import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
+import eu.bilekpavel.vinotekalara.news.error.CannotHardRemoveNotSoftRemovedNewsException;
 import eu.bilekpavel.vinotekalara.news.error.CannotRemoveActiveNewsException;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotFoundException;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotRemovedException;
@@ -25,7 +26,7 @@ public interface NewsServiceInterface {
     NewsFullData create(NewsRequest request);
     void update(int id, NewsRequest request) throws NewsNotFoundException;
 
-    void hardDelete(int id) throws NewsNotFoundException;
+    void hardDelete(int id) throws CannotHardRemoveNotSoftRemovedNewsException, NewsNotFoundException;
     void softDelete(int id) throws CannotRemoveActiveNewsException, NewsNotFoundException;
     void restore(int id) throws NewsNotFoundException, NewsNotRemovedException;
 

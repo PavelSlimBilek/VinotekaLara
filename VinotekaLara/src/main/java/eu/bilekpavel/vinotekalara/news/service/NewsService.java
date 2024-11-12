@@ -3,6 +3,7 @@ package eu.bilekpavel.vinotekalara.news.service;
 import eu.bilekpavel.vinotekalara.news.config.NewsConfig;
 import eu.bilekpavel.vinotekalara.news.dto.NewsFullData;
 import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
+import eu.bilekpavel.vinotekalara.news.error.CannotHardRemoveNotSoftRemovedNewsException;
 import eu.bilekpavel.vinotekalara.news.error.CannotRemoveActiveNewsException;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotFoundException;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotRemovedException;
@@ -96,6 +97,9 @@ public class NewsService implements NewsServiceInterface {
     @Override
     public void hardDelete(int id) throws NewsNotRemovedException {
         News news = findOrThrow(id);
+        if (!news.isRemoved()) { // soft removed
+            throw new CannotHardRemoveNotSoftRemovedNewsException(String.valueOf(id));
+        }
         repository.delete(news);
     }
 
