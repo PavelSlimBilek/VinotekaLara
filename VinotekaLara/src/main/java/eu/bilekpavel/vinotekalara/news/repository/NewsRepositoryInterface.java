@@ -10,4 +10,5 @@ public interface NewsRepositoryInterface {
     List<News> findAll();
     News save(News news);
     Optional<News> findByIsActive(boolean isActive);
+    void delete(News news);
 }

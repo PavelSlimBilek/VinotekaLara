@@ -38,4 +38,9 @@ public class NewsInMemoryRepository implements NewsRepositoryInterface {
     public Optional<News> findByIsActive(boolean isActive) {
         return news.values().stream().filter(News::isActive).findFirst();
     }
+
+    @Override
+    public void delete(News news) {
+        this.news.remove(news.getId());
+    }
 }

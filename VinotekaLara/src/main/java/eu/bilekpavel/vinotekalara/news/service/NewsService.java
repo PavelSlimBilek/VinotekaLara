@@ -1,9 +1,11 @@
 package eu.bilekpavel.vinotekalara.news.service;
 
+import eu.bilekpavel.vinotekalara.news.config.NewsConfig;
 import eu.bilekpavel.vinotekalara.news.dto.NewsFullData;
 import eu.bilekpavel.vinotekalara.news.dto.NewsRequest;
 import eu.bilekpavel.vinotekalara.news.error.CannotRemoveActiveNewsException;
 import eu.bilekpavel.vinotekalara.news.error.NewsNotFoundException;
+import eu.bilekpavel.vinotekalara.news.error.NewsNotRemovedException;
 import eu.bilekpavel.vinotekalara.news.model.News;
 import eu.bilekpavel.vinotekalara.news.repository.NewsRepositoryInterface;
 import eu.bilekpavel.vinotekalara.news.translator.dto.LocalizedNews;
@@ -24,13 +26,36 @@ public class NewsService implements NewsServiceInterface {
 
     private final NewsRepositoryInterface repository;
     private final LocalizedStringFactoryInterface localizedStringFactory;
+    private final NewsConfig config;
 
     public NewsService(
             @Qualifier("news_db_repository") NewsRepositoryInterface repository,
-            LocalizedStringFactoryInterface localizedStringFactory
+            LocalizedStringFactoryInterface localizedStringFactory,
+            NewsConfig config
     ) {
         this.repository = repository;
         this.localizedStringFactory = localizedStringFactory;
+        this.config = config;
+    }
+
+    @Override
+    public void allowModule(boolean allow) {
+        config.setAllowed(allow);
+    }
+
+    @Override
+    public boolean isModuleAllowed() {
+        return config.isAllowed();
+    }
+
+    @Override
+    public void displayModule(boolean display) {
+        config.setDisplayed(display);
+    }
+
+    @Override
+    public boolean isModuleDisplayed() {
+        return config.isDisplayed();
     }
 
     @Override
@@ -58,29 +83,25 @@ public class NewsService implements NewsServiceInterface {
     public void update(
             int id,
             NewsRequest request
-    ) {
-        Optional<News> optNews = repository.findById(id);
-        if (optNews.isEmpty()) {
-            throw new NewsNotFoundException(String.valueOf(id));
-        }
-
+    ) throws NewsNotFoundException {
+        News news = findOrThrow(id);
         LocalizedString validContent = localizedStringFactory.create(request.content());
         LocalizedString validTitle = localizedStringFactory.create(request.title());
 
-        News news = optNews.get();
         news.updateContent(validContent);
         news.updateTitle(validTitle);
         repository.save(news);
     }
 
     @Override
-    public void softDelete(int id) {
-        Optional<News> optNews = repository.findById(id);
-        if (optNews.isEmpty()) {
-            throw new NewsNotFoundException(String.valueOf(id));
-        }
+    public void hardDelete(int id) throws NewsNotRemovedException {
+        News news = findOrThrow(id);
+        repository.delete(news);
+    }
 
-        News news = optNews.get();
+    @Override
+    public void softDelete(int id) throws CannotRemoveActiveNewsException, NewsNotFoundException {
+        News news = findOrThrow(id);
         if (news.isActive()) {
             throw new CannotRemoveActiveNewsException();
         }
@@ -90,25 +111,23 @@ public class NewsService implements NewsServiceInterface {
     }
 
     @Override
-    public void activate(int id) {
-        Optional<News> optNews = repository.findById(id);
-        if (optNews.isEmpty()) {
-            throw new NewsNotFoundException(String.valueOf(id));
+    public void restore(int id) throws NewsNotRemovedException, NewsNotFoundException {
+        News news = findOrThrow(id);
+        if (!news.isRemoved()) {
+            throw new NewsNotRemovedException(String.valueOf(id));
         }
-
-        optNews.get().setActiveState();
-        repository.save(optNews.get());
+        news.restore();
+        repository.save(news);
     }
 
-    @Override
-    public void deactivate(int id) {
-        Optional<News> optNews = repository.findById(id);
-        if (optNews.isEmpty()) {
-            throw new NewsNotFoundException(String.valueOf(id));
+    public void publish(int id, boolean publish) throws NewsNotFoundException {
+        News news = findOrThrow(id);
+        if (publish) {
+            news.setActiveState();
+        } else {
+            news.setInactiveState();
         }
-
-        optNews.get().setInactiveState();
-        repository.save(optNews.get());
+        repository.save(news);
     }
 
     @Override
@@ -117,28 +136,6 @@ public class NewsService implements NewsServiceInterface {
                 .filter(news -> allowRemoved || !news.isRemoved())
                 .map(news -> populate(language, news))
                 .toList();
-    }
-
-    @Override
-    public void hide(int id) {
-        Optional<News> optNews = repository.findById(id);
-        if (optNews.isEmpty()) {
-            throw new NewsNotFoundException(String.valueOf(id));
-        }
-
-        optNews.get().setInactiveState();
-        repository.save(optNews.get());
-    }
-
-    @Override
-    public void publish(int id) {
-        Optional<News> optNews = repository.findById(id);
-        if (optNews.isEmpty()) {
-            throw new NewsNotFoundException(String.valueOf(id));
-        }
-
-        optNews.get().setActiveState();
-        repository.save(optNews.get());
     }
 
     private NewsFullData populate(News news) {
@@ -168,5 +165,13 @@ public class NewsService implements NewsServiceInterface {
                 localizedStringFactory.create(language, news.getContent(language)),
                 localizedStringFactory.create(language, news.getTitle(language))
         );
+    }
+
+    private News findOrThrow(int id) throws NewsNotFoundException {
+        Optional<News> optNews = repository.findById(id);
+        if (optNews.isEmpty()) {
+            throw new NewsNotFoundException(String.valueOf(id));
+        }
+        return optNews.get();
     }
 }

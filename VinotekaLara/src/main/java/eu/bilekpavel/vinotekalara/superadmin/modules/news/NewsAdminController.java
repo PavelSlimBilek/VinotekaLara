@@ -52,13 +52,13 @@ public class NewsAdminController extends SuperAdminController {
 
     @PostMapping("/news/{id}/hide")
     public String hide(@PathVariable int id) {
-        service.hide(id);
+        service.publish(id, false);
         return "redirect:/super-admin/news";
     }
 
     @PostMapping("/news/{id}/publish")
     public String publish(@PathVariable int id) {
-        service.publish(id);
+        service.publish(id, true);
         return "redirect:/super-admin/news";
     }
 }
