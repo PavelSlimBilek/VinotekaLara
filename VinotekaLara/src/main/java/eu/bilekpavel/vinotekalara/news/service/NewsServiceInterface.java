@@ -18,4 +18,7 @@ public interface NewsServiceInterface {
     void deactivate(int id);
 
     List<LocalizedNews> getAllLocalized(Language language, boolean allowRemoved);
+
+    void hide(int id);
+    void publish(int id);
 }

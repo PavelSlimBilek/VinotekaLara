@@ -119,6 +119,28 @@ public class NewsService implements NewsServiceInterface {
                 .toList();
     }
 
+    @Override
+    public void hide(int id) {
+        Optional<News> optNews = repository.findById(id);
+        if (optNews.isEmpty()) {
+            throw new NewsNotFoundException(String.valueOf(id));
+        }
+
+        optNews.get().setInactiveState();
+        repository.save(optNews.get());
+    }
+
+    @Override
+    public void publish(int id) {
+        Optional<News> optNews = repository.findById(id);
+        if (optNews.isEmpty()) {
+            throw new NewsNotFoundException(String.valueOf(id));
+        }
+
+        optNews.get().setActiveState();
+        repository.save(optNews.get());
+    }
+
     private NewsFullData populate(News news) {
         Map<Language, LocalizedString> title = new HashMap<>();
         for (Map.Entry<Language, String> entry : news.getTitle().entrySet()) {

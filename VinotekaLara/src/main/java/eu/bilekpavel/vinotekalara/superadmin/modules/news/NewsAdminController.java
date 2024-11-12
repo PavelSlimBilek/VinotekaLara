@@ -47,6 +47,18 @@ public class NewsAdminController extends SuperAdminController {
     @PostMapping("/news/{id}/delete")
     public String delete(@PathVariable int id) {
         service.softDelete(id);
-        return "redirect:/news";
+        return "redirect:/super-admin/news";
+    }
+
+    @PostMapping("/news/{id}/hide")
+    public String hide(@PathVariable int id) {
+        service.hide(id);
+        return "redirect:/super-admin/news";
+    }
+
+    @PostMapping("/news/{id}/publish")
+    public String publish(@PathVariable int id) {
+        service.publish(id);
+        return "redirect:/super-admin/news";
     }
 }

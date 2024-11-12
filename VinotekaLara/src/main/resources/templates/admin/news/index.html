@@ -23,7 +23,7 @@
                         </a>
                     </td>
                     <td>
-                        <form th:action="@{'/super-admin/news/' + ${news.id()} + ${news.title()}}" method="post">
+                        <form th:action="@{'/super-admin/news/' + ${news.id()} + ${news.isActive() ? '/hide' : '/publish'}}" method="post">
                             <input
                                     type="submit"
                                     th:class="${news.isActive() ? 'button orange' : 'button green'}"
