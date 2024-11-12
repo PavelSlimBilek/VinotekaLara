@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 public class SampleNewsTranslator extends AbstractNewsTranslator {
     public SampleNewsTranslator() {
         super(
-                "NEWS"
+                "NEWS",
+                "PUBLISH",
+                "HIDE"
         );
     }
 }

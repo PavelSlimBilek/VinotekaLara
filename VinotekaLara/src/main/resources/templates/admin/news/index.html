@@ -12,7 +12,7 @@
             </div>
 
             <table>
-                <tr class="inactive" th:each="news : ${_news}">
+                <tr th:each="news : ${_news}" th:class="${news.isActive() ? 'active' : 'inactive'}">
                     <td>
                         <p th:text="${news.title().content()}"></p>
                     </td>
@@ -24,7 +24,10 @@
                     </td>
                     <td>
                         <form th:action="@{'/super-admin/news/' + ${news.id()} + ${news.title()}}" method="post">
-                            <input type="submit" class="button green" th:value="${_coreLocalization.activate()}">
+                            <input
+                                    type="submit"
+                                    th:class="${news.isActive() ? 'button orange' : 'button green'}"
+                                    th:value="${news.isActive() ? _newsLocalization.hide() : _newsLocalization.publish()}">
                         </form>
                     </td>
                     <td>

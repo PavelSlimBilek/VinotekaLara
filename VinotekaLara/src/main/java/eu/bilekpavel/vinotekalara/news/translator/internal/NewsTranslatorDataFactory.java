@@ -10,7 +10,9 @@ public class NewsTranslatorDataFactory implements NewsTranslatorDataFactoryInter
     @Override
     public NewsTranslatorData create(NewsTranslator locale) {
         return new NewsTranslatorData(
-                locale.news()
+                locale.news(),
+                locale.publish(),
+                locale.hide()
         );
     }
 }
