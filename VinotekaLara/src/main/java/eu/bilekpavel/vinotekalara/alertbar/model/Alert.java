@@ -29,7 +29,7 @@ public final class Alert implements SoftRemovable, Switchable {
     private boolean removed;
 
     @ElementCollection
-    private final Map<Language, String> localizations;
+    private final Map<Language, String> content;
 
     @Embedded
     @Setter
@@ -50,19 +50,18 @@ public final class Alert implements SoftRemovable, Switchable {
     private Color fontColor;
 
     public Alert() {
-        localizations = new HashMap<>();
+        content = new HashMap<>();
         isActive = false;
         backgroundColor = new Color(255, 255, 255);
         fontColor = new Color(0, 0, 0);
-
     }
 
-    public String getLocalized(Language language) {
-        return localizations.get(language);
+    public String getContent(Language language) {
+        return content.get(language);
     }
 
-    public void updateLocalization(LocalizedString content) {
-        this.localizations.put(content.language(), content.content());
+    public void updateContent(LocalizedString content) {
+        this.content.put(content.language(), content.content());
     }
 
 

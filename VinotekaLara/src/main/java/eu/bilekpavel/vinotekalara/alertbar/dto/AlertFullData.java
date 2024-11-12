@@ -8,11 +8,11 @@ import java.util.Map;
 
 public record AlertFullData(
     int id,
-    Map<Language, String> localizedStrings,
+    Map<Language, String> content,
     Color backgroundColor,
     Color fontColor
 ) {
     public LocalizedString getLocalized(Language language) {
-        return new LocalizedString(language, localizedStrings.get(language));
+        return new LocalizedString(language, content.get(language));
     }
 }

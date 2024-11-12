@@ -4,6 +4,7 @@ import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringFactoryInterface
 import eu.bilekpavel.vinotekalara.translator.api.LocalizedStringValidatorInterface;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedString;
 import eu.bilekpavel.vinotekalara.translator.dto.LocalizedStringRequest;
+import eu.bilekpavel.vinotekalara.translator.error.TranslatorException;
 import eu.bilekpavel.vinotekalara.translator.language.Language;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public final class LocalizedStringFactory implements LocalizedStringFactoryInter
     }
 
     @Override
-    public LocalizedString create(LocalizedStringRequest request) {
+    public LocalizedString create(LocalizedStringRequest request) throws TranslatorException {
         validator.validate(request.langCode(), request.payload());
         Language language = registry.getLocale(request.langCode()).getLang();
         return new LocalizedString(language, request.payload());

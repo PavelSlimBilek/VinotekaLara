@@ -30,13 +30,17 @@ public class NewsAdminController extends SuperAdminController {
 
         model.addAttribute("_coreLocalization", coreLocalizationDataProvider.create(locale.coreTranslator()));
         model.addAttribute("_newsLocalization", newsLocalizationDataProvider.create(locale.newsTranslator()));
-        model.addAttribute("_news", service.getAll());
+        model.addAttribute("_news", service.getAllLocalized(locale.getLang(), false));
 
         return "admin/news/index";
     }
 
     @GetMapping("/news/{id}")
-    public String detail() {
+    public String detail(
+            Model model,
+            @PathVariable int id
+    ) {
+        model.addAttribute("_news", service.get(id));
         return "admin/news/detail";
     }
 

@@ -14,7 +14,7 @@
             <table>
                 <tr class="inactive" th:each="news : ${_news}">
                     <td>
-                        <p th:text="${news.content()}"></p>
+                        <p th:text="${news.title().content()}"></p>
                     </td>
                     <td>
                         <a th:href="@{'/super-admin/news/' + ${news.id()}}"
@@ -23,7 +23,7 @@
                         </a>
                     </td>
                     <td>
-                        <form th:action="@{'/super-admin/news/' + ${news.id()} + '/activate'}" method="post">
+                        <form th:action="@{'/super-admin/news/' + ${news.id()} + ${news.title()}}" method="post">
                             <input type="submit" class="button green" th:value="${_coreLocalization.activate()}">
                         </form>
                     </td>

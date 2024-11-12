@@ -8,7 +8,7 @@ public final class AlertBuilder {
     private final Alert ALERT = new Alert();
 
     public AlertBuilder addLocalization(LocalizedString request) {
-        ALERT.updateLocalization(request);
+        ALERT.updateContent(request);
         return this;
     }
 

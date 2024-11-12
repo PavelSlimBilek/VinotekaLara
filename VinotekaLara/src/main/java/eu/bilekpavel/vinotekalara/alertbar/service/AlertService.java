@@ -4,6 +4,8 @@ import eu.bilekpavel.vinotekalara.alertbar.dto.AlertBarWidgetData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertFullData;
 import eu.bilekpavel.vinotekalara.alertbar.dto.AlertRequest;
 import eu.bilekpavel.vinotekalara.alertbar.error.AlertBarNotFoundException;
+import eu.bilekpavel.vinotekalara.alertbar.error.CannotRemoveActiveAlertBarException;
+import eu.bilekpavel.vinotekalara.alertbar.error.NoActiveAlertBarException;
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslator;
 import eu.bilekpavel.vinotekalara.alertbar.translator.AlertBarTranslatorDataFactoryInterface;
 import eu.bilekpavel.vinotekalara.alertbar.translator.dto.AlertBarTranslatorData;
@@ -58,17 +60,17 @@ public final class AlertService implements AlertServiceInterface {
     @Override
     public LocalizedAlert getLocalized(int id, Language language) {
         Alert alert = getAlert(id);
-        return alert.getLocalized(language) == null
+        return alert.getContent(language) == null
                 ? new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
-                        localizedStringFactory.create(language, alert.getLocalized(language)),
+                        localizedStringFactory.create(language, alert.getContent(language)),
                         alert.getBackgroundColor().toRgbString(),
                         alert.getFontColor().toRgbString())
                 : new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
-                        localizedStringFactory.create(language, alert.getLocalized(Language.CZECH)),
+                        localizedStringFactory.create(language, alert.getContent(Language.CZECH)),
                         alert.getBackgroundColor().toRgbString(),
                         alert.getFontColor().toRgbString());
     }
@@ -80,7 +82,7 @@ public final class AlertService implements AlertServiceInterface {
                 .map(alert -> new LocalizedAlert(
                         alert.getId(),
                         alert.isActive(),
-                        localizedStringFactory.create(language, alert.getLocalized(language)),
+                        localizedStringFactory.create(language, alert.getContent(language)),
                         alert.getBackgroundColor().toRgbString(),
                         alert.getFontColor().toRgbString())
                 ).toList();
@@ -112,7 +114,7 @@ public final class AlertService implements AlertServiceInterface {
     public void updateLocalization(int id, LocalizedStringRequest request) {
         Alert alert = getAlert(id);
         LocalizedString content = localizedStringFactory.create(request);
-        alert.updateLocalization(content);
+        alert.updateContent(content);
     }
 
     @Override
@@ -120,7 +122,7 @@ public final class AlertService implements AlertServiceInterface {
         Alert alert = getAlert(id);
         return new AlertFullData(
                 alert.getId(),
-                alert.getLocalizations(),
+                alert.getContent(),
                 alert.getBackgroundColor(),
                 alert.getFontColor()
         );
@@ -141,23 +143,17 @@ public final class AlertService implements AlertServiceInterface {
     }
 
     @Override
-    public LocalizedAlert getActive(Language language) {
+    public LocalizedAlert getActive(Language language) throws NoActiveAlertBarException {
         Optional<Alert> optActive = repo.findByIsActive(true);
         if (optActive.isEmpty()) {
-            return new LocalizedAlert(
-                    0,
-                    true,
-                    localizedStringFactory.create(language, "Something went wrong"),
-                    "tomato",
-                    "black"
-            );
+            throw new NoActiveAlertBarException();
         }
 
         Alert alert = optActive.get();
         return new LocalizedAlert(
                 alert.getId(),
                 true,
-                localizedStringFactory.create(language, alert.getLocalized(language)),
+                localizedStringFactory.create(language, alert.getContent(language)),
                 alert.getBackgroundColor().toRgbString(),
                 alert.getFontColor().toRgbString()
         );
@@ -188,7 +184,7 @@ public final class AlertService implements AlertServiceInterface {
         Optional<Alert> alert = repo.findById(id);
         if (alert.isPresent()) {
             if (alert.get().isActive()) {
-                throw new RuntimeException("Cannot delete active alert");
+                throw new CannotRemoveActiveAlertBarException();
             }
             alert.get().setRemoved(true);
             repo.save(alert.get());

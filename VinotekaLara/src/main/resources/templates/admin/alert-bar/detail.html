@@ -76,7 +76,7 @@
             </div>
             <div id="previewBox" class="alertBar"
                  th:style="'background-color: ' + ${_alertBar.backgroundColor().toRgbString()} + '; color: ' + ${_alertBar.fontColor().toRgbString()}"
-                 th:text="${_alertBar.localizedStrings().get(_localizationWidget.activeLanguage())}">
+                 th:text="${_alertBar.content().get(_localizationWidget.activeLanguage())}">
             </div>
         </div>
 

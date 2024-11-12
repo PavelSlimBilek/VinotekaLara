@@ -156,14 +156,20 @@ public class VinotekaLaraApplication implements CommandLineRunner {
 		winterHours.setSaturday(saturday2);
 		winterHours.setSunday(sunday2);
 		winterHours.setUserIdentifier("Zimní hodiny");
-
 		hoursService.save(winterHours);
 
-		System.out.println(
-				newsService.create(
-						new NewsRequest("Nová novinka!")
-				).content()
+		newsService.create(
+				new NewsRequest(
+						new LocalizedStringRequest("Nová novinka", "cz"),
+						new LocalizedStringRequest("Toto je úplně první novinka publikovaná na tomto webu! Bomba!", "cz")
+				)
 		);
-		newsService.create(new NewsRequest("Ještě novější novinka!"));
+
+		newsService.create(
+				new NewsRequest(
+						new LocalizedStringRequest("Ještě novější!", "cz"),
+						new LocalizedStringRequest("Toto je ještě novější novinka.. ještě větší bomba!", "cz")
+				)
+		);
 	}
 }
